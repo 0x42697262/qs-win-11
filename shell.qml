@@ -10,6 +10,7 @@ import qs.src.ui.features.shell
 import qs.src.ui.features.taskbar
 import qs.src.ui.features.start
 import qs.src.ui.features.quickSettings
+import qs.src.ui.features.notifications
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -31,6 +32,7 @@ ShellRoot {
         if (Features.enabled.quickSettings) {
             components[Surfaces.Surface.QuickSettings] = quickSettingsSurface;
         }
+        components[Surfaces.Surface.NotificationCenter] = notificationCenterSurface;
         if (Features.enabled.systemTray) {
             components[Surfaces.Surface.TrayOverflow] = trayOverflowSurface;
         }
@@ -46,6 +48,12 @@ ShellRoot {
     QuickLinkIpc {}
     SessionIpc {}
     QuickSettingsIpc {}
+    NotificationsIpc {}
+
+    LazyLoader {
+        active: Notifications.active
+        ToastLayer {}
+    }
 
     LazyLoader {
         active: Features.enabled.appThemeSync
@@ -103,6 +111,11 @@ ShellRoot {
     Component {
         id: quickSettingsSurface
         QuickSettingsSurface {}
+    }
+
+    Component {
+        id: notificationCenterSurface
+        NotificationCenterSurface {}
     }
 
     Component {

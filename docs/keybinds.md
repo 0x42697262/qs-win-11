@@ -21,6 +21,9 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `search toggle` | Open or close Search. | `SUPER+S` |
 | `quickLink toggle` | Open or close the Quick Link menu. | `SUPER+X` |
 | `quickSettings toggle` | Open or close Quick Settings. | `SUPER+A` |
+| `notifications toggle` | Open or close the notification center. | `SUPER+N` |
+| `notifications clearAll` | Dismiss every notification. |  |
+| `notifications toggleDoNotDisturb` | Turn do not disturb on or off. |  |
 | `session lock` | Lock the session. | `SUPER+L` |
 | `session suspend` | Sleep. |  |
 | `session hibernate` | Hibernate. |  |

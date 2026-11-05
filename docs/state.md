@@ -20,7 +20,8 @@ Each row has exactly one owner. Everything else reads it or derives from it.
 | Media | MPRIS players | Playing player first |
 | Do not disturb | `state.json` `doNotDisturb` | Notifications read it |
 | Installed apps | `.desktop` files via `DesktopEntries` | Pinned lists store app ids only |
-| Notifications | `NotificationServer` | Toasts and the center are two views of one list |
+| Notifications | `NotificationServer` tracked list | Toasts (`Notifications.toastIds` picks which are shown) and the center are two views of it |
+| Notification arrival time | `Notifications.receivedAt` (the server has no timestamp) | Relative times |
 | Open surface and its payload | `ShellState.state` | Surfaces, taskbar button states and the flyout host bind to it |
 | Tooltip text and position | `ToolTips` | One click-through `ToolTipLayer` per screen draws it |
 | Taskbar and Start pins | `state.json` (`taskbarPinnedApps`, `startPinnedApps`); before the first change, `taskbar.initialPinned` / `startMenu.initialPinned` settings | `Apps` filters to installed entries |

@@ -18,6 +18,8 @@ export const LogEvent = Object.freeze({
     AppNotFound: "app.notFound",
     SurfaceOpened: "surface.opened",
     SessionAction: "session.action",
+    NotificationReceived: "notification.received",
+    NotificationsTrimmed: "notification.trimmed",
     CommandRun: "command.run",
 });
 

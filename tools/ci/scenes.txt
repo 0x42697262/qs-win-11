@@ -7,4 +7,8 @@
 07-quick-link|quickLink toggle
 08-quick-settings|quickSettings toggle
 09-quick-settings-light|settings set theme.mode light
-10-closed|quickSettings toggle
+10-toast|!notify-send -a Mail "New message from Ada" "The build is green. Lunch at noon?"
+11-toast-critical|!notify-send -u critical -a Battery "Battery low" "Plug in your PC."
+12-notification-center|notifications toggle
+13-notification-center-dark|settings set theme.mode dark
+14-closed|notifications toggle

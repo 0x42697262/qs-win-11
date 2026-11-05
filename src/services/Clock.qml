@@ -14,6 +14,7 @@ Singleton {
     readonly property string longDateText: TimeFormat.formatLongDate(date)
     readonly property int hours: clock.hours
     readonly property int minutes: clock.minutes
+    readonly property real nowMs: clock.date.getTime()
 
     SystemClock {
         id: clock

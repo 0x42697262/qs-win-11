@@ -43,6 +43,7 @@ if command -v pipewire > /dev/null; then
     wireplumber > /dev/null 2>&1 &
     sleep 1
 fi
+printf '%s' "$DBUS_SESSION_BUS_ADDRESS" > "$XDG_RUNTIME_DIR/bus-address"
 exec "$@"
 SESSION
 dbus-run-session -- sh "$XDG_RUNTIME_DIR/session.sh" qs -p "$SHELL_DIR" --no-color > "$ARTIFACT_DIR/quickshell.log" 2>&1 &
@@ -52,8 +53,12 @@ grim "$ARTIFACT_DIR/00-desktop.png"
 if [[ -f "$SCENES_FILE" ]]; then
     while IFS='|' read -r scene_name ipc_call; do
         [[ -z "$scene_name" ]] && continue
-        read -ra ipc_words <<< "$ipc_call"
-        qs -p "$SHELL_DIR" ipc call "${ipc_words[@]}" >> "$ARTIFACT_DIR/ipc.log" 2>&1 || echo "ipc failed: $ipc_call" >> "$ARTIFACT_DIR/ipc.log"
+        if [[ "$ipc_call" == !* ]]; then
+            DBUS_SESSION_BUS_ADDRESS="$(cat "$XDG_RUNTIME_DIR/bus-address")" sh -c "${ipc_call#!}" >> "$ARTIFACT_DIR/ipc.log" 2>&1 || echo "command failed: $ipc_call" >> "$ARTIFACT_DIR/ipc.log"
+        else
+            read -ra ipc_words <<< "$ipc_call"
+            qs -p "$SHELL_DIR" ipc call "${ipc_words[@]}" >> "$ARTIFACT_DIR/ipc.log" 2>&1 || echo "ipc failed: $ipc_call" >> "$ARTIFACT_DIR/ipc.log"
+        fi
         sleep "$SCENE_WAIT_SECONDS"
         grim "$ARTIFACT_DIR/$scene_name.png"
     done < "$SCENES_FILE"
@@ -78,7 +83,7 @@ else
 fi
 
 log_problems="$(grep -E 'WARN|ERROR|FATAL|TypeError|ReferenceError' "$ARTIFACT_DIR/quickshell.log" | grep -Ev "$IGNORED_LOG_PATTERN" || true)"
-ipc_problems="$(grep -E 'ipc failed|Error|No such|Too many|Too few|not found|false' "$ARTIFACT_DIR/ipc.log" 2>/dev/null || true)"
+ipc_problems="$(grep -E 'command failed|ipc failed|Error|No such|Too many|Too few|not found|false' "$ARTIFACT_DIR/ipc.log" 2>/dev/null || true)"
 
 cat "$ARTIFACT_DIR/qmllint.log"
 [[ -n "$log_problems" ]] && printf 'Runtime problems:\n%s\n' "$log_problems"
