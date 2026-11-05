@@ -30,5 +30,7 @@
 30-widgets|widgets toggle
 31-widgets-light|settings set theme.mode light
 32-closed|widgets toggle
+32b-settings-app|settings open
+32c-settings-dark|settings set theme.mode dark
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock

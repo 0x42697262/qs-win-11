@@ -3,6 +3,10 @@
 
 return {
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call settings open"),
+		bind = "SUPER + I",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call start toggle"),
 		bind = "SUPER + SUPER_L",
 		opts = { release = true },

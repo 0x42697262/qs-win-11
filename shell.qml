@@ -15,6 +15,7 @@ import qs.src.ui.features.osd
 import qs.src.ui.features.power
 import qs.src.ui.features.taskView
 import qs.src.ui.features.widgets
+import qs.src.ui.features.settingsApp
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -71,6 +72,13 @@ ShellRoot {
     DesktopIpc {}
     WidgetsIpc {}
     BrightnessIpc {}
+
+    SettingsProblemNotice {}
+
+    LazyLoader {
+        active: Features.enabled.settingsApp && SettingsWindow.open
+        SettingsAppWindow {}
+    }
 
     LazyLoader {
         active: Features.enabled.batteryAlerts

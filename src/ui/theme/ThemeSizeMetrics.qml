@@ -53,6 +53,12 @@ QtObject {
     readonly property real altTabCard: Tokens.CONTROL_SIZE.altTabCard * scale
     readonly property real widgetCard: Tokens.CONTROL_SIZE.widgetCard * scale
     readonly property real forecastDay: Tokens.CONTROL_SIZE.forecastDay * scale
+    readonly property real settingsWindowWidth: Tokens.CONTROL_SIZE.settingsWindowWidth * scale
+    readonly property real settingsWindowHeight: Tokens.CONTROL_SIZE.settingsWindowHeight * scale
+    readonly property real settingsSidebar: Tokens.CONTROL_SIZE.settingsSidebar * scale
+    readonly property real settingsControl: Tokens.CONTROL_SIZE.settingsControl * scale
+    readonly property real settingsTextField: Tokens.CONTROL_SIZE.settingsTextField * scale
+    readonly property real swatch: Tokens.CONTROL_SIZE.swatch * scale
     readonly property real showDesktopWidth: Tokens.CONTROL_SIZE.showDesktopWidth * scale
     readonly property real clockWidth: Tokens.CONTROL_SIZE.clockWidth * scale
     readonly property real trayIcon: Tokens.CONTROL_SIZE.trayIcon * scale

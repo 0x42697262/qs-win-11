@@ -78,6 +78,7 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | `WlSessionLock` needs ext-session-lock; sway and Hyprland support it. The lock screen authenticates with `PamContext` using the default `login` PAM config | Quickshell 0.3.2, CI run under sway |
 | sway ignores foreign-toplevel minimize requests, so show desktop cannot be verified in CI | CI run under sway |
 | GeoClue is used through its `where-am-i` demo binary (`/usr/lib/geoclue-2.0/demos/where-am-i`) when present; Open-Meteo needs no API key; ipwho.is returns `success`, `latitude`, `longitude`, `city` | GeoClue 2 packaging, live requests from the CI container |
+| Qt's Wayland text-input logs "QWaylandTextInputv3::disableSurface … 0x0 is focused" when a focused field's window hides under sway; it is harmless and CI ignores only that line | Qt 6.12 under sway |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -135,4 +136,7 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Weather | Leave `weather.locationMode` on `auto` without GeoClue | `location.resolved` with `ipLookup` once; `state.json` caches the location for 6 hours; "Approximate location" shown |
 | Weather | `settings set weather.allowIpLookup false` with no GeoClue and no cache | Weather card asks for a location; nothing is sent to ipwho.is |
 | Weather | Disconnect the network | Card shows "Couldn't load weather"; the rest of the board still works |
+| Settings app | `ipc call settings open`, Quick Settings gear, or Quick Link → Settings | Window with a section per schema section plus About; every setting has a control; changes apply live and land in `settings.json` |
+| Settings app | Put an invalid value in `settings.json` by hand | Warning banner listing the key, the row outlined, and one notification |
+| Settings app | About page | Version, compositor, settings file path, and each feature with its effective state and off reason |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |
