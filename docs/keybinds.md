@@ -49,6 +49,7 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `wallpaper set` | Use this image file as the wallpaper. |  |
 | `wallpaper next` | Next image in wallpaper.directory. |  |
 | `wallpaper previous` | Previous image in wallpaper.directory. |  |
+| `theming render` | Write every themed file now, even while features.appTheming.enabled is off. |  |
 | `snap open` | Open the snap layout picker. | `SUPER+Z` |
 | `profiles list` | Installed profiles as JSON: name, active, conditions, problems. |  |
 | `profiles activate` | Add a profile to the top of the active stack. |  |

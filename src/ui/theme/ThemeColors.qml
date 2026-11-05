@@ -66,6 +66,38 @@ QtObject {
     Behavior on shadow { ColorAnimation { duration: root.duration } }
     property color contactShadow: palette.contactShadow
     Behavior on contactShadow { ColorAnimation { duration: root.duration } }
+    property color terminalBlack: palette.terminalBlack
+    Behavior on terminalBlack { ColorAnimation { duration: root.duration } }
+    property color terminalRed: palette.terminalRed
+    Behavior on terminalRed { ColorAnimation { duration: root.duration } }
+    property color terminalGreen: palette.terminalGreen
+    Behavior on terminalGreen { ColorAnimation { duration: root.duration } }
+    property color terminalYellow: palette.terminalYellow
+    Behavior on terminalYellow { ColorAnimation { duration: root.duration } }
+    property color terminalBlue: palette.terminalBlue
+    Behavior on terminalBlue { ColorAnimation { duration: root.duration } }
+    property color terminalMagenta: palette.terminalMagenta
+    Behavior on terminalMagenta { ColorAnimation { duration: root.duration } }
+    property color terminalCyan: palette.terminalCyan
+    Behavior on terminalCyan { ColorAnimation { duration: root.duration } }
+    property color terminalWhite: palette.terminalWhite
+    Behavior on terminalWhite { ColorAnimation { duration: root.duration } }
+    property color terminalBrightBlack: palette.terminalBrightBlack
+    Behavior on terminalBrightBlack { ColorAnimation { duration: root.duration } }
+    property color terminalBrightRed: palette.terminalBrightRed
+    Behavior on terminalBrightRed { ColorAnimation { duration: root.duration } }
+    property color terminalBrightGreen: palette.terminalBrightGreen
+    Behavior on terminalBrightGreen { ColorAnimation { duration: root.duration } }
+    property color terminalBrightYellow: palette.terminalBrightYellow
+    Behavior on terminalBrightYellow { ColorAnimation { duration: root.duration } }
+    property color terminalBrightBlue: palette.terminalBrightBlue
+    Behavior on terminalBrightBlue { ColorAnimation { duration: root.duration } }
+    property color terminalBrightMagenta: palette.terminalBrightMagenta
+    Behavior on terminalBrightMagenta { ColorAnimation { duration: root.duration } }
+    property color terminalBrightCyan: palette.terminalBrightCyan
+    Behavior on terminalBrightCyan { ColorAnimation { duration: root.duration } }
+    property color terminalBrightWhite: palette.terminalBrightWhite
+    Behavior on terminalBrightWhite { ColorAnimation { duration: root.duration } }
     property color accent: palette.accent
     Behavior on accent { ColorAnimation { duration: root.duration } }
     property color accentHover: palette.accentHover

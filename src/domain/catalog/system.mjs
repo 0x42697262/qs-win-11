@@ -14,6 +14,10 @@ export const SystemBinary = Object.freeze({
     Convert: "convert",
 });
 
+export const APP_THEMES_DIRECTORY = "themes";
+export const APP_TEMPLATES_DIRECTORY = "templates";
+export const TEMPLATE_FIND_ARGUMENTS = Object.freeze(["-maxdepth", "1", "-name", "*.tmpl"]);
+
 export const NmcliCommand = Object.freeze({
     list: Object.freeze(["nmcli", "-t", "-f", "NAME,UUID,TYPE,ACTIVE", "connection", "show"]),
     up: Object.freeze(["nmcli", "connection", "up", "uuid"]),

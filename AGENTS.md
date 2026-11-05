@@ -184,6 +184,9 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Wallpaper | Settings → Wallpaper, or `ipc call settings openSection wallpaper` | Grid of images from `wallpaper.directory`; clicking one sets `wallpaper.path`; `ipc call wallpaper next` / `previous` cycle through them |
 | Accent | `settings set theme.accentFromWallpaper true` with ImageMagick installed | Accent changes to the wallpaper's most vivid color; `state.json` caches it per wallpaper; turning it off restores `theme.accentColor` |
 | Lock screen | Lock with a wallpaper set and something playing | Wallpaper behind the clock; weather bottom-left, media card with play/pause, network, battery and notification count bottom-right; the background blurs and dims when the password field shows |
+| App theming | `ipc call theming render` | `~/.config/qs-win-11/themes/` holds gtk, qt, foot, kitty, alacritty, btop, fish, starship, nvim, zed, vscode and fuzzel files in the current colors; nothing else on disk changes |
+| App theming | `settings set features.appTheming.enabled true`, then switch dark mode | Files re-render after `tuning.appThemeDelayMs`; `commands.afterAppTheme` runs once; log shows `appTheme.rendered` |
+| App theming | Add `~/.config/qs-win-11/themes/templates/mako.tmpl` with `background-color={{ background }}` | `themes/custom/mako` appears with the hex color; unknown placeholders are logged, not dropped |
 | Backdrop | Change `backdrop.micaBlur`, `micaSaturation`, `grainOpacity` | Live change on the next open flyout |
 | Profiles | `ipc call settings exportProfile /tmp/look.json`, change things, `ipc call settings importProfile /tmp/look.json` | Every changed setting returns to the exported state; unknown or invalid keys are listed in `profile.imported` as skipped |
 | Search | Type in Start or the Search flyout | Results list on the left, details pane (icon, name, Open, pin actions) fills the right side |

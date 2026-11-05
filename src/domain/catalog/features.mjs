@@ -26,6 +26,7 @@ export const FeatureName = Object.freeze({
     ExternalBrightness: "externalBrightness",
     InputIndicator: "inputIndicator",
     LockKeys: "lockKeys",
+    AppTheming: "appTheming",
 });
 
 export const ExperimentalFeatureName = Object.freeze({
@@ -89,6 +90,7 @@ export const FEATURE_DEFAULTS = Object.freeze({
     externalBrightness: true,
     inputIndicator: true,
     lockKeys: true,
+    appTheming: false,
 });
 
 /** @type {Readonly<Record<Feature, FeatureRequirement>>} */
@@ -120,4 +122,5 @@ export const FEATURE_REQUIREMENTS = Object.freeze({
     externalBrightness: { capabilities: [Capability.DisplayControl], dependsOn: [FeatureName.QuickSettings] },
     inputIndicator: { capabilities: [Capability.KeyboardLayouts], dependsOn: [FeatureName.Taskbar] },
     lockKeys: { capabilities: [], dependsOn: [FeatureName.Osd] },
+    appTheming: { capabilities: [], dependsOn: [] },
 });

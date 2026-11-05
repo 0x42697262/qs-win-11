@@ -30,6 +30,8 @@ export const TUNING = Object.freeze({
     accentSaturationMin: spec(0.45, 0, 1, Unit.Fraction, "The picked accent is at least this saturated."),
     accentLightnessMin: spec(0.35, 0, 1, Unit.Fraction, "The picked accent is at least this light."),
     accentLightnessMax: spec(0.6, 0, 1, Unit.Fraction, "The picked accent is at most this light."),
+    appThemeDelayMs: spec(800, 0, 60000, MS, "Wait after the last color change before themed files are written again."),
+    appThemeSelectionMix: spec(0.35, 0, 1, Unit.Fraction, "How much accent the selection color in app themes gets."),
     runHistoryShown: spec(5, 0, 50, COUNT, "Recent commands listed in the Run dialog."),
     startPinnedColumns: spec(6, 1, 20, COUNT, "Columns in the Start pinned grid."),
     startPinnedRows: spec(3, 1, 20, COUNT, "Rows in the Start pinned grid when expanded."),

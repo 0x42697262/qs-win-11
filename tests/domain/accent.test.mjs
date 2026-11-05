@@ -40,7 +40,8 @@ test("gray or transparent images give no accent", () => {
 });
 
 test("wallpaper listing", async () => {
-    const { expandHome, parseWallpaperList, wallpaperFindCommand, wallpaperName } = await import("../../src/domain/wallpaper/gallery.mjs");
+    const { parseWallpaperList, wallpaperFindCommand, wallpaperName } = await import("../../src/domain/wallpaper/gallery.mjs");
+    const { expandHome } = await import("../../src/domain/system/paths.mjs");
     assert.equal(expandHome("~/Pictures/Wallpapers", "/home/ada"), "/home/ada/Pictures/Wallpapers");
     assert.equal(wallpaperName("/a/b/Sunset.Beach.jpg"), "Sunset.Beach");
     assert.deepEqual(parseWallpaperList("/w/zeta.png\n\n/w/alpha.jpg\n/w/mid.webp\n", 2), [{ path: "/w/alpha.jpg", name: "alpha" }, { path: "/w/mid.webp", name: "mid" }]);
