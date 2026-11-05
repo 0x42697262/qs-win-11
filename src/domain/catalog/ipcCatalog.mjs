@@ -11,6 +11,7 @@ export const IpcTargetName = Object.freeze({
     Search: "search",
     QuickLink: "quickLink",
     Session: "session",
+    QuickSettings: "quickSettings",
 });
 
 const SUPER = "SUPER";
@@ -57,6 +58,13 @@ export const IPC_TARGETS = Object.freeze([
         description: "Quick Link menu (right-click on Start).",
         functions: [
             { name: "toggle", description: "Open or close the Quick Link menu.", suggestedKey: { modifiers: [SUPER], key: "X" } },
+        ],
+    },
+    {
+        target: IpcTargetName.QuickSettings,
+        description: "Quick Settings flyout.",
+        functions: [
+            { name: "toggle", description: "Open or close Quick Settings.", suggestedKey: { modifiers: [SUPER], key: "A" } },
         ],
     },
     {

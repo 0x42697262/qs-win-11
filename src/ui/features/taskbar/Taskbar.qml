@@ -151,11 +151,10 @@ PanelWindow {
                 onActivated: ShellState.toggleWith(Surfaces.Surface.TrayOverflow, root.screenName, { anchorX: root.anchorXOf(trayButton) })
             }
 
-            Item {
-                id: systemClusterSlot
-                objectName: "systemClusterSlot"
-                implicitWidth: childrenRect.width
-                implicitHeight: Theme.size.taskbarButton
+            SystemClusterButton {
+                visible: Features.enabled.quickSettings
+                checked: root.surfaceButtonChecked(Surfaces.Surface.QuickSettings)
+                onActivated: ShellState.toggle(Surfaces.Surface.QuickSettings, root.screenName)
             }
 
             ClockButton {

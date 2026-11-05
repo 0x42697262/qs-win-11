@@ -22,3 +22,5 @@ export const TextTone = Object.freeze({
 export const ButtonVariant = Object.freeze({ Subtle: "subtle", Standard: "standard", Accent: "accent" });
 
 export const InfoSeverity = Object.freeze({ Informational: "informational", Success: "success", Warning: "warning", Error: "error" });
+
+export const QuickSettingsPage = Object.freeze({ Main: "main", Wifi: "wifi", Bluetooth: "bluetooth", Sound: "sound" });

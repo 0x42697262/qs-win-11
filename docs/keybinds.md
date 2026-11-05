@@ -20,6 +20,7 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `start allApps` | Open Start on the All apps list. |  |
 | `search toggle` | Open or close Search. | `SUPER+S` |
 | `quickLink toggle` | Open or close the Quick Link menu. | `SUPER+X` |
+| `quickSettings toggle` | Open or close Quick Settings. | `SUPER+A` |
 | `session lock` | Lock the session. | `SUPER+L` |
 | `session suspend` | Sleep. |  |
 | `session hibernate` | Hibernate. |  |

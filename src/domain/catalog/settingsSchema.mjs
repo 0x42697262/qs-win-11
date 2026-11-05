@@ -108,3 +108,9 @@ export const SETTING_DEFINITIONS = Object.freeze([
     ...featureDefinitions,
     ...experimentalDefinitions,
 ]);
+
+export const SettingKey = Object.freeze({
+    ThemeMode: "theme.mode",
+    QuickSettingsTiles: "quickSettings.tiles",
+    TaskbarAlignment: "taskbar.alignment",
+});

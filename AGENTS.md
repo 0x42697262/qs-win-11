@@ -75,7 +75,8 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Hyprland's Lua config mode changes dispatcher syntax; Quickshell exposes `Hyprland.usingLua` and `HyprlandWorkspace.activate()` handles both forms. Our Hyprland adapter focuses, closes and minimizes through each window's Wayland handle, so it needs no dispatcher strings | quickshell `src/wayland/hyprland/ipc/workspace.cpp`, `qml.hpp` |
 | `qs ipc call` drops square brackets from arguments, so `["foot"]` arrives as `"foot"`; list settings accept comma-separated text over IPC instead | Quickshell 0.3.2 IPC, CI scene run |
 | Arrays passed through `var` parameters of QML functions arrive as sequence objects, not JS arrays; domain validation copies array-likes | Quickshell 0.3.2 runtime |
-| CI has a session bus but no system bus, so UPower logs "Could not connect to DBus"; CI ignores only that line | CI container |
+| CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
+| Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
 Add a row whenever you rely on a third-party behavior.
 
@@ -106,4 +107,10 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Search | `qs -c qs-win-11 ipc call search toggle`, type part of an app name | Best match first, details pane with Open and pin actions; arrow keys move the selection |
 | Quick Link | Right-click Start or `ipc call quickLink toggle` | Menu with terminal, task manager, file manager, network, search, lock and power entries |
 | Session | `qs -c qs-win-11 ipc call session lock` with `features.lockScreen.enabled` off | Runs `commands.lock` (default `loginctl lock-session`) |
+| Quick Settings | `ipc call quickSettings toggle` or click the network/volume/battery cluster | Flyout bottom-right with available tiles only, brightness and volume sliders, battery in the footer |
+| Quick Settings | Drag the volume slider, then run `wpctl get-volume @DEFAULT_AUDIO_SINK@` | Value matches; the slider follows external changes too |
+| Quick Settings | Scroll over the taskbar cluster | Volume steps by 5% |
+| Quick Settings | Wi-Fi chevron, pick an unknown secured network | Password field and Connect button; known networks connect directly |
+| Quick Settings | Pencil, toggle tiles, Done | `quickSettings.tiles` in `settings.json` updates; hidden tiles stay hidden after restart |
+| Quick Settings | Dark mode tile | `theme.mode` flips; whole shell re-themes live |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

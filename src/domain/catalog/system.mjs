@@ -43,3 +43,12 @@ export const SessionAction = Object.freeze({
     Restart: "restart",
     PowerOff: "powerOff",
 });
+
+export const BRIGHTNESS_PERCENT_PLACEHOLDER = "{percent}";
+
+export const BacklightFile = Object.freeze({ current: "brightness", maximum: "max_brightness" });
+
+export const SystemBusName = Object.freeze({
+    PowerProfiles: "org.freedesktop.UPower.PowerProfiles",
+    LegacyPowerProfiles: "net.hadess.PowerProfiles",
+});

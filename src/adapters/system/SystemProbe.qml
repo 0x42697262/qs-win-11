@@ -12,6 +12,7 @@ Scope {
 
     required property list<string> binaries
     required property list<string> busNames
+    required property list<string> systemBusNames
 
     property var result: Probe.parseProbeOutput("")
     readonly property int ownProcessId: Probe.processIdFromStat(selfStat.text())
@@ -20,7 +21,7 @@ Scope {
 
     function run(): void {
         process.running = false;
-        process.command = Probe.buildProbeCommand(binaries, busNames);
+        process.command = Probe.buildProbeCommand(binaries, busNames, systemBusNames);
         process.running = true;
         timeout.restart();
     }

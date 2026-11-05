@@ -16,6 +16,10 @@ return {
 		bind = "SUPER + X",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call quickSettings toggle"),
+		bind = "SUPER + A",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session lock"),
 		bind = "SUPER + L",
 	},

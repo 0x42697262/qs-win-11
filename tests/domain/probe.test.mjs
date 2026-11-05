@@ -3,10 +3,11 @@ import assert from "node:assert/strict";
 import { busNamesTakenByOthers, commandBinary, parseProbeOutput, processIdFromStat } from "../../src/domain/system/probe.mjs";
 
 test("probe output parses binaries, bus owners and backlights", () => {
-    const result = parseProbeOutput("bin\tnotify-send\nbus\torg.freedesktop.Notifications\t42\nbacklight\t/sys/class/backlight/intel\n\n");
+    const result = parseProbeOutput("bin\tnotify-send\nbus\torg.freedesktop.Notifications\t42\nsysbus\tnet.hadess.PowerProfiles\nbacklight\t/sys/class/backlight/intel\n\n");
     assert.ok(result.binaries.has("notify-send"));
     assert.equal(result.busOwners.get("org.freedesktop.Notifications"), 42);
     assert.deepEqual(result.backlights, ["/sys/class/backlight/intel"]);
+    assert.ok(result.systemBusNames.has("net.hadess.PowerProfiles"));
 });
 
 test("bus names owned by this process are not conflicts", () => {
