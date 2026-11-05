@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { DEFAULTS } from "./defaults.mjs";
 import { buildForecastUrl, describeWeather, formatTemperature, nextLocationSource, parseForecast, parseGeoclueOutput, parseIpLookup, LocationSource } from "../../src/domain/weather/weather.mjs";
 import { cpuUsage, memoryUsage, parseCpuSample } from "../../src/domain/system/stats.mjs";
 import { Icon } from "../../src/domain/catalog/icons.mjs";
@@ -19,8 +20,8 @@ test("forecast parses current and daily values", () => {
     assert.equal(forecast?.high, 33);
     assert.equal(forecast?.days.length, 2);
     assert.equal(parseForecast({}), null);
-    assert.equal(describeWeather(61).icon, Icon.weatherRain);
-    assert.equal(describeWeather(1234).text, "Unknown");
+    assert.equal(describeWeather(61, DEFAULTS.text.weather).icon, Icon.weatherRain);
+    assert.equal(describeWeather(1234, DEFAULTS.text.weather).text, "Unknown");
     assert.equal(formatTemperature(31.6), "32°");
 });
 

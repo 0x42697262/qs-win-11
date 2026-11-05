@@ -5,7 +5,7 @@ import Quickshell.Io
 import qs.src.config
 import "../domain/system/indicators.mjs" as Indicators
 import "../domain/catalog/system.mjs" as SystemCatalog
-import "../domain/catalog/tuning.mjs" as Tuning
+import "../domain/catalog/units.mjs" as Units
 import "../domain/catalog/features.mjs" as FeatureCatalog
 import "../domain/numbers.mjs" as Numbers
 
@@ -27,7 +27,7 @@ Singleton {
     }
 
     function step(direction: int): void {
-        setFraction(fraction + direction * Tuning.BRIGHTNESS_STEP_PERCENT / Tuning.PERCENT);
+        setFraction(fraction + direction * Settings.values.tuning.brightnessStepPercent / Units.PERCENT);
     }
 
     FileView {
@@ -47,7 +47,7 @@ Singleton {
     Timer {
         running: root.watching
         repeat: true
-        interval: Tuning.BRIGHTNESS_POLL_MS
+        interval: Settings.values.tuning.brightnessPollMs
         onTriggered: currentFile.reload()
     }
 }

@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { TIME_TEXT } from "./defaults.mjs";
 import { airplaneModeActive, batteryIcon, batteryStatusText, fillCommandTemplate, networkIcon, sortNetworks, toPercent, toggleTileVisibility, volumeIcon } from "../../src/domain/system/indicators.mjs";
 import { Icon } from "../../src/domain/catalog/icons.mjs";
 
@@ -17,8 +18,8 @@ test("volume, battery and network icons follow levels", () => {
 
 test("battery text shows charging or time remaining", () => {
     const text = { charging: "charging", remaining: "remaining" };
-    assert.equal(batteryStatusText(0.42, true, 0, text), "42% · charging");
-    assert.equal(batteryStatusText(0.42, false, 5400, text), "42% · 1 h 30 min remaining");
+    assert.equal(batteryStatusText(0.42, true, 0, text, TIME_TEXT), "42% · charging");
+    assert.equal(batteryStatusText(0.42, false, 5400, text, TIME_TEXT), "42% · 1 h 30 min remaining");
     assert.equal(toPercent(1.4), 100);
 });
 

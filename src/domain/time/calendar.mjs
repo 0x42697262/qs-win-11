@@ -1,10 +1,8 @@
 import { FirstDayOfWeek } from "../catalog/enums.mjs";
-import { Strings } from "../catalog/strings.mjs";
 
 export const DAYS_PER_WEEK = 7;
 export const WEEKS_SHOWN = 6;
 const MONTHS_PER_YEAR = 12;
-const WEEKDAY_INITIALS = Strings.time.weekdayInitials;
 
 /** @typedef {{ year: number, month: number, day: number, inMonth: boolean }} CalendarCell */
 
@@ -65,9 +63,10 @@ export function monthGrid(year, month, firstDayOfWeek) {
 
 /**
  * @param {string} firstDayOfWeek
+ * @param {readonly string[]} initials
  * @returns {string[]}
  */
-export function weekdayHeaders(firstDayOfWeek) {
+export function weekdayHeaders(firstDayOfWeek, initials) {
     const start = weekStartIndex(firstDayOfWeek);
-    return WEEKDAY_INITIALS.slice(start).concat(WEEKDAY_INITIALS.slice(0, start));
+    return initials.slice(start).concat(initials.slice(0, start));
 }

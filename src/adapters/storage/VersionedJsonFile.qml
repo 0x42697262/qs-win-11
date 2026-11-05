@@ -4,7 +4,7 @@ import Quickshell.Io
 import qs.src.services
 import "../../domain/settings/document.mjs" as Document
 import "../../domain/catalog/logEvents.mjs" as LogEvents
-import "../../domain/catalog/tuning.mjs" as Tuning
+import "../../domain/catalog/units.mjs" as Units
 import "../../domain/catalog/system.mjs" as SystemCatalog
 import "../../domain/settings/validation.mjs" as Validation
 
@@ -18,6 +18,7 @@ Scope {
     readonly property var resolved: Document.resolveDocument(file.loadedText, schema)
     readonly property var values: resolved.values
     readonly property var problems: resolved.problems
+    readonly property var overrides: pendingOverrides ?? resolved.overrides
     readonly property bool loaded: file.loadedOnce
     property var pendingOverrides: null
 
@@ -54,7 +55,7 @@ Scope {
 
     Timer {
         id: writeDebounce
-        interval: Tuning.SETTINGS_WRITE_DEBOUNCE_MS
+        interval: Units.SETTINGS_WRITE_DEBOUNCE_MS
         onTriggered: root.flush()
     }
 

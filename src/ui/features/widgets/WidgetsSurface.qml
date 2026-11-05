@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import qs.src.services
 import qs.src.ui.theme
@@ -9,13 +10,12 @@ import qs.src.ui.features.notifications
 import "../../../domain/weather/weather.mjs" as WeatherRules
 import "../../../domain/time/format.mjs" as TimeFormat
 import "../../../domain/system/indicators.mjs" as Indicators
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 
 FocusScope {
     id: root
 
-    readonly property var text: Strings.Strings.widgets
+    readonly property var text: Settings.values.text.widgets
 
     Component.onCompleted: SystemStats.watching = true
     Component.onDestruction: SystemStats.watching = false
@@ -97,8 +97,8 @@ FocusScope {
                                     Layout.preferredWidth: Theme.size.forecastDay
                                     spacing: Theme.spacing.xxSmall
 
-                                    Label { Layout.alignment: Qt.AlignHCenter; text: TimeFormat.shortWeekdayFromIso(day.modelData.dateIso); variant: UiEnums.TextVariant.Caption }
-                                    FluentIcon { Layout.alignment: Qt.AlignHCenter; glyph: WeatherRules.describeWeather(day.modelData.code).icon }
+                                    Label { Layout.alignment: Qt.AlignHCenter; text: TimeFormat.shortWeekdayFromIso(day.modelData.dateIso, Settings.values.text.time); variant: UiEnums.TextVariant.Caption }
+                                    FluentIcon { Layout.alignment: Qt.AlignHCenter; glyph: WeatherRules.describeWeather(day.modelData.code, Settings.values.text.weather).icon }
                                     Label { Layout.alignment: Qt.AlignHCenter; text: WeatherRules.formatTemperature(day.modelData.high); variant: UiEnums.TextVariant.Caption }
                                     Label { Layout.alignment: Qt.AlignHCenter; text: WeatherRules.formatTemperature(day.modelData.low); variant: UiEnums.TextVariant.Caption; tone: UiEnums.TextTone.Secondary }
                                 }

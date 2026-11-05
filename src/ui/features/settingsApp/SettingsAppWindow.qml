@@ -17,11 +17,12 @@ import "../../../domain/catalog/icons.mjs" as Icons
 FloatingWindow {
     id: root
 
-    readonly property var text: Strings.Strings.settingsApp
+    readonly property var text: Settings.values.text.settingsApp
     readonly property string aboutSection: Strings.SETTINGS_ABOUT_SECTION
     readonly property list<string> sections: Presentation.sectionsOf(Schema.SETTING_DEFINITIONS).concat([aboutSection])
-    readonly property bool showingAbout: SettingsWindow.section === aboutSection && search.text === ""
-    readonly property list<var> shown: Presentation.visibleDefinitions(Schema.SETTING_DEFINITIONS, SettingsWindow.section, search.text)
+    property bool changedOnly: false
+    readonly property bool showingAbout: SettingsWindow.section === aboutSection && search.text === "" && !changedOnly
+    readonly property list<var> shown: Presentation.visibleDefinitions(Schema.SETTING_DEFINITIONS, SettingsWindow.section, search.text, changedOnly ? Settings.overrides : null)
 
     title: text.title
     implicitWidth: Theme.size.settingsWindowWidth
@@ -52,8 +53,15 @@ FloatingWindow {
             SearchBox {
                 id: search
                 Layout.fillWidth: true
-                Layout.bottomMargin: Theme.spacing.medium
                 placeholder: root.text.search
+            }
+
+            Button {
+                Layout.fillWidth: true
+                Layout.bottomMargin: Theme.spacing.medium
+                text: root.text.changedOnly
+                checked: root.changedOnly
+                onActivated: root.changedOnly = !root.changedOnly
             }
 
             Repeater {
@@ -94,11 +102,19 @@ FloatingWindow {
                 }
 
                 InfoBar {
+                    visible: Settings.unbounded
+                    Layout.fillWidth: true
+                    severity: UiEnums.InfoSeverity.Error
+                    title: root.text.unboundedTitle
+                    message: root.text.unboundedBody
+                }
+
+                InfoBar {
                     visible: Settings.problems.length > 0
                     Layout.fillWidth: true
                     severity: UiEnums.InfoSeverity.Warning
-                    title: Strings.Strings.settingsProblems.title
-                    message: `${Strings.Strings.settingsProblems.body} ${Settings.problems.map(problem => problem.key).join(", ")}`
+                    title: Settings.values.text.settingsProblems.title
+                    message: `${Settings.values.text.settingsProblems.body} ${Settings.problems.map(problem => problem.key).join(", ")}`
                 }
 
                 Label {

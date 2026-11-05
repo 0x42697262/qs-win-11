@@ -1,7 +1,7 @@
 import QtQuick
+import qs.src.config
 import Quickshell
 import qs.src.services
-import "../../domain/catalog/tuning.mjs" as Tuning
 
 Item {
     id: root
@@ -15,7 +15,7 @@ Item {
     onHoveredChanged: if (!hovered) ToolTips.hide(target)
 
     Timer {
-        interval: Tuning.TOOLTIP_DELAY_MS
+        interval: Settings.values.tuning.tooltipDelayMs
         running: root.hovered && root.text !== ""
         onTriggered: ToolTips.showWithPreview(root.target, root.screenName, root.text, root.previewWindowIds)
     }

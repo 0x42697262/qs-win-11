@@ -1,22 +1,21 @@
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import Quickshell.Wayland
 import Quickshell.Services.Pam
 import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/catalog/icons.mjs" as Icons
 import "../../../domain/catalog/logEvents.mjs" as LogEvents
-import "../../../domain/catalog/tuning.mjs" as Tuning
 
 WlSessionLockSurface {
     id: root
 
     property bool promptVisible: false
     property string errorText: ""
-    readonly property var text: Strings.Strings.lock
+    readonly property var text: Settings.values.text.lock
 
     color: Theme.colors.micaBase
 
@@ -56,7 +55,7 @@ WlSessionLockSurface {
 
     Timer {
         id: cooldown
-        interval: Tuning.LOCK_FAILURE_COOLDOWN_MS
+        interval: Settings.values.tuning.lockFailureCooldownMs
     }
 
     Rectangle {
@@ -86,7 +85,7 @@ WlSessionLockSurface {
             visible: !root.promptVisible
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
-            anchors.topMargin: parent.height / Tuning.LOCK_CLOCK_TOP_DIVISOR
+            anchors.topMargin: parent.height / Settings.values.tuning.lockClockTopDivisor
             spacing: 0
 
             Label {

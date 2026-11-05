@@ -1,10 +1,10 @@
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/catalog/icons.mjs" as Icons
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 
 Interactive {
@@ -43,6 +43,6 @@ Interactive {
     ToolTip {
         target: root
         hovered: root.hovered
-        text: Strings.Strings.taskbar.widgets
+        text: Settings.values.text.taskbar.widgets
     }
 }

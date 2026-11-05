@@ -1,42 +1,48 @@
-export const MILLISECONDS_PER_SECOND = 1000;
-export const SECONDS_PER_MINUTE = 60;
-export const MINUTES_PER_HOUR = 60;
-export const PERCENT = 100;
+import { spec, Unit } from "./valueSpec.mjs";
 
-export const PROCESS_TIMEOUT_MS = 5000;
-export const CAPABILITY_PROBE_TIMEOUT_MS = 3000;
-export const COMPOSITOR_RESYNC_INTERVAL_MS = 30000;
-export const SETTINGS_WRITE_DEBOUNCE_MS = 300;
-export const OSD_VISIBLE_MS = 1500;
-export const OSD_STARTUP_QUIET_MS = 2000;
-export const TOAST_HOVER_EXTENSION_MS = 1500;
-export const VOLUME_STEP = 0.05;
-export const BRIGHTNESS_STEP_PERCENT = 5;
-export const SLIDER_RECONCILE_MS = 600;
-export const SEARCH_RESULT_LIMIT = 8;
-export const START_PINNED_COLUMNS = 6;
-export const START_PINNED_ROWS = 3;
-export const START_RECOMMENDED_LIMIT = 6;
-export const TRAY_OVERFLOW_COLUMNS = 4;
-export const QUICK_SETTINGS_COLUMNS = 3;
-export const NETWORK_LIST_LIMIT = 12;
-export const ALT_TAB_COLUMNS = 6;
-export const WEATHER_REFRESH_MS = 1800000;
-export const WEATHER_REQUEST_TIMEOUT_MS = 8000;
-export const LOCATION_CACHE_MS = 21600000;
-export const SYSTEM_STATS_REFRESH_MS = 2000;
-export const BATTERY_ALERT_HYSTERESIS_PERCENT = 2;
-export const LOCK_FAILURE_COOLDOWN_MS = 2000;
-export const AUTO_HIDE_REVEAL_PIXELS = 2;
-export const AUTO_HIDE_DELAY_MS = 400;
-export const TOOLTIP_DELAY_MS = 600;
-export const START_RECOMMENDED_COLUMNS = 2;
-export const BRIGHTNESS_POLL_MS = 1000;
-export const TOAST_STACK_LIMIT = 3;
-export const NOTIFICATION_BODY_LINES = 3;
-export const DEFAULT_NOTIFICATION_ACTION = "default";
-export const LOCK_CLOCK_TOP_DIVISOR = 6;
-export const TASK_VIEW_COLUMNS = 4;
-export const GEOCLUE_TIMEOUT_SECONDS = 10;
-export const WEATHER_DEBOUNCE_MS = 500;
-export const SETTINGS_NUMBER_STEP = 0.05;
+const MS = Unit.Milliseconds;
+const COUNT = Unit.Count;
+
+export const TUNING = Object.freeze({
+    capabilityProbeTimeoutMs: spec(3000, 100, 60000, MS, "How long the startup capability probe may run."),
+    compositorResyncIntervalMs: spec(30000, 1000, 3600000, MS, "How often the window list is fully resynced with the compositor."),
+    osdVisibleMs: spec(1500, 100, 60000, MS, "How long the volume/brightness pill stays on screen."),
+    osdStartupQuietMs: spec(2000, 0, 60000, MS, "No on-screen display during this time after start."),
+    volumeStep: spec(0.05, 0.01, 1, Unit.Fraction, "Volume change per step (scroll, IPC, media keys)."),
+    brightnessStepPercent: spec(5, 1, 100, Unit.Percent, "Brightness change per step."),
+    searchResultLimit: spec(8, 1, 100, COUNT, "Search results shown."),
+    startPinnedColumns: spec(6, 1, 20, COUNT, "Columns in the Start pinned grid."),
+    startPinnedRows: spec(3, 1, 20, COUNT, "Rows in the Start pinned grid."),
+    startRecommendedLimit: spec(6, 0, 50, COUNT, "Recommended files shown in Start."),
+    startRecommendedColumns: spec(2, 1, 6, COUNT, "Columns in Start's Recommended list."),
+    trayOverflowColumns: spec(4, 1, 20, COUNT, "Columns in the tray overflow flyout."),
+    quickSettingsColumns: spec(3, 1, 10, COUNT, "Columns of Quick Settings tiles."),
+    networkListLimit: spec(12, 1, 100, COUNT, "Wi-Fi networks listed."),
+    altTabColumns: spec(6, 1, 20, COUNT, "Columns in the Alt+Tab switcher."),
+    taskViewColumns: spec(4, 1, 20, COUNT, "Columns in Task View."),
+    weatherRefreshMs: spec(1800000, 60000, 86400000, MS, "How often weather is refreshed."),
+    weatherRequestTimeoutMs: spec(8000, 500, 120000, MS, "Timeout for weather and location requests."),
+    weatherDebounceMs: spec(500, 0, 10000, MS, "Wait after a location change before fetching weather."),
+    locationCacheMs: spec(21600000, 0, 604800000, MS, "How long an automatic location is reused."),
+    geoclueTimeoutSeconds: spec(10, 1, 120, Unit.Seconds, "How long GeoClue may take to find a location."),
+    systemStatsRefreshMs: spec(2000, 100, 60000, MS, "CPU and memory sampling interval while widgets are open."),
+    brightnessPollMs: spec(1000, 100, 60000, MS, "Backlight polling interval."),
+    batteryAlertHysteresisPercent: spec(2, 0, 50, Unit.Percent, "Battery must rise this much above the low level before alerting again."),
+    lockFailureCooldownMs: spec(2000, 0, 60000, MS, "Pause after a wrong password."),
+    lockClockTopDivisor: spec(6, 1, 20, Unit.Factor, "Lock clock sits at screen height divided by this."),
+    autoHideRevealPixels: spec(2, 1, 50, Unit.Pixels, "Height of the edge strip that reveals an auto-hidden taskbar."),
+    autoHideDelayMs: spec(400, 0, 10000, MS, "Delay before an auto-hidden taskbar hides."),
+    tooltipDelayMs: spec(600, 0, 10000, MS, "Hover time before a tooltip appears."),
+    toastStackLimit: spec(3, 1, 20, COUNT, "Notification banners shown at once."),
+    notificationBodyLines: spec(3, 1, 50, COUNT, "Lines of body text before a notification is cut off."),
+    settingsNumberStep: spec(0.05, 0.001, 1, Unit.Fraction, "Step for decimal sliders in the Settings app."),
+    snapGapPixels: spec(8, 0, 200, Unit.Pixels, "Gap around snapped windows."),
+    scoreExactName: spec(100, 0, 1000, Unit.Score, "Search score when the query equals an app name."),
+    scoreNamePrefix: spec(80, 0, 1000, Unit.Score, "Search score when an app name starts with the query."),
+    scoreWordPrefix: spec(60, 0, 1000, Unit.Score, "Search score when a word in the name starts with the query."),
+    scoreNameContains: spec(40, 0, 1000, Unit.Score, "Search score when the name contains the query."),
+    scoreGenericName: spec(25, 0, 1000, Unit.Score, "Search score when the generic name contains the query."),
+    scoreKeyword: spec(20, 0, 1000, Unit.Score, "Search score when a keyword or id matches."),
+});
+
+/** @typedef {keyof typeof TUNING} TuningName */

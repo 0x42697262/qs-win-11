@@ -30,7 +30,7 @@ ColumnLayout {
 
         Label {
             Layout.fillWidth: true
-            text: TimeFormat.formatMonthYear(root.shownYear, root.shownMonth)
+            text: TimeFormat.formatMonthYear(root.shownYear, root.shownMonth, Settings.values.text.time)
             variant: UiEnums.TextVariant.BodyStrong
         }
 
@@ -45,7 +45,7 @@ ColumnLayout {
         rowSpacing: 0
 
         Repeater {
-            model: CalendarRules.weekdayHeaders(root.firstDayOfWeek)
+            model: CalendarRules.weekdayHeaders(root.firstDayOfWeek, Settings.values.text.time.weekdayInitials)
 
             Label {
                 required property string modelData

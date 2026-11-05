@@ -1,4 +1,4 @@
-import { MILLISECONDS_PER_SECOND, SECONDS_PER_MINUTE, MINUTES_PER_HOUR } from "../catalog/tuning.mjs";
+import { MILLISECONDS_PER_SECOND, SECONDS_PER_MINUTE, MINUTES_PER_HOUR } from "../catalog/units.mjs";
 import { COUNT_PLACEHOLDER } from "../catalog/strings.mjs";
 
 export const Urgency = Object.freeze({ Low: 0, Normal: 1, Critical: 2 });

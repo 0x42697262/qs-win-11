@@ -39,13 +39,12 @@ function renderConfiguration() {
 }
 
 /**
- * @param {string} constantName
  * @param {Readonly<Record<string, number>>} tokens
  * @returns {string}
  */
-function renderMetrics(constantName, tokens) {
-    const lines = Object.keys(tokens).map((key) => `    readonly property real ${key}: Tokens.${constantName}.${key} * scale`);
-    return `import QtQuick\nimport "../../domain/catalog/tokens.mjs" as Tokens\n\nQtObject {\n    required property real scale\n\n${lines.join("\n")}\n}\n`;
+function renderMetrics(tokens) {
+    const lines = Object.keys(tokens).map((key) => `    readonly property real ${key}: values.${key} * scale`);
+    return `import QtQuick\n\nQtObject {\n    required property real scale\n    required property var values\n\n${lines.join("\n")}\n}\n`;
 }
 
 function renderColors() {
@@ -65,11 +64,11 @@ const generatedFiles = [
     { path: "examples/hyprland/layerrules.lua", render: renderLayerRulesLua },
     { path: "examples/hyprland/layerrules.conf", render: renderLayerRulesConf },
     { path: "src/ui/theme/ThemeColors.qml", render: renderColors },
-    { path: "src/ui/theme/ThemeSpacingMetrics.qml", render: () => renderMetrics("SPACING", SPACING) },
-    { path: "src/ui/theme/ThemeRadiusMetrics.qml", render: () => renderMetrics("RADIUS", RADIUS) },
-    { path: "src/ui/theme/ThemeFontSizeMetrics.qml", render: () => renderMetrics("FONT_SIZE", FONT_SIZE) },
-    { path: "src/ui/theme/ThemeIconSizeMetrics.qml", render: () => renderMetrics("ICON_SIZE", ICON_SIZE) },
-    { path: "src/ui/theme/ThemeSizeMetrics.qml", render: () => renderMetrics("CONTROL_SIZE", CONTROL_SIZE) },
+    { path: "src/ui/theme/ThemeSpacingMetrics.qml", render: () => renderMetrics(SPACING) },
+    { path: "src/ui/theme/ThemeRadiusMetrics.qml", render: () => renderMetrics(RADIUS) },
+    { path: "src/ui/theme/ThemeFontSizeMetrics.qml", render: () => renderMetrics(FONT_SIZE) },
+    { path: "src/ui/theme/ThemeIconSizeMetrics.qml", render: () => renderMetrics(ICON_SIZE) },
+    { path: "src/ui/theme/ThemeSizeMetrics.qml", render: () => renderMetrics(CONTROL_SIZE) },
 ];
 
 const checkOnly = process.argv.includes(CHECK_FLAG);

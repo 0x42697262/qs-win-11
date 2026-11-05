@@ -7,7 +7,6 @@ import "../domain/apps/taskbarItems.mjs" as TaskbarRules
 import "../domain/catalog/shellDataSchema.mjs" as ShellDataSchema
 import "../domain/catalog/logEvents.mjs" as LogEvents
 import "../domain/search/rankApps.mjs" as SearchRules
-import "../domain/catalog/tuning.mjs" as Tuning
 
 Singleton {
     id: root
@@ -56,7 +55,7 @@ Singleton {
     }
 
     function search(query: string): list<var> {
-        return SearchRules.rankApps(searchable, query, Tuning.SEARCH_RESULT_LIMIT).map(ranked => ranked.app);
+        return SearchRules.rankApps(searchable, query, Settings.values.tuning.searchResultLimit, Settings.values.tuning).map(ranked => ranked.app);
     }
 
     function taskbarItems(windows: list<var>): list<var> {

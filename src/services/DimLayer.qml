@@ -1,8 +1,8 @@
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
+import qs.src.config
 import "../domain/catalog/compositor.mjs" as CompositorCatalog
-import "../domain/catalog/tokens.mjs" as Tokens
 
 PanelWindow {
     required property ShellScreen modelData
@@ -20,7 +20,7 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: Tokens.BLACK
-        opacity: Tokens.DIM_OPACITY
+        color: Settings.values.colors.dim
+        opacity: Settings.values.effects.dimOpacity
     }
 }

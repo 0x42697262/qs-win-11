@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { TIME_TEXT } from "./defaults.mjs";
 import { buildTaskbarItems, taskbarClick, TaskbarClickAction } from "../../src/domain/apps/taskbarItems.mjs";
 import { movePinnedApp, pinApp, unpinApp, isPinned, normalizeAppId } from "../../src/domain/apps/appIds.mjs";
 import { makeWindowInfo } from "../../src/domain/compositor/windows.mjs";
@@ -48,16 +49,16 @@ test("toggling the same surface on the same screen closes it", () => {
 });
 
 test("clock and date formatting", () => {
-    assert.equal(formatClockTime({ hours: 0, minutes: 5, seconds: 9 }, false, false), "12:05 AM");
-    assert.equal(formatClockTime({ hours: 13, minutes: 5, seconds: 9 }, false, true), "1:05:09 PM");
-    assert.equal(formatClockTime({ hours: 13, minutes: 5, seconds: 9 }, true, false), "13:05");
+    assert.equal(formatClockTime({ hours: 0, minutes: 5, seconds: 9 }, false, false, TIME_TEXT), "12:05 AM");
+    assert.equal(formatClockTime({ hours: 13, minutes: 5, seconds: 9 }, false, true, TIME_TEXT), "1:05:09 PM");
+    assert.equal(formatClockTime({ hours: 13, minutes: 5, seconds: 9 }, true, false, TIME_TEXT), "13:05");
     assert.equal(formatShortDate({ year: 2026, month: 10, day: 5, weekday: 4 }), "11/5/2026");
-    assert.equal(formatLongDate({ year: 2026, month: 10, day: 5, weekday: 4 }), "Thursday, November 5");
-    assert.equal(formatDuration(135), "2 h 15 min");
+    assert.equal(formatLongDate({ year: 2026, month: 10, day: 5, weekday: 4 }, TIME_TEXT), "Thursday, November 5");
+    assert.equal(formatDuration(135, TIME_TEXT), "2 h 15 min");
 });
 
 import { shortWeekdayFromIso } from "../../src/domain/time/format.mjs";
 
 test("short weekday from an ISO date", () => {
-    assert.equal(shortWeekdayFromIso("2026-11-05"), "Thu");
+    assert.equal(shortWeekdayFromIso("2026-11-05", TIME_TEXT), "Thu");
 });

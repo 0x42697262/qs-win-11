@@ -11,6 +11,8 @@ const NUMBER_RULE_DIRECTORIES = ["src/"];
 const UPPER_CONSTANT_DECLARATION = /^\s*(export\s+)?const\s+[A-Z][A-Z0-9_]*\s*=/;
 const INLINE_JSDOC = new RegExp(String.raw`/\*\*\s*@\w+[^*]*(?:\*(?!/)[^*]*)*\*/`, "g");
 const OBJECT_SPREAD = /\{\s*\.\.\.|,\s*\.\.\.[\w$.()]+\s*\}/;
+const DIRECT_VALUE_CATALOG = /Strings\.Strings\.|catalog\/tuning\.mjs|\bTokens\.(SPACING|RADIUS|FONT_SIZE|FONT_WEIGHT|ICON_SIZE|CONTROL_SIZE|MOTION_MS|EASING_CURVES|ELEVATION|SLIDE_DISTANCE|PRESS_SCALE|DIM_OPACITY|DARK_BASE|LIGHT_BASE|ACCENT_SHADES)\b|\bICON_DEFAULTS\b/;
+const VALUE_CATALOG_READERS = ["src/domain/settings/valueDefinitions.mjs", "src/domain/catalog/icons.mjs", "src/domain/catalog/tuning.mjs"];
 const OPTIONAL_CATCH_BINDING = /\bcatch\s*\{/;
 const TOOL_DIRECTIVE = /^\s*\/\/@\s*pragma\b/;
 const JSDOC_TAG_LINE = /^\s*\*\s*@\w+/;
@@ -22,6 +24,7 @@ const RULES = Object.freeze({
     rawColor: "raw color literal outside the theme tokens",
     magicNumber: "number literal outside a named constant home",
     optionalCatch: "optional catch binding is not supported by the QML JavaScript engine",
+    directValueCatalog: "read values from Settings or Theme, not straight from a value catalog",
     objectSpread: "object spread is not supported by the QML JavaScript engine; use Object.assign",
 });
 
@@ -108,6 +111,9 @@ function checkFile(path) {
         }
         if (/(^|[^:])\/\/|\/\*/.test(code) && !TOOL_DIRECTIVE.test(line)) {
             problems.push(`${where} ${RULES.comment}`);
+        }
+        if (relativePath.startsWith("src/") && !VALUE_CATALOG_READERS.includes(relativePath) && DIRECT_VALUE_CATALOG.test(line)) {
+            problems.push(`${where} ${RULES.directValueCatalog}`);
         }
         if (relativePath.startsWith("src/") && OPTIONAL_CATCH_BINDING.test(code)) {
             problems.push(`${where} ${RULES.optionalCatch}`);

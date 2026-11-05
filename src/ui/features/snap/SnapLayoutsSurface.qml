@@ -1,11 +1,11 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/catalog/snapLayouts.mjs" as SnapCatalog
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 
 FocusScope {
@@ -23,8 +23,8 @@ FocusScope {
             anchors.centerIn: parent
             spacing: Theme.spacing.medium
 
-            Label { text: Strings.Strings.snap.title; variant: UiEnums.TextVariant.BodyStrong }
-            Label { text: Strings.Strings.snap.hint; variant: UiEnums.TextVariant.Caption; tone: UiEnums.TextTone.Secondary }
+            Label { text: Settings.values.text.snap.title; variant: UiEnums.TextVariant.BodyStrong }
+            Label { text: Settings.values.text.snap.hint; variant: UiEnums.TextVariant.Caption; tone: UiEnums.TextTone.Secondary }
 
             RowLayout {
                 spacing: Theme.spacing.medium

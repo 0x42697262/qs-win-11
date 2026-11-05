@@ -4,10 +4,9 @@ import Quickshell
 import Quickshell.Io
 import qs.src.config
 import "../domain/apps/recentFiles.mjs" as RecentRules
-import "../domain/catalog/tuning.mjs" as Tuning
 
 Singleton {
-    readonly property list<var> files: RecentRules.parseRecentFiles(file.loadedText, Tuning.START_RECOMMENDED_LIMIT)
+    readonly property list<var> files: RecentRules.parseRecentFiles(file.loadedText, Settings.values.tuning.startRecommendedLimit)
 
     FileView {
         id: file

@@ -1,10 +1,10 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/icons.mjs" as Icons
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 
@@ -12,11 +12,11 @@ FocusScope {
     id: root
 
     readonly property list<var> actions: [
-        { text: Strings.Strings.session.lock, icon: Icons.Icon.lockClosed, run: () => Session.lock() },
-        { text: Strings.Strings.session.signOut, icon: Icons.Icon.signOut, run: () => Session.signOut() },
-        { text: Strings.Strings.session.sleep, icon: Icons.Icon.weatherMoon, run: () => Session.suspend() },
-        { text: Strings.Strings.session.restart, icon: Icons.Icon.arrowClockwise, run: () => Session.restart() },
-        { text: Strings.Strings.session.shutDown, icon: Icons.Icon.power, run: () => Session.powerOff() },
+        { text: Settings.values.text.session.lock, icon: Icons.Icon.lockClosed, run: () => Session.lock() },
+        { text: Settings.values.text.session.signOut, icon: Icons.Icon.signOut, run: () => Session.signOut() },
+        { text: Settings.values.text.session.sleep, icon: Icons.Icon.weatherMoon, run: () => Session.suspend() },
+        { text: Settings.values.text.session.restart, icon: Icons.Icon.arrowClockwise, run: () => Session.restart() },
+        { text: Settings.values.text.session.shutDown, icon: Icons.Icon.power, run: () => Session.powerOff() },
     ]
 
     Rectangle {
@@ -79,7 +79,7 @@ FocusScope {
 
         Button {
             Layout.alignment: Qt.AlignHCenter
-            text: Strings.Strings.sessionMenu.cancel
+            text: Settings.values.text.sessionMenu.cancel
             variant: UiEnums.ButtonVariant.Standard
             onActivated: ShellState.close()
         }

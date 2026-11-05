@@ -32,5 +32,10 @@
 32-closed|widgets toggle
 32b-settings-app|settings open
 32c-settings-dark|settings set theme.mode dark
+32e-override-text|settings set text.taskbar.start Begin
+32f-override-icon|settings set icons.grid fluent:apps_24
+32g-override-color|settings set colors.dark.taskbarBackground #ff3a1f5d
+32h-start-custom|start toggle
+32i-close|start toggle
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock

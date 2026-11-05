@@ -1,8 +1,8 @@
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import qs.src.ui.theme
 import qs.src.ui.components
-import "../../../domain/catalog/strings.mjs" as Strings
 
 FocusScope {
     id: root
@@ -17,7 +17,7 @@ FocusScope {
                 id: searchBox
                 Layout.fillWidth: true
                 focus: true
-                placeholder: Strings.Strings.start.searchPlaceholder
+                placeholder: Settings.values.text.start.searchPlaceholder
                 onAccepted: results.launchSelected()
                 onNavigateDown: results.moveSelection(1)
                 onNavigateUp: results.moveSelection(-1)

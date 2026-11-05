@@ -1,10 +1,10 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/catalog/icons.mjs" as Icons
 
@@ -36,7 +36,7 @@ RowLayout {
         spacing: Theme.spacing.xxSmall
 
         Label {
-            text: root.results.length > 0 ? Strings.Strings.search.bestMatch : root.query === "" ? Strings.Strings.search.typeToSearch : Strings.Strings.search.noResults
+            text: root.results.length > 0 ? Settings.values.text.search.bestMatch : root.query === "" ? Settings.values.text.search.typeToSearch : Settings.values.text.search.noResults
             variant: UiEnums.TextVariant.BodyStrong
         }
 
@@ -50,7 +50,7 @@ RowLayout {
                 Layout.fillWidth: true
                 iconSource: Apps.iconSource(modelData.id)
                 title: modelData.name
-                subtitle: index === 0 ? Strings.Strings.search.application : ""
+                subtitle: index === 0 ? Settings.values.text.search.application : ""
                 selected: index === root.selectedIndex
                 onActivated: {
                     root.selectedIndex = index;
@@ -89,7 +89,7 @@ RowLayout {
 
             Label {
                 Layout.alignment: Qt.AlignHCenter
-                text: Strings.Strings.search.application
+                text: Settings.values.text.search.application
                 tone: UiEnums.TextTone.Secondary
             }
 
@@ -98,21 +98,21 @@ RowLayout {
             ListItem {
                 Layout.fillWidth: true
                 icon: Icons.Icon.open
-                title: Strings.Strings.search.open
+                title: Settings.values.text.search.open
                 onActivated: root.launchSelected()
             }
 
             ListItem {
                 Layout.fillWidth: true
                 icon: root.selected && Apps.isPinnedToStart(root.selected.id) ? Icons.Icon.pinOff : Icons.Icon.pin
-                title: root.selected && Apps.isPinnedToStart(root.selected.id) ? Strings.Strings.start.unpinFromStart : Strings.Strings.start.pinToStart
+                title: root.selected && Apps.isPinnedToStart(root.selected.id) ? Settings.values.text.start.unpinFromStart : Settings.values.text.start.pinToStart
                 onActivated: Apps.toggleStartPin(root.selected.id)
             }
 
             ListItem {
                 Layout.fillWidth: true
                 icon: root.selected && Apps.isPinnedToTaskbar(root.selected.id) ? Icons.Icon.pinOff : Icons.Icon.pin
-                title: root.selected && Apps.isPinnedToTaskbar(root.selected.id) ? Strings.Strings.taskbar.unpinFromTaskbar : Strings.Strings.taskbar.pinToTaskbar
+                title: root.selected && Apps.isPinnedToTaskbar(root.selected.id) ? Settings.values.text.taskbar.unpinFromTaskbar : Settings.values.text.taskbar.pinToTaskbar
                 onActivated: Apps.toggleTaskbarPin(root.selected.id)
             }
 

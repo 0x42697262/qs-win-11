@@ -1,10 +1,10 @@
 import QtQuick
+import qs.src.config
 import qs.src.services
 import "../../../domain/apps/taskbarItems.mjs" as TaskbarRules
 import "../../../domain/catalog/features.mjs" as FeatureCatalog
 import "../../../domain/shell/surfaces.mjs" as Surfaces
 import "../../../domain/catalog/icons.mjs" as Icons
-import "../../../domain/catalog/strings.mjs" as Strings
 
 TaskbarButton {
     id: root
@@ -42,14 +42,14 @@ TaskbarButton {
         const appId = modelData.appId;
         const windowIds = modelData.windowIds;
         const items = [
-            { text: Strings.Strings.taskbar.newWindow, icon: Icons.Icon.open, action: () => Apps.launch(appId) },
+            { text: Settings.values.text.taskbar.newWindow, icon: Icons.Icon.open, action: () => Apps.launch(appId) },
             Apps.isPinnedToTaskbar(appId)
-                ? { text: Strings.Strings.taskbar.unpinFromTaskbar, icon: Icons.Icon.pinOff, action: () => Apps.toggleTaskbarPin(appId) }
-                : { text: Strings.Strings.taskbar.pinToTaskbar, icon: Icons.Icon.pin, action: () => Apps.toggleTaskbarPin(appId) },
+                ? { text: Settings.values.text.taskbar.unpinFromTaskbar, icon: Icons.Icon.pinOff, action: () => Apps.toggleTaskbarPin(appId) }
+                : { text: Settings.values.text.taskbar.pinToTaskbar, icon: Icons.Icon.pin, action: () => Apps.toggleTaskbarPin(appId) },
         ];
         if (windowIds.length > 0) {
             items.push({
-                text: windowIds.length > 1 ? Strings.Strings.taskbar.closeAllWindows : Strings.Strings.taskbar.closeWindow,
+                text: windowIds.length > 1 ? Settings.values.text.taskbar.closeAllWindows : Settings.values.text.taskbar.closeWindow,
                 icon: Icons.Icon.dismiss,
                 action: () => windowIds.forEach(windowId => Windows.close(windowId)),
             });

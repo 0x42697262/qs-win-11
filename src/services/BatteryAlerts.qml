@@ -6,7 +6,6 @@ import "../domain/catalog/strings.mjs" as Strings
 import "../domain/catalog/system.mjs" as SystemCatalog
 import "../domain/catalog/enums.mjs" as Enums
 import "../domain/catalog/logEvents.mjs" as LogEvents
-import "../domain/catalog/tuning.mjs" as Tuning
 
 Scope {
     id: root
@@ -15,13 +14,13 @@ Scope {
     readonly property var powerSettings: Settings.values.power
 
     function evaluate(): void {
-        const next = AlertRules.nextBatteryAlert(alertedLevel, Power.percent, Power.charging, powerSettings.lowBatteryPercent, powerSettings.criticalBatteryPercent, Tuning.BATTERY_ALERT_HYSTERESIS_PERCENT);
+        const next = AlertRules.nextBatteryAlert(alertedLevel, Power.percent, Power.charging, powerSettings.lowBatteryPercent, powerSettings.criticalBatteryPercent, Settings.values.tuning.batteryAlertHysteresisPercent);
         alertedLevel = next.alertedLevel;
         if (next.alertNow === AlertRules.BatteryAlertLevel.None) {
             return;
         }
         const critical = next.alertNow === AlertRules.BatteryAlertLevel.Critical;
-        const text = Strings.Strings.power;
+        const text = Settings.values.text.power;
         const body = (critical ? text.batteryCriticalBody : text.batteryLowBody).split(Strings.COUNT_PLACEHOLDER).join(String(Power.percent));
         Log.warning(LogEvents.LogEvent.BatteryAlert, { percent: Power.percent, level: next.alertNow });
         Quickshell.execDetached([SystemCatalog.SystemBinary.NotifySend, "-a", text.appName, "-u", critical ? SystemCatalog.NotifyUrgency.Critical : SystemCatalog.NotifyUrgency.Normal, critical ? text.batteryCriticalTitle : text.batteryLowTitle, body]);

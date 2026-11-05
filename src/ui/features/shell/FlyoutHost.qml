@@ -5,7 +5,6 @@ import qs.src.services
 import qs.src.ui.theme
 import "../../../domain/shell/surfaces.mjs" as Surfaces
 import "../../../domain/catalog/compositor.mjs" as CompositorCatalog
-import "../../../domain/catalog/tokens.mjs" as Tokens
 
 PanelWindow {
     id: root
@@ -58,6 +57,6 @@ PanelWindow {
     ParallelAnimation {
         id: entrance
         NumberAnimation { target: stage; property: "opacity"; from: 0; to: 1; duration: Theme.motion.normal }
-        NumberAnimation { target: slide; property: "y"; from: Tokens.SLIDE_DISTANCE.flyout * Theme.scale; to: 0; duration: Theme.motion.slow; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        NumberAnimation { target: slide; property: "y"; from: Theme.slideDistance; to: 0; duration: Theme.motion.slow; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
     }
 }

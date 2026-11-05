@@ -1,6 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { alphabetGroups, rankApps, scoreApp, MatchScore } from "../../src/domain/search/rankApps.mjs";
+import { DEFAULTS } from "./defaults.mjs";
+
+const SCORES = DEFAULTS.tuning;
+import { alphabetGroups, rankApps, scoreApp } from "../../src/domain/search/rankApps.mjs";
 import { parseRecentFiles, fileNameFromUri } from "../../src/domain/apps/recentFiles.mjs";
 
 /** @param {string} id @param {string} name @param {string} [genericName] @param {string[]} [keywords] */
@@ -10,10 +13,10 @@ function app(id, name, genericName = "", keywords = []) {
 
 test("ranking prefers exact, then prefix, then word prefix, then contains", () => {
     const apps = [app("a1", "Text Editor"), app("a2", "Terminal"), app("a3", "Extended Tools"), app("a4", "Files", "File Manager", ["folder"])];
-    assert.deepEqual(rankApps(apps, "te", 5).map((ranked) => ranked.app.name), ["Terminal", "Text Editor", "Extended Tools"]);
-    assert.equal(scoreApp(app("a5", "Terminal"), "terminal"), MatchScore.ExactName);
-    assert.equal(scoreApp(apps[3] ?? app("", ""), "fold"), MatchScore.Keyword);
-    assert.equal(rankApps(apps, "", 5).length, 0);
+    assert.deepEqual(rankApps(apps, "te", 5, SCORES).map((ranked) => ranked.app.name), ["Terminal", "Text Editor", "Extended Tools"]);
+    assert.equal(scoreApp(app("a5", "Terminal"), "terminal", SCORES), SCORES.scoreExactName);
+    assert.equal(scoreApp(apps[3] ?? app("", ""), "fold", SCORES), SCORES.scoreKeyword);
+    assert.equal(rankApps(apps, "", 5, SCORES).length, 0);
 });
 
 test("alphabet groups mark first index of each letter", () => {

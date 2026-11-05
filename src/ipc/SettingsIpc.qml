@@ -22,6 +22,6 @@ IpcHandler {
     }
 
     function reset(key: string): bool {
-        return Settings.update(key, SettingsArguments.defaultValueFor(Schema.SETTING_DEFINITIONS, key));
+        return Settings.reset(key);
     }
 }

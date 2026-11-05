@@ -1,15 +1,15 @@
 import QtQuick
-import "../../domain/catalog/tokens.mjs" as Tokens
 
 QtObject {
     required property real scale
+    required property var values
 
-    readonly property real xxSmall: Tokens.SPACING.xxSmall * scale
-    readonly property real xSmall: Tokens.SPACING.xSmall * scale
-    readonly property real small: Tokens.SPACING.small * scale
-    readonly property real medium: Tokens.SPACING.medium * scale
-    readonly property real large: Tokens.SPACING.large * scale
-    readonly property real xLarge: Tokens.SPACING.xLarge * scale
-    readonly property real xxLarge: Tokens.SPACING.xxLarge * scale
-    readonly property real xxxLarge: Tokens.SPACING.xxxLarge * scale
+    readonly property real xxSmall: values.xxSmall * scale
+    readonly property real xSmall: values.xSmall * scale
+    readonly property real small: values.small * scale
+    readonly property real medium: values.medium * scale
+    readonly property real large: values.large * scale
+    readonly property real xLarge: values.xLarge * scale
+    readonly property real xxLarge: values.xxLarge * scale
+    readonly property real xxxLarge: values.xxxLarge * scale
 }

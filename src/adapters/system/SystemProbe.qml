@@ -1,10 +1,10 @@
 import QtQuick
+import qs.src.config
 import Quickshell
 import Quickshell.Io
 import qs.src.services
 import "../../domain/system/probe.mjs" as Probe
 import "../../domain/catalog/logEvents.mjs" as LogEvents
-import "../../domain/catalog/tuning.mjs" as Tuning
 import "../../domain/catalog/system.mjs" as SystemCatalog
 
 Scope {
@@ -52,7 +52,7 @@ Scope {
 
     Timer {
         id: timeout
-        interval: Tuning.CAPABILITY_PROBE_TIMEOUT_MS
+        interval: Settings.values.tuning.capabilityProbeTimeoutMs
         onTriggered: {
             process.running = false;
             root.finished = true;

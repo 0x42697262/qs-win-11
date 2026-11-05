@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { DEFAULTS } from "./defaults.mjs";
 import { mixHex, toQtColor } from "../../src/domain/theme/color.mjs";
 import { resolveThemeMode, minutesOfDay } from "../../src/domain/theme/themeMode.mjs";
 import { buildPalette } from "../../src/domain/theme/palette.mjs";
@@ -19,10 +20,10 @@ test("auto mode follows the schedule, including overnight ranges", () => {
 });
 
 test("palettes differ between modes and transparency can be turned off", () => {
-    const dark = buildPalette("dark", "#0078d4", true);
-    const light = buildPalette("light", "#0078d4", true);
+    const dark = buildPalette("dark", "#0078d4", true, DEFAULTS.colors, DEFAULTS.effects.accentShades);
+    const light = buildPalette("light", "#0078d4", true, DEFAULTS.colors, DEFAULTS.effects.accentShades);
     assert.notEqual(dark.textPrimary, light.textPrimary);
     assert.equal(dark.textOnAccent, "#ff000000");
     assert.equal(light.textOnAccent, "#ffffffff");
-    assert.ok(buildPalette("dark", "#0078d4", false).taskbarBackground.startsWith("#ff"));
+    assert.ok(buildPalette("dark", "#0078d4", false, DEFAULTS.colors, DEFAULTS.effects.accentShades).taskbarBackground.startsWith("#ff"));
 });

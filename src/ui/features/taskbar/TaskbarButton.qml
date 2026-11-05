@@ -1,7 +1,6 @@
 import QtQuick
 import qs.src.ui.theme
 import qs.src.ui.components
-import "../../../domain/catalog/tokens.mjs" as Tokens
 
 Interactive {
     id: root
@@ -35,7 +34,7 @@ Interactive {
         filled: root.iconFilled
         size: Theme.size.taskbarIcon
         color: root.iconColor
-        scale: root.pressed ? Tokens.PRESS_SCALE : 1
+        scale: root.pressed ? Theme.pressScale : 1
     }
 
     Image {

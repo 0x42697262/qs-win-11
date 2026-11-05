@@ -9,10 +9,8 @@ import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/shell/surfaces.mjs" as Surfaces
 import "../../../domain/catalog/icons.mjs" as Icons
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/enums.mjs" as Enums
 import "../../../domain/catalog/compositor.mjs" as CompositorCatalog
-import "../../../domain/catalog/tuning.mjs" as Tuning
 
 PanelWindow {
     id: root
@@ -37,7 +35,7 @@ PanelWindow {
     anchors.bottom: true
     anchors.left: true
     anchors.right: true
-    implicitHeight: revealed ? Theme.size.taskbarHeight : Tuning.AUTO_HIDE_REVEAL_PIXELS
+    implicitHeight: revealed ? Theme.size.taskbarHeight : Settings.values.tuning.autoHideRevealPixels
     exclusiveZone: taskbarSettings.autoHide ? 0 : Theme.size.taskbarHeight
     color: Theme.colors.transparent
     WlrLayershell.layer: WlrLayer.Top
@@ -47,7 +45,7 @@ PanelWindow {
 
     Timer {
         id: hideDelay
-        interval: Tuning.AUTO_HIDE_DELAY_MS
+        interval: Settings.values.tuning.autoHideDelayMs
         running: root.taskbarSettings.autoHide && !hover.hovered
     }
 
@@ -94,7 +92,7 @@ PanelWindow {
                 icon: Icons.Icon.grid
                 iconFilled: true
                 iconColor: Theme.colors.accent
-                toolTip: Strings.Strings.taskbar.start
+                toolTip: Settings.values.text.taskbar.start
                 checked: root.surfaceButtonChecked(Surfaces.Surface.StartMenu)
                 acceptRightClick: Features.enabled.quickLink
                 onActivated: ShellState.toggle(Surfaces.Surface.StartMenu, root.screenName)
@@ -104,7 +102,7 @@ PanelWindow {
             TaskbarButton {
                 visible: root.taskbarSettings.showSearch && Features.enabled.search
                 icon: Icons.Icon.search
-                toolTip: Strings.Strings.taskbar.search
+                toolTip: Settings.values.text.taskbar.search
                 checked: root.surfaceButtonChecked(Surfaces.Surface.Search)
                 onActivated: ShellState.toggle(Surfaces.Surface.Search, root.screenName)
             }
@@ -112,7 +110,7 @@ PanelWindow {
             TaskbarButton {
                 visible: root.taskbarSettings.showTaskView && Features.enabled.taskView
                 icon: Icons.Icon.squareMultiple
-                toolTip: Strings.Strings.taskbar.taskView
+                toolTip: Settings.values.text.taskbar.taskView
                 checked: root.surfaceButtonChecked(Surfaces.Surface.TaskView)
                 onActivated: ShellState.toggle(Surfaces.Surface.TaskView, root.screenName)
             }
@@ -120,7 +118,7 @@ PanelWindow {
             TaskbarButton {
                 visible: !root.centered && root.taskbarSettings.showWidgets && Features.enabled.widgets
                 icon: Icons.Icon.weatherPartlyCloudyDay
-                toolTip: Strings.Strings.taskbar.widgets
+                toolTip: Settings.values.text.taskbar.widgets
                 checked: root.surfaceButtonChecked(Surfaces.Surface.Widgets)
                 onActivated: ShellState.toggle(Surfaces.Surface.Widgets, root.screenName)
             }
@@ -144,7 +142,7 @@ PanelWindow {
                 visible: Features.enabled.systemTray
                 implicitWidth: Theme.size.trayCell
                 icon: Icons.Icon.chevronUp
-                toolTip: Strings.Strings.taskbar.showHiddenIcons
+                toolTip: Settings.values.text.taskbar.showHiddenIcons
                 checked: root.surfaceButtonChecked(Surfaces.Surface.TrayOverflow)
                 onActivated: ShellState.toggleWith(Surfaces.Surface.TrayOverflow, root.screenName, { anchorX: root.anchorXOf(trayButton) })
             }
