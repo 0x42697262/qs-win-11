@@ -76,6 +76,7 @@ ShellRoot {
     DesktopIpc {}
     WidgetsIpc {}
     SnapIpc {}
+    ProfilesIpc {}
     BrightnessIpc {}
 
     SettingsProblemNotice {}

@@ -41,6 +41,14 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `desktop toggle` | Minimize all windows, or restore them. | `SUPER+D` |
 | `widgets toggle` | Open or close the widgets board. | `SUPER+W` |
 | `snap open` | Open the snap layout picker. | `SUPER+Z` |
+| `profiles list` | Installed profiles as JSON: name, active, conditions, problems. |  |
+| `profiles activate` | Add a profile to the top of the active stack. |  |
+| `profiles deactivate` | Remove a profile from the active stack. |  |
+| `profiles order` | Set the whole active stack, comma-separated, first is lowest. |  |
+| `profiles create` | Save your changed settings for some sections (comma-separated, e.g. icons,colors) as a new profile. |  |
+| `profiles absorb` | Copy a profile's values into your own settings. |  |
+| `profiles trust` | Allow a profile to change commands.*. |  |
+| `profiles untrust` | Stop a profile from changing commands.*. |  |
 | `session lock` | Lock the session. | `SUPER+L` |
 | `session menu` | Open the full-screen session menu. | `CTRL+ALT+Delete` |
 | `session suspend` | Sleep. |  |

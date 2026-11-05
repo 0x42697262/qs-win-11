@@ -166,4 +166,7 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Profiles | `ipc call settings exportProfile /tmp/look.json`, change things, `ipc call settings importProfile /tmp/look.json` | Every changed setting returns to the exported state; unknown or invalid keys are listed in `profile.imported` as skipped |
 | Search | Type in Start or the Search flyout | Results list on the left, details pane (icon, name, Open, pin actions) fills the right side |
 | Effects | Change `appearance.level` or `appearance.style` while Start is open | Start re-renders with the new material and keeps its content |
+| Profiles | `ipc call profiles create neon icons`, reset your icon changes, `ipc call profiles activate neon` | Icons come back from the profile; the Icons rows say "From profile neon" |
+| Profiles | Profile with `"activateWhen": {"theme": "light"}` in the stack | Applies only while your theme resolves to light |
+| Profiles | Profile that sets `commands.lock` | Key skipped and a warning with a Trust button; after trusting, the command applies |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

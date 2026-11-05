@@ -10,6 +10,7 @@ import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/features/resolveFeatures.mjs" as FeatureRules
 import "../../../domain/catalog/icons.mjs" as Icons
 import "../../../domain/catalog/strings.mjs" as Strings
+import "../../../domain/catalog/profiles.mjs" as ProfileCatalog
 
 Card {
     id: root
@@ -19,6 +20,8 @@ Card {
     readonly property string featureName: isFeature ? Presentation.featureNameFromKey(modelData.key) : ""
     readonly property var offReason: isFeature ? Features.resolved.offReasons[featureName] : undefined
     readonly property bool overridden: Settings.isOverridden(modelData.key)
+    readonly property var source: Settings.sources[modelData.key]
+    readonly property string fromProfile: source && source.kind === ProfileCatalog.ProfileSourceKind.Profile ? source.name : ""
     readonly property bool problem: Settings.problems.some(candidate => candidate.key === modelData.key)
 
     Layout.fillWidth: true
@@ -47,6 +50,14 @@ Card {
                 wrapMode: Text.WordWrap
                 variant: UiEnums.TextVariant.Caption
                 tone: UiEnums.TextTone.Secondary
+            }
+
+            Label {
+                Layout.fillWidth: true
+                visible: root.fromProfile !== ""
+                text: `${Settings.values.text.profiles.fromProfile} ${root.fromProfile}`
+                variant: UiEnums.TextVariant.Caption
+                tone: UiEnums.TextTone.Accent
             }
 
             Label {

@@ -186,3 +186,17 @@ export function applyOverride(overrides, key, value, schema) {
 export function serializeDocument(overrides, schema) {
     return `${JSON.stringify({ [VERSION_FIELD]: schema.schemaVersion, [VALUES_FIELD]: nestValues(overrides) }, null, DOCUMENT_INDENT)}\n`;
 }
+
+/**
+ * @param {DocumentSchema} schema
+ * @param {Readonly<Record<string, unknown>>} overrides
+ * @returns {Readonly<Record<string, unknown>>}
+ */
+export function buildValues(schema, overrides) {
+    /** @type {Record<string, unknown>} */
+    const values = {};
+    for (const definition of schema.definitions) {
+        values[definition.key] = definition.key in overrides ? overrides[definition.key] : definition.defaultValue;
+    }
+    return /** @type {Readonly<Record<string, unknown>>} */ (deepFreeze(nestValues(values)));
+}

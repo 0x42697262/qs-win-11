@@ -6,6 +6,7 @@ export const SystemBinary = Object.freeze({
     Loginctl: "loginctl",
     Shell: "sh",
     XdgOpen: "xdg-open",
+    Find: "find",
 });
 
 export const TexturePath = Object.freeze({ noise: "assets/textures/noise.png" });
@@ -56,6 +57,8 @@ export const SystemBusName = Object.freeze({
     PowerProfiles: "org.freedesktop.UPower.PowerProfiles",
     LegacyPowerProfiles: "net.hadess.PowerProfiles",
 });
+
+export const ProfileSettingKey = Object.freeze({ active: "profiles.active", trustedCommands: "profiles.trustedCommands" });
 
 export const NotifyUrgency = Object.freeze({ Normal: "normal", Critical: "critical" });
 

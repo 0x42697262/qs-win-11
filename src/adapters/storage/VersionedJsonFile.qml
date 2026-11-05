@@ -34,6 +34,11 @@ Scope {
         return true;
     }
 
+    function mergeOverrides(incoming: var): void {
+        pendingOverrides = Object.assign({}, overrides, incoming);
+        writeDebounce.restart();
+    }
+
     function replaceAll(text: string): var {
         const incoming = Document.resolveDocument(text, schema);
         pendingOverrides = incoming.overrides;

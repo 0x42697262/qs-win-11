@@ -118,6 +118,12 @@ FloatingWindow {
                     message: `${Settings.values.text.settingsProblems.body} ${Settings.problems.map(problem => problem.key).join(", ")}`
                 }
 
+                ProfilesPanel {
+                    visible: SettingsWindow.section === Schema.SettingsSection.Profiles && search.text === "" && !root.changedOnly
+                    Layout.fillWidth: true
+                    Layout.bottomMargin: Theme.spacing.large
+                }
+
                 EffectsPanel {
                     visible: SettingsWindow.section === AppearanceCatalog.APPEARANCE_SECTION_NAME && search.text === "" && !root.changedOnly
                     Layout.fillWidth: true
@@ -170,7 +176,7 @@ FloatingWindow {
 
                         Button {
                             text: root.text.exportProfile
-                            onActivated: Profiles.exportTo(profilePath.text)
+                            onActivated: Profiles.exportTo(profilePath.text, "")
                         }
 
                         Button {
