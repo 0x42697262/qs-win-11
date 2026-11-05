@@ -1,0 +1,27 @@
+export const LogEvent = Object.freeze({
+    ShellStarted: "shell.started",
+    SettingsLoaded: "settings.loaded",
+    SettingsInvalid: "settings.invalid",
+    SettingsWriteRejected: "settings.writeRejected",
+    SettingsWriteFailed: "settings.writeFailed",
+    ShellDataInvalid: "shellData.invalid",
+    FeatureDisabled: "feature.disabled",
+    CapabilityProbed: "capability.probed",
+    CompositorSelected: "compositor.selected",
+    CompositorResync: "compositor.resync",
+    ProcessFailed: "process.failed",
+    ProcessTimedOut: "process.timedOut",
+    HttpFailed: "http.failed",
+    ColorSchemePushed: "theme.colorSchemePushed",
+});
+
+export const LogLevel = Object.freeze({ Info: "info", Warning: "warning", Error: "error" });
+
+/**
+ * @param {string} event
+ * @param {Readonly<Record<string, unknown>>} fields
+ * @returns {string}
+ */
+export function formatLogLine(event, fields) {
+    return JSON.stringify(Object.assign({ event }, fields));
+}

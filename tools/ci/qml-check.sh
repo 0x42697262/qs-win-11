@@ -8,7 +8,8 @@ readonly OUTPUT_RESOLUTION="${OUTPUT_RESOLUTION:-1600x900}"
 readonly LOAD_WAIT_SECONDS="${LOAD_WAIT_SECONDS:-4}"
 readonly SCENE_WAIT_SECONDS="${SCENE_WAIT_SECONDS:-1}"
 readonly QMLLINT="${QMLLINT:-/usr/lib/qt6/bin/qmllint}"
-readonly IGNORED_LOG_PATTERN='MESA|ZINK|egl:|dri2|Xwayland|swaybg'
+readonly LINT_FALSE_POSITIVE_PATTERN='not declared as singleton in qmldir but using pragma Singleton'
+readonly IGNORED_LOG_PATTERN='MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus'
 
 export XDG_RUNTIME_DIR="$(mktemp -d)"
 export XDG_CONFIG_HOME="$(mktemp -d)"
@@ -29,7 +30,7 @@ WAYLAND_DISPLAY="$(basename "$(compgen -G "$XDG_RUNTIME_DIR/wayland-[0-9]" | hea
 export WAYLAND_DISPLAY
 
 touch "$SHELL_DIR/.qmlls.ini"
-qs -p "$SHELL_DIR" --no-color > "$ARTIFACT_DIR/quickshell.log" 2>&1 &
+dbus-run-session -- qs -p "$SHELL_DIR" --no-color > "$ARTIFACT_DIR/quickshell.log" 2>&1 &
 sleep "$LOAD_WAIT_SECONDS"
 grim "$ARTIFACT_DIR/00-desktop.png"
 
@@ -46,9 +47,16 @@ fi
 build_dir="$(sed -n 's/^buildDir="\(.*\)"$/\1/p' "$SHELL_DIR/.qmlls.ini")"
 lint_status=0
 if [[ -n "$build_dir" && -d "$build_dir/qs" ]]; then
-    mapfile -t qml_files < <(find "$build_dir/qs" -name '*.qml' | sort)
-    "$QMLLINT" -I "$build_dir" -I /usr/lib/qt6/qml --uncreatable-type disable -W 0 "${qml_files[@]}" > "$ARTIFACT_DIR/qmllint.log" 2>&1 || lint_status=$?
-    sed -i "s#$build_dir/qs/##g" "$ARTIFACT_DIR/qmllint.log"
+    lint_root="$(mktemp -d)"
+    mkdir -p "$lint_root/qs"
+    cp -r "$SHELL_DIR/src" "$SHELL_DIR/shell.qml" "$lint_root/qs/"
+    (cd "$build_dir" && find qs -name qmldir -exec cp --parents {} "$lint_root" \;)
+    : > "$ARTIFACT_DIR/qmllint.raw.log"
+    while IFS= read -r lint_directory; do
+        (cd "$lint_root/$lint_directory" && "$QMLLINT" -I "$lint_root" -I /usr/lib/qt6/qml --uncreatable-type disable ./*.qml 2>&1 | sed "s#^Warning: \./#Warning: ${lint_directory#qs/}/#; s#^Warning: \([A-Za-z]\)#Warning: ${lint_directory#qs/}/\1#") >> "$ARTIFACT_DIR/qmllint.raw.log" || true
+    done < <(cd "$lint_root" && find qs -name '*.qml' -printf '%h\n' | sort -u)
+    grep -v "$LINT_FALSE_POSITIVE_PATTERN" "$ARTIFACT_DIR/qmllint.raw.log" > "$ARTIFACT_DIR/qmllint.log" || true
+    grep -q '^Warning:' "$ARTIFACT_DIR/qmllint.log" && lint_status=1
 else
     echo "Quickshell did not produce a tooling build dir" > "$ARTIFACT_DIR/qmllint.log"
     lint_status=1

@@ -4,8 +4,8 @@ Each row has exactly one owner. Everything else reads it or derives from it.
 
 | State | Owner | Others |
 |---|---|---|
-| User preferences | `settings.json` via `Settings` | Read only; writes go through `Settings.update()` |
-| Shell data: pinned apps, Quick Settings layout, do not disturb, cached location | `state.json` via `ShellData` | Read only; writes through the owning service |
+| User preferences, including Quick Settings tiles | `settings.json` via `Settings` | Read only; writes go through `Settings.update()` |
+| Shell data: pinned apps, do not disturb, cached location | `state.json` via `ShellData` | Read only; writes through the owning service |
 | Theme colors, sizes, motion | Derived in `Theme` from settings and the clock | Never stored |
 | Effective features | Derived by `resolveFeatures()` in `Features` | UI reads `Features` only |
 | Windows, workspaces, monitors | Compositor, through the active `CompositorAdapter` | Mirrored by events; resynced on reconnect |
@@ -25,5 +25,6 @@ Each row has exactly one owner. Everything else reads it or derives from it.
 |---|---|
 | Theme | Recomputed on every settings or clock change |
 | Features | Recomputed on settings or capability change |
+| Theme QML token groups (`src/ui/theme/Theme*Metrics.qml`, `ThemeColors.qml`) | `npm run gen` from `tokens.mjs` |
 | Window mirror | `CompositorAdapter.resync()` |
 | Cached location | Delete `location` from `state.json`, it is fetched again |
