@@ -39,6 +39,7 @@ Scope {
         IdleMonitor {
             required property var modelData
             timeout: modelData.seconds
+            enabled: !StayAwake.active
             respectInhibitors: true
             onIsIdleChanged: isIdle ? root.enter(modelData.stage) : root.leave(modelData.stage)
         }

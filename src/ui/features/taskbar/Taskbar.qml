@@ -151,6 +151,10 @@ PanelWindow {
                 onActivated: ShellState.toggleWith(Surfaces.Surface.TrayOverflow, root.screenName, { anchorX: root.anchorXOf(trayButton) })
             }
 
+            InputIndicatorButton {
+                visible: Keyboard.indicatorShown
+            }
+
             SystemClusterButton {
                 visible: Features.enabled.quickSettings
                 checked: root.surfaceButtonChecked(Surfaces.Surface.QuickSettings)

@@ -1,5 +1,8 @@
 import QtQuick
+import Quickshell
+import Quickshell.Io
 import Quickshell.Hyprland
+import qs.src.config
 import qs.src.services
 import "../../domain/compositor/windows.mjs" as WindowRules
 import "../../domain/catalog/features.mjs" as FeatureCatalog
@@ -7,6 +10,8 @@ import "../../domain/catalog/enums.mjs" as Enums
 import "../../domain/catalog/logEvents.mjs" as LogEvents
 import "../../domain/catalog/compositor.mjs" as CompositorCatalog
 import "../../domain/snap/placement.mjs" as Placement
+import "../../domain/system/keyboard.mjs" as KeyboardRules
+import "../../domain/catalog/system.mjs" as SystemCatalog
 
 CompositorAdapter {
     id: root
@@ -15,7 +20,7 @@ CompositorAdapter {
     readonly property bool usingLua: Hyprland.usingLua
 
     kind: Enums.CompositorKind.Hyprland
-    capabilities: [FeatureCatalog.Capability.WindowList, FeatureCatalog.Capability.Workspaces, FeatureCatalog.Capability.Screencopy, FeatureCatalog.Capability.WindowPlacement]
+    capabilities: [FeatureCatalog.Capability.WindowList, FeatureCatalog.Capability.Workspaces, FeatureCatalog.Capability.Screencopy, FeatureCatalog.Capability.WindowPlacement, FeatureCatalog.Capability.KeyboardLayouts]
     activeWindowId: Hyprland.activeToplevel ? Hyprland.activeToplevel.address : ""
     focusedMonitorName: Hyprland.focusedMonitor ? Hyprland.focusedMonitor.name : ""
     windows: toplevels.map(toplevel => WindowRules.makeWindowInfo({
@@ -81,6 +86,25 @@ CompositorAdapter {
         Log.info(LogEvents.LogEvent.WindowPlaced, { windowId, usingLua: root.usingLua, width: rect.width, height: rect.height });
     }
 
+    function nextKeyboardLayout(): void {
+        Quickshell.execDetached(Array.prototype.slice.call(SystemCatalog.HyprctlCommand.nextLayout));
+    }
+
+    function refreshKeyboard(): void {
+        devicesReader.running = false;
+        devicesReader.running = true;
+        layoutOptionReader.running = false;
+        layoutOptionReader.running = true;
+    }
+
+    function readJson(text: string): var {
+        try {
+            return JSON.parse(text);
+        } catch (error) {
+            return null;
+        }
+    }
+
     function windowHandle(windowId: string): var {
         return toplevelFor(windowId)?.wayland ?? null;
     }
@@ -92,13 +116,44 @@ CompositorAdapter {
         Log.info(LogEvents.LogEvent.CompositorResync, { kind: root.kind });
     }
 
-    Component.onCompleted: resync()
+    Component.onCompleted: {
+        resync();
+        refreshKeyboard();
+    }
+
+    Process {
+        id: devicesReader
+        command: Array.prototype.slice.call(SystemCatalog.HyprctlCommand.devices)
+        stdout: StdioCollector {
+            onStreamFinished: {
+                const keyboard = KeyboardRules.mainKeyboard(root.readJson(text));
+                root.keyboardLayout = keyboard ? keyboard.layout : "";
+            }
+        }
+    }
+
+    Process {
+        id: layoutOptionReader
+        command: Array.prototype.slice.call(SystemCatalog.HyprctlCommand.layoutOption)
+        stdout: StdioCollector {
+            onStreamFinished: root.keyboardLayoutCount = KeyboardRules.layoutCountFromOption(root.readJson(text))
+        }
+    }
+
+    Timer {
+        running: true
+        repeat: true
+        interval: Settings.values.tuning.keyboardRefreshMs
+        onTriggered: root.refreshKeyboard()
+    }
 
     Connections {
         target: Hyprland
         function onRawEvent(event: HyprlandEvent): void {
             if (CompositorCatalog.REFRESH_TOPLEVEL_EVENTS.includes(event.name)) {
                 Hyprland.refreshToplevels();
+            } else if (event.name === CompositorCatalog.HYPRLAND_LAYOUT_EVENT) {
+                root.keyboardLayout = KeyboardRules.layoutFromEvent(event.data);
             }
         }
     }

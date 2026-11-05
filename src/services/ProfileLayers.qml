@@ -48,6 +48,15 @@ Singleton {
         return { onBattery, theme: ThemeModeRules.resolveThemeMode(theme.mode, minutesNow, theme.lightStartsAt, theme.darkStartsAt), minutesNow };
     }
 
+    function gameLayers(userOverrides: var): list<var> {
+        if (!ShellData.values.gameMode) {
+            return [];
+        }
+        const name = Document.buildValues(Schemas.SETTINGS_DOCUMENT_SCHEMA, userOverrides).quickSettings.gameModeProfile;
+        const overrides = name in texts ? profileState(name, userOverrides).overrides : ProfileCatalog.GAME_MODE_DEFAULT_OVERRIDES;
+        return [{ name, overrides }];
+    }
+
     function merge(userOverrides: var): var {
         const active = userList(userOverrides, SystemCatalog.ProfileSettingKey.active);
         const currentContext = context(userOverrides);
@@ -56,7 +65,7 @@ Singleton {
             .map(name => profileState(name, userOverrides))
             .filter(state => LayerRules.conditionsMatch(state.meta.activateWhen, currentContext))
             .map(state => ({ name: state.name, overrides: state.overrides }));
-        return LayerRules.mergeLayers(layers, userOverrides);
+        return LayerRules.mergeLayers(layers, userOverrides, gameLayers(userOverrides));
     }
 
     function store(name: string, folder: string, text: string): void {

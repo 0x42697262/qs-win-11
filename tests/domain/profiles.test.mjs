@@ -46,3 +46,10 @@ test("metadata parses and sections filter overrides", () => {
     assert.deepEqual(parseProfileMeta("nope"), { description: "", activateWhen: null });
     assert.deepEqual(overridesForSections({ "icons.grid": "a", "colors.dark.x": "b", "profiles.active": [], "theme.mode": "c" }, ["icons", "colors"]), { "icons.grid": "a", "colors.dark.x": "b" });
 });
+
+test("top layers such as game mode win over user overrides", () => {
+    const result = mergeLayers([{ name: "neon", overrides: { "a.b": 1 } }], { "a.b": 2, "c.d": 3 }, [{ name: "game", overrides: { "a.b": 0 } }]);
+    assert.equal(result.merged["a.b"], 0);
+    assert.equal(result.merged["c.d"], 3);
+    assert.deepEqual(result.sources["a.b"], { kind: "profile", name: "game" });
+});

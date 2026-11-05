@@ -44,8 +44,18 @@ Interactive {
         }
 
         FluentIcon {
-            visible: DoNotDisturb.active
+            visible: DoNotDisturb.active || GameMode.silencing
             glyph: Icons.Icon.alertSnooze
+        }
+
+        FluentIcon {
+            visible: StayAwake.active
+            glyph: Icons.Icon.stayAwake
+        }
+
+        FluentIcon {
+            visible: GameMode.active
+            glyph: Icons.Icon.games
         }
     }
 }

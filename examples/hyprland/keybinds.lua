@@ -20,6 +20,15 @@ return {
 		bind = "SUPER + R",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call keyboard nextLayout"),
+		bind = "SUPER + SPACE",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call keyboard lockKeys"),
+		bind = "Caps_Lock",
+		opts = { release = true },
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call quickLink toggle"),
 		bind = "SUPER + X",
 	},

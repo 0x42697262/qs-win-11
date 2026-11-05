@@ -2,7 +2,7 @@ import {
     booleanSetting, colorSetting, enumSetting, integerSetting, numberSetting, textListSetting, textSetting,
 } from "../settings/definitions.mjs";
 import {
-    AllAppsView, CompositorKind, CriticalBatteryAction, FirstDayOfWeek, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
+    AllAppsView, CompositorKind, CriticalBatteryAction, FirstDayOfWeek, InputIndicatorMode, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
 } from "./enums.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
 import { CornerModel } from "../shape/corners.mjs";
@@ -98,6 +98,7 @@ export const SETTING_DEFINITIONS = Object.freeze([
 
     enumSetting(text(SettingsSection.Taskbar, "alignment", "Taskbar alignment", "Where the Start button and apps sit."), TaskbarAlignment, TaskbarAlignment.Center),
     booleanSetting(text(SettingsSection.Taskbar, "autoHide", "Automatically hide the taskbar", "Slides away until the pointer touches the bottom edge."), false),
+    enumSetting(text(SettingsSection.Taskbar, "inputIndicator", "Input indicator", "Keyboard layout button near the clock. Auto shows it when more than one layout is configured."), InputIndicatorMode, InputIndicatorMode.Auto),
     booleanSetting(text(SettingsSection.Taskbar, "showSearch", "Show Search", "Search button on the taskbar."), true),
     booleanSetting(text(SettingsSection.Taskbar, "showTaskView", "Show Task view", "Task view button on the taskbar."), true),
     booleanSetting(text(SettingsSection.Taskbar, "showWidgets", "Show Widgets", "Weather and widgets button on the taskbar."), true),
@@ -110,6 +111,9 @@ export const SETTING_DEFINITIONS = Object.freeze([
     enumSetting(text(SettingsSection.StartMenu, "allAppsView", "All apps view", "How the All section in Start lists apps."), AllAppsView, AllAppsView.Category),
     textListSetting(text(SettingsSection.StartMenu, "initialPinned", "Initially pinned apps", "Desktop entry ids pinned before you pin anything yourself."), ["firefox", "org.gnome.Nautilus", "kitty", "org.gnome.TextEditor", "org.gnome.Calculator"]),
 
+    textSetting(text(SettingsSection.QuickSettings, "vpnConnection", "VPN connection", "Name of the VPN the tile turns on. Empty uses the first VPN NetworkManager knows."), ""),
+    textSetting(text(SettingsSection.QuickSettings, "gameModeProfile", "Game mode profile", "Profile applied while game mode is on. Without a profile folder of this name, a built-in one sets the effects level to 0."), "game"),
+    booleanSetting(text(SettingsSection.QuickSettings, "gameModeSilencesNotifications", "Game mode silences notifications", "No banners while game mode is on; critical ones still show."), true),
     textListSetting(text(SettingsSection.QuickSettings, "tiles", "Quick Settings tiles", "Tiles shown, in order. Unsupported tiles hide themselves."), Object.values(QuickTile), Object.values(QuickTile)),
 
     integerSetting(text(SettingsSection.Notifications, "toastSeconds", "Notification display time", "Seconds a notification banner stays up, unless the app asks otherwise."), 5, 1, 60),

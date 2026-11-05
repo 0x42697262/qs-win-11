@@ -1,4 +1,5 @@
 export const COUNT_PLACEHOLDER = "{count}";
+export const NAME_PLACEHOLDER = "{name}";
 export const DETAIL_SEPARATOR = ": ";
 export const SETTINGS_ABOUT_SECTION = "about";
 
@@ -139,6 +140,10 @@ export const Strings = Object.freeze({
         nightLight: "Night light",
         darkMode: "Dark mode",
         doNotDisturb: "Do not disturb",
+        vpn: "VPN",
+        stayAwake: "Stay awake",
+        gameMode: "Game mode",
+        displayBrightness: "{name} brightness",
         notConnected: "Not connected",
         connected: "Connected",
         connect: "Connect",
@@ -163,6 +168,10 @@ export const Strings = Object.freeze({
     osd: Object.freeze({
         microphoneMuted: "Microphone muted",
         microphoneOn: "Microphone on",
+        capsLockOn: "Caps Lock on",
+        capsLockOff: "Caps Lock off",
+        numLockOn: "Num Lock on",
+        numLockOff: "Num Lock off",
     }),
     power: Object.freeze({
         batteryLowTitle: "Battery low",

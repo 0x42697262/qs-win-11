@@ -35,6 +35,12 @@ Singleton {
         if (Object.values(SystemCatalog.SystemBusName).some(name => probe.result.systemBusNames.has(name))) {
             found.add(FeatureCatalog.Capability.PowerProfiles);
         }
+        if (binaries.has(SystemCatalog.SystemBinary.Nmcli)) {
+            found.add(FeatureCatalog.Capability.NetworkManagerCli);
+        }
+        if (binaries.has(SystemCatalog.SystemBinary.Ddcutil)) {
+            found.add(FeatureCatalog.Capability.DisplayControl);
+        }
         if (UPower.displayDevice.isLaptopBattery) {
             found.add(FeatureCatalog.Capability.Battery);
         }
@@ -48,7 +54,7 @@ Singleton {
 
     SystemProbe {
         id: probe
-        binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
+        binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, SystemCatalog.SystemBinary.Nmcli, SystemCatalog.SystemBinary.Ddcutil, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
         busNames: Object.values(FeatureCatalog.BusName)
         systemBusNames: Object.values(SystemCatalog.SystemBusName)
     }

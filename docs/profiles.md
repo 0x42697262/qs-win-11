@@ -36,8 +36,14 @@ mechanism.
 ## Stacking
 
 ```
-catalog defaults  <  profiles.active[0]  <  …  <  profiles.active[n]  <  your settings.json
+catalog defaults  <  profiles.active[0]  <  …  <  profiles.active[n]  <  your settings.json  <  game mode
 ```
+
+- Game mode sits on top while it is on, so it can lower effects even when you
+  set a level yourself. It uses the profile named by
+  `quickSettings.gameModeProfile` (default `game`); without that folder a
+  built-in layer sets `appearance.level` to 0. Turning game mode off removes
+  the layer and nothing else changes.
 
 - `profiles.active` lists folder names; later ones win. Only your own settings
   decide which profiles are active; profiles cannot set `profiles.*`.

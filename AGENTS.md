@@ -88,6 +88,10 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Nested Qt Quick layouts default to filling width; side-by-side columns need `Layout.fillWidth: false` and explicit widths | Start search details pane bug |
 | In `on<Property>Changed` handlers, other bindings derived from the same property may not have updated yet; read the source property directly (the flyout host bug) | Qt 6.12 binding evaluation |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
+| `IdleInhibitor` (Quickshell.Wayland) inhibits idle while its window is mapped; Stay awake uses a 1×1 background-layer window. **Unverified:** that every compositor honors idle-inhibit on layer surfaces | Quickshell 0.3.2 qmltypes |
+| `nmcli -t` escapes `:` inside fields as `\:`; VPNs have type `vpn` or `wireguard` | NetworkManager nmcli(1) |
+| `ddcutil detect --brief` prints `Display N` blocks with `I2C bus: /dev/i2c-N` and `Monitor: MFG:MODEL:SERIAL`; `getvcp 10 --brief` prints `VCP 10 C <current> <max>` | ddcutil 2.x man page |
+| Hyprland: `hyprctl devices -j` lists keyboards with `active_keymap`, `main`, `capsLock`, `numLock`; `getoption input:kb_layout -j` returns `str`; the `activelayout` event carries `keyboard,layout` | Hyprland wiki (IPC, hyprctl) |
 | `Quickshell.clipboardText` is read/write; setting it copies text to the Wayland clipboard | Quickshell 0.3.2 qmltypes |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -131,6 +135,12 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Quick Settings | Wi-Fi chevron, pick an unknown secured network | Password field and Connect button; known networks connect directly |
 | Quick Settings | Pencil, toggle tiles, Done | `quickSettings.tiles` in `settings.json` updates; hidden tiles stay hidden after restart |
 | Quick Settings | Dark mode tile | `theme.mode` flips; whole shell re-themes live |
+| Quick Settings | Stay awake tile or `ipc call modes toggleStayAwake` | Coffee icon in the taskbar cluster; idle stages and compositor idle daemons stop until it is turned off |
+| Quick Settings | Game mode tile or `ipc call modes toggleGameMode` | Effects drop to level 0 (or your `game` profile applies, above your own settings); banners pause; turning it off restores everything |
+| Quick Settings | With a NetworkManager VPN configured | VPN tile shows its name; clicking connects or disconnects (`quickSettings.vpnConnection` picks which) |
+| Quick Settings | With `ddcutil` working on an external monitor | One extra brightness slider per monitor; the value lands on the monitor after `tuning.displayBrightnessDelayMs` |
+| Taskbar | Hyprland with `kb_layout = us,de` | "ENG US" button left of the cluster; click or `ipc call keyboard nextLayout` switches layout and the label follows |
+| OSD | Bind the generated Caps_Lock release example, press Caps Lock | Pill reads "Caps Lock on" / "Caps Lock off" (read from `/sys/class/leds`) |
 | Notifications | `notify-send -a Mail "Hello" "Body"` | Toast bottom-right for `notifications.toastSeconds`; hovering keeps it; it also appears in the center |
 | Notifications | `notify-send -u critical "Battery low"` | Toast with red border stays until dismissed, even with do not disturb on |
 | Notifications | Turn on do not disturb, send a normal notification | No toast; it still appears in the center; taskbar cluster shows the snooze bell |

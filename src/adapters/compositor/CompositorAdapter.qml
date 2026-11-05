@@ -13,6 +13,8 @@ Scope {
     property string activeWindowId: ""
     property string focusedMonitorName: ""
     property list<string> capabilities: []
+    property string keyboardLayout: ""
+    property int keyboardLayoutCount: 0
 
     function unsupported(action: string): void {
         Log.info(LogEvents.LogEvent.CompositorUnsupported, { kind: root.kind, action });
@@ -44,6 +46,13 @@ Scope {
 
     function windowHandle(windowId: string): var {
         return null;
+    }
+
+    function nextKeyboardLayout(): void {
+        unsupported(CompositorCatalog.CompositorAction.NextKeyboardLayout);
+    }
+
+    function refreshKeyboard(): void {
     }
 
     function resync(): void {

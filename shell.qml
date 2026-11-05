@@ -71,6 +71,8 @@ ShellRoot {
     SearchIpc {}
     QuickLinkIpc {}
     RunIpc {}
+    ModesIpc {}
+    KeyboardIpc {}
     SessionIpc {}
     QuickSettingsIpc {}
     NotificationsIpc {}
@@ -88,6 +90,11 @@ ShellRoot {
     LazyLoader {
         active: Features.enabled.settingsApp && SettingsWindow.open
         SettingsAppWindow {}
+    }
+
+    LazyLoader {
+        active: StayAwake.active
+        StayAwakeLayer {}
     }
 
     LazyLoader {

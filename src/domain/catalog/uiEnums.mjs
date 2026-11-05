@@ -25,4 +25,4 @@ export const InfoSeverity = Object.freeze({ Informational: "informational", Succ
 
 export const QuickSettingsPage = Object.freeze({ Main: "main", Wifi: "wifi", Bluetooth: "bluetooth", Sound: "sound" });
 
-export const OsdKind = Object.freeze({ None: "none", Volume: "volume", Brightness: "brightness", Microphone: "microphone" });
+export const OsdKind = Object.freeze({ None: "none", Volume: "volume", Brightness: "brightness", Microphone: "microphone", Message: "message" });

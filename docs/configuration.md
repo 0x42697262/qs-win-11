@@ -163,6 +163,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 |---|---|---|---|---|
 | `taskbar.alignment` | enum | `"center"` | `center`, `left` | Where the Start button and apps sit. |
 | `taskbar.autoHide` | boolean | `false` |  | Slides away until the pointer touches the bottom edge. |
+| `taskbar.inputIndicator` | enum | `"auto"` | `auto`, `always`, `never` | Keyboard layout button near the clock. Auto shows it when more than one layout is configured. |
 | `taskbar.showSearch` | boolean | `true` |  | Search button on the taskbar. |
 | `taskbar.showTaskView` | boolean | `true` |  | Task view button on the taskbar. |
 | `taskbar.showWidgets` | boolean | `true` |  | Weather and widgets button on the taskbar. |
@@ -183,7 +184,10 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 
 | Key | Type | Default | Allowed | Description |
 |---|---|---|---|---|
-| `quickSettings.tiles` | textList | `wifi`, `bluetooth`, `airplane`, `energySaver`, `nightLight`, `darkMode`, `doNotDisturb` | `wifi`, `bluetooth`, `airplane`, `energySaver`, `nightLight`, `darkMode`, `doNotDisturb` | Tiles shown, in order. Unsupported tiles hide themselves. |
+| `quickSettings.vpnConnection` | text | `""` |  | Name of the VPN the tile turns on. Empty uses the first VPN NetworkManager knows. |
+| `quickSettings.gameModeProfile` | text | `"game"` |  | Profile applied while game mode is on. Without a profile folder of this name, a built-in one sets the effects level to 0. |
+| `quickSettings.gameModeSilencesNotifications` | boolean | `true` |  | No banners while game mode is on; critical ones still show. |
+| `quickSettings.tiles` | textList | `wifi`, `bluetooth`, `airplane`, `energySaver`, `nightLight`, `darkMode`, `doNotDisturb`, `vpn`, `stayAwake`, `gameMode` | `wifi`, `bluetooth`, `airplane`, `energySaver`, `nightLight`, `darkMode`, `doNotDisturb`, `vpn`, `stayAwake`, `gameMode` | Tiles shown, in order. Unsupported tiles hide themselves. |
 
 ## notifications
 
@@ -271,6 +275,12 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `features.batteryAlerts.enabled` | boolean | `true` |  | Turns the batteryAlerts feature on or off. It still stays off when its requirements are missing. |
 | `features.sessionMenu.enabled` | boolean | `true` |  | Turns the sessionMenu feature on or off. It still stays off when its requirements are missing. |
 | `features.run.enabled` | boolean | `true` |  | Turns the run feature on or off. It still stays off when its requirements are missing. |
+| `features.stayAwake.enabled` | boolean | `true` |  | Turns the stayAwake feature on or off. It still stays off when its requirements are missing. |
+| `features.gameMode.enabled` | boolean | `true` |  | Turns the gameMode feature on or off. It still stays off when its requirements are missing. |
+| `features.vpn.enabled` | boolean | `true` |  | Turns the vpn feature on or off. It still stays off when its requirements are missing. |
+| `features.externalBrightness.enabled` | boolean | `true` |  | Turns the externalBrightness feature on or off. It still stays off when its requirements are missing. |
+| `features.inputIndicator.enabled` | boolean | `true` |  | Turns the inputIndicator feature on or off. It still stays off when its requirements are missing. |
+| `features.lockKeys.enabled` | boolean | `true` |  | Turns the lockKeys feature on or off. It still stays off when its requirements are missing. |
 
 ## experimental
 
@@ -537,6 +547,11 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.searchSettingsMinLength` | integer | `2` | 1 to 20 | Characters typed before settings appear in search. (count) |
 | `tuning.calculatorDigits` | integer | `12` | 1 to 17 | Significant digits in calculator results. (count) |
 | `tuning.runHistoryLimit` | integer | `20` | 0 to 200 | Commands remembered by the Run dialog. (count) |
+| `tuning.vpnRefreshMs` | integer | `15000` | 1000 to 3600000 | How often the VPN list is refreshed while Quick Settings is open. (ms) |
+| `tuning.vpnSettleMs` | integer | `1500` | 0 to 60000 | Wait after turning a VPN on or off before reading its state again. (ms) |
+| `tuning.displayBrightnessDelayMs` | integer | `400` | 0 to 10000 | Wait after the last slider move before writing external monitor brightness. (ms) |
+| `tuning.lockKeyReadDelayMs` | integer | `60` | 0 to 5000 | Wait after a lock key press before reading its light. (ms) |
+| `tuning.keyboardRefreshMs` | integer | `60000` | 1000 to 3600000 | How often the keyboard layout list is refreshed. (ms) |
 | `tuning.runHistoryShown` | integer | `5` | 0 to 50 | Recent commands listed in the Run dialog. (count) |
 | `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
 | `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid when expanded. (count) |
@@ -691,6 +706,10 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.quickSettings.nightLight` | text | `"Night light"` |  | Text shown in the shell. |
 | `text.quickSettings.darkMode` | text | `"Dark mode"` |  | Text shown in the shell. |
 | `text.quickSettings.doNotDisturb` | text | `"Do not disturb"` |  | Text shown in the shell. |
+| `text.quickSettings.vpn` | text | `"VPN"` |  | Text shown in the shell. |
+| `text.quickSettings.stayAwake` | text | `"Stay awake"` |  | Text shown in the shell. |
+| `text.quickSettings.gameMode` | text | `"Game mode"` |  | Text shown in the shell. |
+| `text.quickSettings.displayBrightness` | text | `"{name} brightness"` |  | Text shown in the shell. |
 | `text.quickSettings.notConnected` | text | `"Not connected"` |  | Text shown in the shell. |
 | `text.quickSettings.connected` | text | `"Connected"` |  | Text shown in the shell. |
 | `text.quickSettings.connect` | text | `"Connect"` |  | Text shown in the shell. |
@@ -713,6 +732,10 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.quickSettings.nothingPlaying` | text | `"Nothing playing"` |  | Text shown in the shell. |
 | `text.osd.microphoneMuted` | text | `"Microphone muted"` |  | Text shown in the shell. |
 | `text.osd.microphoneOn` | text | `"Microphone on"` |  | Text shown in the shell. |
+| `text.osd.capsLockOn` | text | `"Caps Lock on"` |  | Text shown in the shell. |
+| `text.osd.capsLockOff` | text | `"Caps Lock off"` |  | Text shown in the shell. |
+| `text.osd.numLockOn` | text | `"Num Lock on"` |  | Text shown in the shell. |
+| `text.osd.numLockOff` | text | `"Num Lock off"` |  | Text shown in the shell. |
 | `text.power.batteryLowTitle` | text | `"Battery low"` |  | Text shown in the shell. |
 | `text.power.batteryLowBody` | text | `"{count}% remaining. Plug in your PC."` |  | Text shown in the shell. |
 | `text.power.batteryCriticalTitle` | text | `"Battery critically low"` |  | Text shown in the shell. |

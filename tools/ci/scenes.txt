@@ -80,5 +80,13 @@
 35a-app-theme|settings set appIcons.theme hicolor
 35b-override|!qs -p "$SHELL_DIR" ipc call settings set appIcons.overrides "foot=$SHELL_DIR/tools/ci/assets/test-icon.svg"; sleep 1
 35c-reset-override|settings reset appIcons.overrides
+36a-stay-awake|modes toggleStayAwake
+36b-game-mode|modes toggleGameMode
+36c-game-level|!for _attempt in $(seq 50); do [ "$(qs -p "$SHELL_DIR" ipc call settings get appearance.level)" = "0" ] && exit 0; sleep 0.1; done; exit 1
+36d-quick-settings-modes|quickSettings toggle
+36e-close|quickSettings toggle
+36f-modes-off|!qs -p "$SHELL_DIR" ipc call modes toggleStayAwake && qs -p "$SHELL_DIR" ipc call modes toggleGameMode
+36g-level-restored|!for _attempt in $(seq 50); do [ "$(qs -p "$SHELL_DIR" ipc call settings get appearance.level)" != "0" ] && exit 0; sleep 0.1; done; exit 1
+36h-lock-keys|keyboard lockKeys
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock
