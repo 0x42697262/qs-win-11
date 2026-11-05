@@ -48,6 +48,27 @@ return {
 		bind = "XF86MonBrightnessDown",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call taskView toggle"),
+		bind = "SUPER + Tab",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call altTab next"),
+		bind = "ALT + Tab",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call altTab previous"),
+		bind = "ALT + SHIFT + Tab",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call altTab commit"),
+		bind = "ALT + ALT_L",
+		opts = { release = true },
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call desktop toggle"),
+		bind = "SUPER + D",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session lock"),
 		bind = "SUPER + L",
 	},

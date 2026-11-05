@@ -36,3 +36,4 @@ export const TOAST_STACK_LIMIT = 3;
 export const NOTIFICATION_BODY_LINES = 3;
 export const DEFAULT_NOTIFICATION_ACTION = "default";
 export const LOCK_CLOCK_TOP_DIVISOR = 6;
+export const TASK_VIEW_COLUMNS = 4;

@@ -148,6 +148,11 @@ export const Strings = Object.freeze({
     sessionMenu: Object.freeze({
         cancel: "Cancel",
     }),
+    taskView: Object.freeze({
+        noWindows: "No open windows",
+        desktop: "Desktop {count}",
+        close: "Close",
+    }),
     settingsProblems: Object.freeze({
         title: "Some settings were ignored",
         body: "Invalid values fell back to their defaults:",

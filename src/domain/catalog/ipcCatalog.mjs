@@ -15,6 +15,9 @@ export const IpcTargetName = Object.freeze({
     Notifications: "notifications",
     Audio: "audio",
     Brightness: "brightness",
+    TaskView: "taskView",
+    AltTab: "altTab",
+    Desktop: "desktop",
 });
 
 const SUPER = "SUPER";
@@ -95,6 +98,30 @@ export const IPC_TARGETS = Object.freeze([
         functions: [
             { name: "up", description: "Raise brightness by one step.", suggestedKey: { modifiers: [], key: "XF86MonBrightnessUp" } },
             { name: "down", description: "Lower brightness by one step.", suggestedKey: { modifiers: [], key: "XF86MonBrightnessDown" } },
+        ],
+    },
+    {
+        target: IpcTargetName.TaskView,
+        description: "Task View: open windows and workspaces.",
+        functions: [
+            { name: "toggle", description: "Open or close Task View.", suggestedKey: { modifiers: [SUPER], key: "Tab" } },
+        ],
+    },
+    {
+        target: IpcTargetName.AltTab,
+        description: "Alt+Tab switcher in most-recently-used order.",
+        functions: [
+            { name: "next", description: "Open the switcher or move to the next window.", suggestedKey: { modifiers: [ALT], key: "Tab" } },
+            { name: "previous", description: "Move to the previous window.", suggestedKey: { modifiers: [ALT, SHIFT], key: "Tab" } },
+            { name: "commit", description: "Focus the selected window and close the switcher.", suggestedKey: { modifiers: [ALT], key: "ALT_L", onRelease: true } },
+            { name: "cancel", description: "Close the switcher without switching." },
+        ],
+    },
+    {
+        target: IpcTargetName.Desktop,
+        description: "Show the desktop.",
+        functions: [
+            { name: "toggle", description: "Minimize all windows, or restore them.", suggestedKey: { modifiers: [SUPER], key: "D" } },
         ],
     },
     {
