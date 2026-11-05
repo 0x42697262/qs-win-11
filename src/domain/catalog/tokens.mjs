@@ -107,6 +107,8 @@ export const CONTROL_SIZE = Object.freeze({
     sliderTrack: 4,
     sliderThumb: 20,
     sliderThumbInner: 12,
+    sliderThumbInnerPressed: 10,
+    sliderThumbInnerHover: 14,
     quickTileWidth: 96,
     quickTileHeight: 48,
     focusStroke: 2,

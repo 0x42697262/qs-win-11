@@ -9,4 +9,5 @@ Singleton {
     readonly property string hyprlandSignature: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") ?? ""
     readonly property string userName: Quickshell.env("USER") ?? ""
     readonly property string sessionId: Quickshell.env("XDG_SESSION_ID") ?? ""
+    readonly property bool galleryRequested: (Quickshell.env("QS_WIN11_GALLERY") ?? "") !== ""
 }

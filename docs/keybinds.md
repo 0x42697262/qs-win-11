@@ -13,3 +13,6 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | Call | Does | Suggested key |
 |---|---|---|
 | `shell reload` | Reload the shell configuration. |  |
+| `settings get` | Print the effective value of a setting key, as JSON. |  |
+| `settings set` | Set a setting key to a JSON value (bare words are treated as text). |  |
+| `settings reset` | Return a setting key to its default. |  |

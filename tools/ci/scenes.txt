@@ -1,0 +1,2 @@
+01-gallery-light|settings set theme.mode light
+02-gallery-dark|settings set theme.mode dark

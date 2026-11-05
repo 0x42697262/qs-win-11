@@ -53,7 +53,8 @@ ipc/ + ui/ events  ->  services/  ->  domain/ (pure .mjs)  ->  adapters/
 |---|---|
 | `npm run verify` | Type check, banned patterns, domain tests, generated files |
 | `npm run gen` | Regenerate `docs/configuration.md`, `docs/keybinds.md`, `examples/` |
-| `tools/ci/qml-check.sh` | Load the shell headless, screenshot scenes, qmllint (needs Quickshell, sway, grim) |
+| `tools/ci/qml-check.sh` | Load the shell headless, run the IPC scenes in `tools/ci/scenes.txt`, screenshot each, qmllint (needs Quickshell, sway, grim) |
+| `QS_WIN11_GALLERY=1 qs -c qs-win-11` | Debug-only component gallery, off unless the variable is set |
 
 Generated files are never edited by hand: `docs/configuration.md`, `docs/keybinds.md`, `examples/`, and `src/ui/theme/ThemeColors.qml` plus `Theme*Metrics.qml`.
 
@@ -85,4 +86,6 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Settings | Write `{"schemaVersion":1,"values":{"theme":{"mode":"light"}}}` to `settings.json` | Log shows no `settings.invalid`; theme flips to light live |
 | Settings | Set `"taskbar":{"alignment":"diagonal"}` | One `settings.invalid` line for `taskbar.alignment`, shell keeps running |
 | Features | Uninstall or rename `hyprsunset` | `feature.disabled` with `missingCapability` for `nightLight` |
+| Settings IPC | `qs -c qs-win-11 ipc call settings set theme.mode light` | Prints `true`; theme switches live; `settings get theme.mode` prints `"light"` |
+| Components | `QS_WIN11_GALLERY=1 qs -c qs-win-11` | Gallery panel shows every control; matches CI screenshots in both themes |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

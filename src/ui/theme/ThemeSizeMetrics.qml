@@ -18,6 +18,8 @@ QtObject {
     readonly property real sliderTrack: Tokens.CONTROL_SIZE.sliderTrack * scale
     readonly property real sliderThumb: Tokens.CONTROL_SIZE.sliderThumb * scale
     readonly property real sliderThumbInner: Tokens.CONTROL_SIZE.sliderThumbInner * scale
+    readonly property real sliderThumbInnerPressed: Tokens.CONTROL_SIZE.sliderThumbInnerPressed * scale
+    readonly property real sliderThumbInnerHover: Tokens.CONTROL_SIZE.sliderThumbInnerHover * scale
     readonly property real quickTileWidth: Tokens.CONTROL_SIZE.quickTileWidth * scale
     readonly property real quickTileHeight: Tokens.CONTROL_SIZE.quickTileHeight * scale
     readonly property real focusStroke: Tokens.CONTROL_SIZE.focusStroke * scale

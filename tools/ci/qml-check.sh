@@ -17,6 +17,7 @@ export XDG_STATE_HOME="$(mktemp -d)"
 export XDG_CACHE_HOME="$(mktemp -d)"
 export WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 WLR_RENDERER=pixman
 export QT_QPA_PLATFORM=wayland
+export QS_WIN11_GALLERY=1
 mkdir -p "$ARTIFACT_DIR"
 chmod 700 "$XDG_RUNTIME_DIR"
 
