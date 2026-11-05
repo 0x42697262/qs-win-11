@@ -1,0 +1,4 @@
+node_modules/
+.qmlls.ini
+artifacts/
+scripts/local/
