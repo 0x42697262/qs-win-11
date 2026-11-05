@@ -9,6 +9,7 @@ import qs.src.ui.features.gallery
 import qs.src.ui.features.shell
 import qs.src.ui.features.taskbar
 import qs.src.ui.features.start
+import qs.src.ui.features.quickSettings
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -27,6 +28,9 @@ ShellRoot {
         if (Features.enabled.quickLink) {
             components[Surfaces.Surface.QuickLink] = quickLinkSurface;
         }
+        if (Features.enabled.quickSettings) {
+            components[Surfaces.Surface.QuickSettings] = quickSettingsSurface;
+        }
         if (Features.enabled.systemTray) {
             components[Surfaces.Surface.TrayOverflow] = trayOverflowSurface;
         }
@@ -41,6 +45,7 @@ ShellRoot {
     SearchIpc {}
     QuickLinkIpc {}
     SessionIpc {}
+    QuickSettingsIpc {}
 
     LazyLoader {
         active: Features.enabled.appThemeSync
@@ -93,6 +98,11 @@ ShellRoot {
         ContextMenuSurface {
             payload: ({ anchorX: ShellState.payload ? ShellState.payload.anchorX : -1, title: "", items: QuickLinks.items() })
         }
+    }
+
+    Component {
+        id: quickSettingsSurface
+        QuickSettingsSurface {}
     }
 
     Component {

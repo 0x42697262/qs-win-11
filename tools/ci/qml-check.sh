@@ -9,7 +9,7 @@ readonly LOAD_WAIT_SECONDS="${LOAD_WAIT_SECONDS:-4}"
 readonly SCENE_WAIT_SECONDS="${SCENE_WAIT_SECONDS:-1}"
 readonly QMLLINT="${QMLLINT:-/usr/lib/qt6/bin/qmllint}"
 readonly LINT_FALSE_POSITIVE_PATTERN='not declared as singleton in qmldir but using pragma Singleton'
-readonly IGNORED_LOG_PATTERN='MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus'
+readonly IGNORED_LOG_PATTERN='MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus|Network will not work. Could not find an available backend'
 
 export XDG_RUNTIME_DIR="$(mktemp -d)"
 export XDG_CONFIG_HOME="$(mktemp -d)"
@@ -35,7 +35,17 @@ for client in ${CI_CLIENTS:-}; do
 done
 
 touch "$SHELL_DIR/.qmlls.ini"
-dbus-run-session -- qs -p "$SHELL_DIR" --no-color > "$ARTIFACT_DIR/quickshell.log" 2>&1 &
+cat > "$XDG_RUNTIME_DIR/session.sh" <<'SESSION'
+if command -v pipewire > /dev/null; then
+    pipewire > /dev/null 2>&1 &
+    sleep 1
+    pw-cli create-node adapter '{ factory.name=support.null-audio-sink node.name=ci-speakers node.description="CI Speakers" media.class=Audio/Sink object.linger=1 audio.position=[FL FR] }' > /dev/null 2>&1
+    wireplumber > /dev/null 2>&1 &
+    sleep 1
+fi
+exec "$@"
+SESSION
+dbus-run-session -- sh "$XDG_RUNTIME_DIR/session.sh" qs -p "$SHELL_DIR" --no-color > "$ARTIFACT_DIR/quickshell.log" 2>&1 &
 sleep "$LOAD_WAIT_SECONDS"
 grim "$ARTIFACT_DIR/00-desktop.png"
 

@@ -31,3 +31,4 @@ export const AUTO_HIDE_REVEAL_PIXELS = 2;
 export const AUTO_HIDE_DELAY_MS = 400;
 export const TOOLTIP_DELAY_MS = 600;
 export const START_RECOMMENDED_COLUMNS = 2;
+export const BRIGHTNESS_POLL_MS = 1000;

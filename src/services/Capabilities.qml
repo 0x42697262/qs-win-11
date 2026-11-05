@@ -15,6 +15,7 @@ Singleton {
     readonly property string nightLightBinary: Probe.commandBinary(Settings.values.commands.nightLight)
     readonly property list<string> compositorCapabilities: Compositor.adapter ? Compositor.adapter.capabilities : []
     readonly property list<string> backlights: probe.result.backlights
+    readonly property bool hasPowerProfiles: has(FeatureCatalog.Capability.PowerProfiles)
     readonly property bool probed: probe.finished
     readonly property var available: {
         const binaries = probe.result.binaries;
@@ -31,6 +32,9 @@ Singleton {
         if (probe.result.backlights.length > 0 && binaries.has(Probe.commandBinary(Settings.values.commands.brightness))) {
             found.add(FeatureCatalog.Capability.Backlight);
         }
+        if (Object.values(SystemCatalog.SystemBusName).some(name => probe.result.systemBusNames.has(name))) {
+            found.add(FeatureCatalog.Capability.PowerProfiles);
+        }
         if (UPower.displayDevice.isLaptopBattery) {
             found.add(FeatureCatalog.Capability.Battery);
         }
@@ -46,5 +50,6 @@ Singleton {
         id: probe
         binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
         busNames: Object.values(FeatureCatalog.BusName)
+        systemBusNames: Object.values(SystemCatalog.SystemBusName)
     }
 }

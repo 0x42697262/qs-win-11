@@ -5,4 +5,6 @@
 05-all-apps|start allApps
 06-search|search toggle
 07-quick-link|quickLink toggle
-08-closed|quickLink toggle
+08-quick-settings|quickSettings toggle
+09-quick-settings-light|settings set theme.mode light
+10-closed|quickSettings toggle

@@ -41,6 +41,9 @@ QtObject {
     readonly property real startTileHeight: Tokens.CONTROL_SIZE.startTileHeight * scale
     readonly property real startFooterHeight: Tokens.CONTROL_SIZE.startFooterHeight * scale
     readonly property real searchResultsWidth: Tokens.CONTROL_SIZE.searchResultsWidth * scale
+    readonly property real mediaArt: Tokens.CONTROL_SIZE.mediaArt * scale
+    readonly property real clusterIconSpacing: Tokens.CONTROL_SIZE.clusterIconSpacing * scale
+    readonly property real listMaxHeight: Tokens.CONTROL_SIZE.listMaxHeight * scale
     readonly property real showDesktopWidth: Tokens.CONTROL_SIZE.showDesktopWidth * scale
     readonly property real clockWidth: Tokens.CONTROL_SIZE.clockWidth * scale
     readonly property real trayIcon: Tokens.CONTROL_SIZE.trayIcon * scale

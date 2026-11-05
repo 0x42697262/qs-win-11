@@ -14,7 +14,11 @@ Each row has exactly one owner. Everything else reads it or derives from it.
 | Wi-Fi, networks | NetworkManager | Same |
 | Bluetooth | BlueZ | Same |
 | Battery, power profile | UPower, power-profiles-daemon | Same |
-| Brightness | `/sys/class/backlight` | Written through `brightnessctl` |
+| Brightness | `/sys/class/backlight` (polled every second) | Written through `commands.brightness` |
+| Airplane mode | Derived: Wi-Fi off and Bluetooth off | Toggling sets both |
+| Night light | The running `commands.nightLight` process | Tile reflects whether it runs |
+| Media | MPRIS players | Playing player first |
+| Do not disturb | `state.json` `doNotDisturb` | Notifications read it |
 | Installed apps | `.desktop` files via `DesktopEntries` | Pinned lists store app ids only |
 | Notifications | `NotificationServer` | Toasts and the center are two views of one list |
 | Open surface and its payload | `ShellState.state` | Surfaces, taskbar button states and the flyout host bind to it |

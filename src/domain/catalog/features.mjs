@@ -36,6 +36,7 @@ export const Capability = Object.freeze({
     NightLightCommand: "nightLightCommand",
     ColorSchemeSync: "colorSchemeSync",
     Screencopy: "screencopy",
+    PowerProfiles: "powerProfiles",
 });
 
 export const BusName = Object.freeze({
