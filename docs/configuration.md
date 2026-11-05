@@ -671,6 +671,10 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.settingsApp.featureOff` | text | `"Off"` |  | Text shown in the shell. |
 | `text.settingsApp.noResults` | text | `"No settings match your search."` |  | Text shown in the shell. |
 | `text.settingsApp.changedOnly` | text | `"Changed only"` |  | Text shown in the shell. |
+| `text.settingsApp.profile` | text | `"Profile file"` |  | Text shown in the shell. |
+| `text.settingsApp.exportProfile` | text | `"Export"` |  | Text shown in the shell. |
+| `text.settingsApp.importProfile` | text | `"Import"` |  | Text shown in the shell. |
+| `text.settingsApp.profilePlaceholder` | text | `"/home/you/qs-win-11-profile.json"` |  | Text shown in the shell. |
 | `text.settingsApp.effectsLevel` | text | `"Effects level"` |  | Text shown in the shell. |
 | `text.settingsApp.effectsOnBattery` | text | `"On battery the level is"` |  | Text shown in the shell. |
 | `text.settingsApp.effect` | text | `"Effect"` |  | Text shown in the shell. |

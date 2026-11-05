@@ -34,6 +34,17 @@ Scope {
         return true;
     }
 
+    function replaceAll(text: string): var {
+        const incoming = Document.resolveDocument(text, schema);
+        pendingOverrides = incoming.overrides;
+        writeDebounce.restart();
+        return incoming.problems;
+    }
+
+    function serialized(): string {
+        return Document.serializeDocument(overrides, schema);
+    }
+
     function flush(): void {
         if (pendingOverrides === null) {
             return;

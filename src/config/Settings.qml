@@ -16,6 +16,14 @@ Singleton {
         return key in overrides;
     }
 
+    function replaceAll(text: string): var {
+        return store.replaceAll(text);
+    }
+
+    function exportText(): string {
+        return store.serialized();
+    }
+
     function reset(key: string): bool {
         const definition = Schema.SETTING_DEFINITIONS.find(candidate => candidate.key === key);
         return definition ? store.update(key, definition.defaultValue) : false;

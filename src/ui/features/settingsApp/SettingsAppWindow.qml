@@ -155,6 +155,31 @@ FloatingWindow {
                         }
                     }
 
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.topMargin: Theme.spacing.large
+                        spacing: Theme.spacing.small
+
+                        SearchBox {
+                            id: profilePath
+                            Layout.fillWidth: true
+                            icon: null
+                            placeholder: root.text.profilePlaceholder
+                            text: Profiles.lastPath
+                        }
+
+                        Button {
+                            text: root.text.exportProfile
+                            onActivated: Profiles.exportTo(profilePath.text)
+                        }
+
+                        Button {
+                            text: root.text.importProfile
+                            variant: UiEnums.ButtonVariant.Accent
+                            onActivated: Profiles.importFrom(profilePath.text)
+                        }
+                    }
+
                     Label {
                         text: root.text.features
                         variant: UiEnums.TextVariant.BodyStrong
