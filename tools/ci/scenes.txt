@@ -1,3 +1,5 @@
+00a-wallpaper-mode|settings set wallpaper.mode shell
+00b-wallpaper-path|!qs -p "$SHELL_DIR" ipc call settings set wallpaper.path "$SHELL_DIR/tools/ci/assets/wallpaper.jpg"
 01-gallery-light|settings set theme.mode light
 02-pin-foot|settings set startMenu.initialPinned foot
 03-start-light|start toggle

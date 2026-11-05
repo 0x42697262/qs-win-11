@@ -8,6 +8,10 @@ export const SystemBinary = Object.freeze({
     XdgOpen: "xdg-open",
 });
 
+export const TexturePath = Object.freeze({ noise: "assets/textures/noise.png" });
+export const FILE_URL_PREFIX = "file://";
+export const URL_SCHEME_SEPARATOR = "://";
+
 export const SystemPath = Object.freeze({
     OwnProcessStat: "/proc/self/stat",
     ProcStat: "/proc/stat",

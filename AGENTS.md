@@ -83,6 +83,7 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Qt's Wayland text-input logs "QWaylandTextInputv3::disableSurface … 0x0 is focused" when a focused field's window hides under sway; it is harmless and CI ignores only that line | Qt 6.12 under sway |
 | Hyprland Lua mode: `hl.dsp.window.move/resize({ x, y, relative?, window? })` and `hl.dsp.window.float({ action?, window? })`, window selector `address:0x…`; Quickshell's `Hyprland.dispatch()` sends Lua expressions as-is. **Unverified:** the float `action` value `"set"` (taken from the fullscreen dispatcher's toggle/set/unset) and that the socket accepts these strings outside `hl.dispatch()` | Hyprland wiki 0.56 dispatchers page (summary), quickshell `workspace.cpp` |
 | Snap placement runs only on Hyprland; sway in CI cannot exercise it | CI run under sway |
+| `MultiEffect` (QtQuick.Effects) provides blur, saturation, brightness and masking without custom shaders; Mica blurs the wallpaper image in-process, so it works on compositors without blur | Qt 6.12, CI screenshots |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -156,4 +157,8 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Corners | Level 2+ (continuous corners), zoom on a flyout corner | No visible kink where the edge starts to curve; `corners.smoothing 0` gives a circle, `1` the softest curve |
 | Corners | `settings set corners.model superellipse`, `corners.exponent 4` | Corners switch to a superellipse live |
 | Corners | `settings set appearance.override.corners circular` | Plain circular corners (cheapest) |
+| Mica | `settings set wallpaper.path /path/to/image.jpg` at level 3+ | Taskbar and flyouts show the blurred wallpaper slice under them, tinted, with faint grain; flyouts line up with the wallpaper behind them |
+| Mica | Clear `wallpaper.path` | Falls back to acrylic tint (compositor blur if you added the layer rules) |
+| Wallpaper | `settings set wallpaper.mode shell` | The shell draws the wallpaper on the background layer; `external` leaves it to your tool |
+| Backdrop | Change `backdrop.micaBlur`, `micaSaturation`, `grainOpacity` | Live change on the next open flyout |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

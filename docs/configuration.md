@@ -113,6 +113,28 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `corners.exponent` | number | `5` | 2 to 20 | 2 is a circle, 4-5 is Apple-like, higher gets squarer. |
 | `corners.segments` | integer | `12` | 2 to 64 | Line segments per corner for the superellipse model. |
 
+## wallpaper
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `wallpaper.mode` | enum | `"external"` | `external`, `shell` | external: your wallpaper tool draws it and the shell only reads wallpaper.path for mica. shell: the shell draws it too. |
+| `wallpaper.path` | text | `""` |  | Image path. Needed for the mica backdrop; mica falls back to acrylic without it. |
+| `wallpaper.fillMode` | enum | `"crop"` | `crop`, `fit`, `stretch`, `center`, `tile` | How the image fills the screen. |
+
+## backdrop
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `backdrop.tintOpacity` | number | `-1` | -1 to 1 | Opacity of the color layer over the plain tint backdrop. -1 keeps each color's own alpha. |
+| `backdrop.acrylicTintOpacity` | number | `0.72` | 0 to 1 | Opacity of the color layer over compositor blur. |
+| `backdrop.micaTintOpacity` | number | `0.8` | 0 to 1 | Opacity of the color layer over the blurred wallpaper. |
+| `backdrop.micaBlur` | number | `1` | 0 to 1 | Blur strength, 0 to 1 of mica blur radius. |
+| `backdrop.micaBlurRadius` | integer | `64` | 1 to 256 | Largest blur radius in pixels. |
+| `backdrop.micaSaturation` | number | `0.25` | -1 to 1 | -1 grayscale, 0 unchanged, 1 vivid. |
+| `backdrop.micaBrightness` | number | `0` | -1 to 1 | -1 darker, 0 unchanged, 1 brighter. |
+| `backdrop.grainOpacity` | number | `0.035` | 0 to 1 | Strength of the noise texture. |
+| `backdrop.grainScale` | number | `1` | 0.25 to 8 | Size multiplier of the noise texture. |
+
 ## compositor
 
 | Key | Type | Default | Allowed | Description |
@@ -320,6 +342,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `sizes.control.settingsControl` | integer | `280` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.settingsTextField` | integer | `200` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.swatch` | integer | `24` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.grainTile` | integer | `128` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.snapPreviewWidth` | integer | `120` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.snapPreviewHeight` | integer | `72` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.thumbnailWidth` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |

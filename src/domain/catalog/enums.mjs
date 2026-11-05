@@ -6,6 +6,8 @@ export const CriticalBatteryAction = Object.freeze({ None: "none", Suspend: "sus
 export const TemperatureUnit = Object.freeze({ Celsius: "celsius", Fahrenheit: "fahrenheit" });
 export const LocationMode = Object.freeze({ Auto: "auto", Manual: "manual" });
 export const FirstDayOfWeek = Object.freeze({ Sunday: "sunday", Monday: "monday" });
+export const WallpaperMode = Object.freeze({ External: "external", Shell: "shell" });
+export const WallpaperFill = Object.freeze({ Crop: "crop", Fit: "fit", Stretch: "stretch", Center: "center", Tile: "tile" });
 export const QuickTile = Object.freeze({
     Wifi: "wifi",
     Bluetooth: "bluetooth",

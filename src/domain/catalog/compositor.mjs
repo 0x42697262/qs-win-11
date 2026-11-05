@@ -25,6 +25,7 @@ export const LayerNamespace = Object.freeze({
     Toast: "qs-win-11-toast",
     Osd: "qs-win-11-osd",
     Overlay: "qs-win-11-overlay",
+    Wallpaper: "qs-win-11-wallpaper",
 
 });
 

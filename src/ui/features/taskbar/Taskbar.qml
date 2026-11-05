@@ -56,9 +56,13 @@ PanelWindow {
             id: hover
         }
 
-        Rectangle {
+        AcrylicSurface {
             anchors.fill: parent
-            color: Theme.taskbarFill
+            cornerRadius: 0
+            elevated: false
+            showStroke: false
+            fill: Theme.taskbarFill
+            windowOffset: Qt.point(0, root.modelData.height - root.height)
 
             Divider {
                 anchors.top: parent.top

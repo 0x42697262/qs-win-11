@@ -2,7 +2,7 @@ import {
     booleanSetting, colorSetting, enumSetting, integerSetting, numberSetting, textListSetting, textSetting,
 } from "../settings/definitions.mjs";
 import {
-    CompositorKind, CriticalBatteryAction, FirstDayOfWeek, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode,
+    CompositorKind, CriticalBatteryAction, FirstDayOfWeek, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
 } from "./enums.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
 import { CornerModel } from "../shape/corners.mjs";
@@ -16,6 +16,8 @@ export const SettingsSection = Object.freeze({
     Theme: "theme",
     Compositor: "compositor",
     Corners: "corners",
+    Backdrop: "backdrop",
+    Wallpaper: "wallpaper",
     Taskbar: "taskbar",
     StartMenu: "startMenu",
     QuickSettings: "quickSettings",
@@ -67,6 +69,20 @@ export const SETTING_DEFINITIONS = Object.freeze([
     numberSetting(text(SettingsSection.Corners, "controlSmoothing", "Control corner smoothing", "Smoothing for buttons, tiles and list items. -1 uses the global value."), -1, -1, 1),
     numberSetting(text(SettingsSection.Corners, "exponent", "Superellipse exponent", "2 is a circle, 4-5 is Apple-like, higher gets squarer."), 5, 2, 20),
     integerSetting(text(SettingsSection.Corners, "segments", "Superellipse segments", "Line segments per corner for the superellipse model."), 12, 2, 64),
+
+    enumSetting(text(SettingsSection.Wallpaper, "mode", "Wallpaper drawn by", "external: your wallpaper tool draws it and the shell only reads wallpaper.path for mica. shell: the shell draws it too."), WallpaperMode, WallpaperMode.External),
+    textSetting(text(SettingsSection.Wallpaper, "path", "Wallpaper file", "Image path. Needed for the mica backdrop; mica falls back to acrylic without it."), ""),
+    enumSetting(text(SettingsSection.Wallpaper, "fillMode", "Wallpaper fit", "How the image fills the screen."), WallpaperFill, WallpaperFill.Crop),
+
+    numberSetting(text(SettingsSection.Backdrop, "tintOpacity", "Tint opacity", "Opacity of the color layer over the plain tint backdrop. -1 keeps each color's own alpha."), -1, -1, 1),
+    numberSetting(text(SettingsSection.Backdrop, "acrylicTintOpacity", "Acrylic tint opacity", "Opacity of the color layer over compositor blur."), 0.72, 0, 1),
+    numberSetting(text(SettingsSection.Backdrop, "micaTintOpacity", "Mica tint opacity", "Opacity of the color layer over the blurred wallpaper."), 0.8, 0, 1),
+    numberSetting(text(SettingsSection.Backdrop, "micaBlur", "Mica blur", "Blur strength, 0 to 1 of mica blur radius."), 1, 0, 1),
+    integerSetting(text(SettingsSection.Backdrop, "micaBlurRadius", "Mica blur radius", "Largest blur radius in pixels."), 64, 1, 256),
+    numberSetting(text(SettingsSection.Backdrop, "micaSaturation", "Mica saturation", "-1 grayscale, 0 unchanged, 1 vivid."), 0.25, -1, 1),
+    numberSetting(text(SettingsSection.Backdrop, "micaBrightness", "Mica brightness", "-1 darker, 0 unchanged, 1 brighter."), 0, -1, 1),
+    numberSetting(text(SettingsSection.Backdrop, "grainOpacity", "Grain opacity", "Strength of the noise texture."), 0.035, 0, 1),
+    numberSetting(text(SettingsSection.Backdrop, "grainScale", "Grain scale", "Size multiplier of the noise texture."), 1, 0.25, 8),
 
     enumSetting(text(SettingsSection.Compositor, "kind", "Compositor integration", "Auto detects Hyprland; generic works on any wlr-foreign-toplevel compositor."), CompositorKind, CompositorKind.Auto),
 
