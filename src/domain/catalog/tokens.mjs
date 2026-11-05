@@ -165,15 +165,17 @@ export const CONTROL_SIZE = Object.freeze({
     trayCell: 32,
 });
 
-export const MOTION_MS = Object.freeze({ fast: 83, normal: 167, slow: 250, slower: 333, reduced: 1 });
+export const MOTION_MS = Object.freeze({ fast: 83, normal: 167, slow: 250, slower: 333, reduced: 1, enter: 300, exit: 140, hover: 120, press: 220, theme: 320, toastEnter: 360 });
 
 export const EASING_CURVES = Object.freeze({
     decelerate: Object.freeze([0, 0, 0, 1, 1, 1]),
     pointToPoint: Object.freeze([0.55, 0.55, 0, 1, 1, 1]),
     accelerate: Object.freeze([1, 0, 1, 1, 1, 1]),
+    emphasized: Object.freeze([0.2, 0, 0, 1, 1, 1]),
+    exit: Object.freeze([0.4, 0, 1, 1, 1, 1]),
 });
 
-export const ELEVATION = Object.freeze({ shadowBlur: 32, shadowOffset: 8, contactBlur: 4, contactOffset: 1, edgeHighlightWidth: 1, richScaleFrom: 0.96 });
+export const ELEVATION = Object.freeze({ shadowBlur: 32, shadowOffset: 8, contactBlur: 4, contactOffset: 1, edgeHighlightWidth: 1, richScaleFrom: 0.96, exitSlideFraction: 0.35, pressOvershoot: 2.2, toastSlide: 48, osdScaleFrom: 0.9 });
 
 export const SLIDE_DISTANCE = Object.freeze({ flyout: 40 });
 export const PRESS_SCALE = 0.88;

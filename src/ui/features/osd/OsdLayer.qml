@@ -29,7 +29,16 @@ PanelWindow {
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.namespace: CompositorCatalog.LayerNamespace.Osd
 
+    onVisibleChanged: if (visible) osdEntrance.restart()
+
+    ParallelAnimation {
+        id: osdEntrance
+        NumberAnimation { target: pill; property: "opacity"; from: 0; to: 1; duration: Theme.motion.normal; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        NumberAnimation { target: pill; property: "scale"; from: Theme.elevation.osdScaleFrom; to: 1; duration: Theme.motion.enter; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.emphasized }
+    }
+
     AcrylicSurface {
+        id: pill
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         width: Theme.size.osdWidth

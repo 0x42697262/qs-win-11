@@ -49,8 +49,8 @@ function renderMetrics(tokens) {
 
 function renderColors() {
     const keys = [...Object.keys(DARK_BASE), ...EXTRA_COLOR_KEYS];
-    const lines = keys.map((key) => `    readonly property color ${key}: palette.${key}`);
-    return `import QtQuick\n\nQtObject {\n    required property var palette\n\n${lines.join("\n")}\n    readonly property color transparent: "transparent"\n}\n`;
+    const lines = keys.map((key) => `    property color ${key}: palette.${key}\n    Behavior on ${key} { ColorAnimation { duration: root.duration } }`);
+    return `import QtQuick\n\nQtObject {\n    id: root\n\n    required property var palette\n    required property int duration\n\n${lines.join("\n")}\n    readonly property color transparent: "transparent"\n}\n`;
 }
 
 /** @type {{ path: string, render: () => string }[]} */

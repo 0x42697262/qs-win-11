@@ -13,9 +13,15 @@ Item {
     property real borderWidth: 0
     property color borderColor: Theme.colors.transparent
     property real smoothingOverride: -1
+    property bool animateColor: true
     readonly property var corners: Settings.values.corners
     readonly property real smoothing: smoothingOverride >= 0 ? smoothingOverride : corners.smoothing
     readonly property string path: CornerRules.cornerPath(corners.model, width, height, radius, { smoothing, exponent: corners.exponent, segments: corners.segments })
+
+    Behavior on color {
+        enabled: root.animateColor
+        ColorAnimation { duration: Theme.motion.hover; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+    }
 
     Rectangle {
         visible: !Appearance.continuousCorners

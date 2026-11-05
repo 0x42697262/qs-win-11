@@ -86,6 +86,7 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | `MultiEffect` (QtQuick.Effects) provides blur, saturation, brightness and masking without custom shaders; Mica blurs the wallpaper image in-process, so it works on compositors without blur | Qt 6.12, CI screenshots |
 | `wf-recorder` records the headless sway output for the README demo; it cannot capture a locked session, so the lock screen appears only in screenshots. `wtype` drops the first key of each call under sway, so demo typing starts with a space | Demo recording runs |
 | Nested Qt Quick layouts default to filling width; side-by-side columns need `Layout.fillWidth: false` and explicit widths | Start search details pane bug |
+| In `on<Property>Changed` handlers, other bindings derived from the same property may not have updated yet; read the source property directly (the flyout host bug) | Qt 6.12 binding evaluation |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -171,4 +172,8 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Profiles | Profile that sets `commands.lock` | Key skipped and a warning with a Trust button; after trusting, the command applies |
 | App icons | `settings set appIcons.theme Papirus` | Taskbar, Start, search and notifications use Papirus app icons; icons Papirus lacks fall back to the system theme; log shows `icons.themeIndexed` |
 | App icons | `settings set appIcons.overrides firefox=/path/fox.svg` | Only Firefox's icon changes, everywhere |
+| Motion | Open and close any flyout | Opens with an eased slide and fade (`motion.durations.enter`), closes with a quick fade-down (`motion.durations.exit`); clicks pass through while it closes |
+| Motion | Toggle dark mode | Every color crossfades (`motion.durations.theme`) instead of snapping |
+| Motion | Click a taskbar icon | Icon dips and springs back (`motion.durations.press`, `effects.elevation.pressOvershoot`) |
+| Motion | `settings set theme.reduceMotion true` or effects level 0 | All of the above become instant |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

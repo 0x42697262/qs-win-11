@@ -31,7 +31,4 @@ SmoothRectangle {
         return pressed ? Theme.colors.controlFillPressed : hovered ? Theme.colors.controlFillHover : Theme.colors.controlFill;
     }
 
-    Behavior on color {
-        ColorAnimation { duration: Theme.motion.fast }
-    }
 }
