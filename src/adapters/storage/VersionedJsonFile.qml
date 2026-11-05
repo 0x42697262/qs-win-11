@@ -66,6 +66,7 @@ Scope {
         command: [SystemCatalog.SystemBinary.MakeDirectory, "-p", root.path.substring(0, root.path.lastIndexOf("/"))]
         onExited: (exitCode) => {
             if (exitCode === 0) {
+                file.writtenText = textToWrite;
                 file.setText(textToWrite);
             } else {
                 Log.error(LogEvents.LogEvent.SettingsWriteFailed, { path: root.path, exitCode });
@@ -77,6 +78,7 @@ Scope {
         id: file
 
         property string loadedText: ""
+        property string writtenText: ""
         property bool loadedOnce: false
 
         path: root.path
@@ -92,6 +94,10 @@ Scope {
             loadedText = "";
             loadedOnce = true;
         }
-        onSaved: reload()
+        onSaved: {
+            loadedText = writtenText;
+            reload();
+        }
+        onSaveFailed: (error) => Log.error(LogEvents.LogEvent.SettingsWriteFailed, { path: root.path, error: FileViewError.toString(error) })
     }
 }
