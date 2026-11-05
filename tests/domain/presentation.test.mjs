@@ -17,7 +17,7 @@ test("definitions filter by section, or by query across sections", () => {
 });
 
 test("sections keep schema order", () => {
-    assert.deepEqual(sectionsOf(SETTING_DEFINITIONS).slice(0, 3), ["theme", "appearance", "compositor"]);
+    assert.deepEqual(sectionsOf(SETTING_DEFINITIONS).slice(0, 3), ["theme", "appearance", "corners"]);
 });
 
 test("helpers", () => {

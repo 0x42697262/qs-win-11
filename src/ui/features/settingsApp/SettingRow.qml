@@ -6,10 +6,10 @@ import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/settings/presentation.mjs" as Presentation
 import "../../../domain/catalog/settingsSchema.mjs" as Schema
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/features/resolveFeatures.mjs" as FeatureRules
 import "../../../domain/catalog/icons.mjs" as Icons
+import "../../../domain/catalog/strings.mjs" as Strings
 
 Card {
     id: root
@@ -23,7 +23,7 @@ Card {
 
     Layout.fillWidth: true
     implicitHeight: row.implicitHeight + Theme.spacing.large * 2
-    border.color: problem ? Theme.colors.caution : Theme.colors.cardStroke
+    borderColor: problem ? Theme.colors.caution : Theme.colors.cardStroke
 
     RowLayout {
         id: row

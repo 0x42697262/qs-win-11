@@ -27,7 +27,7 @@ Card {
 
     implicitHeight: column.implicitHeight + Theme.spacing.medium * 2
     color: Theme.surfaceFill
-    border.color: notification.urgency === NotificationUrgency.Critical ? Theme.colors.critical : Theme.colors.cardStroke
+    borderColor: notification.urgency === NotificationUrgency.Critical ? Theme.colors.critical : Theme.colors.cardStroke
 
     HoverHandler {
         id: hover

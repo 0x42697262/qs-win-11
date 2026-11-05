@@ -7,6 +7,7 @@ import "../../../domain/catalog/enums.mjs" as Enums
 FlyoutPanel {
     readonly property bool centered: Settings.values.taskbar.alignment === Enums.TaskbarAlignment.Center
 
+    clipContent: true
     width: Theme.size.startMenuWidth
     height: Theme.size.startMenuHeight
     x: centered ? (parent.width - width) / 2 : Theme.spacing.medium

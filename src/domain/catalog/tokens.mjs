@@ -88,7 +88,7 @@ export const ACCENT_SHADES = Object.freeze({
     disabledAlpha: 0.3,
 });
 
-export const RADIUS = Object.freeze({ control: 4, overlay: 8, round: 999 });
+export const RADIUS = Object.freeze({ control: 6, overlay: 12, round: 999 });
 
 export const SPACING = Object.freeze({ xxSmall: 2, xSmall: 4, small: 8, medium: 12, large: 16, xLarge: 24, xxLarge: 32, xxxLarge: 48 });
 

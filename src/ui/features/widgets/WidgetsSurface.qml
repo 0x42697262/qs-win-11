@@ -143,7 +143,7 @@ FocusScope {
                             sourceComponent: MediaCard {
                                 player: Media.player
                                 color: Theme.colors.transparent
-                                border.width: 0
+                                borderWidth: 0
                             }
                         }
                     }

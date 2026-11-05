@@ -153,4 +153,7 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Effects | `settings set appearance.override.backdrop mica` at level 0 | Result reads "solid (limited by level)"; raising the level applies mica |
 | Effects | `settings set appearance.levelOnBattery 1`, unplug | Level drops to Light on battery, back on AC |
 | Effects | `settings set appearance.style flat` | Today's flat look at any level |
+| Corners | Level 2+ (continuous corners), zoom on a flyout corner | No visible kink where the edge starts to curve; `corners.smoothing 0` gives a circle, `1` the softest curve |
+| Corners | `settings set corners.model superellipse`, `corners.exponent 4` | Corners switch to a superellipse live |
+| Corners | `settings set appearance.override.corners circular` | Plain circular corners (cheapest) |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

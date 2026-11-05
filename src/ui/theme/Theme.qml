@@ -28,6 +28,8 @@ Singleton {
     readonly property real pressScale: effects.pressScale
     readonly property real slideDistance: Appearance.slides ? Settings.values.motion.slideDistance.flyout * scale : 0
     readonly property var elevation: effects.elevation
+    readonly property real overlaySmoothing: Settings.values.corners.overlaySmoothing
+    readonly property real controlSmoothing: Settings.values.corners.controlSmoothing
     readonly property color surfaceFill: Appearance.solid ? colors.flyoutBackgroundOpaque : colors.flyoutBackground
     readonly property color overlayFill: Appearance.translucentOverlays && !Appearance.solid ? colors.flyoutBackground : colors.flyoutBackgroundOpaque
     readonly property color taskbarFill: Appearance.solid ? colors.taskbarBackgroundOpaque : colors.taskbarBackground

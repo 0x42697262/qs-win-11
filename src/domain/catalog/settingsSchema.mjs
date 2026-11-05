@@ -5,6 +5,7 @@ import {
     CompositorKind, CriticalBatteryAction, FirstDayOfWeek, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode,
 } from "./enums.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
+import { CornerModel } from "../shape/corners.mjs";
 import { VALUE_DEFINITIONS } from "../settings/valueDefinitions.mjs";
 import { APPEARANCE_DEFINITIONS } from "../settings/appearanceDefinitions.mjs";
 
@@ -14,6 +15,7 @@ const CLOCK_TIME_PATTERN = /^([01]\d|2[0-3]):[0-5]\d$/;
 export const SettingsSection = Object.freeze({
     Theme: "theme",
     Compositor: "compositor",
+    Corners: "corners",
     Taskbar: "taskbar",
     StartMenu: "startMenu",
     QuickSettings: "quickSettings",
@@ -58,6 +60,13 @@ export const SETTING_DEFINITIONS = Object.freeze([
     booleanSetting(text(SettingsSection.Theme, "reduceMotion", "Reduce motion", "Makes animations nearly instant."), false),
 
     ...APPEARANCE_DEFINITIONS,
+
+    enumSetting(text(SettingsSection.Corners, "model", "Corner model", "smoothing uses the iOS-style continuous-corner formula; superellipse uses |x|^n + |y|^n = 1 per corner. Circular corners are chosen through the appearance corners effect."), CornerModel, CornerModel.Smoothing),
+    numberSetting(text(SettingsSection.Corners, "smoothing", "Corner smoothing", "0 is a circle; 0.6 matches iOS; 1 is the smoothest."), 0.6, 0, 1),
+    numberSetting(text(SettingsSection.Corners, "overlaySmoothing", "Surface corner smoothing", "Smoothing for flyouts, cards and toasts. -1 uses the global value."), -1, -1, 1),
+    numberSetting(text(SettingsSection.Corners, "controlSmoothing", "Control corner smoothing", "Smoothing for buttons, tiles and list items. -1 uses the global value."), -1, -1, 1),
+    numberSetting(text(SettingsSection.Corners, "exponent", "Superellipse exponent", "2 is a circle, 4-5 is Apple-like, higher gets squarer."), 5, 2, 20),
+    integerSetting(text(SettingsSection.Corners, "segments", "Superellipse segments", "Line segments per corner for the superellipse model."), 12, 2, 64),
 
     enumSetting(text(SettingsSection.Compositor, "kind", "Compositor integration", "Auto detects Hyprland; generic works on any wlr-foreign-toplevel compositor."), CompositorKind, CompositorKind.Auto),
 
