@@ -73,6 +73,8 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Quickshell's tooling VFS symlinks files, so qmllint resolves them to the source folder and misses the generated `qmldir`. CI lints a copy with the `qmldir` files placed next to the sources | qmllint 6.12 |
 | qmllint still reports "not declared as singleton in qmldir" for singleton files in that copy although the `qmldir` declares them; CI filters only that message | qmllint 6.12 |
 | Hyprland's Lua config mode changes dispatcher syntax; Quickshell exposes `Hyprland.usingLua` and `HyprlandWorkspace.activate()` handles both forms. Our Hyprland adapter focuses, closes and minimizes through each window's Wayland handle, so it needs no dispatcher strings | quickshell `src/wayland/hyprland/ipc/workspace.cpp`, `qml.hpp` |
+| `qs ipc call` drops square brackets from arguments, so `["foot"]` arrives as `"foot"`; list settings accept comma-separated text over IPC instead | Quickshell 0.3.2 IPC, CI scene run |
+| Arrays passed through `var` parameters of QML functions arrive as sequence objects, not JS arrays; domain validation copies array-likes | Quickshell 0.3.2 runtime |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus"; CI ignores only that line | CI container |
 
 Add a row whenever you rely on a third-party behavior.
@@ -98,4 +100,10 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Taskbar | `settings set taskbar.alignment '"left"'` | Buttons slide to the left edge |
 | Taskbar | `settings set taskbar.autoHide true` | Taskbar hides after the pointer leaves and returns at the bottom edge; windows use the full height |
 | Tray | Start an app with a tray icon, click the chevron | Overflow flyout lists it; left click activates, right click opens its menu |
+| Start | `qs -c qs-win-11 ipc call start toggle` | Start opens above the taskbar with Pinned, Recommended and your avatar; typing searches; Enter launches the best match |
+| Start | Right-click a pinned tile | Pin/Unpin to Start and taskbar; change persists in `state.json` |
+| Start | Power button in Start | Lock, Sign out, Sleep, Shut down, Restart |
+| Search | `qs -c qs-win-11 ipc call search toggle`, type part of an app name | Best match first, details pane with Open and pin actions; arrow keys move the selection |
+| Quick Link | Right-click Start or `ipc call quickLink toggle` | Menu with terminal, task manager, file manager, network, search, lock and power entries |
+| Session | `qs -c qs-win-11 ipc call session lock` with `features.lockScreen.enabled` off | Runs `commands.lock` (default `loginctl lock-session`) |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

@@ -13,7 +13,7 @@ IpcHandler {
     }
 
     function set(key: string, value: string): bool {
-        return Settings.update(key, SettingsArguments.parseValueArgument(value));
+        return Settings.update(key, SettingsArguments.parseValueForKey(Schema.SETTING_DEFINITIONS, key, value));
     }
 
     function reset(key: string): bool {

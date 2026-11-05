@@ -8,6 +8,7 @@ import qs.src.ipc
 import qs.src.ui.features.gallery
 import qs.src.ui.features.shell
 import qs.src.ui.features.taskbar
+import qs.src.ui.features.start
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -17,6 +18,15 @@ ShellRoot {
     readonly property var surfaceComponents: {
         const components = {};
         components[Surfaces.Surface.ContextMenu] = contextMenuSurface;
+        if (Features.enabled.startMenu) {
+            components[Surfaces.Surface.StartMenu] = startMenuSurface;
+        }
+        if (Features.enabled.search) {
+            components[Surfaces.Surface.Search] = searchSurface;
+        }
+        if (Features.enabled.quickLink) {
+            components[Surfaces.Surface.QuickLink] = quickLinkSurface;
+        }
         if (Features.enabled.systemTray) {
             components[Surfaces.Surface.TrayOverflow] = trayOverflowSurface;
         }
@@ -27,6 +37,10 @@ ShellRoot {
 
     ShellIpc {}
     SettingsIpc {}
+    StartIpc {}
+    SearchIpc {}
+    QuickLinkIpc {}
+    SessionIpc {}
 
     LazyLoader {
         active: Features.enabled.appThemeSync
@@ -59,6 +73,25 @@ ShellRoot {
         id: contextMenuSurface
         ContextMenuSurface {
             payload: ShellState.payload
+        }
+    }
+
+    Component {
+        id: startMenuSurface
+        StartMenuSurface {
+            payload: ShellState.payload
+        }
+    }
+
+    Component {
+        id: searchSurface
+        SearchSurface {}
+    }
+
+    Component {
+        id: quickLinkSurface
+        ContextMenuSurface {
+            payload: ({ anchorX: ShellState.payload ? ShellState.payload.anchorX : -1, title: "", items: QuickLinks.items() })
         }
     }
 

@@ -1,2 +1,8 @@
 01-gallery-light|settings set theme.mode light
-02-gallery-dark|settings set theme.mode dark
+02-pin-foot|settings set startMenu.initialPinned foot
+03-start-light|start toggle
+04-start-dark|settings set theme.mode dark
+05-all-apps|start allApps
+06-search|search toggle
+07-quick-link|quickLink toggle
+08-closed|quickLink toggle

@@ -1,4 +1,7 @@
 import { flattenValues } from "../settings/document.mjs";
+import { SettingType } from "../settings/definitions.mjs";
+
+const LIST_SEPARATOR = ",";
 
 /**
  * @param {string} text
@@ -30,4 +33,19 @@ export function formatValueAt(values, key) {
 export function defaultValueFor(definitions, key) {
     const definition = definitions.find((candidate) => candidate.key === key);
     return definition ? definition.defaultValue : undefined;
+}
+
+/**
+ * @param {readonly { key: string, type: string }[]} definitions
+ * @param {string} key
+ * @param {string} text
+ * @returns {unknown}
+ */
+export function parseValueForKey(definitions, key, text) {
+    const parsed = parseValueArgument(text);
+    const definition = definitions.find((candidate) => candidate.key === key);
+    if (definition && definition.type === SettingType.TextList && typeof parsed === "string") {
+        return parsed.split(LIST_SEPARATOR).map((item) => item.trim()).filter((item) => item !== "");
+    }
+    return parsed;
 }

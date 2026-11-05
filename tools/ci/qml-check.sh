@@ -68,7 +68,7 @@ else
 fi
 
 log_problems="$(grep -E 'WARN|ERROR|FATAL|TypeError|ReferenceError' "$ARTIFACT_DIR/quickshell.log" | grep -Ev "$IGNORED_LOG_PATTERN" || true)"
-ipc_problems="$(grep -E 'ipc failed|Error|No such' "$ARTIFACT_DIR/ipc.log" 2>/dev/null || true)"
+ipc_problems="$(grep -E 'ipc failed|Error|No such|Too many|Too few|not found|false' "$ARTIFACT_DIR/ipc.log" 2>/dev/null || true)"
 
 cat "$ARTIFACT_DIR/qmllint.log"
 [[ -n "$log_problems" ]] && printf 'Runtime problems:\n%s\n' "$log_problems"
