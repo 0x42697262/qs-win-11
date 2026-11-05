@@ -18,6 +18,7 @@ export const SettingsSection = Object.freeze({
     Corners: "corners",
     Backdrop: "backdrop",
     Wallpaper: "wallpaper",
+    LockScreen: "lockScreen",
     Profiles: "profiles",
     AppIcons: "appIcons",
     Taskbar: "taskbar",
@@ -58,6 +59,7 @@ export const SETTING_DEFINITIONS = Object.freeze([
     textSetting(text(SettingsSection.Theme, "lightStartsAt", "Light theme starts at", "24-hour HH:MM, used when the theme is auto."), "07:00", CLOCK_TIME_PATTERN),
     textSetting(text(SettingsSection.Theme, "darkStartsAt", "Dark theme starts at", "24-hour HH:MM, used when the theme is auto."), "19:00", CLOCK_TIME_PATTERN),
     colorSetting(text(SettingsSection.Theme, "accentColor", "Accent color", "Color for highlights, toggles and the active app indicator, as #RRGGBB."), "#0078d4"),
+    booleanSetting(text(SettingsSection.Theme, "accentFromWallpaper", "Accent from wallpaper", "Pick the accent color from the wallpaper's most vivid color. Needs ImageMagick."), false),
     textSetting(text(SettingsSection.Theme, "fontFamily", "Font", "Any installed font family."), "Inter"),
     numberSetting(text(SettingsSection.Theme, "scale", "Scale", "Multiplies every size in the shell."), 1, 0.75, 2),
     numberSetting(text(SettingsSection.Theme, "fontScale", "Text size", "Multiplies text sizes only, on top of scale."), 1, 0.75, 2),
@@ -81,6 +83,12 @@ export const SETTING_DEFINITIONS = Object.freeze([
     textListSetting(text(SettingsSection.Profiles, "trustedCommands", "Profiles allowed to change commands", "Profiles listed here may set commands.*; others have those keys skipped, because commands run programs."), []),
 
     enumSetting(text(SettingsSection.Wallpaper, "mode", "Wallpaper drawn by", "external: your wallpaper tool draws it and the shell only reads wallpaper.path for mica. shell: the shell draws it too."), WallpaperMode, WallpaperMode.External),
+    booleanSetting(text(SettingsSection.LockScreen, "useWallpaper", "Wallpaper on the lock screen", "Shows wallpaper.path behind the clock; off uses the accent gradient."), true),
+    booleanSetting(text(SettingsSection.LockScreen, "blurOnPrompt", "Blur when signing in", "Blurs the background while the password field shows. Follows the effects level."), true),
+    booleanSetting(text(SettingsSection.LockScreen, "showWeather", "Weather on the lock screen", "Current temperature and conditions."), true),
+    booleanSetting(text(SettingsSection.LockScreen, "showMedia", "Media on the lock screen", "What is playing, with play and pause."), true),
+    booleanSetting(text(SettingsSection.LockScreen, "showStatus", "Status on the lock screen", "Network, battery and the number of notifications."), true),
+    textSetting(text(SettingsSection.Wallpaper, "directory", "Wallpaper folder", "Folder the wallpaper picker and wallpaper next read images from. ~ is your home."), "~/Pictures/Wallpapers"),
     textSetting(text(SettingsSection.Wallpaper, "path", "Wallpaper file", "Image path. Needed for the mica backdrop; mica falls back to acrylic without it."), ""),
     enumSetting(text(SettingsSection.Wallpaper, "fillMode", "Wallpaper fit", "How the image fills the screen."), WallpaperFill, WallpaperFill.Crop),
 
@@ -163,4 +171,5 @@ export const SettingKey = Object.freeze({
     QuickSettingsTiles: "quickSettings.tiles",
     TaskbarAlignment: "taskbar.alignment",
     StartAllAppsView: "startMenu.allAppsView",
+    WallpaperPath: "wallpaper.path",
 });

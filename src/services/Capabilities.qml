@@ -41,11 +41,15 @@ Singleton {
         if (binaries.has(SystemCatalog.SystemBinary.Ddcutil)) {
             found.add(FeatureCatalog.Capability.DisplayControl);
         }
+        if (binaries.has(SystemCatalog.SystemBinary.Magick) || binaries.has(SystemCatalog.SystemBinary.Convert)) {
+            found.add(FeatureCatalog.Capability.ImageSampling);
+        }
         if (UPower.displayDevice.isLaptopBattery) {
             found.add(FeatureCatalog.Capability.Battery);
         }
         return found;
     }
+    readonly property string imageSamplingBinary: probe.result.binaries.has(SystemCatalog.SystemBinary.Magick) ? SystemCatalog.SystemBinary.Magick : SystemCatalog.SystemBinary.Convert
     readonly property var takenBusNames: new Set(probe.busNamesTakenByOthers)
 
     function has(capability: string): bool {
@@ -54,7 +58,7 @@ Singleton {
 
     SystemProbe {
         id: probe
-        binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, SystemCatalog.SystemBinary.Nmcli, SystemCatalog.SystemBinary.Ddcutil, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
+        binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, SystemCatalog.SystemBinary.Nmcli, SystemCatalog.SystemBinary.Ddcutil, SystemCatalog.SystemBinary.Magick, SystemCatalog.SystemBinary.Convert, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
         busNames: Object.values(FeatureCatalog.BusName)
         systemBusNames: Object.values(SystemCatalog.SystemBusName)
     }

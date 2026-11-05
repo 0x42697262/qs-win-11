@@ -64,6 +64,8 @@ QtObject {
     readonly property real snapPreviewWidth: values.snapPreviewWidth * scale
     readonly property real snapPreviewHeight: values.snapPreviewHeight * scale
     readonly property real thumbnailWidth: values.thumbnailWidth * scale
+    readonly property real wallpaperThumbWidth: values.wallpaperThumbWidth * scale
+    readonly property real wallpaperThumbHeight: values.wallpaperThumbHeight * scale
     readonly property real thumbnailHeight: values.thumbnailHeight * scale
     readonly property real showDesktopWidth: values.showDesktopWidth * scale
     readonly property real clockWidth: values.clockWidth * scale

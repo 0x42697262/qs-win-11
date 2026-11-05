@@ -92,6 +92,8 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | `nmcli -t` escapes `:` inside fields as `\:`; VPNs have type `vpn` or `wireguard` | NetworkManager nmcli(1) |
 | `ddcutil detect --brief` prints `Display N` blocks with `I2C bus: /dev/i2c-N` and `Monitor: MFG:MODEL:SERIAL`; `getvcp 10 --brief` prints `VCP 10 C <current> <max>` | ddcutil 2.x man page |
 | Hyprland: `hyprctl devices -j` lists keyboards with `active_keymap`, `main`, `capsLock`, `numLock`; `getoption input:kb_layout -j` returns `str`; the `activelayout` event carries `keyboard,layout` | Hyprland wiki (IPC, hyprctl) |
+| A `required property` list bound from a singleton may still be empty in `Component.onCompleted`; the capability probe re-runs on `onBinariesChanged` via `Qt.callLater` (before this fix no binary capability was ever detected) | CI log `capability.probed` |
+| ImageMagick 7 `magick <img> -resize WxH! -depth 8 txt:-` prints `x,y: (r,g,b,a)` per pixel; IM6 ships the same as `convert` | ImageMagick txt coder, CI container |
 | `Quickshell.clipboardText` is read/write; setting it copies text to the Wayland clipboard | Quickshell 0.3.2 qmltypes |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -179,6 +181,9 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Mica | `settings set wallpaper.path /path/to/image.jpg` at level 3+ | Taskbar and flyouts show the blurred wallpaper slice under them, tinted, with faint grain; flyouts line up with the wallpaper behind them |
 | Mica | Clear `wallpaper.path` | Falls back to acrylic tint (compositor blur if you added the layer rules) |
 | Wallpaper | `settings set wallpaper.mode shell` | The shell draws the wallpaper on the background layer; `external` leaves it to your tool |
+| Wallpaper | Settings → Wallpaper, or `ipc call settings openSection wallpaper` | Grid of images from `wallpaper.directory`; clicking one sets `wallpaper.path`; `ipc call wallpaper next` / `previous` cycle through them |
+| Accent | `settings set theme.accentFromWallpaper true` with ImageMagick installed | Accent changes to the wallpaper's most vivid color; `state.json` caches it per wallpaper; turning it off restores `theme.accentColor` |
+| Lock screen | Lock with a wallpaper set and something playing | Wallpaper behind the clock; weather bottom-left, media card with play/pause, network, battery and notification count bottom-right; the background blurs and dims when the password field shows |
 | Backdrop | Change `backdrop.micaBlur`, `micaSaturation`, `grainOpacity` | Live change on the next open flyout |
 | Profiles | `ipc call settings exportProfile /tmp/look.json`, change things, `ipc call settings importProfile /tmp/look.json` | Every changed setting returns to the exported state; unknown or invalid keys are listed in `profile.imported` as skipped |
 | Search | Type in Start or the Search flyout | Results list on the left, details pane (icon, name, Open, pin actions) fills the right side |

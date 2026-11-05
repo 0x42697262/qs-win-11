@@ -161,6 +161,8 @@ export const CONTROL_SIZE = Object.freeze({
     snapPreviewWidth: 120,
     snapPreviewHeight: 72,
     thumbnailWidth: 220,
+    wallpaperThumbWidth: 150,
+    wallpaperThumbHeight: 92,
     thumbnailHeight: 140,
     showDesktopWidth: 8,
     clockWidth: 88,

@@ -26,7 +26,7 @@ jobs:
       options: --privileged
     steps:
       - name: Install Quickshell and a headless compositor
-        run: pacman -Syu --noconfirm --needed quickshell qt6-declarative qt6-svg qt6-5compat sway grim inter-font git dbus gsettings-desktop-schemas foot hicolor-icon-theme pipewire wireplumber libnotify wtype
+        run: pacman -Syu --noconfirm --needed quickshell qt6-declarative qt6-svg qt6-5compat sway grim inter-font git dbus gsettings-desktop-schemas foot hicolor-icon-theme pipewire wireplumber libnotify wtype imagemagick
       - uses: actions/checkout@v4
       - name: Load, screenshot and lint the shell
         run: tools/ci/qml-check.sh
