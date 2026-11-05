@@ -28,6 +28,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `theme.lightStartsAt` | text | `"07:00"` | `^([01]\d|2[0-3]):[0-5]\d$` | 24-hour HH:MM, used when the theme is auto. |
 | `theme.darkStartsAt` | text | `"19:00"` | `^([01]\d|2[0-3]):[0-5]\d$` | 24-hour HH:MM, used when the theme is auto. |
 | `theme.accentColor` | color | `"#0078d4"` |  | Color for highlights, toggles and the active app indicator, as #RRGGBB. |
+| `theme.accentFromWallpaper` | boolean | `false` |  | Pick the accent color from the wallpaper's most vivid color. Needs ImageMagick. |
 | `theme.fontFamily` | text | `"Inter"` |  | Any installed font family. |
 | `theme.scale` | number | `1` | 0.75 to 2 | Multiplies every size in the shell. |
 | `theme.fontScale` | number | `1` | 0.75 to 2 | Multiplies text sizes only, on top of scale. |
@@ -134,8 +135,19 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | Key | Type | Default | Allowed | Description |
 |---|---|---|---|---|
 | `wallpaper.mode` | enum | `"external"` | `external`, `shell` | external: your wallpaper tool draws it and the shell only reads wallpaper.path for mica. shell: the shell draws it too. |
+| `wallpaper.directory` | text | `"~/Pictures/Wallpapers"` |  | Folder the wallpaper picker and wallpaper next read images from. ~ is your home. |
 | `wallpaper.path` | text | `""` |  | Image path. Needed for the mica backdrop; mica falls back to acrylic without it. |
 | `wallpaper.fillMode` | enum | `"crop"` | `crop`, `fit`, `stretch`, `center`, `tile` | How the image fills the screen. |
+
+## lockScreen
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `lockScreen.useWallpaper` | boolean | `true` |  | Shows wallpaper.path behind the clock; off uses the accent gradient. |
+| `lockScreen.blurOnPrompt` | boolean | `true` |  | Blurs the background while the password field shows. Follows the effects level. |
+| `lockScreen.showWeather` | boolean | `true` |  | Current temperature and conditions. |
+| `lockScreen.showMedia` | boolean | `true` |  | What is playing, with play and pause. |
+| `lockScreen.showStatus` | boolean | `true` |  | Network, battery and the number of notifications. |
 
 ## backdrop
 
@@ -377,6 +389,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `sizes.control.snapPreviewWidth` | integer | `120` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.snapPreviewHeight` | integer | `72` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.thumbnailWidth` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.wallpaperThumbWidth` | integer | `150` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.wallpaperThumbHeight` | integer | `92` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.thumbnailHeight` | integer | `140` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.showDesktopWidth` | integer | `8` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.clockWidth` | integer | `88` | 0 to 4096 | Control or surface size in pixels, before scale. |
@@ -552,6 +566,16 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.displayBrightnessDelayMs` | integer | `400` | 0 to 10000 | Wait after the last slider move before writing external monitor brightness. (ms) |
 | `tuning.lockKeyReadDelayMs` | integer | `60` | 0 to 5000 | Wait after a lock key press before reading its light. (ms) |
 | `tuning.keyboardRefreshMs` | integer | `60000` | 1000 to 3600000 | How often the keyboard layout list is refreshed. (ms) |
+| `tuning.wallpaperListLimit` | integer | `300` | 1 to 10000 | Images listed in the wallpaper picker. (count) |
+| `tuning.wallpaperSearchDepth` | integer | `2` | 1 to 10 | Folder levels the wallpaper picker searches. (count) |
+| `tuning.wallpaperPickerColumns` | integer | `4` | 1 to 12 | Columns in the wallpaper picker. (count) |
+| `tuning.accentSampleSize` | integer | `48` | 4 to 512 | The wallpaper is shrunk to this many pixels per side before picking the accent. (count) |
+| `tuning.accentHueBuckets` | integer | `24` | 1 to 360 | Hue groups compared when picking the accent. (count) |
+| `tuning.accentMinSaturation` | number | `0.25` | 0 to 1 | Pixels grayer than this are ignored for the accent. (fraction) |
+| `tuning.accentMinValue` | number | `0.2` | 0 to 1 | Pixels darker than this are ignored for the accent. (fraction) |
+| `tuning.accentSaturationMin` | number | `0.45` | 0 to 1 | The picked accent is at least this saturated. (fraction) |
+| `tuning.accentLightnessMin` | number | `0.35` | 0 to 1 | The picked accent is at least this light. (fraction) |
+| `tuning.accentLightnessMax` | number | `0.6` | 0 to 1 | The picked accent is at most this light. (fraction) |
 | `tuning.runHistoryShown` | integer | `5` | 0 to 50 | Recent commands listed in the Run dialog. (count) |
 | `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
 | `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid when expanded. (count) |
@@ -746,6 +770,11 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.lock.unlock` | text | `"Unlock"` |  | Text shown in the shell. |
 | `text.lock.pressAnyKey` | text | `"Press any key or click to unlock"` |  | Text shown in the shell. |
 | `text.lock.failed` | text | `"Sign-in failed. Try again."` |  | Text shown in the shell. |
+| `text.wallpaper.title` | text | `"Choose your wallpaper"` |  | Text shown in the shell. |
+| `text.wallpaper.folder` | text | `"From {name}"` |  | Text shown in the shell. |
+| `text.wallpaper.empty` | text | `"No images found. Put pictures in the wallpaper folder or change wallpaper.directory."` |  | Text shown in the shell. |
+| `text.wallpaper.refresh` | text | `"Refresh"` |  | Text shown in the shell. |
+| `text.wallpaper.current` | text | `"Current"` |  | Text shown in the shell. |
 | `text.sessionMenu.cancel` | text | `"Cancel"` |  | Text shown in the shell. |
 | `text.taskView.noWindows` | text | `"No open windows"` |  | Text shown in the shell. |
 | `text.taskView.desktop` | text | `"Desktop {count}"` |  | Text shown in the shell. |

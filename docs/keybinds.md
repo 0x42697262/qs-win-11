@@ -17,6 +17,7 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `settings set` | Set a setting key to a JSON value (bare words are treated as text). |  |
 | `settings reset` | Return a setting key to its default. |  |
 | `settings open` | Open the Settings app. | `SUPER+I` |
+| `settings openSection` | Open the Settings app on a section, such as wallpaper or theme. |  |
 | `settings exportProfile` | Write every changed setting to a profile file (absolute path). |  |
 | `settings importProfile` | Replace all changed settings with a profile file; invalid keys are skipped and reported. |  |
 | `start toggle` | Open or close Start. | `SUPER+SUPER_L` (on release) |
@@ -45,6 +46,9 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `altTab cancel` | Close the switcher without switching. |  |
 | `desktop toggle` | Minimize all windows, or restore them. | `SUPER+D` |
 | `widgets toggle` | Open or close the widgets board. | `SUPER+W` |
+| `wallpaper set` | Use this image file as the wallpaper. |  |
+| `wallpaper next` | Next image in wallpaper.directory. |  |
+| `wallpaper previous` | Previous image in wallpaper.directory. |  |
 | `snap open` | Open the snap layout picker. | `SUPER+Z` |
 | `profiles list` | Installed profiles as JSON: name, active, conditions, problems. |  |
 | `profiles activate` | Add a profile to the top of the active stack. |  |

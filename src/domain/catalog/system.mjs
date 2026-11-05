@@ -10,6 +10,8 @@ export const SystemBinary = Object.freeze({
     Nmcli: "nmcli",
     Ddcutil: "ddcutil",
     Hyprctl: "hyprctl",
+    Magick: "magick",
+    Convert: "convert",
 });
 
 export const NmcliCommand = Object.freeze({

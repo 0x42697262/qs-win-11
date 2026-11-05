@@ -47,6 +47,7 @@ export const Capability = Object.freeze({
     NetworkManagerCli: "networkManagerCli",
     DisplayControl: "displayControl",
     KeyboardLayouts: "keyboardLayouts",
+    ImageSampling: "imageSampling",
 });
 
 export const BusName = Object.freeze({

@@ -12,6 +12,7 @@ export const IpcTargetName = Object.freeze({
     Search: "search",
     Run: "run",
     Modes: "modes",
+    Wallpaper: "wallpaper",
     Keyboard: "keyboard",
     QuickLink: "quickLink",
     Session: "session",
@@ -50,6 +51,7 @@ export const IPC_TARGETS = Object.freeze([
             { name: "set", description: "Set a setting key to a JSON value (bare words are treated as text)." },
             { name: "reset", description: "Return a setting key to its default." },
             { name: "open", description: "Open the Settings app.", suggestedKey: { modifiers: [SUPER], key: "I" } },
+            { name: "openSection", description: "Open the Settings app on a section, such as wallpaper or theme." },
             { name: "exportProfile", description: "Write every changed setting to a profile file (absolute path)." },
             { name: "importProfile", description: "Replace all changed settings with a profile file; invalid keys are skipped and reported." },
         ],
@@ -162,6 +164,15 @@ export const IPC_TARGETS = Object.freeze([
         description: "Widgets board.",
         functions: [
             { name: "toggle", description: "Open or close the widgets board.", suggestedKey: { modifiers: [SUPER], key: "W" } },
+        ],
+    },
+    {
+        target: IpcTargetName.Wallpaper,
+        description: "Wallpaper from the wallpaper folder.",
+        functions: [
+            { name: "set", description: "Use this image file as the wallpaper." },
+            { name: "next", description: "Next image in wallpaper.directory." },
+            { name: "previous", description: "Previous image in wallpaper.directory." },
         ],
     },
     {

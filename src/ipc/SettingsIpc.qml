@@ -21,6 +21,10 @@ IpcHandler {
         SettingsWindow.show("");
     }
 
+    function openSection(section: string): void {
+        SettingsWindow.show(section);
+    }
+
     function exportProfile(path: string): bool {
         return Profiles.exportTo(path, "");
     }

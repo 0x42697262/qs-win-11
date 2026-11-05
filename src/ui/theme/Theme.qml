@@ -51,7 +51,7 @@ Singleton {
 
     readonly property ThemeColors colors: ThemeColors {
         duration: root.motion.theme
-        palette: PaletteRules.buildPalette(root.resolvedMode, root.themeSettings.accentColor, root.themeSettings.transparency, Settings.values.colors, root.effects.accentShades, root.themeSettings.textContrast)
+        palette: PaletteRules.buildPalette(root.resolvedMode, WallpaperAccent.active ? WallpaperAccent.accent : root.themeSettings.accentColor, root.themeSettings.transparency, Settings.values.colors, root.effects.accentShades, root.themeSettings.textContrast)
     }
     readonly property ThemeSpacingMetrics spacing: ThemeSpacingMetrics { scale: root.scale; values: root.sizes.spacing }
     readonly property ThemeRadiusMetrics radius: ThemeRadiusMetrics { scale: root.scale; values: root.sizes.radius }

@@ -187,6 +187,13 @@ export const Strings = Object.freeze({
         pressAnyKey: "Press any key or click to unlock",
         failed: "Sign-in failed. Try again.",
     }),
+    wallpaper: Object.freeze({
+        title: "Choose your wallpaper",
+        folder: "From {name}",
+        empty: "No images found. Put pictures in the wallpaper folder or change wallpaper.directory.",
+        refresh: "Refresh",
+        current: "Current",
+    }),
     sessionMenu: Object.freeze({
         cancel: "Cancel",
     }),

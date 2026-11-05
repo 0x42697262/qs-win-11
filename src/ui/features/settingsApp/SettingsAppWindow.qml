@@ -132,6 +132,12 @@ FloatingWindow {
                     Layout.bottomMargin: Theme.spacing.large
                 }
 
+                WallpaperPanel {
+                    visible: SettingsWindow.section === Schema.SettingsSection.Wallpaper && search.text === "" && !root.changedOnly
+                    Layout.fillWidth: true
+                    Layout.bottomMargin: Theme.spacing.large
+                }
+
                 EffectsPanel {
                     visible: SettingsWindow.section === AppearanceCatalog.APPEARANCE_SECTION_NAME && search.text === "" && !root.changedOnly
                     Layout.fillWidth: true

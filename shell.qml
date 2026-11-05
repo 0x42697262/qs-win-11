@@ -72,6 +72,7 @@ ShellRoot {
     QuickLinkIpc {}
     RunIpc {}
     ModesIpc {}
+    WallpaperIpc {}
     KeyboardIpc {}
     SessionIpc {}
     QuickSettingsIpc {}

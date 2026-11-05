@@ -26,7 +26,8 @@ Scope {
         timeout.restart();
     }
 
-    Component.onCompleted: run()
+    Component.onCompleted: Qt.callLater(root.run)
+    onBinariesChanged: Qt.callLater(root.run)
 
     FileView {
         id: selfStat

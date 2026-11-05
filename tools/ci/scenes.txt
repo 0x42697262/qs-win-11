@@ -88,5 +88,10 @@
 36f-modes-off|!qs -p "$SHELL_DIR" ipc call modes toggleStayAwake && qs -p "$SHELL_DIR" ipc call modes toggleGameMode
 36g-level-restored|!for _attempt in $(seq 50); do [ "$(qs -p "$SHELL_DIR" ipc call settings get appearance.level)" != "0" ] && exit 0; sleep 0.1; done; exit 1
 36h-lock-keys|keyboard lockKeys
+37a-wallpaper-folder|!qs -p "$SHELL_DIR" ipc call settings set wallpaper.directory "$SHELL_DIR/tools/ci/assets"
+37b-wallpaper-picker|settings openSection wallpaper
+37c-accent-from-wallpaper|settings set theme.accentFromWallpaper true
+37d-accent-picked|!for _attempt in $(seq 80); do grep -q '"source": ".*wallpaper.jpg"' "$XDG_STATE_HOME/qs-win-11/state.json" 2>/dev/null && exit 0; sleep 0.1; done; cat "$XDG_STATE_HOME/qs-win-11/state.json"; exit 1
+37e-accent-off|settings set theme.accentFromWallpaper false
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock
