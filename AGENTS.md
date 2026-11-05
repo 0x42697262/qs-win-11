@@ -118,4 +118,7 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Notifications | Turn on do not disturb, send a normal notification | No toast; it still appears in the center; taskbar cluster shows the snooze bell |
 | Notifications | Run mako or dunst first, then start the shell | `feature.disabled` with `busNameTaken`; no toasts from the shell; calendar still opens from the clock |
 | Notification center | Click the clock or `ipc call notifications toggle` | Notifications grouped by app with relative times, Clear all, calendar with today highlighted and month navigation |
+| OSD | Change volume with `wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-` or `ipc call audio volumeDown` | Pill above the taskbar with icon, bar and percent for 1.5 s; no pill during the first 2 s after start |
+| OSD | `ipc call audio toggleMicrophoneMute` | Pill reads "Microphone muted" / "Microphone on" |
+| OSD | `ipc call brightness up` on a laptop | Brightness rises 5% and the pill shows it |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

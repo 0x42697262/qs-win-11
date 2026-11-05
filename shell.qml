@@ -11,6 +11,7 @@ import qs.src.ui.features.taskbar
 import qs.src.ui.features.start
 import qs.src.ui.features.quickSettings
 import qs.src.ui.features.notifications
+import qs.src.ui.features.osd
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -49,6 +50,13 @@ ShellRoot {
     SessionIpc {}
     QuickSettingsIpc {}
     NotificationsIpc {}
+    AudioIpc {}
+    BrightnessIpc {}
+
+    LazyLoader {
+        active: Features.enabled.osd
+        OsdLayer {}
+    }
 
     LazyLoader {
         active: Notifications.active

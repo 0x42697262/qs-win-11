@@ -24,3 +24,5 @@ export const ButtonVariant = Object.freeze({ Subtle: "subtle", Standard: "standa
 export const InfoSeverity = Object.freeze({ Informational: "informational", Success: "success", Warning: "warning", Error: "error" });
 
 export const QuickSettingsPage = Object.freeze({ Main: "main", Wifi: "wifi", Bluetooth: "bluetooth", Sound: "sound" });
+
+export const OsdKind = Object.freeze({ None: "none", Volume: "volume", Brightness: "brightness", Microphone: "microphone" });

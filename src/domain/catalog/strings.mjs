@@ -127,6 +127,10 @@ export const Strings = Object.freeze({
         done: "Done",
         nothingPlaying: "Nothing playing",
     }),
+    osd: Object.freeze({
+        microphoneMuted: "Microphone muted",
+        microphoneOn: "Microphone on",
+    }),
     settingsProblems: Object.freeze({
         title: "Some settings were ignored",
         body: "Invalid values fell back to their defaults:",
