@@ -30,6 +30,12 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `audio toggleMicrophoneMute` | Mute or unmute the microphone. | `XF86AudioMicMute` |
 | `brightness up` | Raise brightness by one step. | `XF86MonBrightnessUp` |
 | `brightness down` | Lower brightness by one step. | `XF86MonBrightnessDown` |
+| `taskView toggle` | Open or close Task View. | `SUPER+Tab` |
+| `altTab next` | Open the switcher or move to the next window. | `ALT+Tab` |
+| `altTab previous` | Move to the previous window. | `ALT+SHIFT+Tab` |
+| `altTab commit` | Focus the selected window and close the switcher. | `ALT+ALT_L` (on release) |
+| `altTab cancel` | Close the switcher without switching. |  |
+| `desktop toggle` | Minimize all windows, or restore them. | `SUPER+D` |
 | `session lock` | Lock the session. | `SUPER+L` |
 | `session menu` | Open the full-screen session menu. | `CTRL+ALT+Delete` |
 | `session suspend` | Sleep. |  |

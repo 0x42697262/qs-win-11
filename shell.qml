@@ -13,6 +13,7 @@ import qs.src.ui.features.quickSettings
 import qs.src.ui.features.notifications
 import qs.src.ui.features.osd
 import qs.src.ui.features.power
+import qs.src.ui.features.taskView
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -35,6 +36,12 @@ ShellRoot {
             components[Surfaces.Surface.QuickSettings] = quickSettingsSurface;
         }
         components[Surfaces.Surface.NotificationCenter] = notificationCenterSurface;
+        if (Features.enabled.taskView) {
+            components[Surfaces.Surface.TaskView] = taskViewSurface;
+        }
+        if (Features.enabled.altTab) {
+            components[Surfaces.Surface.AltTab] = altTabSurface;
+        }
         if (Features.enabled.sessionMenu) {
             components[Surfaces.Surface.SessionMenu] = sessionMenuSurface;
         }
@@ -55,6 +62,9 @@ ShellRoot {
     QuickSettingsIpc {}
     NotificationsIpc {}
     AudioIpc {}
+    TaskViewIpc {}
+    AltTabIpc {}
+    DesktopIpc {}
     BrightnessIpc {}
 
     LazyLoader {
@@ -148,6 +158,16 @@ ShellRoot {
     Component {
         id: sessionMenuSurface
         SessionMenuSurface {}
+    }
+
+    Component {
+        id: taskViewSurface
+        TaskViewSurface {}
+    }
+
+    Component {
+        id: altTabSurface
+        AltTabSurface {}
     }
 
     Component {

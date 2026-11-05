@@ -12,6 +12,7 @@ export const CompositorAction = Object.freeze({
     ToggleMinimize: "toggleMinimize",
     ActivateWorkspace: "activateWorkspace",
     PlaceWindow: "placeWindow",
+    ShowDesktop: "showDesktop",
 });
 
 export const REFRESH_TOPLEVEL_EVENTS = Object.freeze([HyprlandEventName.OpenWindow, HyprlandEventName.MoveWindow, HyprlandEventName.WindowTitle]);

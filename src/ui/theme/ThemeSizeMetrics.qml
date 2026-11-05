@@ -48,6 +48,9 @@ QtObject {
     readonly property real notificationImage: Tokens.CONTROL_SIZE.notificationImage * scale
     readonly property real toastStackSpacing: Tokens.CONTROL_SIZE.toastStackSpacing * scale
     readonly property real lockFieldWidth: Tokens.CONTROL_SIZE.lockFieldWidth * scale
+    readonly property real taskViewCardHeight: Tokens.CONTROL_SIZE.taskViewCardHeight * scale
+    readonly property real workspaceCard: Tokens.CONTROL_SIZE.workspaceCard * scale
+    readonly property real altTabCard: Tokens.CONTROL_SIZE.altTabCard * scale
     readonly property real showDesktopWidth: Tokens.CONTROL_SIZE.showDesktopWidth * scale
     readonly property real clockWidth: Tokens.CONTROL_SIZE.clockWidth * scale
     readonly property real trayIcon: Tokens.CONTROL_SIZE.trayIcon * scale

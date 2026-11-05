@@ -163,8 +163,19 @@ PanelWindow {
             }
 
             Interactive {
+                id: showDesktop
+                visible: WindowSwitcher.canShowDesktop
                 implicitWidth: Theme.size.showDesktopWidth
                 implicitHeight: Theme.size.taskbarHeight
+                onActivated: WindowSwitcher.toggleDesktop()
+
+                Rectangle {
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: Theme.size.stroke
+                    height: parent.height / 2
+                    color: showDesktop.hovered ? Theme.colors.divider : Theme.colors.transparent
+                }
             }
         }
     }

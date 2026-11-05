@@ -16,5 +16,12 @@
 16-osd-mute|audio toggleMute
 17-session-menu|session menu
 18-closed|session menu
-19-enable-lock|settings set features.lockScreen.enabled true
-20-lock-screen|session lock
+19-task-view|taskView toggle
+20-closed|taskView toggle
+21-alt-tab|altTab next
+22-alt-tab-next|altTab next
+23-alt-tab-commit|altTab commit
+24-show-desktop|desktop toggle
+25-restore|desktop toggle
+26-enable-lock|settings set features.lockScreen.enabled true
+27-lock-screen|session lock
