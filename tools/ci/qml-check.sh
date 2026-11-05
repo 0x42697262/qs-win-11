@@ -9,7 +9,7 @@ readonly LOAD_WAIT_SECONDS="${LOAD_WAIT_SECONDS:-4}"
 readonly SCENE_WAIT_SECONDS="${SCENE_WAIT_SECONDS:-1}"
 readonly QMLLINT="${QMLLINT:-/usr/lib/qt6/bin/qmllint}"
 readonly LINT_FALSE_POSITIVE_PATTERN='not declared as singleton in qmldir but using pragma Singleton'
-readonly IGNORED_LOG_PATTERN='MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus|Network will not work. Could not find an available backend'
+readonly IGNORED_LOG_PATTERN='MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus|Network will not work. Could not find an available backend|QWaylandTextInputv3::disableSurface'
 
 export XDG_RUNTIME_DIR="$(mktemp -d)"
 export XDG_CONFIG_HOME="$(mktemp -d)"
@@ -21,7 +21,7 @@ export QS_WIN11_GALLERY=1
 mkdir -p "$ARTIFACT_DIR"
 chmod 700 "$XDG_RUNTIME_DIR"
 
-printf 'output HEADLESS-1 resolution %s\n' "$OUTPUT_RESOLUTION" > "$XDG_RUNTIME_DIR/sway.conf"
+printf "output HEADLESS-1 resolution %s\nfor_window [title=\"^Settings\$\"] floating enable, resize set 1000 700, move position center\n" "$OUTPUT_RESOLUTION" > "$XDG_RUNTIME_DIR/sway.conf"
 sway -c "$XDG_RUNTIME_DIR/sway.conf" > "$ARTIFACT_DIR/sway.log" 2>&1 &
 for _attempt in $(seq 50); do
     compgen -G "$XDG_RUNTIME_DIR/wayland-[0-9]" > /dev/null && break

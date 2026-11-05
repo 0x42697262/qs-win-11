@@ -19,7 +19,7 @@ PanelWindow {
     anchors.right: true
     implicitHeight: column.implicitHeight + Theme.spacing.xxLarge * 2
     color: Theme.colors.micaBase
-    WlrLayershell.layer: WlrLayer.Top
+    WlrLayershell.layer: WlrLayer.Bottom
     exclusionMode: ExclusionMode.Ignore
 
     ColumnLayout {

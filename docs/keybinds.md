@@ -16,6 +16,7 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `settings get` | Print the effective value of a setting key, as JSON. |  |
 | `settings set` | Set a setting key to a JSON value (bare words are treated as text). |  |
 | `settings reset` | Return a setting key to its default. |  |
+| `settings open` | Open the Settings app. | `SUPER+I` |
 | `start toggle` | Open or close Start. | `SUPER+SUPER_L` (on release) |
 | `start allApps` | Open Start on the All apps list. |  |
 | `search toggle` | Open or close Search. | `SUPER+S` |

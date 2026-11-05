@@ -16,6 +16,9 @@ Singleton {
                 entries.push({ text, icon, action: () => Session.runCommandLine(commandLine) });
             }
         };
+        if (Features.enabled.settingsApp) {
+            entries.push({ text: Strings.Strings.quickLink.settings, icon: Icons.Icon.settings, action: () => SettingsWindow.show("") });
+        }
         addCommand(Strings.Strings.quickLink.networkConnections, Icons.Icon.globe, commands.networkSettings);
         addCommand(Strings.Strings.quickLink.terminal, Icons.Icon.window, commands.terminal);
         addCommand(Strings.Strings.quickLink.taskManager, Icons.Icon.apps, commands.taskManager);

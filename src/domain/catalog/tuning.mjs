@@ -39,3 +39,4 @@ export const LOCK_CLOCK_TOP_DIVISOR = 6;
 export const TASK_VIEW_COLUMNS = 4;
 export const GEOCLUE_TIMEOUT_SECONDS = 10;
 export const WEATHER_DEBOUNCE_MS = 500;
+export const SETTINGS_NUMBER_STEP = 0.05;

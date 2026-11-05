@@ -358,6 +358,12 @@ FocusScope {
                     icon: Icons.Icon.edit
                     onActivated: root.editing = true
                 }
+
+                IconButton {
+                    visible: !root.editing && Features.enabled.settingsApp
+                    icon: Icons.Icon.settings
+                    onActivated: SettingsWindow.show("")
+                }
             }
         }
     }

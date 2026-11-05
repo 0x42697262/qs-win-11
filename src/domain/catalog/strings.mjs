@@ -1,4 +1,6 @@
 export const COUNT_PLACEHOLDER = "{count}";
+export const DETAIL_SEPARATOR = ": ";
+export const SETTINGS_ABOUT_SECTION = "about";
 
 export const Strings = Object.freeze({
     time: Object.freeze({
@@ -170,5 +172,25 @@ export const Strings = Object.freeze({
     settingsProblems: Object.freeze({
         title: "Some settings were ignored",
         body: "Invalid values fell back to their defaults:",
+    }),
+    settingsApp: Object.freeze({
+        title: "Settings",
+        search: "Find a setting",
+        reset: "Reset",
+        apply: "Apply",
+        about: "About",
+        version: "Version",
+        compositor: "Compositor",
+        settingsFile: "Settings file",
+        features: "Features",
+        featureOn: "On",
+        featureOff: "Off",
+        noResults: "No settings match your search.",
+        reasons: Object.freeze({
+            disabledByUser: "Turned off in settings",
+            missingCapability: "Missing requirement",
+            busNameTaken: "Another program already provides it",
+            dependencyOff: "Needs another feature that is off",
+        }),
     }),
 });

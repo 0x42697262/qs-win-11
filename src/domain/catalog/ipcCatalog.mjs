@@ -1,4 +1,5 @@
 export const SHELL_CONFIG_NAME = "qs-win-11";
+export const SHELL_VERSION = "0.1.0";
 
 /** @typedef {{ modifiers: readonly string[], key: string, onRelease?: boolean }} KeyCombo */
 /** @typedef {{ name: string, description: string, suggestedKey?: KeyCombo }} IpcFunction */
@@ -43,6 +44,7 @@ export const IPC_TARGETS = Object.freeze([
             { name: "get", description: "Print the effective value of a setting key, as JSON." },
             { name: "set", description: "Set a setting key to a JSON value (bare words are treated as text)." },
             { name: "reset", description: "Return a setting key to its default." },
+            { name: "open", description: "Open the Settings app.", suggestedKey: { modifiers: [SUPER], key: "I" } },
         ],
     },
     {
