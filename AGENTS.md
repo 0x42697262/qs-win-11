@@ -84,6 +84,8 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Hyprland Lua mode: `hl.dsp.window.move/resize({ x, y, relative?, window? })` and `hl.dsp.window.float({ action?, window? })`, window selector `address:0x…`; Quickshell's `Hyprland.dispatch()` sends Lua expressions as-is. **Unverified:** the float `action` value `"set"` (taken from the fullscreen dispatcher's toggle/set/unset) and that the socket accepts these strings outside `hl.dispatch()` | Hyprland wiki 0.56 dispatchers page (summary), quickshell `workspace.cpp` |
 | Snap placement runs only on Hyprland; sway in CI cannot exercise it | CI run under sway |
 | `MultiEffect` (QtQuick.Effects) provides blur, saturation, brightness and masking without custom shaders; Mica blurs the wallpaper image in-process, so it works on compositors without blur | Qt 6.12, CI screenshots |
+| `wf-recorder` records the headless sway output for the README demo; it cannot capture a locked session, so the lock screen appears only in screenshots. `wtype` drops the first key of each call under sway, so demo typing starts with a space | Demo recording runs |
+| Nested Qt Quick layouts default to filling width; side-by-side columns need `Layout.fillWidth: false` and explicit widths | Start search details pane bug |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -162,4 +164,6 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Wallpaper | `settings set wallpaper.mode shell` | The shell draws the wallpaper on the background layer; `external` leaves it to your tool |
 | Backdrop | Change `backdrop.micaBlur`, `micaSaturation`, `grainOpacity` | Live change on the next open flyout |
 | Profiles | `ipc call settings exportProfile /tmp/look.json`, change things, `ipc call settings importProfile /tmp/look.json` | Every changed setting returns to the exported state; unknown or invalid keys are listed in `profile.imported` as skipped |
+| Search | Type in Start or the Search flyout | Results list on the left, details pane (icon, name, Open, pin actions) fills the right side |
+| Effects | Change `appearance.level` or `appearance.style` while Start is open | Start re-renders with the new material and keeps its content |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

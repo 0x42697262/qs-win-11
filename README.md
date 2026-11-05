@@ -9,6 +9,10 @@ It draws the shell: taskbar, Start, search, Quick Settings, notifications,
 calendar, on-screen displays, task view, widgets, lock screen and a Settings
 app. Windows and apps stay owned by your compositor and your normal Linux apps.
 
+![qs-win-11 demo: Start with live search, Quick Settings switching light and dark, notifications, widgets, volume OSD, and the effects level moving from battery saver to maximum](docs/media/demo.gif)
+
+[Watch the sharper MP4](docs/media/demo.mp4) · recorded by CI tooling under headless sway, so there is no compositor blur; the materials are the shell's own Mica.
+
 | | |
 |---|---|
 | ![Start, dark](docs/screenshots/start-dark.png) | ![Start, light](docs/screenshots/start-light.png) |
@@ -22,10 +26,14 @@ wallpaper), grain, layered shadows, edge highlight and Apple-style continuous
 corners, over an original generated wallpaper. Every effect can be dialed down
 to battery saver or styled flat; see Settings → Appearance.
 
-Regenerate these with:
+Regenerate the screenshots and the recording with:
 
 ```bash
 SCENES_FILE=tools/ci/readme-scenes.txt QS_WIN11_GALLERY= tools/ci/qml-check.sh
+```
+
+```bash
+SCENES_FILE=tools/ci/demo-scenes.txt QS_WIN11_GALLERY= SKIP_SCENE_SCREENSHOTS=1 RECORD_FILE=demo.mp4 tools/ci/qml-check.sh
 ```
 
 ## Features

@@ -10,7 +10,7 @@ readonly LOAD_WAIT_SECONDS="${LOAD_WAIT_SECONDS:-6}"
 readonly SCENE_WAIT_SECONDS="${SCENE_WAIT_SECONDS:-1}"
 readonly QMLLINT="${QMLLINT:-/usr/lib/qt6/bin/qmllint}"
 readonly LINT_FALSE_POSITIVE_PATTERN='not declared as singleton in qmldir but using pragma Singleton'
-readonly IGNORED_LOG_PATTERN='MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus|Network will not work. Could not find an available backend|QWaylandTextInputv3::disableSurface'
+readonly IGNORED_LOG_PATTERN='Ignoring unexpected wl_keyboard.leave event|MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus|Network will not work. Could not find an available backend|QWaylandTextInputv3::'
 
 export XDG_RUNTIME_DIR="$(mktemp -d)"
 export XDG_CONFIG_HOME="$(mktemp -d)"
@@ -51,9 +51,22 @@ dbus-run-session -- sh "$XDG_RUNTIME_DIR/session.sh" qs -p "$SHELL_DIR" --no-col
 sleep "$LOAD_WAIT_SECONDS"
 grim "$ARTIFACT_DIR/00-desktop.png"
 
+recorder_pid=""
+start_recording() {
+    if [[ -n "${RECORD_FILE:-}" && -z "$recorder_pid" ]]; then
+        wf-recorder -y -r "${RECORD_FPS:-30}" -f "$RECORD_FILE" > "$ARTIFACT_DIR/recorder.log" 2>&1 &
+        recorder_pid=$!
+        sleep 0.5
+    fi
+}
+
 if [[ -f "$SCENES_FILE" ]]; then
     while IFS='|' read -r scene_name ipc_call; do
         [[ -z "$scene_name" ]] && continue
+        if [[ "$scene_name" == "@record" ]]; then
+            start_recording
+            continue
+        fi
         if [[ "$ipc_call" == !* ]]; then
             DBUS_SESSION_BUS_ADDRESS="$(cat "$XDG_RUNTIME_DIR/bus-address")" sh -c "${ipc_call#!}" >> "$ARTIFACT_DIR/ipc.log" 2>&1 || echo "command failed: $ipc_call" >> "$ARTIFACT_DIR/ipc.log"
         else
@@ -61,8 +74,13 @@ if [[ -f "$SCENES_FILE" ]]; then
             qs -p "$SHELL_DIR" ipc call "${ipc_words[@]}" >> "$ARTIFACT_DIR/ipc.log" 2>&1 || echo "ipc failed: $ipc_call" >> "$ARTIFACT_DIR/ipc.log"
         fi
         sleep "$SCENE_WAIT_SECONDS"
-        grim "$ARTIFACT_DIR/$scene_name.png"
+        [[ -z "${SKIP_SCENE_SCREENSHOTS:-}" ]] && grim "$ARTIFACT_DIR/$scene_name.png"
     done < "$SCENES_FILE"
+fi
+
+if [[ -n "$recorder_pid" ]]; then
+    kill -INT "$recorder_pid"
+    wait "$recorder_pid" || true
 fi
 
 build_dir="$(sed -n 's/^buildDir="\(.*\)"$/\1/p' "$SHELL_DIR/.qmlls.ini")"

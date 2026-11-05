@@ -42,7 +42,7 @@ Item {
         layer.enabled: root.layered
         layer.effect: MultiEffect {
             maskEnabled: true
-            maskSource: mask
+            maskSource: maskTexture
             maskThresholdMin: 0.5
             maskSpreadAtMin: 1
         }
@@ -105,7 +105,7 @@ Item {
         layer.enabled: root.clipContent
         layer.effect: MultiEffect {
             maskEnabled: true
-            maskSource: mask
+            maskSource: maskTexture
             maskThresholdMin: 0.5
             maskSpreadAtMin: 1
         }
@@ -114,10 +114,17 @@ Item {
     SmoothRectangle {
         id: mask
         anchors.fill: parent
-        visible: false
-        layer.enabled: root.clipContent || root.layered
         radius: root.cornerRadius
         smoothingOverride: Theme.overlaySmoothing
         color: Theme.colors.accent
+    }
+
+    ShaderEffectSource {
+        id: maskTexture
+        anchors.fill: parent
+        visible: false
+        sourceItem: mask
+        hideSource: true
+        live: root.clipContent || root.layered
     }
 }
