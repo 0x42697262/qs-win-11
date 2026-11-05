@@ -64,9 +64,9 @@
 34d-activate|profiles activate neon
 34e-check|!sleep 1; test "$(qs -p "$SHELL_DIR" ipc call settings get icons.grid)" = "\"fluent:apps_24\""
 34f-conditional|!mkdir -p "$XDG_CONFIG_HOME/qs-win-11/profiles/night" && printf '{"schemaVersion":1,"description":"Light theme only","activateWhen":{"theme":"light"},"values":{"taskbar":{"alignment":"left"}}}' > "$XDG_CONFIG_HOME/qs-win-11/profiles/night/profile.json"; sleep 1.5; qs -p "$SHELL_DIR" ipc call profiles activate night
-34g-dark-off|!sleep 1; test "$(qs -p "$SHELL_DIR" ipc call settings get taskbar.alignment)" = "\"center\""
+34g-dark-off|!for _attempt in $(seq 50); do [ "$(qs -p "$SHELL_DIR" ipc call settings get taskbar.alignment)" = '"center"' ] && exit 0; sleep 0.1; done; exit 1
 34h-light|settings set theme.mode light
-34i-light-on|!sleep 1; test "$(qs -p "$SHELL_DIR" ipc call settings get taskbar.alignment)" = "\"left\""
+34i-light-on|!for _attempt in $(seq 50); do [ "$(qs -p "$SHELL_DIR" ipc call settings get taskbar.alignment)" = '"left"' ] && exit 0; sleep 0.1; done; exit 1
 34j-dark|settings set theme.mode dark
 35a-app-theme|settings set appIcons.theme hicolor
 35b-override|!qs -p "$SHELL_DIR" ipc call settings set appIcons.overrides "foot=$SHELL_DIR/tools/ci/assets/test-icon.svg"; sleep 1

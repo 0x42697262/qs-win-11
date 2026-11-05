@@ -116,9 +116,15 @@ FocusScope {
             }
 
             ColumnLayout {
+                id: mainPage
                 visible: root.page === UiEnums.QuickSettingsPage.Main
                 Layout.fillWidth: true
                 spacing: Theme.spacing.large
+
+                PageEnter {
+                    target: mainPage
+                    direction: -1
+                }
 
                 GridLayout {
                     Layout.alignment: Qt.AlignHCenter

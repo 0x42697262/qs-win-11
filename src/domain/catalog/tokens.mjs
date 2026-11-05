@@ -94,6 +94,8 @@ export const SPACING = Object.freeze({ xxSmall: 2, xSmall: 4, small: 8, medium: 
 
 export const FONT_SIZE = Object.freeze({ caption: 12, body: 14, bodyLarge: 18, subtitle: 20, title: 28, titleLarge: 40, display: 96 });
 
+export const FONT_TRACKING = Object.freeze({ caption: 0, body: 0, bodyStrong: 0, bodyLarge: -0.1, subtitle: -0.2, title: -0.5, titleLarge: -0.8, display: -2 });
+
 export const FONT_WEIGHT = Object.freeze({ regular: 400, semibold: 600, bold: 700 });
 
 export const ICON_SIZE = Object.freeze({ small: 12, medium: 16, large: 20, xLarge: 24, appTile: 32, hero: 48 });
@@ -165,7 +167,7 @@ export const CONTROL_SIZE = Object.freeze({
     trayCell: 32,
 });
 
-export const MOTION_MS = Object.freeze({ fast: 83, normal: 167, slow: 250, slower: 333, reduced: 1, enter: 300, exit: 140, hover: 120, press: 220, theme: 320, toastEnter: 360 });
+export const MOTION_MS = Object.freeze({ fast: 83, normal: 167, slow: 250, slower: 333, reduced: 1, enter: 300, exit: 140, hover: 120, press: 220, theme: 320, toastEnter: 360, page: 260, stagger: 22, staggerItem: 260, bounce: 460, dismiss: 200 });
 
 export const EASING_CURVES = Object.freeze({
     decelerate: Object.freeze([0, 0, 0, 1, 1, 1]),
@@ -175,7 +177,7 @@ export const EASING_CURVES = Object.freeze({
     exit: Object.freeze([0.4, 0, 1, 1, 1, 1]),
 });
 
-export const ELEVATION = Object.freeze({ shadowBlur: 32, shadowOffset: 8, contactBlur: 4, contactOffset: 1, edgeHighlightWidth: 1, richScaleFrom: 0.96, exitSlideFraction: 0.35, pressOvershoot: 2.2, toastSlide: 48, osdScaleFrom: 0.9 });
+export const ELEVATION = Object.freeze({ shadowBlur: 32, shadowOffset: 8, contactBlur: 4, contactOffset: 1, edgeHighlightWidth: 1, richScaleFrom: 0.96, exitSlideFraction: 0.35, pressOvershoot: 2.2, toastSlide: 48, osdScaleFrom: 0.9, pageSlide: 36, staggerRise: 10, staggerLimit: 12, launchBounce: 7, swipeDismissFraction: 0.35, calendarSlide: 28 });
 
 export const SLIDE_DISTANCE = Object.freeze({ flyout: 40 });
 export const PRESS_SCALE = 0.88;

@@ -31,6 +31,7 @@ Text {
 
     font.family: Theme.fontFamily
     font.pixelSize: sizeByVariant[variant]
+    font.letterSpacing: (Theme.tracking[variant] ?? 0) * Theme.scale
     font.weight: strong ? Theme.weightSemibold : Theme.weightRegular
     color: colorByTone[tone]
     elide: Text.ElideRight

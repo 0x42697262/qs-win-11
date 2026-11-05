@@ -30,6 +30,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `theme.accentColor` | color | `"#0078d4"` |  | Color for highlights, toggles and the active app indicator, as #RRGGBB. |
 | `theme.fontFamily` | text | `"Inter"` |  | Any installed font family. |
 | `theme.scale` | number | `1` | 0.75 to 2 | Multiplies every size in the shell. |
+| `theme.fontScale` | number | `1` | 0.75 to 2 | Multiplies text sizes only, on top of scale. |
+| `theme.textContrast` | number | `0` | -0.5 to 0.5 | Negative softens secondary text for calmer reading, positive makes all text stronger. |
 | `theme.transparency` | boolean | `true` |  | Translucent taskbar and flyouts. Blur comes from your compositor. |
 | `theme.reduceMotion` | boolean | `false` |  | Makes animations nearly instant. |
 
@@ -366,6 +368,14 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `sizes.control.clockWidth` | integer | `88` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.trayIcon` | integer | `16` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.trayCell` | integer | `32` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.tracking.caption` | integer | `0` | -10 to 10 | Letter spacing in pixels for this text style; negative tightens. |
+| `sizes.tracking.body` | integer | `0` | -10 to 10 | Letter spacing in pixels for this text style; negative tightens. |
+| `sizes.tracking.bodyStrong` | integer | `0` | -10 to 10 | Letter spacing in pixels for this text style; negative tightens. |
+| `sizes.tracking.bodyLarge` | number | `-0.1` | -10 to 10 | Letter spacing in pixels for this text style; negative tightens. |
+| `sizes.tracking.subtitle` | number | `-0.2` | -10 to 10 | Letter spacing in pixels for this text style; negative tightens. |
+| `sizes.tracking.title` | number | `-0.5` | -10 to 10 | Letter spacing in pixels for this text style; negative tightens. |
+| `sizes.tracking.titleLarge` | number | `-0.8` | -10 to 10 | Letter spacing in pixels for this text style; negative tightens. |
+| `sizes.tracking.display` | integer | `-2` | -10 to 10 | Letter spacing in pixels for this text style; negative tightens. |
 | `sizes.fontWeight.regular` | integer | `400` | 1 to 1000 | Font weight (100 thin to 900 black). |
 | `sizes.fontWeight.semibold` | integer | `600` | 1 to 1000 | Font weight (100 thin to 900 black). |
 | `sizes.fontWeight.bold` | integer | `700` | 1 to 1000 | Font weight (100 thin to 900 black). |
@@ -385,6 +395,11 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `motion.durations.press` | integer | `220` | 0 to 60000 | Animation duration in milliseconds. |
 | `motion.durations.theme` | integer | `320` | 0 to 60000 | Animation duration in milliseconds. |
 | `motion.durations.toastEnter` | integer | `360` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.page` | integer | `260` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.stagger` | integer | `22` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.staggerItem` | integer | `260` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.bounce` | integer | `460` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.dismiss` | integer | `200` | 0 to 60000 | Animation duration in milliseconds. |
 | `motion.easing.decelerate.x1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
 | `motion.easing.decelerate.y1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
 | `motion.easing.decelerate.x2` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
@@ -423,6 +438,12 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `effects.elevation.pressOvershoot` | number | `2.2` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.elevation.toastSlide` | integer | `48` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.elevation.osdScaleFrom` | number | `0.9` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.pageSlide` | integer | `36` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.staggerRise` | integer | `10` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.staggerLimit` | integer | `12` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.launchBounce` | integer | `7` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.swipeDismissFraction` | number | `0.35` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.calendarSlide` | integer | `28` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.accentShades.darkModeMixWithWhite` | number | `0.45` | 0 to 1 | How accent variants are derived from the accent color. |
 | `effects.accentShades.lightModeMixWithBlack` | number | `0.15` | 0 to 1 | How accent variants are derived from the accent color. |
 | `effects.accentShades.hoverAlpha` | number | `0.9` | 0 to 1 | How accent variants are derived from the accent color. |

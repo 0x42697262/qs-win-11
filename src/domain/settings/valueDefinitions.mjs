@@ -4,7 +4,7 @@ import { TUNING } from "../catalog/tuning.mjs";
 import { ICON_DEFAULTS } from "../catalog/icons.mjs";
 import { Strings } from "../catalog/strings.mjs";
 import {
-    ACCENT_SHADES, BLACK, CONTROL_SIZE, DARK_BASE, DIM_OPACITY, EASING_CURVES, ELEVATION, FONT_SIZE, FONT_WEIGHT, ICON_SIZE,
+    ACCENT_SHADES, BLACK, CONTROL_SIZE, FONT_TRACKING, DARK_BASE, DIM_OPACITY, EASING_CURVES, ELEVATION, FONT_SIZE, FONT_WEIGHT, ICON_SIZE,
     LIGHT_BASE, MOTION_MS, PRESS_SCALE, RADIUS, SLIDE_DISTANCE, SPACING, WHITE,
 } from "../catalog/tokens.mjs";
 import { toQtColor } from "../theme/color.mjs";
@@ -28,6 +28,8 @@ const DURATION_MAXIMUM = 60000;
 const CURVE_MINIMUM = -2;
 const CURVE_MAXIMUM = 3;
 const SCALE_MAXIMUM = 4;
+const TRACKING_MINIMUM = -10;
+const TRACKING_MAXIMUM = 10;
 export const EASING_POINT_NAMES = Object.freeze(["x1", "y1", "x2", "y2"]);
 
 /** @typedef {import("./definitions.mjs").SettingDefinition} SettingDefinition */
@@ -80,6 +82,7 @@ function sizeDefinitions() {
         ...sizeGroup("font", FONT_SIZE, "Font size in pixels, before scale."),
         ...sizeGroup("icon", ICON_SIZE, "Icon size in pixels, before scale."),
         ...sizeGroup("control", CONTROL_SIZE, "Control or surface size in pixels, before scale."),
+        ...Object.entries(FONT_TRACKING).map(([name, value]) => numeric(ValueSection.Sizes, `tracking.${name}`, value, TRACKING_MINIMUM, TRACKING_MAXIMUM, "Letter spacing in pixels for this text style; negative tightens.")),
         ...Object.entries(FONT_WEIGHT).map(([name, value]) => numeric(ValueSection.Sizes, `fontWeight.${name}`, value, WEIGHT_MINIMUM, WEIGHT_MAXIMUM, "Font weight (100 thin to 900 black).")),
     ];
 }

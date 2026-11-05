@@ -13,6 +13,7 @@ TaskbarButton {
     required property string screenName
 
     iconSource: Apps.iconSource(modelData.appId)
+    appId: modelData.appId
     toolTip: modelData.title !== "" ? modelData.title : Apps.displayName(modelData.appId)
     running: modelData.windowIds.length > 0
     active: modelData.active

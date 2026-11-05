@@ -21,6 +21,8 @@ ColumnLayout {
         const next = CalendarRules.addMonths(shownYear, shownMonth, delta);
         shownYear = next.year;
         shownMonth = next.month;
+        monthSlide.direction = delta;
+        monthSlide.play();
     }
 
     spacing: Theme.spacing.small
@@ -38,7 +40,15 @@ ColumnLayout {
         IconButton { icon: Icons.Icon.chevronDown; onActivated: root.shift(1) }
     }
 
+    PageEnter {
+        id: monthSlide
+        target: monthGrid
+        vertical: true
+        distance: Theme.elevation.calendarSlide * Theme.scale
+    }
+
     GridLayout {
+        id: monthGrid
         Layout.alignment: Qt.AlignHCenter
         columns: CalendarRules.DAYS_PER_WEEK
         columnSpacing: 0

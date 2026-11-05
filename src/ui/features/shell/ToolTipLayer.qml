@@ -14,9 +14,10 @@ PanelWindow {
 
     required property ShellScreen modelData
     readonly property bool shown: ToolTips.text !== "" && ToolTips.screenName === modelData.name
+    property string shownText: ""
 
     screen: modelData
-    visible: shown
+    visible: shown || bubble.opacity > 0
     anchors.bottom: true
     anchors.left: true
     anchors.right: true
@@ -26,6 +27,15 @@ PanelWindow {
     mask: Region {}
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.namespace: CompositorCatalog.LayerNamespace.Overlay
+
+    Connections {
+        target: ToolTips
+        function onTextChanged(): void {
+            if (ToolTips.text !== "") {
+                root.shownText = ToolTips.text;
+            }
+        }
+    }
 
     Rectangle {
         id: bubble
@@ -38,6 +48,16 @@ PanelWindow {
         color: Theme.overlayFill
         border.width: Theme.size.stroke
         border.color: Theme.colors.surfaceStroke
+        opacity: root.shown ? 1 : 0
+
+        Behavior on opacity {
+            NumberAnimation { duration: Theme.motion.fast; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        }
+
+        Behavior on x {
+            enabled: bubble.opacity > 0
+            NumberAnimation { duration: Theme.motion.normal; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.emphasized }
+        }
 
         RowLayout {
             id: previews
@@ -77,7 +97,7 @@ PanelWindow {
             id: label
             visible: !bubble.previewing
             anchors.centerIn: parent
-            text: ToolTips.text
+            text: root.shownText
             variant: UiEnums.TextVariant.Caption
         }
     }

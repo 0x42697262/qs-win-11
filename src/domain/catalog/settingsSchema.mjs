@@ -60,6 +60,8 @@ export const SETTING_DEFINITIONS = Object.freeze([
     colorSetting(text(SettingsSection.Theme, "accentColor", "Accent color", "Color for highlights, toggles and the active app indicator, as #RRGGBB."), "#0078d4"),
     textSetting(text(SettingsSection.Theme, "fontFamily", "Font", "Any installed font family."), "Inter"),
     numberSetting(text(SettingsSection.Theme, "scale", "Scale", "Multiplies every size in the shell."), 1, 0.75, 2),
+    numberSetting(text(SettingsSection.Theme, "fontScale", "Text size", "Multiplies text sizes only, on top of scale."), 1, 0.75, 2),
+    numberSetting(text(SettingsSection.Theme, "textContrast", "Text contrast", "Negative softens secondary text for calmer reading, positive makes all text stronger."), 0, -0.5, 0.5),
     booleanSetting(text(SettingsSection.Theme, "transparency", "Transparency effects", "Translucent taskbar and flyouts. Blur comes from your compositor."), true),
     booleanSetting(text(SettingsSection.Theme, "reduceMotion", "Reduce motion", "Makes animations nearly instant."), false),
 
