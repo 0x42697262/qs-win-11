@@ -378,6 +378,12 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `motion.durations.slow` | integer | `250` | 0 to 60000 | Animation duration in milliseconds. |
 | `motion.durations.slower` | integer | `333` | 0 to 60000 | Animation duration in milliseconds. |
 | `motion.durations.reduced` | integer | `1` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.enter` | integer | `300` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.exit` | integer | `140` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.hover` | integer | `120` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.press` | integer | `220` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.theme` | integer | `320` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.toastEnter` | integer | `360` | 0 to 60000 | Animation duration in milliseconds. |
 | `motion.easing.decelerate.x1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
 | `motion.easing.decelerate.y1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
 | `motion.easing.decelerate.x2` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
@@ -390,6 +396,14 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `motion.easing.accelerate.y1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
 | `motion.easing.accelerate.x2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
 | `motion.easing.accelerate.y2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.emphasized.x1` | number | `0.2` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.emphasized.y1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.emphasized.x2` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.emphasized.y2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.exit.x1` | number | `0.4` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.exit.y1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.exit.x2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.exit.y2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
 | `motion.slideDistance.flyout` | integer | `40` | 0 to 4096 | Distance a surface slides in from, in pixels. |
 
 ## effects
@@ -404,6 +418,10 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `effects.elevation.contactOffset` | integer | `1` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.elevation.edgeHighlightWidth` | integer | `1` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.elevation.richScaleFrom` | number | `0.96` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.exitSlideFraction` | number | `0.35` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.pressOvershoot` | number | `2.2` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.toastSlide` | integer | `48` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.osdScaleFrom` | number | `0.9` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.accentShades.darkModeMixWithWhite` | number | `0.45` | 0 to 1 | How accent variants are derived from the accent color. |
 | `effects.accentShades.lightModeMixWithBlack` | number | `0.15` | 0 to 1 | How accent variants are derived from the accent color. |
 | `effects.accentShades.hoverAlpha` | number | `0.9` | 0 to 1 | How accent variants are derived from the accent color. |

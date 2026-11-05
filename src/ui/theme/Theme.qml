@@ -49,6 +49,7 @@ Singleton {
     }
 
     readonly property ThemeColors colors: ThemeColors {
+        duration: root.motion.theme
         palette: PaletteRules.buildPalette(root.resolvedMode, root.themeSettings.accentColor, root.themeSettings.transparency, Settings.values.colors, root.effects.accentShades)
     }
     readonly property ThemeSpacingMetrics spacing: ThemeSpacingMetrics { scale: root.scale; values: root.sizes.spacing }

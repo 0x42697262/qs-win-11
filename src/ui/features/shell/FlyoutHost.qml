@@ -11,11 +11,26 @@ PanelWindow {
 
     required property ShellScreen modelData
     required property var surfaceComponents
-    readonly property string surface: ShellState.openSurface
-    readonly property bool shown: ShellState.openScreenName === modelData.name && surface !== Surfaces.Surface.None && surfaceComponents[surface] !== undefined
+    readonly property string requested: ShellState.openScreenName === modelData.name && surfaceComponents[ShellState.openSurface] !== undefined ? ShellState.openSurface : Surfaces.Surface.None
+    readonly property bool open: requested !== Surfaces.Surface.None
+    property string shownSurface: Surfaces.Surface.None
+    readonly property bool leaving: exit.running
+
+    function present(): void {
+        exit.stop();
+        if (requested !== Surfaces.Surface.None) {
+            shownSurface = requested;
+            entrance.restart();
+        } else if (shownSurface !== Surfaces.Surface.None) {
+            entrance.stop();
+            exit.restart();
+        }
+    }
+
+    onRequestedChanged: present()
 
     screen: modelData
-    visible: shown
+    visible: shownSurface !== Surfaces.Surface.None
     color: Theme.colors.transparent
     anchors.top: true
     anchors.bottom: true
@@ -24,13 +39,17 @@ PanelWindow {
     exclusionMode: ExclusionMode.Normal
     WlrLayershell.layer: WlrLayer.Top
     WlrLayershell.namespace: CompositorCatalog.LayerNamespace.Flyout
-    WlrLayershell.keyboardFocus: shown ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+    WlrLayershell.keyboardFocus: open ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+    mask: Region { item: root.open ? fullArea : null }
 
-    onSurfaceChanged: if (shown) entrance.restart()
-    onShownChanged: if (shown) entrance.restart()
+    Item {
+        id: fullArea
+        anchors.fill: parent
+    }
 
     MouseArea {
         anchors.fill: parent
+        enabled: root.open
         acceptedButtons: Qt.AllButtons
         onClicked: ShellState.close()
     }
@@ -51,17 +70,26 @@ PanelWindow {
             id: loader
             anchors.fill: parent
             focus: true
-            active: root.shown
-            sourceComponent: root.surfaceComponents[root.surface] ?? null
+            active: root.shownSurface !== Surfaces.Surface.None
+            sourceComponent: root.surfaceComponents[root.shownSurface] ?? null
             onLoaded: (item as Item)?.forceActiveFocus()
         }
     }
 
     ParallelAnimation {
         id: entrance
-        NumberAnimation { target: stage; property: "opacity"; from: 0; to: 1; duration: Theme.motion.normal }
-        NumberAnimation { target: slide; property: "y"; from: Theme.slideDistance; to: 0; duration: Theme.motion.slow; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
-        NumberAnimation { target: grow; property: "xScale"; from: Appearance.richMotion ? Theme.elevation.richScaleFrom : 1; to: 1; duration: Theme.motion.slow; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
-        NumberAnimation { target: grow; property: "yScale"; from: Appearance.richMotion ? Theme.elevation.richScaleFrom : 1; to: 1; duration: Theme.motion.slow; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        NumberAnimation { target: stage; property: "opacity"; from: 0; to: 1; duration: Theme.motion.normal; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        NumberAnimation { target: slide; property: "y"; from: Theme.slideDistance; to: 0; duration: Theme.motion.enter; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.emphasized }
+        NumberAnimation { target: grow; property: "xScale"; from: Appearance.richMotion ? Theme.elevation.richScaleFrom : 1; to: 1; duration: Theme.motion.enter; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.emphasized }
+        NumberAnimation { target: grow; property: "yScale"; from: Appearance.richMotion ? Theme.elevation.richScaleFrom : 1; to: 1; duration: Theme.motion.enter; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.emphasized }
+    }
+
+    SequentialAnimation {
+        id: exit
+        ParallelAnimation {
+            NumberAnimation { target: stage; property: "opacity"; to: 0; duration: Theme.motion.exit; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.exitCurve }
+            NumberAnimation { target: slide; property: "y"; to: Theme.slideDistance * Theme.elevation.exitSlideFraction; duration: Theme.motion.exit; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.exitCurve }
+        }
+        ScriptAction { script: root.shownSurface = Surfaces.Surface.None }
     }
 }

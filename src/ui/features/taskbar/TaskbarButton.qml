@@ -36,6 +36,10 @@ Interactive {
         size: Theme.size.taskbarIcon
         color: root.iconColor
         scale: root.pressed ? Theme.pressScale : 1
+
+        Behavior on scale {
+            NumberAnimation { duration: Theme.motion.press; easing.type: Easing.OutBack; easing.overshoot: Theme.elevation.pressOvershoot }
+        }
     }
 
     Image {
