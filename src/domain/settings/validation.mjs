@@ -1,6 +1,6 @@
 import { SettingType } from "./definitions.mjs";
 
-const HEX_COLOR_PATTERN = /^#[0-9a-fA-F]{6}$/;
+const HEX_COLOR_PATTERN = /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
 
 export const ValidationProblem = Object.freeze({
     WrongType: "wrongType",
@@ -20,9 +20,13 @@ export const ValidationProblem = Object.freeze({
 /**
  * @param {SettingDefinition} definition
  * @param {number} value
+ * @param {boolean} unbounded
  * @returns {ValidationResult}
  */
-function validateRange(definition, value) {
+function validateRange(definition, value, unbounded) {
+    if (unbounded) {
+        return { valid: true, value };
+    }
     const belowMinimum = definition.minimum !== undefined && value < definition.minimum;
     const aboveMaximum = definition.maximum !== undefined && value > definition.maximum;
     return belowMinimum || aboveMaximum ? { valid: false, problem: ValidationProblem.OutOfRange } : { valid: true, value };
@@ -43,17 +47,18 @@ export function asPlainArray(value) {
 /**
  * @param {SettingDefinition} definition
  * @param {unknown} value
+ * @param {boolean} [unbounded]
  * @returns {ValidationResult}
  */
-export function validateSettingValue(definition, value) {
+export function validateSettingValue(definition, value, unbounded = false) {
     const wrongType = /** @type {ValidationResult} */ ({ valid: false, problem: ValidationProblem.WrongType });
     switch (definition.type) {
     case SettingType.Boolean:
         return typeof value === "boolean" ? { valid: true, value } : wrongType;
     case SettingType.Integer:
-        return typeof value === "number" && Number.isInteger(value) ? validateRange(definition, value) : wrongType;
+        return typeof value === "number" && Number.isInteger(value) ? validateRange(definition, value, unbounded) : wrongType;
     case SettingType.Number:
-        return typeof value === "number" && Number.isFinite(value) ? validateRange(definition, value) : wrongType;
+        return typeof value === "number" && Number.isFinite(value) ? validateRange(definition, value, unbounded) : wrongType;
     case SettingType.Text:
         if (typeof value !== "string") {
             return wrongType;

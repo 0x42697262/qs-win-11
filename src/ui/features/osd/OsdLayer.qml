@@ -1,4 +1,5 @@
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
@@ -7,7 +8,6 @@ import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/system/indicators.mjs" as Indicators
 import "../../../domain/catalog/icons.mjs" as Icons
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/catalog/compositor.mjs" as CompositorCatalog
 
@@ -61,7 +61,7 @@ PanelWindow {
             Label {
                 visible: root.microphone
                 Layout.fillWidth: true
-                text: Audio.microphoneMuted ? Strings.Strings.osd.microphoneMuted : Strings.Strings.osd.microphoneOn
+                text: Audio.microphoneMuted ? Settings.values.text.osd.microphoneMuted : Settings.values.text.osd.microphoneOn
             }
         }
     }

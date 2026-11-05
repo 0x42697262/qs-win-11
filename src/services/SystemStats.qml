@@ -1,10 +1,10 @@
 pragma Singleton
 import QtQuick
+import qs.src.config
 import Quickshell
 import Quickshell.Io
 import "../domain/system/stats.mjs" as StatsRules
 import "../domain/catalog/system.mjs" as SystemCatalog
-import "../domain/catalog/tuning.mjs" as Tuning
 
 Singleton {
     id: root
@@ -41,7 +41,7 @@ Singleton {
         running: root.watching
         repeat: true
         triggeredOnStart: true
-        interval: Tuning.SYSTEM_STATS_REFRESH_MS
+        interval: Settings.values.tuning.systemStatsRefreshMs
         onTriggered: root.sample()
     }
 }

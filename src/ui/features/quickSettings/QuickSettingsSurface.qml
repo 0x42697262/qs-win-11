@@ -9,11 +9,10 @@ import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/system/indicators.mjs" as Indicators
 import "../../../domain/catalog/icons.mjs" as Icons
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/catalog/enums.mjs" as Enums
 import "../../../domain/catalog/settingsSchema.mjs" as Schema
-import "../../../domain/catalog/tuning.mjs" as Tuning
+import "../../../domain/catalog/units.mjs" as Units
 
 FocusScope {
     id: root
@@ -21,7 +20,7 @@ FocusScope {
     property string page: UiEnums.QuickSettingsPage.Main
     property bool editing: false
     property string pskNetworkName: ""
-    readonly property var text: Strings.Strings.quickSettings
+    readonly property var text: Settings.values.text.quickSettings
     readonly property list<string> visibleTiles: Settings.values.quickSettings.tiles
     readonly property var tiles: ({
         wifi: {
@@ -122,7 +121,7 @@ FocusScope {
 
                 GridLayout {
                     Layout.alignment: Qt.AlignHCenter
-                    columns: Tuning.QUICK_SETTINGS_COLUMNS
+                    columns: Settings.values.tuning.quickSettingsColumns
                     columnSpacing: Theme.spacing.medium
                     rowSpacing: Theme.spacing.medium
 
@@ -156,7 +155,7 @@ FocusScope {
                     Slider {
                         Layout.fillWidth: true
                         value: Brightness.fraction
-                        step: Tuning.BRIGHTNESS_STEP_PERCENT / Tuning.PERCENT
+                        step: Settings.values.tuning.brightnessStepPercent / Units.PERCENT
                         onMoved: (value) => Brightness.setFraction(value)
                     }
                 }
@@ -174,7 +173,7 @@ FocusScope {
                     Slider {
                         Layout.fillWidth: true
                         value: Audio.muted ? 0 : Audio.volume
-                        step: Tuning.VOLUME_STEP
+                        step: Settings.values.tuning.volumeStep
                         onMoved: (value) => Audio.setVolume(value)
                     }
 

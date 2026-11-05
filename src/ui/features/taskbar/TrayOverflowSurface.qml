@@ -1,10 +1,10 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import Quickshell
 import Quickshell.Services.SystemTray
 import qs.src.ui.theme
 import qs.src.ui.components
-import "../../../domain/catalog/tuning.mjs" as Tuning
 
 FocusScope {
     id: root
@@ -21,7 +21,7 @@ FocusScope {
         Grid {
             id: grid
             anchors.centerIn: parent
-            columns: Tuning.TRAY_OVERFLOW_COLUMNS
+            columns: Settings.values.tuning.trayOverflowColumns
             spacing: Theme.spacing.xxSmall
 
             Repeater {

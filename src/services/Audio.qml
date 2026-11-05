@@ -1,10 +1,10 @@
 pragma Singleton
 import QtQuick
+import qs.src.config
 import Quickshell
 import "../adapters/quickshell/objects.mjs" as QuickshellObjects
 import Quickshell.Services.Pipewire
 import "../domain/numbers.mjs" as Numbers
-import "../domain/catalog/tuning.mjs" as Tuning
 
 Singleton {
     id: root
@@ -26,7 +26,7 @@ Singleton {
     }
 
     function stepVolume(direction: int): void {
-        setVolume(volume + direction * Tuning.VOLUME_STEP);
+        setVolume(volume + direction * Settings.values.tuning.volumeStep);
     }
 
     function toggleMute(): void {

@@ -155,3 +155,503 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | Key | Type | Default | Allowed | Description |
 |---|---|---|---|---|
 | `experimental.hoverThumbnails` | boolean | `false` |  | Unfinished feature. May misbehave. See docs/flags.md. |
+| `experimental.unboundedValues` | boolean | `false` |  | Ignore minimum and maximum limits on every value. Values outside the safe range can break the shell; that is on you. |
+
+## sizes
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `sizes.spacing.xxSmall` | integer | `2` | 0 to 4096 | Spacing step in pixels, before scale. |
+| `sizes.spacing.xSmall` | integer | `4` | 0 to 4096 | Spacing step in pixels, before scale. |
+| `sizes.spacing.small` | integer | `8` | 0 to 4096 | Spacing step in pixels, before scale. |
+| `sizes.spacing.medium` | integer | `12` | 0 to 4096 | Spacing step in pixels, before scale. |
+| `sizes.spacing.large` | integer | `16` | 0 to 4096 | Spacing step in pixels, before scale. |
+| `sizes.spacing.xLarge` | integer | `24` | 0 to 4096 | Spacing step in pixels, before scale. |
+| `sizes.spacing.xxLarge` | integer | `32` | 0 to 4096 | Spacing step in pixels, before scale. |
+| `sizes.spacing.xxxLarge` | integer | `48` | 0 to 4096 | Spacing step in pixels, before scale. |
+| `sizes.radius.control` | integer | `4` | 0 to 4096 | Corner radius in pixels, before scale. |
+| `sizes.radius.overlay` | integer | `8` | 0 to 4096 | Corner radius in pixels, before scale. |
+| `sizes.radius.round` | integer | `999` | 0 to 4096 | Corner radius in pixels, before scale. |
+| `sizes.font.caption` | integer | `12` | 0 to 4096 | Font size in pixels, before scale. |
+| `sizes.font.body` | integer | `14` | 0 to 4096 | Font size in pixels, before scale. |
+| `sizes.font.bodyLarge` | integer | `18` | 0 to 4096 | Font size in pixels, before scale. |
+| `sizes.font.subtitle` | integer | `20` | 0 to 4096 | Font size in pixels, before scale. |
+| `sizes.font.title` | integer | `28` | 0 to 4096 | Font size in pixels, before scale. |
+| `sizes.font.titleLarge` | integer | `40` | 0 to 4096 | Font size in pixels, before scale. |
+| `sizes.font.display` | integer | `96` | 0 to 4096 | Font size in pixels, before scale. |
+| `sizes.icon.small` | integer | `12` | 0 to 4096 | Icon size in pixels, before scale. |
+| `sizes.icon.medium` | integer | `16` | 0 to 4096 | Icon size in pixels, before scale. |
+| `sizes.icon.large` | integer | `20` | 0 to 4096 | Icon size in pixels, before scale. |
+| `sizes.icon.xLarge` | integer | `24` | 0 to 4096 | Icon size in pixels, before scale. |
+| `sizes.icon.appTile` | integer | `32` | 0 to 4096 | Icon size in pixels, before scale. |
+| `sizes.icon.hero` | integer | `48` | 0 to 4096 | Icon size in pixels, before scale. |
+| `sizes.control.taskbarHeight` | integer | `48` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.taskbarButton` | integer | `40` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.taskbarIcon` | integer | `24` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.activeIndicatorWidth` | integer | `16` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.openIndicatorWidth` | integer | `6` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.indicatorHeight` | integer | `3` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.buttonHeight` | integer | `32` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.toggleWidth` | integer | `40` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.toggleHeight` | integer | `20` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.toggleKnob` | integer | `12` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.toggleKnobPressed` | integer | `14` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.sliderTrack` | integer | `4` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.sliderThumb` | integer | `20` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.sliderThumbInner` | integer | `12` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.sliderThumbInnerPressed` | integer | `10` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.sliderThumbInnerHover` | integer | `14` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.quickTileWidth` | integer | `96` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.quickTileHeight` | integer | `48` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.focusStroke` | integer | `2` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.stroke` | integer | `1` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.flyoutWidth` | integer | `360` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.startMenuWidth` | integer | `640` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.startMenuHeight` | integer | `720` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.calendarCell` | integer | `40` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.toastWidth` | integer | `364` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.osdWidth` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.osdHeight` | integer | `46` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.widgetsWidth` | integer | `760` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.sessionButton` | integer | `120` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.taskViewCard` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.contextMenuWidth` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.avatar` | integer | `32` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.avatarLarge` | integer | `96` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.startTileWidth` | integer | `96` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.startTileHeight` | integer | `84` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.startFooterHeight` | integer | `64` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.searchResultsWidth` | integer | `280` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.mediaArt` | integer | `64` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.clusterIconSpacing` | integer | `6` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.listMaxHeight` | integer | `320` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.notificationListHeight` | integer | `420` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.notificationImage` | integer | `48` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.toastStackSpacing` | integer | `8` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.lockFieldWidth` | integer | `296` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.taskViewCardHeight` | integer | `140` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.workspaceCard` | integer | `160` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.altTabCard` | integer | `160` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.widgetCard` | integer | `340` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.forecastDay` | integer | `56` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.settingsWindowWidth` | integer | `1000` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.settingsWindowHeight` | integer | `700` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.settingsSidebar` | integer | `260` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.settingsControl` | integer | `280` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.settingsTextField` | integer | `200` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.swatch` | integer | `24` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.snapPreviewWidth` | integer | `120` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.snapPreviewHeight` | integer | `72` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.thumbnailWidth` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.thumbnailHeight` | integer | `140` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.showDesktopWidth` | integer | `8` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.clockWidth` | integer | `88` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.trayIcon` | integer | `16` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.trayCell` | integer | `32` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.fontWeight.regular` | integer | `400` | 1 to 1000 | Font weight (100 thin to 900 black). |
+| `sizes.fontWeight.semibold` | integer | `600` | 1 to 1000 | Font weight (100 thin to 900 black). |
+| `sizes.fontWeight.bold` | integer | `700` | 1 to 1000 | Font weight (100 thin to 900 black). |
+
+## motion
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `motion.durations.fast` | integer | `83` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.normal` | integer | `167` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.slow` | integer | `250` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.slower` | integer | `333` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.durations.reduced` | integer | `1` | 0 to 60000 | Animation duration in milliseconds. |
+| `motion.easing.decelerate.x1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.decelerate.y1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.decelerate.x2` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.decelerate.y2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.pointToPoint.x1` | number | `0.55` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.pointToPoint.y1` | number | `0.55` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.pointToPoint.x2` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.pointToPoint.y2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.accelerate.x1` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.accelerate.y1` | integer | `0` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.accelerate.x2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.easing.accelerate.y2` | integer | `1` | -2 to 3 | Cubic bezier control point of the easing curve. |
+| `motion.slideDistance.flyout` | integer | `40` | 0 to 4096 | Distance a surface slides in from, in pixels. |
+
+## effects
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `effects.pressScale` | number | `0.88` | 0 to 4 | Icon scale while pressed. |
+| `effects.dimOpacity` | number | `0.6` | 0 to 1 | Opacity of the idle dim layer. |
+| `effects.elevation.flyoutShadowRadius` | integer | `32` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.flyoutShadowOffset` | integer | `8` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.flyoutShadowAlpha` | number | `0.28` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.accentShades.darkModeMixWithWhite` | number | `0.45` | 0 to 1 | How accent variants are derived from the accent color. |
+| `effects.accentShades.lightModeMixWithBlack` | number | `0.15` | 0 to 1 | How accent variants are derived from the accent color. |
+| `effects.accentShades.hoverAlpha` | number | `0.9` | 0 to 1 | How accent variants are derived from the accent color. |
+| `effects.accentShades.pressedAlpha` | number | `0.8` | 0 to 1 | How accent variants are derived from the accent color. |
+| `effects.accentShades.disabledAlpha` | number | `0.3` | 0 to 1 | How accent variants are derived from the accent color. |
+
+## colors
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `colors.dark.micaBase` | color | `"#ff202020"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.taskbarBackground` | color | `"#db1c1c1c"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.flyoutBackground` | color | `"#ed2c2c2c"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.cardBackground` | color | `"#0dffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.cardBackgroundSecondary` | color | `"#08ffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.smokeOverlay` | color | `"#4d000000"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.textPrimary` | color | `"#ffffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.textSecondary` | color | `"#c8ffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.textTertiary` | color | `"#8bffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.textDisabled` | color | `"#5dffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.subtleFillHover` | color | `"#0fffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.subtleFillPressed` | color | `"#0bffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.controlFill` | color | `"#0fffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.controlFillHover` | color | `"#15ffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.controlFillPressed` | color | `"#08ffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.controlFillDisabled` | color | `"#0bffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.controlStrongFill` | color | `"#8bffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.controlStroke` | color | `"#12ffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.controlStrongStroke` | color | `"#8bffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.cardStroke` | color | `"#1a000000"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.surfaceStroke` | color | `"#66757575"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.divider` | color | `"#15ffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.focusStroke` | color | `"#ffffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.success` | color | `"#ff6ccb5f"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.caution` | color | `"#fffce100"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.critical` | color | `"#ffff99a4"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.attention` | color | `"#ffff9e5c"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.micaBase` | color | `"#fff3f3f3"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.taskbarBackground` | color | `"#dbeeeeee"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.flyoutBackground` | color | `"#edfcfcfc"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.cardBackground` | color | `"#b3ffffff"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.cardBackgroundSecondary` | color | `"#80f6f6f6"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.smokeOverlay` | color | `"#4d000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.textPrimary` | color | `"#e4000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.textSecondary` | color | `"#9b000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.textTertiary` | color | `"#72000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.textDisabled` | color | `"#5c000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.subtleFillHover` | color | `"#0a000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.subtleFillPressed` | color | `"#06000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.controlFill` | color | `"#b3ffffff"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.controlFillHover` | color | `"#80f9f9f9"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.controlFillPressed` | color | `"#4df9f9f9"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.controlFillDisabled` | color | `"#4df9f9f9"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.controlStrongFill` | color | `"#72000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.controlStroke` | color | `"#0f000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.controlStrongStroke` | color | `"#72000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.cardStroke` | color | `"#0f000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.surfaceStroke` | color | `"#66757575"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.divider` | color | `"#14000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.focusStroke` | color | `"#e4000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.success` | color | `"#ff0f7b0f"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.caution` | color | `"#ff9d5d00"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.critical` | color | `"#ffc42b1c"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.attention` | color | `"#ffc35a00"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.accentMixLight` | color | `"#ffffff"` |  | Color the accent is mixed with in dark mode. |
+| `colors.accentMixDark` | color | `"#000000"` |  | Color the accent is mixed with in light mode. |
+| `colors.dim` | color | `"#000000"` |  | Color of the idle dim layer. |
+
+## tuning
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `tuning.capabilityProbeTimeoutMs` | integer | `3000` | 100 to 60000 | How long the startup capability probe may run. (ms) |
+| `tuning.compositorResyncIntervalMs` | integer | `30000` | 1000 to 3600000 | How often the window list is fully resynced with the compositor. (ms) |
+| `tuning.osdVisibleMs` | integer | `1500` | 100 to 60000 | How long the volume/brightness pill stays on screen. (ms) |
+| `tuning.osdStartupQuietMs` | integer | `2000` | 0 to 60000 | No on-screen display during this time after start. (ms) |
+| `tuning.volumeStep` | number | `0.05` | 0.01 to 1 | Volume change per step (scroll, IPC, media keys). (fraction) |
+| `tuning.brightnessStepPercent` | integer | `5` | 1 to 100 | Brightness change per step. (%) |
+| `tuning.searchResultLimit` | integer | `8` | 1 to 100 | Search results shown. (count) |
+| `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
+| `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid. (count) |
+| `tuning.startRecommendedLimit` | integer | `6` | 0 to 50 | Recommended files shown in Start. (count) |
+| `tuning.startRecommendedColumns` | integer | `2` | 1 to 6 | Columns in Start's Recommended list. (count) |
+| `tuning.trayOverflowColumns` | integer | `4` | 1 to 20 | Columns in the tray overflow flyout. (count) |
+| `tuning.quickSettingsColumns` | integer | `3` | 1 to 10 | Columns of Quick Settings tiles. (count) |
+| `tuning.networkListLimit` | integer | `12` | 1 to 100 | Wi-Fi networks listed. (count) |
+| `tuning.altTabColumns` | integer | `6` | 1 to 20 | Columns in the Alt+Tab switcher. (count) |
+| `tuning.taskViewColumns` | integer | `4` | 1 to 20 | Columns in Task View. (count) |
+| `tuning.weatherRefreshMs` | integer | `1800000` | 60000 to 86400000 | How often weather is refreshed. (ms) |
+| `tuning.weatherRequestTimeoutMs` | integer | `8000` | 500 to 120000 | Timeout for weather and location requests. (ms) |
+| `tuning.weatherDebounceMs` | integer | `500` | 0 to 10000 | Wait after a location change before fetching weather. (ms) |
+| `tuning.locationCacheMs` | integer | `21600000` | 0 to 604800000 | How long an automatic location is reused. (ms) |
+| `tuning.geoclueTimeoutSeconds` | integer | `10` | 1 to 120 | How long GeoClue may take to find a location. (s) |
+| `tuning.systemStatsRefreshMs` | integer | `2000` | 100 to 60000 | CPU and memory sampling interval while widgets are open. (ms) |
+| `tuning.brightnessPollMs` | integer | `1000` | 100 to 60000 | Backlight polling interval. (ms) |
+| `tuning.batteryAlertHysteresisPercent` | integer | `2` | 0 to 50 | Battery must rise this much above the low level before alerting again. (%) |
+| `tuning.lockFailureCooldownMs` | integer | `2000` | 0 to 60000 | Pause after a wrong password. (ms) |
+| `tuning.lockClockTopDivisor` | integer | `6` | 1 to 20 | Lock clock sits at screen height divided by this. (factor) |
+| `tuning.autoHideRevealPixels` | integer | `2` | 1 to 50 | Height of the edge strip that reveals an auto-hidden taskbar. (px) |
+| `tuning.autoHideDelayMs` | integer | `400` | 0 to 10000 | Delay before an auto-hidden taskbar hides. (ms) |
+| `tuning.tooltipDelayMs` | integer | `600` | 0 to 10000 | Hover time before a tooltip appears. (ms) |
+| `tuning.toastStackLimit` | integer | `3` | 1 to 20 | Notification banners shown at once. (count) |
+| `tuning.notificationBodyLines` | integer | `3` | 1 to 50 | Lines of body text before a notification is cut off. (count) |
+| `tuning.settingsNumberStep` | number | `0.05` | 0.001 to 1 | Step for decimal sliders in the Settings app. (fraction) |
+| `tuning.snapGapPixels` | integer | `8` | 0 to 200 | Gap around snapped windows. (px) |
+| `tuning.scoreExactName` | integer | `100` | 0 to 1000 | Search score when the query equals an app name. (score) |
+| `tuning.scoreNamePrefix` | integer | `80` | 0 to 1000 | Search score when an app name starts with the query. (score) |
+| `tuning.scoreWordPrefix` | integer | `60` | 0 to 1000 | Search score when a word in the name starts with the query. (score) |
+| `tuning.scoreNameContains` | integer | `40` | 0 to 1000 | Search score when the name contains the query. (score) |
+| `tuning.scoreGenericName` | integer | `25` | 0 to 1000 | Search score when the generic name contains the query. (score) |
+| `tuning.scoreKeyword` | integer | `20` | 0 to 1000 | Search score when a keyword or id matches. (score) |
+
+## text
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `text.time.monthNames` | textList | `January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December` |  | List of texts shown in the shell. |
+| `text.time.weekdayNames` | textList | `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` |  | List of texts shown in the shell. |
+| `text.time.weekdayInitials` | textList | `Su`, `Mo`, `Tu`, `We`, `Th`, `Fr`, `Sa` |  | List of texts shown in the shell. |
+| `text.time.morning` | text | `"AM"` |  | Text shown in the shell. |
+| `text.time.evening` | text | `"PM"` |  | Text shown in the shell. |
+| `text.time.hoursShort` | text | `"h"` |  | Text shown in the shell. |
+| `text.time.minutesShort` | text | `"min"` |  | Text shown in the shell. |
+| `text.time.now` | text | `"Now"` |  | Text shown in the shell. |
+| `text.time.minutesAgo` | text | `"{count}m ago"` |  | Text shown in the shell. |
+| `text.time.hoursAgo` | text | `"{count}h ago"` |  | Text shown in the shell. |
+| `text.time.daysAgo` | text | `"{count}d ago"` |  | Text shown in the shell. |
+| `text.notifications.title` | text | `"Notifications"` |  | Text shown in the shell. |
+| `text.notifications.clearAll` | text | `"Clear all"` |  | Text shown in the shell. |
+| `text.notifications.empty` | text | `"No new notifications"` |  | Text shown in the shell. |
+| `text.notifications.doNotDisturb` | text | `"Do not disturb"` |  | Text shown in the shell. |
+| `text.notifications.today` | text | `"Today"` |  | Text shown in the shell. |
+| `text.notifications.dismiss` | text | `"Dismiss"` |  | Text shown in the shell. |
+| `text.shell.name` | text | `"qs-win-11"` |  | Text shown in the shell. |
+| `text.gallery.componentGallery` | text | `"Component gallery"` |  | Text shown in the shell. |
+| `text.gallery.standard` | text | `"Standard"` |  | Text shown in the shell. |
+| `text.gallery.accent` | text | `"Accent"` |  | Text shown in the shell. |
+| `text.gallery.subtle` | text | `"Subtle"` |  | Text shown in the shell. |
+| `text.gallery.disabled` | text | `"Disabled"` |  | Text shown in the shell. |
+| `text.gallery.wifi` | text | `"Wi-Fi"` |  | Text shown in the shell. |
+| `text.gallery.bluetooth` | text | `"Bluetooth"` |  | Text shown in the shell. |
+| `text.gallery.airplaneMode` | text | `"Airplane mode"` |  | Text shown in the shell. |
+| `text.gallery.energySaver` | text | `"Energy saver"` |  | Text shown in the shell. |
+| `text.gallery.typeHereToSearch` | text | `"Type here to search"` |  | Text shown in the shell. |
+| `text.gallery.documents` | text | `"Documents"` |  | Text shown in the shell. |
+| `text.gallery.folder` | text | `"Folder"` |  | Text shown in the shell. |
+| `text.gallery.selectedItem` | text | `"Selected item"` |  | Text shown in the shell. |
+| `text.gallery.informational` | text | `"Informational"` |  | Text shown in the shell. |
+| `text.gallery.someSettingsWereIgnored` | text | `"Some settings were ignored."` |  | Text shown in the shell. |
+| `text.gallery.warning` | text | `"Warning"` |  | Text shown in the shell. |
+| `text.gallery.batteryIsLow` | text | `"Battery is low."` |  | Text shown in the shell. |
+| `text.gallery.error` | text | `"Error"` |  | Text shown in the shell. |
+| `text.gallery.couldNotConnect` | text | `"Could not connect."` |  | Text shown in the shell. |
+| `text.gallery.captionText` | text | `"Caption text"` |  | Text shown in the shell. |
+| `text.gallery.accentText` | text | `"Accent text"` |  | Text shown in the shell. |
+| `text.taskbar.start` | text | `"Start"` |  | Text shown in the shell. |
+| `text.taskbar.search` | text | `"Search"` |  | Text shown in the shell. |
+| `text.taskbar.taskView` | text | `"Task View"` |  | Text shown in the shell. |
+| `text.taskbar.widgets` | text | `"Widgets"` |  | Text shown in the shell. |
+| `text.taskbar.showHiddenIcons` | text | `"Show hidden icons"` |  | Text shown in the shell. |
+| `text.taskbar.pinToTaskbar` | text | `"Pin to taskbar"` |  | Text shown in the shell. |
+| `text.taskbar.unpinFromTaskbar` | text | `"Unpin from taskbar"` |  | Text shown in the shell. |
+| `text.taskbar.newWindow` | text | `"New window"` |  | Text shown in the shell. |
+| `text.taskbar.closeWindow` | text | `"Close window"` |  | Text shown in the shell. |
+| `text.taskbar.closeAllWindows` | text | `"Close all windows"` |  | Text shown in the shell. |
+| `text.start.searchPlaceholder` | text | `"Search for apps, settings, and documents"` |  | Text shown in the shell. |
+| `text.start.pinned` | text | `"Pinned"` |  | Text shown in the shell. |
+| `text.start.allApps` | text | `"All apps"` |  | Text shown in the shell. |
+| `text.start.back` | text | `"Back"` |  | Text shown in the shell. |
+| `text.start.recommended` | text | `"Recommended"` |  | Text shown in the shell. |
+| `text.start.noRecommended` | text | `"Files you open recently show up here."` |  | Text shown in the shell. |
+| `text.start.pinToStart` | text | `"Pin to Start"` |  | Text shown in the shell. |
+| `text.start.unpinFromStart` | text | `"Unpin from Start"` |  | Text shown in the shell. |
+| `text.start.power` | text | `"Power"` |  | Text shown in the shell. |
+| `text.search.bestMatch` | text | `"Best match"` |  | Text shown in the shell. |
+| `text.search.apps` | text | `"Apps"` |  | Text shown in the shell. |
+| `text.search.open` | text | `"Open"` |  | Text shown in the shell. |
+| `text.search.noResults` | text | `"No results"` |  | Text shown in the shell. |
+| `text.search.typeToSearch` | text | `"Type to search apps"` |  | Text shown in the shell. |
+| `text.search.application` | text | `"App"` |  | Text shown in the shell. |
+| `text.session.lock` | text | `"Lock"` |  | Text shown in the shell. |
+| `text.session.sleep` | text | `"Sleep"` |  | Text shown in the shell. |
+| `text.session.hibernate` | text | `"Hibernate"` |  | Text shown in the shell. |
+| `text.session.signOut` | text | `"Sign out"` |  | Text shown in the shell. |
+| `text.session.restart` | text | `"Restart"` |  | Text shown in the shell. |
+| `text.session.shutDown` | text | `"Shut down"` |  | Text shown in the shell. |
+| `text.quickLink.installedApps` | text | `"Installed apps"` |  | Text shown in the shell. |
+| `text.quickLink.powerOptions` | text | `"Power options"` |  | Text shown in the shell. |
+| `text.quickLink.networkConnections` | text | `"Network connections"` |  | Text shown in the shell. |
+| `text.quickLink.terminal` | text | `"Terminal"` |  | Text shown in the shell. |
+| `text.quickLink.taskManager` | text | `"Task Manager"` |  | Text shown in the shell. |
+| `text.quickLink.settings` | text | `"Settings"` |  | Text shown in the shell. |
+| `text.quickLink.fileExplorer` | text | `"File Explorer"` |  | Text shown in the shell. |
+| `text.quickLink.search` | text | `"Search"` |  | Text shown in the shell. |
+| `text.quickLink.desktop` | text | `"Desktop"` |  | Text shown in the shell. |
+| `text.quickSettings.wifi` | text | `"Wi-Fi"` |  | Text shown in the shell. |
+| `text.quickSettings.bluetooth` | text | `"Bluetooth"` |  | Text shown in the shell. |
+| `text.quickSettings.airplane` | text | `"Airplane mode"` |  | Text shown in the shell. |
+| `text.quickSettings.energySaver` | text | `"Energy saver"` |  | Text shown in the shell. |
+| `text.quickSettings.nightLight` | text | `"Night light"` |  | Text shown in the shell. |
+| `text.quickSettings.darkMode` | text | `"Dark mode"` |  | Text shown in the shell. |
+| `text.quickSettings.doNotDisturb` | text | `"Do not disturb"` |  | Text shown in the shell. |
+| `text.quickSettings.notConnected` | text | `"Not connected"` |  | Text shown in the shell. |
+| `text.quickSettings.connected` | text | `"Connected"` |  | Text shown in the shell. |
+| `text.quickSettings.connect` | text | `"Connect"` |  | Text shown in the shell. |
+| `text.quickSettings.disconnect` | text | `"Disconnect"` |  | Text shown in the shell. |
+| `text.quickSettings.secured` | text | `"Secured"` |  | Text shown in the shell. |
+| `text.quickSettings.open` | text | `"Open"` |  | Text shown in the shell. |
+| `text.quickSettings.paired` | text | `"Paired"` |  | Text shown in the shell. |
+| `text.quickSettings.noDevices` | text | `"No paired devices"` |  | Text shown in the shell. |
+| `text.quickSettings.noNetworks` | text | `"No networks found"` |  | Text shown in the shell. |
+| `text.quickSettings.moreWifiSettings` | text | `"More Wi-Fi settings"` |  | Text shown in the shell. |
+| `text.quickSettings.moreBluetoothSettings` | text | `"More Bluetooth settings"` |  | Text shown in the shell. |
+| `text.quickSettings.moreSoundSettings` | text | `"More volume settings"` |  | Text shown in the shell. |
+| `text.quickSettings.soundOutput` | text | `"Sound output"` |  | Text shown in the shell. |
+| `text.quickSettings.volume` | text | `"Volume"` |  | Text shown in the shell. |
+| `text.quickSettings.brightness` | text | `"Brightness"` |  | Text shown in the shell. |
+| `text.quickSettings.charging` | text | `"charging"` |  | Text shown in the shell. |
+| `text.quickSettings.remaining` | text | `"remaining"` |  | Text shown in the shell. |
+| `text.quickSettings.editTiles` | text | `"Edit quick settings"` |  | Text shown in the shell. |
+| `text.quickSettings.done` | text | `"Done"` |  | Text shown in the shell. |
+| `text.quickSettings.nothingPlaying` | text | `"Nothing playing"` |  | Text shown in the shell. |
+| `text.osd.microphoneMuted` | text | `"Microphone muted"` |  | Text shown in the shell. |
+| `text.osd.microphoneOn` | text | `"Microphone on"` |  | Text shown in the shell. |
+| `text.power.batteryLowTitle` | text | `"Battery low"` |  | Text shown in the shell. |
+| `text.power.batteryLowBody` | text | `"{count}% remaining. Plug in your PC."` |  | Text shown in the shell. |
+| `text.power.batteryCriticalTitle` | text | `"Battery critically low"` |  | Text shown in the shell. |
+| `text.power.batteryCriticalBody` | text | `"{count}% remaining. Your PC will act on the critical battery setting now."` |  | Text shown in the shell. |
+| `text.power.appName` | text | `"Power"` |  | Text shown in the shell. |
+| `text.lock.password` | text | `"Password"` |  | Text shown in the shell. |
+| `text.lock.incorrect` | text | `"The password is incorrect. Try again."` |  | Text shown in the shell. |
+| `text.lock.unlock` | text | `"Unlock"` |  | Text shown in the shell. |
+| `text.lock.pressAnyKey` | text | `"Press any key or click to unlock"` |  | Text shown in the shell. |
+| `text.lock.failed` | text | `"Sign-in failed. Try again."` |  | Text shown in the shell. |
+| `text.sessionMenu.cancel` | text | `"Cancel"` |  | Text shown in the shell. |
+| `text.taskView.noWindows` | text | `"No open windows"` |  | Text shown in the shell. |
+| `text.taskView.desktop` | text | `"Desktop {count}"` |  | Text shown in the shell. |
+| `text.taskView.close` | text | `"Close"` |  | Text shown in the shell. |
+| `text.weather.clear` | text | `"Clear"` |  | Text shown in the shell. |
+| `text.weather.partlyCloudy` | text | `"Partly cloudy"` |  | Text shown in the shell. |
+| `text.weather.cloudy` | text | `"Cloudy"` |  | Text shown in the shell. |
+| `text.weather.fog` | text | `"Fog"` |  | Text shown in the shell. |
+| `text.weather.rain` | text | `"Rain"` |  | Text shown in the shell. |
+| `text.weather.snow` | text | `"Snow"` |  | Text shown in the shell. |
+| `text.weather.thunderstorms` | text | `"Thunderstorms"` |  | Text shown in the shell. |
+| `text.weather.unknown` | text | `"Unknown"` |  | Text shown in the shell. |
+| `text.widgets.title` | text | `"Widgets"` |  | Text shown in the shell. |
+| `text.widgets.weather` | text | `"Weather"` |  | Text shown in the shell. |
+| `text.widgets.noLocation` | text | `"Set a location in Settings or allow location lookup to see weather."` |  | Text shown in the shell. |
+| `text.widgets.weatherFailed` | text | `"Couldn't load weather. It will retry automatically."` |  | Text shown in the shell. |
+| `text.widgets.approximateLocation` | text | `"Approximate location"` |  | Text shown in the shell. |
+| `text.widgets.system` | text | `"System"` |  | Text shown in the shell. |
+| `text.widgets.cpu` | text | `"CPU"` |  | Text shown in the shell. |
+| `text.widgets.memory` | text | `"Memory"` |  | Text shown in the shell. |
+| `text.widgets.media` | text | `"Media"` |  | Text shown in the shell. |
+| `text.widgets.calendar` | text | `"Calendar"` |  | Text shown in the shell. |
+| `text.widgets.high` | text | `"H"` |  | Text shown in the shell. |
+| `text.widgets.low` | text | `"L"` |  | Text shown in the shell. |
+| `text.snap.title` | text | `"Snap layouts"` |  | Text shown in the shell. |
+| `text.snap.hint` | text | `"Pick a zone for the focused window."` |  | Text shown in the shell. |
+| `text.settingsProblems.title` | text | `"Some settings were ignored"` |  | Text shown in the shell. |
+| `text.settingsProblems.body` | text | `"Invalid values fell back to their defaults:"` |  | Text shown in the shell. |
+| `text.settingsApp.title` | text | `"Settings"` |  | Text shown in the shell. |
+| `text.settingsApp.search` | text | `"Find a setting"` |  | Text shown in the shell. |
+| `text.settingsApp.reset` | text | `"Reset"` |  | Text shown in the shell. |
+| `text.settingsApp.apply` | text | `"Apply"` |  | Text shown in the shell. |
+| `text.settingsApp.about` | text | `"About"` |  | Text shown in the shell. |
+| `text.settingsApp.version` | text | `"Version"` |  | Text shown in the shell. |
+| `text.settingsApp.compositor` | text | `"Compositor"` |  | Text shown in the shell. |
+| `text.settingsApp.settingsFile` | text | `"Settings file"` |  | Text shown in the shell. |
+| `text.settingsApp.features` | text | `"Features"` |  | Text shown in the shell. |
+| `text.settingsApp.featureOn` | text | `"On"` |  | Text shown in the shell. |
+| `text.settingsApp.featureOff` | text | `"Off"` |  | Text shown in the shell. |
+| `text.settingsApp.noResults` | text | `"No settings match your search."` |  | Text shown in the shell. |
+| `text.settingsApp.changedOnly` | text | `"Changed only"` |  | Text shown in the shell. |
+| `text.settingsApp.defaultValue` | text | `"Default"` |  | Text shown in the shell. |
+| `text.settingsApp.unboundedTitle` | text | `"Unbounded values are on"` |  | Text shown in the shell. |
+| `text.settingsApp.unboundedBody` | text | `"Minimum and maximum limits are ignored. Extreme values can freeze or break the shell; turn experimental.unboundedValues off to restore the limits."` |  | Text shown in the shell. |
+| `text.settingsApp.reasons.disabledByUser` | text | `"Turned off in settings"` |  | Text shown in the shell. |
+| `text.settingsApp.reasons.missingCapability` | text | `"Missing requirement"` |  | Text shown in the shell. |
+| `text.settingsApp.reasons.busNameTaken` | text | `"Another program already provides it"` |  | Text shown in the shell. |
+| `text.settingsApp.reasons.dependencyOff` | text | `"Needs another feature that is off"` |  | Text shown in the shell. |
+
+## icons
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `icons.grid` | text | `"fluent:grid_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.search` | text | `"fluent:search_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.squareMultiple` | text | `"fluent:square_multiple_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.weatherSunny` | text | `"fluent:weather_sunny_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.weatherPartlyCloudyDay` | text | `"fluent:weather_partly_cloudy_day_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.weatherCloudy` | text | `"fluent:weather_cloudy_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.weatherRain` | text | `"fluent:weather_rain_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.weatherSnow` | text | `"fluent:weather_snow_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.weatherThunderstorm` | text | `"fluent:weather_thunderstorm_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.weatherFog` | text | `"fluent:weather_fog_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.weatherMoon` | text | `"fluent:weather_moon_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.chevronUp` | text | `"fluent:chevron_up_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.chevronDown` | text | `"fluent:chevron_down_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.chevronLeft` | text | `"fluent:chevron_left_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.chevronRight` | text | `"fluent:chevron_right_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.wifi1` | text | `"fluent:wifi_1_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.wifi2` | text | `"fluent:wifi_2_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.wifi3` | text | `"fluent:wifi_3_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.wifi4` | text | `"fluent:wifi_4_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.wifiOff` | text | `"fluent:wifi_off_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.wifiWarning` | text | `"fluent:wifi_warning_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.bluetooth` | text | `"fluent:bluetooth_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.bluetoothDisabled` | text | `"fluent:bluetooth_disabled_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.bluetoothConnected` | text | `"fluent:bluetooth_connected_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.airplane` | text | `"fluent:airplane_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.leafOne` | text | `"fluent:leaf_one_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.darkTheme` | text | `"fluent:dark_theme_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.alert` | text | `"fluent:alert_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.alertSnooze` | text | `"fluent:alert_snooze_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.speaker0` | text | `"fluent:speaker_0_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.speaker1` | text | `"fluent:speaker_1_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.speaker2` | text | `"fluent:speaker_2_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.speakerMute` | text | `"fluent:speaker_mute_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.micOff` | text | `"fluent:mic_off_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.brightnessHigh` | text | `"fluent:brightness_high_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery0` | text | `"fluent:battery_0_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery1` | text | `"fluent:battery_1_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery2` | text | `"fluent:battery_2_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery3` | text | `"fluent:battery_3_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery4` | text | `"fluent:battery_4_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery5` | text | `"fluent:battery_5_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery6` | text | `"fluent:battery_6_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery7` | text | `"fluent:battery_7_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery8` | text | `"fluent:battery_8_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery9` | text | `"fluent:battery_9_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.battery10` | text | `"fluent:battery_10_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.batteryCharge` | text | `"fluent:battery_charge_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.settings` | text | `"fluent:settings_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.power` | text | `"fluent:power_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.lockClosed` | text | `"fluent:lock_closed_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.signOut` | text | `"fluent:sign_out_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.arrowClockwise` | text | `"fluent:arrow_clockwise_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.edit` | text | `"fluent:edit_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.dismiss` | text | `"fluent:dismiss_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.calendarLtr` | text | `"fluent:calendar_ltr_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.play` | text | `"fluent:play_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.pause` | text | `"fluent:pause_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.previous` | text | `"fluent:previous_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.next` | text | `"fluent:next_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.person` | text | `"fluent:person_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.apps` | text | `"fluent:apps_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.document` | text | `"fluent:document_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.folder` | text | `"fluent:folder_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.window` | text | `"fluent:window_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.desktop` | text | `"fluent:desktop_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.checkmark` | text | `"fluent:checkmark_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.plugConnected` | text | `"fluent:plug_connected_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.keyboard` | text | `"fluent:keyboard_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.keyboardShiftUppercase` | text | `"fluent:keyboard_shift_uppercase_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.pin` | text | `"fluent:pin_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.pinOff` | text | `"fluent:pin_off_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.open` | text | `"fluent:open_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.delete` | text | `"fluent:delete_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.moreHorizontal` | text | `"fluent:more_horizontal_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.globe` | text | `"fluent:globe_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.info` | text | `"fluent:info_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.warning` | text | `"fluent:warning_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.errorCircle` | text | `"fluent:error_circle_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.arrowLeft` | text | `"fluent:arrow_left_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.layoutColumnTwo` | text | `"fluent:layout_column_two_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.layoutCellFour` | text | `"fluent:layout_cell_four_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.temperature` | text | `"fluent:temperature_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.drop` | text | `"fluent:drop_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.board` | text | `"fluent:board_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |

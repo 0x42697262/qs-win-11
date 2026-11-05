@@ -1,11 +1,10 @@
 pragma Singleton
 import QtQuick
+import qs.src.config
 import Quickshell
 import qs.src.adapters.compositor
 import "../domain/compositor/windows.mjs" as WindowRules
-import "../domain/catalog/tuning.mjs" as Tuning
 import "../domain/snap/placement.mjs" as Placement
-import "../domain/catalog/snapLayouts.mjs" as SnapCatalog
 
 Singleton {
     id: root
@@ -49,7 +48,7 @@ Singleton {
     function placeActive(zone: var): void {
         const monitor = adapter ? adapter.focusedMonitorGeometry() : null;
         if (monitor && activeWindowId !== "") {
-            adapter.placeWindow(activeWindowId, Placement.placementRect(monitor, zone, SnapCatalog.SNAP_GAP_PIXELS));
+            adapter.placeWindow(activeWindowId, Placement.placementRect(monitor, zone, Settings.values.tuning.snapGapPixels));
         }
     }
 
@@ -60,7 +59,7 @@ Singleton {
     Timer {
         running: root.adapter !== null
         repeat: true
-        interval: Tuning.COMPOSITOR_RESYNC_INTERVAL_MS
+        interval: Settings.values.tuning.compositorResyncIntervalMs
         onTriggered: root.adapter.resync()
     }
 }

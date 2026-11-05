@@ -1,8 +1,8 @@
 pragma Singleton
 import QtQuick
+import qs.src.config
 import Quickshell
 import "../domain/catalog/uiEnums.mjs" as UiEnums
-import "../domain/catalog/tuning.mjs" as Tuning
 
 Singleton {
     id: root
@@ -21,13 +21,13 @@ Singleton {
 
     Timer {
         id: hideTimer
-        interval: Tuning.OSD_VISIBLE_MS
+        interval: Settings.values.tuning.osdVisibleMs
         onTriggered: root.kind = UiEnums.OsdKind.None
     }
 
     Timer {
         running: true
-        interval: Tuning.OSD_STARTUP_QUIET_MS
+        interval: Settings.values.tuning.osdStartupQuietMs
         onTriggered: root.ready = true
     }
 

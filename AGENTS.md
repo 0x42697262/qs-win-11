@@ -23,13 +23,15 @@ ipc/ + ui/ events  ->  services/  ->  domain/ (pure .mjs)  ->  adapters/
 
 1. **No explanatory comments.** Names explain *what*; `docs/` explains *why*.
    JSDoc type annotations are allowed. (hard rule)
-2. **No magic values.** Numbers, colors, user text, icon glyphs, log event
-   names, IPC names and settings live only in `src/domain/catalog/`
-   (`tuning.mjs`, `tokens.mjs`, `strings.mjs`, `icons.mjs`, `logEvents.mjs`,
-   `ipcCatalog.mjs`, `settingsSchema.mjs`, `shellDataSchema.mjs`,
-   `features.mjs`). Elsewhere only `0`, `1`, `2`, `-1` and `0.5` appear as
-   literals. Setting labels and descriptions live with their schema entry.
-   (hard rule)
+2. **Every value is a setting.** Sizes, colors, motion, effects, tuning,
+   user text and icons have their defaults, bounds and units in
+   `src/domain/catalog/` (`tokens.mjs`, `tuning.mjs`, `strings.mjs`,
+   `icons.mjs`, …). `valueDefinitions.mjs` turns them into settings, and code
+   reads the resolved value from `Settings.values` or `Theme`, never from the
+   catalogs (`check-banned` enforces this). Identifiers that are not
+   preferences (D-Bus names, IPC names, file formats, unit conversions in
+   `units.mjs`) stay constants. Elsewhere only `0`, `1`, `2`, `-1` and `0.5`
+   appear as literals. (hard rule)
 3. **No single-character names**, including loop counters and lambda
    parameters. (hard rule)
 4. **One source of truth.** Every piece of state has one owner listed in
@@ -143,4 +145,8 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Settings app | About page | Version, compositor, settings file path, and each feature with its effective state and off reason |
 | Snap layouts | On Hyprland, focus a window, `ipc call snap open`, pick a zone | Window floats and fills that zone of the focused monitor's usable area (taskbar excluded) with small gaps; log shows `window.placed` with `usingLua` |
 | Hover thumbnails | `settings set experimental.hoverThumbnails true`, hover a running app | Live previews of its windows above the taskbar |
+| Values | `settings set text.taskbar.start Begin`, `settings set icons.grid fluent:apps_24`, `settings set colors.dark.taskbarBackground '#ff3a1f5d'` | Tooltip, Start icon and taskbar color change live; `settings reset <key>` restores each |
+| Values | `settings set tuning.brightnessPollMs 1` | Rejected (`false`); with `experimental.unboundedValues` on it is accepted and Settings shows the red warning |
+| Icons | `settings set icons.search 'image:/path/to/icon.svg'` or `'font:Material Symbols Rounded:e8b6'` | That icon renders from the file or font |
+| Settings app | "Changed only" | Lists only overridden keys, each with its default and a reset button |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

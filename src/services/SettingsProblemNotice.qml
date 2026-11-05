@@ -1,7 +1,6 @@
 import QtQuick
 import Quickshell
 import qs.src.config
-import "../domain/catalog/strings.mjs" as Strings
 import "../domain/catalog/system.mjs" as SystemCatalog
 import "../domain/catalog/features.mjs" as FeatureCatalog
 
@@ -15,8 +14,8 @@ Scope {
             return;
         }
         notified = true;
-        const text = Strings.Strings.settingsProblems;
-        Quickshell.execDetached([SystemCatalog.SystemBinary.NotifySend, "-a", Strings.Strings.settingsApp.title, text.title, `${text.body} ${Settings.problems.map(problem => problem.key).join(", ")}`]);
+        const text = Settings.values.text.settingsProblems;
+        Quickshell.execDetached([SystemCatalog.SystemBinary.NotifySend, "-a", Settings.values.text.settingsApp.title, text.title, `${text.body} ${Settings.problems.map(problem => problem.key).join(", ")}`]);
     }
 
     Connections {

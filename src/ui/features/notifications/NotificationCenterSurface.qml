@@ -1,18 +1,18 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import Quickshell.Services.Notifications
 import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/catalog/icons.mjs" as Icons
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 
 FocusScope {
     id: root
 
-    readonly property var text: Strings.Strings.notifications
+    readonly property var text: Settings.values.text.notifications
 
     ColumnLayout {
         anchors.right: parent.right

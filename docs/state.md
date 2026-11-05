@@ -6,7 +6,7 @@ Each row has exactly one owner. Everything else reads it or derives from it.
 |---|---|---|
 | User preferences, including Quick Settings tiles | `settings.json` via `Settings` | Read only; writes go through `Settings.update()` |
 | Shell data: pinned apps, do not disturb, cached location | `state.json` via `ShellData` | Read only; writes through the owning service |
-| Theme colors, sizes, motion | Derived in `Theme` from settings and the clock | Never stored |
+| Theme colors, sizes, motion, icons, text | `settings.json` overrides on top of catalog defaults; `Theme` and `IconSet` derive what the UI draws | UI never imports the catalogs |
 | Effective features | Derived by `resolveFeatures()` in `Features` | UI reads `Features` only |
 | Windows, workspaces, monitors | Compositor, through the active `CompositorAdapter` | Mirrored by events; resynced on reconnect |
 | Most recently used window order | `WindowsService` (no system owns it) | Read only |

@@ -11,8 +11,9 @@ test("identifiers humanize", () => {
 
 test("definitions filter by section, or by query across sections", () => {
     assert.ok(visibleDefinitions(SETTING_DEFINITIONS, "taskbar", "").every((definition) => definition.section === "taskbar"));
-    const found = visibleDefinitions(SETTING_DEFINITIONS, "taskbar", "accent");
-    assert.deepEqual(found.map((definition) => definition.key), ["theme.accentColor"]);
+    const found = visibleDefinitions(SETTING_DEFINITIONS, "taskbar", "accent color");
+    assert.ok(found.some((definition) => definition.key === "theme.accentColor"));
+    assert.ok(found.every((definition) => `${definition.label} ${definition.description} ${definition.key}`.toLowerCase().includes("accent color")));
 });
 
 test("sections keep schema order", () => {

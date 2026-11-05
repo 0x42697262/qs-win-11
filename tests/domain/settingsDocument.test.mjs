@@ -76,3 +76,25 @@ test("array-like sequences from QML are accepted as text lists", () => {
     assert.ok(result.accepted);
     assert.deepEqual(result.overrides["startMenu.initialPinned"], ["foot"]);
 });
+
+test("value settings cover tuning, sizes, colors, text and icons", () => {
+    const resolved = resolveDocument("", schema);
+    assert.equal(valueAt(resolved.values, "tuning.osdVisibleMs"), 1500);
+    assert.equal(valueAt(resolved.values, "sizes.spacing.small"), 8);
+    assert.equal(valueAt(resolved.values, "colors.dark.textPrimary"), "#ffffffff");
+    assert.equal(valueAt(resolved.values, "text.taskbar.start"), "Start");
+    assert.equal(valueAt(resolved.values, "icons.grid"), "fluent:grid_24");
+});
+
+test("out-of-range values are rejected unless unbounded values are on", () => {
+    const bounded = resolveDocument(JSON.stringify({ values: { tuning: { brightnessPollMs: 1 } } }), schema);
+    assert.equal(valueAt(bounded.values, "tuning.brightnessPollMs"), 1000);
+    const unbounded = resolveDocument(JSON.stringify({ values: { tuning: { brightnessPollMs: 1 }, experimental: { unboundedValues: true } } }), schema);
+    assert.equal(valueAt(unbounded.values, "tuning.brightnessPollMs"), 1);
+    assert.equal(unbounded.problems.length, 0);
+});
+
+test("colors accept alpha", () => {
+    assert.ok(applyOverride({}, "colors.dark.micaBase", "#80112233", schema).accepted);
+    assert.equal(applyOverride({}, "colors.dark.micaBase", "#12345", schema).accepted, false);
+});

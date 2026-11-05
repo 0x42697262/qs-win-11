@@ -155,6 +155,16 @@ export const Strings = Object.freeze({
         desktop: "Desktop {count}",
         close: "Close",
     }),
+    weather: Object.freeze({
+        clear: "Clear",
+        partlyCloudy: "Partly cloudy",
+        cloudy: "Cloudy",
+        fog: "Fog",
+        rain: "Rain",
+        snow: "Snow",
+        thunderstorms: "Thunderstorms",
+        unknown: "Unknown",
+    }),
     widgets: Object.freeze({
         title: "Widgets",
         weather: "Weather",
@@ -190,6 +200,10 @@ export const Strings = Object.freeze({
         featureOn: "On",
         featureOff: "Off",
         noResults: "No settings match your search.",
+        changedOnly: "Changed only",
+        defaultValue: "Default",
+        unboundedTitle: "Unbounded values are on",
+        unboundedBody: "Minimum and maximum limits are ignored. Extreme values can freeze or break the shell; turn experimental.unboundedValues off to restore the limits.",
         reasons: Object.freeze({
             disabledByUser: "Turned off in settings",
             missingCapability: "Missing requirement",

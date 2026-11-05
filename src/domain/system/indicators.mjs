@@ -1,8 +1,8 @@
 import { BATTERY_LEVEL_ICONS, VOLUME_LEVEL_ICONS, WIFI_STRENGTH_ICONS, Icon } from "../catalog/icons.mjs";
-import { PERCENT, SECONDS_PER_MINUTE } from "../catalog/tuning.mjs";
+import { PERCENT, SECONDS_PER_MINUTE } from "../catalog/units.mjs";
 import { formatDuration } from "../time/format.mjs";
 
-/** @typedef {import("../catalog/icons.mjs").Glyph} Glyph */
+/** @typedef {string} Glyph */
 
 /**
  * @param {readonly Glyph[]} icons
@@ -66,14 +66,15 @@ export function toPercent(fraction) {
  * @param {boolean} charging
  * @param {number} secondsLeft
  * @param {{ charging: string, remaining: string }} text
+ * @param {import("../time/format.mjs").TimeText} timeText
  * @returns {string}
  */
-export function batteryStatusText(fraction, charging, secondsLeft, text) {
+export function batteryStatusText(fraction, charging, secondsLeft, text, timeText) {
     const percent = `${toPercent(fraction)}%`;
     if (charging) {
         return `${percent} · ${text.charging}`;
     }
-    return secondsLeft > 0 ? `${percent} · ${formatDuration(secondsLeft / SECONDS_PER_MINUTE)} ${text.remaining}` : percent;
+    return secondsLeft > 0 ? `${percent} · ${formatDuration(secondsLeft / SECONDS_PER_MINUTE, timeText)} ${text.remaining}` : percent;
 }
 
 /**

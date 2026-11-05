@@ -8,7 +8,6 @@ import "../domain/weather/weather.mjs" as WeatherRules
 import "../domain/catalog/weatherCodes.mjs" as WeatherCatalog
 import "../domain/catalog/shellDataSchema.mjs" as ShellDataSchema
 import "../domain/catalog/logEvents.mjs" as LogEvents
-import "../domain/catalog/tuning.mjs" as Tuning
 
 Singleton {
     id: root
@@ -18,7 +17,7 @@ Singleton {
     property list<string> failedSources: []
     property bool resolving: false
     property bool geoclueAvailable: geoclueCheck.loaded
-    readonly property string source: WeatherRules.nextLocationSource(weatherSettings, cached, Clock.nowMs, Tuning.LOCATION_CACHE_MS, geoclueAvailable, failedSources)
+    readonly property string source: WeatherRules.nextLocationSource(weatherSettings, cached, Clock.nowMs, Settings.values.tuning.locationCacheMs, geoclueAvailable, failedSources)
     readonly property var location: {
         if (source === WeatherRules.LocationSource.Manual) {
             return { latitude: weatherSettings.manualLatitude, longitude: weatherSettings.manualLongitude, placeName: weatherSettings.manualPlaceName };
@@ -54,7 +53,7 @@ Singleton {
             geoclue.running = true;
         } else if (source === WeatherRules.LocationSource.IpLookup) {
             resolving = true;
-            Http.getJson(WeatherCatalog.WeatherEndpoint.ipLookup, Tuning.WEATHER_REQUEST_TIMEOUT_MS, (error, data) => {
+            Http.getJson(WeatherCatalog.WeatherEndpoint.ipLookup, Settings.values.tuning.weatherRequestTimeoutMs, (error, data) => {
                 resolving = false;
                 const found = error === "" ? WeatherRules.parseIpLookup(data) : null;
                 if (found) {
@@ -75,7 +74,7 @@ Singleton {
 
     Process {
         id: geoclue
-        command: [WeatherCatalog.WeatherEndpoint.geoclueDemo, "-t", String(Tuning.GEOCLUE_TIMEOUT_SECONDS)]
+        command: [WeatherCatalog.WeatherEndpoint.geoclueDemo, "-t", String(Settings.values.tuning.geoclueTimeoutSeconds)]
         stdout: StdioCollector {
             onStreamFinished: {
                 root.resolving = false;

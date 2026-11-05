@@ -1,9 +1,9 @@
 pragma Singleton
 import QtQuick
+import qs.src.config
 import Quickshell
 import Quickshell.Services.UPower
 import "../domain/system/indicators.mjs" as Indicators
-import "../domain/catalog/strings.mjs" as Strings
 
 Singleton {
     readonly property UPowerDevice battery: UPower.displayDevice
@@ -13,7 +13,7 @@ Singleton {
     readonly property bool charging: battery.state === UPowerDeviceState.Charging || battery.state === UPowerDeviceState.FullyCharged || battery.state === UPowerDeviceState.PendingCharge
     readonly property bool onBattery: UPower.onBattery
     readonly property var icon: Indicators.batteryIcon(fraction, charging)
-    readonly property string statusText: Indicators.batteryStatusText(fraction, charging, battery.timeToEmpty, Strings.Strings.quickSettings)
+    readonly property string statusText: Indicators.batteryStatusText(fraction, charging, battery.timeToEmpty, Settings.values.text.quickSettings, Settings.values.text.time)
     readonly property bool powerProfilesAvailable: Capabilities.hasPowerProfiles
     readonly property bool energySaver: powerProfilesAvailable && PowerProfiles.profile === PowerProfile.PowerSaver
     readonly property int profile: PowerProfiles.profile

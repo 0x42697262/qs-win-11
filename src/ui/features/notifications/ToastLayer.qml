@@ -9,13 +9,12 @@ import qs.src.services
 import qs.src.ui.theme
 import "../../../domain/notifications/notifications.mjs" as NotificationRules
 import "../../../domain/catalog/compositor.mjs" as CompositorCatalog
-import "../../../domain/catalog/tuning.mjs" as Tuning
 import "../../../domain/shell/surfaces.mjs" as Surfaces
 
 PanelWindow {
     id: root
 
-    readonly property list<Notification> shown: Notifications.toasts.slice(0, Tuning.TOAST_STACK_LIMIT)
+    readonly property list<Notification> shown: Notifications.toasts.slice(0, Settings.values.tuning.toastStackLimit)
 
     screen: Quickshell.screens.find(candidate => candidate.name === ShellState.defaultScreenName()) ?? Quickshell.screens[0]
     visible: shown.length > 0 && ShellState.openSurface !== Surfaces.Surface.NotificationCenter

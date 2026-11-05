@@ -13,6 +13,7 @@ const VERSION_FIELD = "schemaVersion";
 const KEY_SEPARATOR = ".";
 const DOCUMENT_INDENT = 4;
 const ROOT_KEY = "";
+const UNBOUNDED_KEY = "experimental.unboundedValues";
 
 /**
  * @param {unknown} candidate
@@ -121,6 +122,7 @@ export function resolveDocument(text, schema) {
     const storedValues = isPlainObject(parsed[VALUES_FIELD]) ? flattenValues(parsed[VALUES_FIELD]) : {};
     const overrides = migrate(storedValues, storedVersion, schema);
     const definitionsByKey = new Map(schema.definitions.map((definition) => [definition.key, definition]));
+    const unbounded = overrides[UNBOUNDED_KEY] === true;
     /** @type {Record<string, unknown>} */
     const values = {};
     /** @type {Record<string, unknown>} */
@@ -134,7 +136,7 @@ export function resolveDocument(text, schema) {
             problems.push({ key, problem: ValidationProblem.UnknownKey, value: JSON.stringify(value) });
             continue;
         }
-        const result = validateSettingValue(definition, value);
+        const result = validateSettingValue(definition, value, unbounded);
         if (result.valid) {
             values[key] = result.value;
             validOverrides[key] = result.value;
@@ -162,7 +164,7 @@ export function applyOverride(overrides, key, value, schema) {
     if (!definition) {
         return { accepted: false, problem: ValidationProblem.UnknownKey };
     }
-    const result = validateSettingValue(definition, value);
+    const result = validateSettingValue(definition, value, overrides[UNBOUNDED_KEY] === true);
     if (!result.valid) {
         return { accepted: false, problem: result.problem };
     }

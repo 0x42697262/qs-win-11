@@ -5,10 +5,8 @@ import qs.src.config
 import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/catalog/icons.mjs" as Icons
-import "../../../domain/catalog/tuning.mjs" as Tuning
 
 FocusScope {
     id: root
@@ -22,20 +20,20 @@ FocusScope {
     function tileMenuItems(appId: string): list<var> {
         return [
             Apps.isPinnedToStart(appId)
-                ? { text: Strings.Strings.start.unpinFromStart, icon: Icons.Icon.pinOff, action: () => Apps.toggleStartPin(appId) }
-                : { text: Strings.Strings.start.pinToStart, icon: Icons.Icon.pin, action: () => Apps.toggleStartPin(appId) },
+                ? { text: Settings.values.text.start.unpinFromStart, icon: Icons.Icon.pinOff, action: () => Apps.toggleStartPin(appId) }
+                : { text: Settings.values.text.start.pinToStart, icon: Icons.Icon.pin, action: () => Apps.toggleStartPin(appId) },
             Apps.isPinnedToTaskbar(appId)
-                ? { text: Strings.Strings.taskbar.unpinFromTaskbar, icon: Icons.Icon.pinOff, action: () => Apps.toggleTaskbarPin(appId) }
-                : { text: Strings.Strings.taskbar.pinToTaskbar, icon: Icons.Icon.pin, action: () => Apps.toggleTaskbarPin(appId) },
+                ? { text: Settings.values.text.taskbar.unpinFromTaskbar, icon: Icons.Icon.pinOff, action: () => Apps.toggleTaskbarPin(appId) }
+                : { text: Settings.values.text.taskbar.pinToTaskbar, icon: Icons.Icon.pin, action: () => Apps.toggleTaskbarPin(appId) },
         ];
     }
 
     readonly property list<var> powerItems: [
-        { text: Strings.Strings.session.lock, icon: Icons.Icon.lockClosed, action: () => { ShellState.close(); Session.lock(); } },
-        { text: Strings.Strings.session.signOut, icon: Icons.Icon.signOut, action: () => { ShellState.close(); Session.signOut(); } },
-        { text: Strings.Strings.session.sleep, icon: Icons.Icon.weatherMoon, action: () => { ShellState.close(); Session.suspend(); } },
-        { text: Strings.Strings.session.shutDown, icon: Icons.Icon.power, action: () => { ShellState.close(); Session.powerOff(); } },
-        { text: Strings.Strings.session.restart, icon: Icons.Icon.arrowClockwise, action: () => { ShellState.close(); Session.restart(); } },
+        { text: Settings.values.text.session.lock, icon: Icons.Icon.lockClosed, action: () => { ShellState.close(); Session.lock(); } },
+        { text: Settings.values.text.session.signOut, icon: Icons.Icon.signOut, action: () => { ShellState.close(); Session.signOut(); } },
+        { text: Settings.values.text.session.sleep, icon: Icons.Icon.weatherMoon, action: () => { ShellState.close(); Session.suspend(); } },
+        { text: Settings.values.text.session.shutDown, icon: Icons.Icon.power, action: () => { ShellState.close(); Session.powerOff(); } },
+        { text: Settings.values.text.session.restart, icon: Icons.Icon.arrowClockwise, action: () => { ShellState.close(); Session.restart(); } },
     ]
 
     StartPanelPlacement {
@@ -51,7 +49,7 @@ FocusScope {
                 Layout.margins: Theme.spacing.xLarge
                 Layout.bottomMargin: Theme.spacing.large
                 focus: true
-                placeholder: Strings.Strings.start.searchPlaceholder
+                placeholder: Settings.values.text.start.searchPlaceholder
                 onAccepted: results.launchSelected()
                 onNavigateDown: results.moveSelection(1)
                 onNavigateUp: results.moveSelection(-1)
@@ -69,17 +67,17 @@ FocusScope {
 
                     RowLayout {
                         Layout.fillWidth: true
-                        Label { text: Strings.Strings.start.pinned; variant: UiEnums.TextVariant.BodyStrong; Layout.fillWidth: true }
-                        Button { text: Strings.Strings.start.allApps; icon: Icons.Icon.chevronRight; onActivated: root.showAllApps = true }
+                        Label { text: Settings.values.text.start.pinned; variant: UiEnums.TextVariant.BodyStrong; Layout.fillWidth: true }
+                        Button { text: Settings.values.text.start.allApps; icon: Icons.Icon.chevronRight; onActivated: root.showAllApps = true }
                     }
 
                     GridLayout {
-                        columns: Tuning.START_PINNED_COLUMNS
+                        columns: Settings.values.tuning.startPinnedColumns
                         columnSpacing: 0
                         rowSpacing: 0
 
                         Repeater {
-                            model: Apps.startPinned.slice(0, Tuning.START_PINNED_COLUMNS * Tuning.START_PINNED_ROWS)
+                            model: Apps.startPinned.slice(0, Settings.values.tuning.startPinnedColumns * Settings.values.tuning.startPinnedRows)
 
                             AppTile {
                                 required property string modelData
@@ -96,17 +94,17 @@ FocusScope {
                         Layout.fillWidth: true
                         spacing: Theme.spacing.small
 
-                        Label { text: Strings.Strings.start.recommended; variant: UiEnums.TextVariant.BodyStrong }
+                        Label { text: Settings.values.text.start.recommended; variant: UiEnums.TextVariant.BodyStrong }
 
                         Label {
                             visible: RecentFiles.files.length === 0
-                            text: Strings.Strings.start.noRecommended
+                            text: Settings.values.text.start.noRecommended
                             tone: UiEnums.TextTone.Secondary
                         }
 
                         GridLayout {
                             Layout.fillWidth: true
-                            columns: Tuning.START_RECOMMENDED_COLUMNS
+                            columns: Settings.values.tuning.startRecommendedColumns
                             columnSpacing: Theme.spacing.small
                             rowSpacing: Theme.spacing.xxSmall
 
@@ -134,8 +132,8 @@ FocusScope {
 
                     RowLayout {
                         Layout.fillWidth: true
-                        Label { text: Strings.Strings.start.allApps; variant: UiEnums.TextVariant.BodyStrong; Layout.fillWidth: true }
-                        Button { text: Strings.Strings.start.back; icon: Icons.Icon.chevronLeft; onActivated: root.showAllApps = false }
+                        Label { text: Settings.values.text.start.allApps; variant: UiEnums.TextVariant.BodyStrong; Layout.fillWidth: true }
+                        Button { text: Settings.values.text.start.back; icon: Icons.Icon.chevronLeft; onActivated: root.showAllApps = false }
                     }
 
                     ListView {

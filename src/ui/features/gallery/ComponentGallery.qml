@@ -1,4 +1,5 @@
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
@@ -6,7 +7,6 @@ import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/catalog/icons.mjs" as Icons
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
-import "../../../domain/catalog/strings.mjs" as Strings
 
 PanelWindow {
     id: root
@@ -28,14 +28,14 @@ PanelWindow {
         anchors.margins: Theme.spacing.xxLarge
         spacing: Theme.spacing.large
 
-        Label { text: Strings.Strings.gallery.componentGallery; variant: UiEnums.TextVariant.Title }
+        Label { text: Settings.values.text.gallery.componentGallery; variant: UiEnums.TextVariant.Title }
 
         RowLayout {
             spacing: Theme.spacing.medium
-            Button { text: Strings.Strings.gallery.standard }
-            Button { text: Strings.Strings.gallery.accent; variant: UiEnums.ButtonVariant.Accent }
-            Button { text: Strings.Strings.gallery.subtle; variant: UiEnums.ButtonVariant.Subtle; icon: Icons.Icon.settings }
-            Button { text: Strings.Strings.gallery.disabled; enabledState: false }
+            Button { text: Settings.values.text.gallery.standard }
+            Button { text: Settings.values.text.gallery.accent; variant: UiEnums.ButtonVariant.Accent }
+            Button { text: Settings.values.text.gallery.subtle; variant: UiEnums.ButtonVariant.Subtle; icon: Icons.Icon.settings }
+            Button { text: Settings.values.text.gallery.disabled; enabledState: false }
             IconButton { icon: Icons.Icon.power }
             IconButton { icon: Icons.Icon.edit; variant: UiEnums.ButtonVariant.Standard }
             ToggleSwitch { checked: root.toggleState; onToggled: (checked) => root.toggleState = checked }
@@ -45,10 +45,10 @@ PanelWindow {
 
         RowLayout {
             spacing: Theme.spacing.medium
-            QuickTile { icon: Icons.Icon.wifi1; label: Strings.Strings.gallery.wifi; checked: true; hasDetails: true }
-            QuickTile { icon: Icons.Icon.bluetooth; label: Strings.Strings.gallery.bluetooth; checked: false; hasDetails: true }
-            QuickTile { icon: Icons.Icon.airplane; label: Strings.Strings.gallery.airplaneMode; checked: false }
-            QuickTile { icon: Icons.Icon.leafOne; label: Strings.Strings.gallery.energySaver; checked: true; enabledState: false }
+            QuickTile { icon: Icons.Icon.wifi1; label: Settings.values.text.gallery.wifi; checked: true; hasDetails: true }
+            QuickTile { icon: Icons.Icon.bluetooth; label: Settings.values.text.gallery.bluetooth; checked: false; hasDetails: true }
+            QuickTile { icon: Icons.Icon.airplane; label: Settings.values.text.gallery.airplaneMode; checked: false }
+            QuickTile { icon: Icons.Icon.leafOne; label: Settings.values.text.gallery.energySaver; checked: true; enabledState: false }
         }
 
         RowLayout {
@@ -63,9 +63,9 @@ PanelWindow {
                     anchors.fill: parent
                     anchors.margins: Theme.spacing.large
                     spacing: Theme.spacing.small
-                    SearchBox { Layout.fillWidth: true; placeholder: Strings.Strings.gallery.typeHereToSearch }
-                    ListItem { Layout.fillWidth: true; icon: Icons.Icon.folder; title: Strings.Strings.gallery.documents; subtitle: Strings.Strings.gallery.folder }
-                    ListItem { Layout.fillWidth: true; icon: Icons.Icon.document; title: Strings.Strings.gallery.selectedItem; selected: true }
+                    SearchBox { Layout.fillWidth: true; placeholder: Settings.values.text.gallery.typeHereToSearch }
+                    ListItem { Layout.fillWidth: true; icon: Icons.Icon.folder; title: Settings.values.text.gallery.documents; subtitle: Settings.values.text.gallery.folder }
+                    ListItem { Layout.fillWidth: true; icon: Icons.Icon.document; title: Settings.values.text.gallery.selectedItem; selected: true }
                     Divider { Layout.fillWidth: true }
                     ProgressBar { Layout.fillWidth: true; value: 0.5 }
                 }
@@ -74,9 +74,9 @@ PanelWindow {
             ColumnLayout {
                 spacing: Theme.spacing.small
                 Layout.preferredWidth: Theme.size.flyoutWidth
-                InfoBar { Layout.fillWidth: true; title: Strings.Strings.gallery.informational; message: Strings.Strings.gallery.someSettingsWereIgnored }
-                InfoBar { Layout.fillWidth: true; severity: UiEnums.InfoSeverity.Warning; title: Strings.Strings.gallery.warning; message: Strings.Strings.gallery.batteryIsLow }
-                InfoBar { Layout.fillWidth: true; severity: UiEnums.InfoSeverity.Error; title: Strings.Strings.gallery.error; message: Strings.Strings.gallery.couldNotConnect }
+                InfoBar { Layout.fillWidth: true; title: Settings.values.text.gallery.informational; message: Settings.values.text.gallery.someSettingsWereIgnored }
+                InfoBar { Layout.fillWidth: true; severity: UiEnums.InfoSeverity.Warning; title: Settings.values.text.gallery.warning; message: Settings.values.text.gallery.batteryIsLow }
+                InfoBar { Layout.fillWidth: true; severity: UiEnums.InfoSeverity.Error; title: Settings.values.text.gallery.error; message: Settings.values.text.gallery.couldNotConnect }
             }
 
             Card {
@@ -85,8 +85,8 @@ PanelWindow {
                 ColumnLayout {
                     anchors.centerIn: parent
                     FluentIcon { glyph: Icons.Icon.weatherPartlyCloudyDay; size: Theme.iconSize.hero; Layout.alignment: Qt.AlignHCenter }
-                    Label { text: Strings.Strings.gallery.captionText; variant: UiEnums.TextVariant.Caption; tone: UiEnums.TextTone.Secondary; Layout.alignment: Qt.AlignHCenter }
-                    Label { text: Strings.Strings.gallery.accentText; tone: UiEnums.TextTone.Accent; Layout.alignment: Qt.AlignHCenter }
+                    Label { text: Settings.values.text.gallery.captionText; variant: UiEnums.TextVariant.Caption; tone: UiEnums.TextTone.Secondary; Layout.alignment: Qt.AlignHCenter }
+                    Label { text: Settings.values.text.gallery.accentText; tone: UiEnums.TextTone.Accent; Layout.alignment: Qt.AlignHCenter }
                 }
             }
         }

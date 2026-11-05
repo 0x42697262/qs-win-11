@@ -7,9 +7,7 @@ import qs.src.ui.components
 import "../../../domain/settings/definitions.mjs" as Definitions
 import "../../../domain/settings/presentation.mjs" as Presentation
 import "../../../domain/settings/document.mjs" as Document
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/numbers.mjs" as Numbers
-import "../../../domain/catalog/tuning.mjs" as Tuning
 
 Loader {
     id: root
@@ -74,7 +72,7 @@ Loader {
                 step: root.definition.type === root.type.Integer ? 1 / parent.span : 0
                 onMoved: (fraction) => {
                     const raw = root.definition.minimum + fraction * parent.span;
-                    root.commit(root.definition.type === root.type.Integer ? Math.round(raw) : Numbers.roundToStep(raw, Tuning.SETTINGS_NUMBER_STEP));
+                    root.commit(root.definition.type === root.type.Integer ? Math.round(raw) : Numbers.roundToStep(raw, Settings.values.tuning.settingsNumberStep));
                 }
             }
 
@@ -125,7 +123,7 @@ Loader {
             }
 
             Button {
-                text: Strings.Strings.settingsApp.apply
+                text: Settings.values.text.settingsApp.apply
                 onActivated: field.accepted()
             }
         }

@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { TIME_TEXT } from "./defaults.mjs";
 import { groupByApp, idsBeyondLimit, relativeTime, toastDurationMs, Urgency } from "../../src/domain/notifications/notifications.mjs";
 import { addMonths, daysInMonth, monthGrid, weekdayHeaders } from "../../src/domain/time/calendar.mjs";
 
@@ -40,5 +41,5 @@ test("calendar grid has six weeks and respects the first weekday", () => {
     assert.deepEqual(mondayFirst[0], { year: 2026, month: 9, day: 26, inMonth: false });
     assert.equal(daysInMonth(2024, 1), 29);
     assert.deepEqual(addMonths(2026, 0, -1), { year: 2025, month: 11 });
-    assert.deepEqual(weekdayHeaders("monday").slice(0, 2), ["Mo", "Tu"]);
+    assert.deepEqual(weekdayHeaders("monday", TIME_TEXT.weekdayInitials).slice(0, 2), ["Mo", "Tu"]);
 });

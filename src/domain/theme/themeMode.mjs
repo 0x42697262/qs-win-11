@@ -1,5 +1,5 @@
 import { ResolvedThemeMode, ThemeMode } from "../catalog/enums.mjs";
-import { MINUTES_PER_HOUR } from "../catalog/tuning.mjs";
+import { MINUTES_PER_HOUR } from "../catalog/units.mjs";
 
 const TIME_SEPARATOR = ":";
 

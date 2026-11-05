@@ -16,14 +16,16 @@ export function humanize(identifier) {
  * @param {readonly Definition[]} definitions
  * @param {string} section
  * @param {string} query
+ * @param {Readonly<Record<string, unknown>> | null} [onlyChangedIn]
  * @returns {Definition[]}
  */
-export function visibleDefinitions(definitions, section, query) {
+export function visibleDefinitions(definitions, section, query, onlyChangedIn = null) {
     const needle = query.trim().toLowerCase();
+    const changed = onlyChangedIn ? definitions.filter((definition) => definition.key in onlyChangedIn) : definitions.slice();
     if (needle !== "") {
-        return definitions.filter((definition) => `${definition.label} ${definition.description} ${definition.key}`.toLowerCase().includes(needle));
+        return changed.filter((definition) => `${definition.label} ${definition.description} ${definition.key}`.toLowerCase().includes(needle));
     }
-    return definitions.filter((definition) => definition.section === section);
+    return onlyChangedIn ? changed : changed.filter((definition) => definition.section === section);
 }
 
 /**

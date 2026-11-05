@@ -5,6 +5,7 @@ import {
     CompositorKind, CriticalBatteryAction, FirstDayOfWeek, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode,
 } from "./enums.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
+import { VALUE_DEFINITIONS } from "../settings/valueDefinitions.mjs";
 
 export const SETTINGS_SCHEMA_VERSION = 1;
 const CLOCK_TIME_PATTERN = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -109,6 +110,7 @@ export const SETTING_DEFINITIONS = Object.freeze([
 
     ...featureDefinitions,
     ...experimentalDefinitions,
+    ...VALUE_DEFINITIONS,
 ]);
 
 export const SettingKey = Object.freeze({

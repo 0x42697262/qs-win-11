@@ -9,6 +9,7 @@ import "../../../domain/catalog/settingsSchema.mjs" as Schema
 import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/features/resolveFeatures.mjs" as FeatureRules
+import "../../../domain/catalog/icons.mjs" as Icons
 
 Card {
     id: root
@@ -17,6 +18,7 @@ Card {
     readonly property bool isFeature: modelData.section === Schema.SettingsSection.Features
     readonly property string featureName: isFeature ? Presentation.featureNameFromKey(modelData.key) : ""
     readonly property var offReason: isFeature ? Features.resolved.offReasons[featureName] : undefined
+    readonly property bool overridden: Settings.isOverridden(modelData.key)
     readonly property bool problem: Settings.problems.some(candidate => candidate.key === modelData.key)
 
     Layout.fillWidth: true
@@ -48,8 +50,16 @@ Card {
             }
 
             Label {
+                Layout.fillWidth: true
+                visible: root.overridden
+                text: `${Settings.values.text.settingsApp.defaultValue}: ${JSON.stringify(root.modelData.defaultValue)}`
+                variant: UiEnums.TextVariant.Caption
+                tone: UiEnums.TextTone.Tertiary
+            }
+
+            Label {
                 visible: root.isFeature && root.offReason !== undefined && root.offReason.reason !== FeatureRules.FeatureOffReason.DisabledByUser
-                text: root.offReason ? `${Strings.Strings.settingsApp.reasons[root.offReason.reason]}${root.offReason.detail !== "" ? Strings.DETAIL_SEPARATOR + root.offReason.detail : ""}` : ""
+                text: root.offReason ? `${Settings.values.text.settingsApp.reasons[root.offReason.reason]}${root.offReason.detail !== "" ? Strings.DETAIL_SEPARATOR + root.offReason.detail : ""}` : ""
                 variant: UiEnums.TextVariant.Caption
                 tone: UiEnums.TextTone.Critical
             }
@@ -57,6 +67,13 @@ Card {
 
         SettingControl {
             definition: root.modelData
+        }
+
+        IconButton {
+            visible: root.overridden
+            icon: Icons.Icon.arrowClockwise
+            toolTip: Settings.values.text.settingsApp.reset
+            onActivated: Settings.reset(root.modelData.key)
         }
     }
 }

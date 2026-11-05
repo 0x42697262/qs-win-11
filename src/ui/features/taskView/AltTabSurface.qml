@@ -1,10 +1,10 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
-import "../../../domain/catalog/tuning.mjs" as Tuning
 
 FocusScope {
     id: root
@@ -23,7 +23,7 @@ FocusScope {
         GridLayout {
             id: grid
             anchors.centerIn: parent
-            columns: Math.min(Tuning.ALT_TAB_COLUMNS, Math.max(1, WindowSwitcher.windows.length))
+            columns: Math.min(Settings.values.tuning.altTabColumns, Math.max(1, WindowSwitcher.windows.length))
             columnSpacing: Theme.spacing.medium
             rowSpacing: Theme.spacing.medium
 

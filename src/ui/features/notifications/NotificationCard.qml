@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Notifications
@@ -9,9 +10,8 @@ import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/notifications/notifications.mjs" as NotificationRules
 import "../../../domain/catalog/icons.mjs" as Icons
-import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
-import "../../../domain/catalog/tuning.mjs" as Tuning
+import "../../../domain/catalog/units.mjs" as Units
 
 Card {
     id: root
@@ -20,7 +20,7 @@ Card {
     property bool showTime: true
     readonly property bool hovered: hover.hovered
     readonly property list<NotificationAction> actions: QuickshellObjects.toArray(notification.actions)
-    readonly property list<NotificationAction> buttonActions: actions.filter(action => action.identifier !== Tuning.DEFAULT_NOTIFICATION_ACTION)
+    readonly property list<NotificationAction> buttonActions: actions.filter(action => action.identifier !== Units.DEFAULT_NOTIFICATION_ACTION)
     readonly property string appIcon: notification.appIcon !== "" ? Quickshell.iconPath(notification.appIcon, true) : Apps.iconSource(notification.desktopEntry !== "" ? notification.desktopEntry : notification.appName)
 
     signal closeRequested
@@ -35,7 +35,7 @@ Card {
 
     TapHandler {
         onTapped: {
-            const defaultAction = root.actions.find(action => action.identifier === Tuning.DEFAULT_NOTIFICATION_ACTION);
+            const defaultAction = root.actions.find(action => action.identifier === Units.DEFAULT_NOTIFICATION_ACTION);
             if (defaultAction) {
                 defaultAction.invoke();
             }
@@ -70,7 +70,7 @@ Card {
 
             Label {
                 visible: root.showTime
-                text: NotificationRules.relativeTime(Clock.nowMs, Notifications.receivedAt[root.notification.id] ?? Clock.nowMs, Strings.Strings.time)
+                text: NotificationRules.relativeTime(Clock.nowMs, Notifications.receivedAt[root.notification.id] ?? Clock.nowMs, Settings.values.text.time)
                 variant: UiEnums.TextVariant.Caption
                 tone: UiEnums.TextTone.Tertiary
             }
@@ -102,7 +102,7 @@ Card {
                     visible: text !== ""
                     text: root.notification.body
                     wrapMode: Text.Wrap
-                    maximumLineCount: Tuning.NOTIFICATION_BODY_LINES
+                    maximumLineCount: Settings.values.tuning.notificationBodyLines
                     tone: UiEnums.TextTone.Secondary
                 }
             }

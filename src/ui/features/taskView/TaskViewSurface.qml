@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import qs.src.config
 import QtQuick.Layouts
 import qs.src.services
 import qs.src.ui.theme
@@ -7,7 +8,6 @@ import qs.src.ui.components
 import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/features.mjs" as FeatureCatalog
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
-import "../../../domain/catalog/tuning.mjs" as Tuning
 
 FocusScope {
     id: root
@@ -31,13 +31,13 @@ FocusScope {
         Label {
             visible: root.shownWindows.length === 0
             Layout.alignment: Qt.AlignHCenter
-            text: Strings.Strings.taskView.noWindows
+            text: Settings.values.text.taskView.noWindows
             variant: UiEnums.TextVariant.Subtitle
         }
 
         GridLayout {
             Layout.alignment: Qt.AlignHCenter
-            columns: Tuning.TASK_VIEW_COLUMNS
+            columns: Settings.values.tuning.taskViewColumns
             columnSpacing: Theme.spacing.large
             rowSpacing: Theme.spacing.large
 
@@ -83,7 +83,7 @@ FocusScope {
 
                     Label {
                         anchors.centerIn: parent
-                        text: Strings.Strings.taskView.desktop.split(Strings.COUNT_PLACEHOLDER).join(workspace.modelData.name)
+                        text: Settings.values.text.taskView.desktop.split(Strings.COUNT_PLACEHOLDER).join(workspace.modelData.name)
                         variant: workspace.modelData.focused ? UiEnums.TextVariant.BodyStrong : UiEnums.TextVariant.Body
                     }
                 }

@@ -58,11 +58,12 @@ export function parseForecast(payload) {
 
 /**
  * @param {number} code
- * @returns {{ icon: import("../catalog/icons.mjs").Glyph, text: string }}
+ * @param {Readonly<Record<string, string>>} texts
+ * @returns {{ icon: string, text: string }}
  */
-export function describeWeather(code) {
+export function describeWeather(code, texts) {
     const group = WEATHER_CODE_GROUPS.find((candidate) => candidate.codes.includes(code)) ?? UNKNOWN_WEATHER;
-    return { icon: group.icon, text: group.text };
+    return { icon: group.icon, text: texts[group.textKey] ?? group.textKey };
 }
 
 /**
