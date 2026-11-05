@@ -11,12 +11,18 @@ export const SystemBinary = Object.freeze({
     Ddcutil: "ddcutil",
     Hyprctl: "hyprctl",
     Magick: "magick",
+    Cava: "cava",
+    Df: "df",
     Convert: "convert",
 });
 
 export const APP_THEMES_DIRECTORY = "themes";
 export const APP_TEMPLATES_DIRECTORY = "templates";
 export const TEMPLATE_FIND_ARGUMENTS = Object.freeze(["-maxdepth", "1", "-name", "*.tmpl"]);
+
+export const GPU_USAGE_COMMAND = Object.freeze(["sh", "-c", "for file in /sys/class/drm/card*/device/gpu_busy_percent; do [ -r \"$file\" ] && { printf 'amd %s\\n' \"$(cat \"$file\")\"; exit 0; }; done; command -v nvidia-smi >/dev/null 2>&1 && printf 'nvidia %s\\n' \"$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | head -n 1)\"; true"]);
+export const DF_ARGUMENTS = Object.freeze(["-P", "-B1"]);
+export const CAVA_CONFIG_FILE = "qs-win-11-cava.conf";
 
 export const NmcliCommand = Object.freeze({
     list: Object.freeze(["nmcli", "-t", "-f", "NAME,UUID,TYPE,ACTIVE", "connection", "show"]),
@@ -47,6 +53,7 @@ export const SystemPath = Object.freeze({
     OwnProcessStat: "/proc/self/stat",
     ProcStat: "/proc/stat",
     ProcMeminfo: "/proc/meminfo",
+    ProcNetDev: "/proc/net/dev",
     BacklightClass: "/sys/class/backlight",
 });
 

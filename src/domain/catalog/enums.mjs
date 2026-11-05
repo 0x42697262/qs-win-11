@@ -21,4 +21,6 @@ export const QuickTile = Object.freeze({
     StayAwake: "stayAwake",
     GameMode: "gameMode",
 });
+export const PerformanceMetric = Object.freeze({ Cpu: "cpu", Gpu: "gpu", Memory: "memory", Storage: "storage", Network: "network", Battery: "battery" });
+export const ScreenCorner = Object.freeze({ TopLeft: "topLeft", TopRight: "topRight", BottomLeft: "bottomLeft", BottomRight: "bottomRight", Center: "center" });
 export const InputIndicatorMode = Object.freeze({ Auto: "auto", Always: "always", Never: "never" });

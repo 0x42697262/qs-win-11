@@ -2,7 +2,7 @@ import {
     booleanSetting, colorSetting, enumSetting, integerSetting, numberSetting, textListSetting, textSetting,
 } from "../settings/definitions.mjs";
 import {
-    AllAppsView, CompositorKind, CriticalBatteryAction, FirstDayOfWeek, InputIndicatorMode, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
+    AllAppsView, CompositorKind, PerformanceMetric, ScreenCorner, CriticalBatteryAction, FirstDayOfWeek, InputIndicatorMode, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
 } from "./enums.mjs";
 import { APP_THEME_TARGETS } from "./appThemes.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
@@ -31,6 +31,8 @@ export const SettingsSection = Object.freeze({
     Power: "power",
     Idle: "idle",
     Weather: "weather",
+    Widgets: "widgets",
+    DesktopClock: "desktopClock",
     Commands: "commands",
     Features: "features",
     Experimental: "experimental",
@@ -145,6 +147,10 @@ export const SETTING_DEFINITIONS = Object.freeze([
     integerSetting(text(SettingsSection.Idle, "screenOffSeconds", "Turn screen off after", "Seconds of inactivity. 0 turns it off."), 330, 0, 86400),
     integerSetting(text(SettingsSection.Idle, "suspendSeconds", "Sleep after", "Seconds of inactivity. 0 turns it off."), 900, 0, 86400),
 
+    textListSetting(text(SettingsSection.Widgets, "performanceMetrics", "Performance metrics", "Rows in the Performance card, in order. Metrics this PC cannot report hide themselves."), Object.values(PerformanceMetric), Object.values(PerformanceMetric)),
+    textSetting(text(SettingsSection.Widgets, "storagePath", "Storage to watch", "Any path on the disk shown in the Performance card."), "/"),
+    enumSetting(text(SettingsSection.DesktopClock, "position", "Desktop clock position", "Where the desktop clock sits on each screen."), ScreenCorner, ScreenCorner.TopRight),
+    booleanSetting(text(SettingsSection.DesktopClock, "showDate", "Show the date", "Long date under the desktop clock."), true),
     enumSetting(text(SettingsSection.Weather, "unit", "Temperature unit", "Unit for weather."), TemperatureUnit, TemperatureUnit.Celsius),
     enumSetting(text(SettingsSection.Weather, "locationMode", "Location", "Auto tries GeoClue, then an IP lookup if allowed."), LocationMode, LocationMode.Auto),
     booleanSetting(text(SettingsSection.Weather, "allowIpLookup", "Allow IP location lookup", "Sends your IP address to ipwho.is when GeoClue is unavailable."), true),

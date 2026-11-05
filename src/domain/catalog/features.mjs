@@ -27,6 +27,8 @@ export const FeatureName = Object.freeze({
     InputIndicator: "inputIndicator",
     LockKeys: "lockKeys",
     AppTheming: "appTheming",
+    Visualizer: "visualizer",
+    DesktopClock: "desktopClock",
 });
 
 export const ExperimentalFeatureName = Object.freeze({
@@ -49,6 +51,7 @@ export const Capability = Object.freeze({
     DisplayControl: "displayControl",
     KeyboardLayouts: "keyboardLayouts",
     ImageSampling: "imageSampling",
+    AudioVisualizer: "audioVisualizer",
 });
 
 export const BusName = Object.freeze({
@@ -91,6 +94,8 @@ export const FEATURE_DEFAULTS = Object.freeze({
     inputIndicator: true,
     lockKeys: true,
     appTheming: false,
+    visualizer: false,
+    desktopClock: false,
 });
 
 /** @type {Readonly<Record<Feature, FeatureRequirement>>} */
@@ -123,4 +128,6 @@ export const FEATURE_REQUIREMENTS = Object.freeze({
     inputIndicator: { capabilities: [Capability.KeyboardLayouts], dependsOn: [FeatureName.Taskbar] },
     lockKeys: { capabilities: [], dependsOn: [FeatureName.Osd] },
     appTheming: { capabilities: [], dependsOn: [] },
+    visualizer: { capabilities: [Capability.AudioVisualizer], dependsOn: [FeatureName.Widgets] },
+    desktopClock: { capabilities: [], dependsOn: [] },
 });

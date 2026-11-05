@@ -1,5 +1,6 @@
 export const COUNT_PLACEHOLDER = "{count}";
 export const NAME_PLACEHOLDER = "{name}";
+export const Placeholder = Object.freeze({ used: "{used}", total: "{total}", down: "{down}", up: "{up}" });
 export const DETAIL_SEPARATOR = ": ";
 export const SETTINGS_ABOUT_SECTION = "about";
 
@@ -221,6 +222,14 @@ export const Strings = Object.freeze({
         system: "System",
         cpu: "CPU",
         memory: "Memory",
+        performance: "Performance",
+        gpu: "GPU",
+        storage: "Storage",
+        network: "Network",
+        battery: "Battery",
+        usedOf: "{used} of {total}",
+        networkRate: "↓ {down}/s   ↑ {up}/s",
+        byteSuffixes: "B KB MB GB TB",
         media: "Media",
         calendar: "Calendar",
         high: "H",
