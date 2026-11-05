@@ -118,6 +118,6 @@ Item {
         layer.enabled: root.clipContent || root.layered
         radius: root.cornerRadius
         smoothingOverride: Theme.overlaySmoothing
-        color: Theme.colors.textPrimary
+        color: Theme.colors.accent
     }
 }

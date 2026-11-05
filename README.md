@@ -11,12 +11,22 @@ app. Windows and apps stay owned by your compositor and your normal Linux apps.
 
 | | |
 |---|---|
-| ![Start, light](docs/screenshots/start-light.png) | ![Quick Settings](docs/screenshots/quick-settings.png) |
+| ![Start, dark](docs/screenshots/start-dark.png) | ![Start, light](docs/screenshots/start-light.png) |
+| ![Quick Settings, dark](docs/screenshots/quick-settings.png) | ![Quick Settings, light](docs/screenshots/quick-settings-light.png) |
 | ![Notifications and calendar](docs/screenshots/notification-center.png) | ![Widgets](docs/screenshots/widgets.png) |
+| ![Task View](docs/screenshots/task-view.png) | ![Volume OSD](docs/screenshots/osd.png) |
 | ![Settings](docs/screenshots/settings.png) | ![Lock screen](docs/screenshots/lock-screen.png) |
 
-Screenshots come from CI under headless sway, so there is no blur; on Hyprland
-add the layer rules from [docs/hyprland.md](docs/hyprland.md).
+Captured at effects level **Maximum**: Mica (the shell's own blurred
+wallpaper), grain, layered shadows, edge highlight and Apple-style continuous
+corners, over an original generated wallpaper. Every effect can be dialed down
+to battery saver or styled flat; see Settings → Appearance.
+
+Regenerate these with:
+
+```bash
+SCENES_FILE=tools/ci/readme-scenes.txt QS_WIN11_GALLERY= tools/ci/qml-check.sh
+```
 
 ## Features
 
@@ -31,8 +41,11 @@ add the layer rules from [docs/hyprland.md](docs/hyprland.md).
 | Widgets | Weather and forecast, CPU and memory, media, calendar |
 | Settings app | Every setting, generated from the schema, with search and an About page showing why a feature is off |
 
-Light, dark, or auto by time; accent color, scale, transparency and reduced
-motion are all settings.
+Light, dark, or auto by time. Every value is a setting: colors, sizes,
+corners, motion, effects, polling, text and icons; see
+[docs/configuration.md](docs/configuration.md). Effects run from battery saver
+to maximum with a per-effect table, and whole setups export and import as
+profiles.
 
 ## Requirements
 

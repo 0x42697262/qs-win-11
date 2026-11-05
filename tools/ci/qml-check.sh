@@ -4,7 +4,7 @@ set -euo pipefail
 readonly SHELL_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 export SHELL_DIR
 readonly ARTIFACT_DIR="${ARTIFACT_DIR:-$SHELL_DIR/artifacts}"
-readonly SCENES_FILE="$SHELL_DIR/tools/ci/scenes.txt"
+readonly SCENES_FILE="${SCENES_FILE:-$SHELL_DIR/tools/ci/scenes.txt}"
 readonly OUTPUT_RESOLUTION="${OUTPUT_RESOLUTION:-1600x900}"
 readonly LOAD_WAIT_SECONDS="${LOAD_WAIT_SECONDS:-6}"
 readonly SCENE_WAIT_SECONDS="${SCENE_WAIT_SECONDS:-1}"
@@ -22,7 +22,7 @@ export QS_WIN11_GALLERY="${QS_WIN11_GALLERY-1}"
 mkdir -p "$ARTIFACT_DIR"
 chmod 700 "$XDG_RUNTIME_DIR"
 
-printf "output HEADLESS-1 resolution %s\nfor_window [title=\"^Settings\$\"] floating enable, resize set 1000 700, move position center\n" "$OUTPUT_RESOLUTION" > "$XDG_RUNTIME_DIR/sway.conf"
+printf "output HEADLESS-1 resolution %s\nfor_window [title=\"^Settings\$\"] floating enable, resize set 1000 700, move position center\n%s\n" "$OUTPUT_RESOLUTION" "${SWAY_EXTRA_CONFIG:-}" > "$XDG_RUNTIME_DIR/sway.conf"
 sway -c "$XDG_RUNTIME_DIR/sway.conf" > "$ARTIFACT_DIR/sway.log" 2>&1 &
 for _attempt in $(seq 50); do
     compgen -G "$XDG_RUNTIME_DIR/wayland-[0-9]" > /dev/null && break
