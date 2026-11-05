@@ -2,6 +2,7 @@
 set -euo pipefail
 
 readonly SHELL_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
+export SHELL_DIR
 readonly ARTIFACT_DIR="${ARTIFACT_DIR:-$SHELL_DIR/artifacts}"
 readonly SCENES_FILE="$SHELL_DIR/tools/ci/scenes.txt"
 readonly OUTPUT_RESOLUTION="${OUTPUT_RESOLUTION:-1600x900}"

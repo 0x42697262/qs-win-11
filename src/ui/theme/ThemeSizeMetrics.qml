@@ -59,6 +59,7 @@ QtObject {
     readonly property real settingsControl: values.settingsControl * scale
     readonly property real settingsTextField: values.settingsTextField * scale
     readonly property real swatch: values.swatch * scale
+    readonly property real grainTile: values.grainTile * scale
     readonly property real snapPreviewWidth: values.snapPreviewWidth * scale
     readonly property real snapPreviewHeight: values.snapPreviewHeight * scale
     readonly property real thumbnailWidth: values.thumbnailWidth * scale

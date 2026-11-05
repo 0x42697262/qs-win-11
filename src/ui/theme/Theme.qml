@@ -30,9 +30,23 @@ Singleton {
     readonly property var elevation: effects.elevation
     readonly property real overlaySmoothing: Settings.values.corners.overlaySmoothing
     readonly property real controlSmoothing: Settings.values.corners.controlSmoothing
-    readonly property color surfaceFill: Appearance.solid ? colors.flyoutBackgroundOpaque : colors.flyoutBackground
-    readonly property color overlayFill: Appearance.translucentOverlays && !Appearance.solid ? colors.flyoutBackground : colors.flyoutBackgroundOpaque
-    readonly property color taskbarFill: Appearance.solid ? colors.taskbarBackgroundOpaque : colors.taskbarBackground
+    readonly property var backdropSettings: Settings.values.backdrop
+    readonly property color surfaceFill: backdropFill(colors.flyoutBackground, colors.flyoutBackgroundOpaque)
+    readonly property color overlayFill: Appearance.translucentOverlays && !Appearance.solid ? backdropFill(colors.flyoutBackground, colors.flyoutBackgroundOpaque) : colors.flyoutBackgroundOpaque
+    readonly property color taskbarFill: backdropFill(colors.taskbarBackground, colors.taskbarBackgroundOpaque)
+
+    function backdropFill(translucent: color, opaque: color): color {
+        if (Appearance.solid) {
+            return opaque;
+        }
+        if (Appearance.mica) {
+            return Qt.alpha(opaque, backdropSettings.micaTintOpacity);
+        }
+        if (Appearance.acrylic) {
+            return Qt.alpha(opaque, backdropSettings.acrylicTintOpacity);
+        }
+        return backdropSettings.tintOpacity >= 0 ? Qt.alpha(opaque, backdropSettings.tintOpacity) : translucent;
+    }
 
     readonly property ThemeColors colors: ThemeColors {
         palette: PaletteRules.buildPalette(root.resolvedMode, root.themeSettings.accentColor, root.themeSettings.transparency, Settings.values.colors, root.effects.accentShades)

@@ -12,8 +12,12 @@ Singleton {
     readonly property bool onBattery: Power.hasBattery && Power.onBattery
     readonly property var resolved: AppearanceRules.resolveAppearance(settings, onBattery)
     readonly property var knobs: resolved.knobs
-    readonly property string backdrop: knobs.backdrop.value
-    readonly property bool grain: knobs.grain.value === AppearanceCatalog.Toggle.On
+    readonly property string requestedBackdrop: knobs.backdrop.value
+    readonly property string backdrop: requestedBackdrop === AppearanceCatalog.Backdrop.Mica && !Wallpaper.available ? AppearanceCatalog.Backdrop.Acrylic : requestedBackdrop
+    readonly property bool mica: backdrop === AppearanceCatalog.Backdrop.Mica
+    readonly property bool acrylic: backdrop === AppearanceCatalog.Backdrop.Acrylic
+    readonly property bool tint: backdrop === AppearanceCatalog.Backdrop.Tint
+    readonly property bool grain: knobs.grain.value === AppearanceCatalog.Toggle.On && (mica || acrylic)
     readonly property bool edgeHighlight: knobs.edgeHighlight.value === AppearanceCatalog.Toggle.On
     readonly property string shadows: knobs.shadows.value
     readonly property string corners: knobs.corners.value

@@ -21,6 +21,11 @@ Copy one of these into your config:
 
 Turn `theme.transparency` off if you prefer solid surfaces.
 
+Without compositor blur, set `wallpaper.path` to your wallpaper file: at
+effects level 3 and up the shell renders Mica (a blurred wallpaper slice)
+itself. Set `wallpaper.mode` to `shell` if you want the shell to draw the
+wallpaper too instead of hyprpaper/swww.
+
 ## 3. Keybinds
 
 Pick the format that matches your config:

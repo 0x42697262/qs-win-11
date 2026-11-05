@@ -121,6 +121,11 @@ ShellRoot {
     }
 
     Variants {
+        model: Wallpaper.drawnByShell ? Quickshell.screens : []
+        WallpaperLayer {}
+    }
+
+    Variants {
         model: Features.enabled.taskbar ? Quickshell.screens : []
         Taskbar {}
     }

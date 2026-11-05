@@ -154,6 +154,7 @@ export const CONTROL_SIZE = Object.freeze({
     settingsControl: 280,
     settingsTextField: 200,
     swatch: 24,
+    grainTile: 128,
     snapPreviewWidth: 120,
     snapPreviewHeight: 72,
     thumbnailWidth: 220,
