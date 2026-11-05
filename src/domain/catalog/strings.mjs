@@ -25,6 +25,18 @@ export const Strings = Object.freeze({
         captionText: "Caption text",
         accentText: "Accent text",
     }),
+    taskbar: Object.freeze({
+        start: "Start",
+        search: "Search",
+        taskView: "Task View",
+        widgets: "Widgets",
+        showHiddenIcons: "Show hidden icons",
+        pinToTaskbar: "Pin to taskbar",
+        unpinFromTaskbar: "Unpin from taskbar",
+        newWindow: "New window",
+        closeWindow: "Close window",
+        closeAllWindows: "Close all windows",
+    }),
     settingsProblems: Object.freeze({
         title: "Some settings were ignored",
         body: "Invalid values fell back to their defaults:",

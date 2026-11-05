@@ -34,4 +34,9 @@ QtObject {
     readonly property real widgetsWidth: Tokens.CONTROL_SIZE.widgetsWidth * scale
     readonly property real sessionButton: Tokens.CONTROL_SIZE.sessionButton * scale
     readonly property real taskViewCard: Tokens.CONTROL_SIZE.taskViewCard * scale
+    readonly property real contextMenuWidth: Tokens.CONTROL_SIZE.contextMenuWidth * scale
+    readonly property real showDesktopWidth: Tokens.CONTROL_SIZE.showDesktopWidth * scale
+    readonly property real clockWidth: Tokens.CONTROL_SIZE.clockWidth * scale
+    readonly property real trayIcon: Tokens.CONTROL_SIZE.trayIcon * scale
+    readonly property real trayCell: Tokens.CONTROL_SIZE.trayCell * scale
 }

@@ -14,6 +14,9 @@ export const LogEvent = Object.freeze({
     ProcessTimedOut: "process.timedOut",
     HttpFailed: "http.failed",
     ColorSchemePushed: "theme.colorSchemePushed",
+    AppLaunched: "app.launched",
+    AppNotFound: "app.notFound",
+    SurfaceOpened: "surface.opened",
 });
 
 export const LogLevel = Object.freeze({ Info: "info", Warning: "warning", Error: "error" });

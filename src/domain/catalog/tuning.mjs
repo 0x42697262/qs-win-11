@@ -29,3 +29,4 @@ export const BATTERY_ALERT_HYSTERESIS_PERCENT = 2;
 export const LOCK_FAILURE_COOLDOWN_MS = 2000;
 export const AUTO_HIDE_REVEAL_PIXELS = 2;
 export const AUTO_HIDE_DELAY_MS = 400;
+export const TOOLTIP_DELAY_MS = 600;

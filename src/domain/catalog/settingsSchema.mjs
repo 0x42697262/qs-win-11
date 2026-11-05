@@ -62,6 +62,7 @@ export const SETTING_DEFINITIONS = Object.freeze([
     booleanSetting(text(SettingsSection.Taskbar, "showSearch", "Show Search", "Search button on the taskbar."), true),
     booleanSetting(text(SettingsSection.Taskbar, "showTaskView", "Show Task view", "Task view button on the taskbar."), true),
     booleanSetting(text(SettingsSection.Taskbar, "showWidgets", "Show Widgets", "Weather and widgets button on the taskbar."), true),
+    textListSetting(text(SettingsSection.Taskbar, "initialPinned", "Initially pinned apps", "Desktop entry ids on the taskbar before you pin anything yourself."), ["org.gnome.Nautilus", "firefox", "kitty"]),
     booleanSetting(text(SettingsSection.Taskbar, "windowsOnAllMonitors", "Show apps on all taskbars", "Off shows each window only on its own monitor's taskbar."), false),
 
     booleanSetting(text(SettingsSection.StartMenu, "showRecommended", "Show recommended files", "Recently used files in Start."), true),

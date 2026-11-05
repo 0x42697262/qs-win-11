@@ -9,31 +9,36 @@ CompositorAdapter {
 
     property var identities: new Map()
     property int nextIdentity: 1
+    property int identityRevision: 0
     readonly property list<QtObject> handles: ToplevelManager.toplevels.values
 
     kind: Enums.CompositorKind.Generic
     capabilities: [FeatureCatalog.Capability.WindowList, FeatureCatalog.Capability.Minimize, FeatureCatalog.Capability.Screencopy]
-    activeWindowId: ToplevelManager.activeToplevel ? identityOf(ToplevelManager.activeToplevel) : ""
-    windows: handles.map(handle => WindowRules.makeWindowInfo({
+    activeWindowId: identityRevision >= 0 && ToplevelManager.activeToplevel ? identityOf(ToplevelManager.activeToplevel) : ""
+    windows: identityRevision >= 0 ? handles.map(handle => WindowRules.makeWindowInfo({
         id: identityOf(handle),
         appId: handle.appId,
         title: handle.title,
         active: handle.activated,
         minimized: handle.minimized,
         monitorName: handle.screens.length > 0 ? handle.screens[0].name : "",
-    }))
+    })) : []
 
-    onHandlesChanged: {
+    onHandlesChanged: assignIdentities()
+    Component.onCompleted: assignIdentities()
+
+    function assignIdentities(): void {
         const alive = new Set(handles);
         Array.from(identities.keys()).filter(handle => !alive.has(handle)).forEach(handle => identities.delete(handle));
+        handles.filter(handle => !identities.has(handle)).forEach(handle => {
+            identities.set(handle, String(nextIdentity));
+            nextIdentity += 1;
+        });
+        identityRevision += 1;
     }
 
     function identityOf(handle: var): string {
-        if (!identities.has(handle)) {
-            identities.set(handle, String(nextIdentity));
-            nextIdentity += 1;
-        }
-        return identities.get(handle);
+        return identities.get(handle) ?? "";
     }
 
     function handleFor(windowId: string): var {

@@ -30,6 +30,10 @@ done
 WAYLAND_DISPLAY="$(basename "$(compgen -G "$XDG_RUNTIME_DIR/wayland-[0-9]" | head -1)")"
 export WAYLAND_DISPLAY
 
+for client in ${CI_CLIENTS:-}; do
+    "$client" > /dev/null 2>&1 &
+done
+
 touch "$SHELL_DIR/.qmlls.ini"
 dbus-run-session -- qs -p "$SHELL_DIR" --no-color > "$ARTIFACT_DIR/quickshell.log" 2>&1 &
 sleep "$LOAD_WAIT_SECONDS"

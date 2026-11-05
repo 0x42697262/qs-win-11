@@ -64,6 +64,7 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 |---|---|
 | Quickshell exposes `ToplevelManager` (wlr-foreign-toplevel) with `activate`, `close`, `minimized`, `maximized` | quickshell `src/wayland/toplevel/qml.hpp` |
 | `Hyprland.refreshToplevels()`, `refreshWorkspaces()`, `refreshMonitors()` force a resync | quickshell `src/wayland/hyprland/ipc/qml.hpp` |
+| `PopupWindow` anchors and `QsMenuAnchor` do not resolve cleanly in qmllint 6.12; tooltips use a click-through layer and tray menus use `SystemTrayItem.display()` | qmllint 6.12 against Quickshell 0.3.2 |
 | Quickshell ships `Networking`, `Bluetooth`, `UPower`, `PowerProfiles`, `Pipewire`, `Mpris`, `NotificationServer`, `SystemTray`, `Pam`, `WlSessionLock`, `IdleMonitor` | quickshell `src/` tree, 0.3.2 |
 | Files with `pragma Singleton` under the shell dir are importable as `qs.<path>` | Quickshell 0.3.2 VFS output |
 | qmllint reports `PanelWindow` as uncreatable; this is a false positive and the check is disabled | qmllint 6.12 against Quickshell 0.3.2 |
@@ -91,4 +92,10 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Components | `QS_WIN11_GALLERY=1 qs -c qs-win-11` | Gallery panel shows every control; matches CI screenshots in both themes |
 | Compositor | Start under Hyprland, then under sway | Log shows `compositor.selected` with `hyprland`, then `generic` |
 | Compositor | `qs -c qs-win-11 ipc call settings set compositor.kind '"generic"'` on Hyprland | Switches to the generic adapter live; windows still listed |
+| Taskbar | Open two windows of one app | One taskbar button with a short dash; focusing it widens the dash to an accent pill |
+| Taskbar | Click the button of the active single window | Window minimizes (generic adapter) or stays focused (Hyprland, no minimize capability) |
+| Taskbar | Right-click an app button | Context menu with New window, Pin/Unpin, Close; pin state survives a restart in `state.json` |
+| Taskbar | `settings set taskbar.alignment '"left"'` | Buttons slide to the left edge |
+| Taskbar | `settings set taskbar.autoHide true` | Taskbar hides after the pointer leaves and returns at the bottom edge; windows use the full height |
+| Tray | Start an app with a tray icon, click the chevron | Overflow flyout lists it; left click activates, right click opens its menu |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |
