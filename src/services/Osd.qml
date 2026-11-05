@@ -10,6 +10,8 @@ Singleton {
     property string kind: UiEnums.OsdKind.None
     readonly property bool shown: kind !== UiEnums.OsdKind.None && hideTimer.running
     property bool ready: false
+    property var messageIcon: null
+    property string messageText: ""
 
     function show(newKind: string): void {
         if (!ready || !Features.enabled.osd) {
@@ -17,6 +19,12 @@ Singleton {
         }
         kind = newKind;
         hideTimer.restart();
+    }
+
+    function showMessage(icon: var, text: string): void {
+        messageIcon = icon;
+        messageText = text;
+        show(UiEnums.OsdKind.Message);
     }
 
     Timer {

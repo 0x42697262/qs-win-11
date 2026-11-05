@@ -11,6 +11,8 @@ export const IpcTargetName = Object.freeze({
     Start: "start",
     Search: "search",
     Run: "run",
+    Modes: "modes",
+    Keyboard: "keyboard",
     QuickLink: "quickLink",
     Session: "session",
     QuickSettings: "quickSettings",
@@ -72,6 +74,22 @@ export const IPC_TARGETS = Object.freeze([
         description: "Run dialog.",
         functions: [
             { name: "toggle", description: "Open or close the Run dialog.", suggestedKey: { modifiers: [SUPER], key: "R" } },
+        ],
+    },
+    {
+        target: IpcTargetName.Modes,
+        description: "Stay awake and game mode.",
+        functions: [
+            { name: "toggleStayAwake", description: "Keep the screen on until turned off again." },
+            { name: "toggleGameMode", description: "Apply the game mode profile and silence banners." },
+        ],
+    },
+    {
+        target: IpcTargetName.Keyboard,
+        description: "Keyboard layout and lock keys.",
+        functions: [
+            { name: "nextLayout", description: "Switch to the next keyboard layout (Hyprland).", suggestedKey: { modifiers: [SUPER], key: "SPACE" } },
+            { name: "lockKeys", description: "Show Caps Lock and Num Lock state on screen; bind to the key release.", suggestedKey: { modifiers: [], key: "Caps_Lock", onRelease: true } },
         ],
     },
     {

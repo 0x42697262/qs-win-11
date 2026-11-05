@@ -97,9 +97,10 @@ export function resolveProfilePaths(overrides, folder) {
 /**
  * @param {readonly ProfileLayer[]} layers
  * @param {Readonly<Record<string, unknown>>} userOverrides
+ * @param {readonly ProfileLayer[]} [topLayers]
  * @returns {{ merged: Readonly<Record<string, unknown>>, sources: Readonly<Record<string, { kind: string, name: string }>> }}
  */
-export function mergeLayers(layers, userOverrides) {
+export function mergeLayers(layers, userOverrides, topLayers = []) {
     /** @type {Record<string, unknown>} */
     const merged = {};
     /** @type {Record<string, { kind: string, name: string }>} */
@@ -112,6 +113,10 @@ export function mergeLayers(layers, userOverrides) {
         merged[key] = userOverrides[key];
         sources[key] = { kind: ProfileSourceKind.User, name: "" };
     });
+    topLayers.forEach((layer) => Object.keys(layer.overrides).forEach((key) => {
+        merged[key] = layer.overrides[key];
+        sources[key] = { kind: ProfileSourceKind.Profile, name: layer.name };
+    }));
     return { merged: Object.freeze(merged), sources: Object.freeze(sources) };
 }
 

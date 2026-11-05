@@ -15,6 +15,8 @@ PanelWindow {
     id: root
 
     readonly property bool microphone: Osd.kind === UiEnums.OsdKind.Microphone
+    readonly property bool message: Osd.kind === UiEnums.OsdKind.Message
+    readonly property bool textOnly: microphone || message
     readonly property bool volume: Osd.kind === UiEnums.OsdKind.Volume
     readonly property real level: volume ? (Audio.muted ? 0 : Audio.volume) : Brightness.fraction
 
@@ -53,25 +55,25 @@ PanelWindow {
             spacing: Theme.spacing.medium
 
             FluentIcon {
-                glyph: root.microphone ? (Audio.microphoneMuted ? Icons.Icon.micOff : Icons.Icon.speaker2) : root.volume ? Indicators.volumeIcon(Audio.volume, Audio.muted) : Icons.Icon.brightnessHigh
+                glyph: root.message ? Osd.messageIcon : root.microphone ? (Audio.microphoneMuted ? Icons.Icon.micOff : Icons.Icon.speaker2) : root.volume ? Indicators.volumeIcon(Audio.volume, Audio.muted) : Icons.Icon.brightnessHigh
             }
 
             ProgressBar {
-                visible: !root.microphone
+                visible: !root.textOnly
                 Layout.fillWidth: true
                 value: root.level
             }
 
             Label {
-                visible: !root.microphone
+                visible: !root.textOnly
                 text: Indicators.toPercent(root.level)
                 horizontalAlignment: Text.AlignRight
             }
 
             Label {
-                visible: root.microphone
+                visible: root.textOnly
                 Layout.fillWidth: true
-                text: Audio.microphoneMuted ? Settings.values.text.osd.microphoneMuted : Settings.values.text.osd.microphoneOn
+                text: root.message ? Osd.messageText : Audio.microphoneMuted ? Settings.values.text.osd.microphoneMuted : Settings.values.text.osd.microphoneOn
             }
         }
     }

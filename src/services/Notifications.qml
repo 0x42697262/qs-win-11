@@ -47,7 +47,7 @@ Singleton {
         receivedAt = times;
         Log.info(LogEvents.LogEvent.NotificationReceived, { appName: notification.appName, urgency: notification.urgency });
         const critical = notification.urgency === NotificationUrgency.Critical;
-        if (!DoNotDisturb.active || critical) {
+        if (!(DoNotDisturb.active || GameMode.silencing) || critical) {
             toastIds = [notification.id].concat(toastIds.filter(candidate => candidate !== notification.id));
         }
         trimHistory();

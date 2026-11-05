@@ -23,6 +23,10 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `start allApps` | Open Start on the All apps list. |  |
 | `search toggle` | Open or close Search. | `SUPER+S` |
 | `run toggle` | Open or close the Run dialog. | `SUPER+R` |
+| `modes toggleStayAwake` | Keep the screen on until turned off again. |  |
+| `modes toggleGameMode` | Apply the game mode profile and silence banners. |  |
+| `keyboard nextLayout` | Switch to the next keyboard layout (Hyprland). | `SUPER+SPACE` |
+| `keyboard lockKeys` | Show Caps Lock and Num Lock state on screen; bind to the key release. | `Caps_Lock` (on release) |
 | `quickLink toggle` | Open or close the Quick Link menu. | `SUPER+X` |
 | `quickSettings toggle` | Open or close Quick Settings. | `SUPER+A` |
 | `notifications toggle` | Open or close the notification center. | `SUPER+N` |

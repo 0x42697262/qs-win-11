@@ -1,5 +1,9 @@
 export const LogEvent = Object.freeze({
     ShellStarted: "shell.started",
+    ModeChanged: "mode.changed",
+    VpnToggled: "vpn.toggled",
+    DisplaysDetected: "display.detected",
+    DisplayBrightnessSet: "display.brightnessSet",
     SettingsLoaded: "settings.loaded",
     SettingsInvalid: "settings.invalid",
     SettingsWriteRejected: "settings.writeRejected",

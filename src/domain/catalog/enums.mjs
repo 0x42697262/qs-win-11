@@ -17,4 +17,8 @@ export const QuickTile = Object.freeze({
     NightLight: "nightLight",
     DarkMode: "darkMode",
     DoNotDisturb: "doNotDisturb",
+    Vpn: "vpn",
+    StayAwake: "stayAwake",
+    GameMode: "gameMode",
 });
+export const InputIndicatorMode = Object.freeze({ Auto: "auto", Always: "always", Never: "never" });

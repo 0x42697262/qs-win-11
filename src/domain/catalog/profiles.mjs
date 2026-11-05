@@ -10,3 +10,4 @@ export const ProfileSourceKind = Object.freeze({ Default: "default", Profile: "p
 export const ProfileProblem = Object.freeze({ NotAllowed: "notAllowedInProfile", CommandsNotTrusted: "commandsNotTrusted" });
 export const ProfileMetaField = Object.freeze({ Description: "description", ActivateWhen: "activateWhen" });
 export const PATH_SEPARATOR = "/";
+export const GAME_MODE_DEFAULT_OVERRIDES = Object.freeze({ "appearance.level": 0 });

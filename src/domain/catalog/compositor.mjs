@@ -15,7 +15,10 @@ export const CompositorAction = Object.freeze({
     ActivateWorkspace: "activateWorkspace",
     PlaceWindow: "placeWindow",
     ShowDesktop: "showDesktop",
+    NextKeyboardLayout: "nextKeyboardLayout",
 });
+
+export const HYPRLAND_LAYOUT_EVENT = "activelayout";
 
 export const REFRESH_TOPLEVEL_EVENTS = Object.freeze([HyprlandEventName.OpenWindow, HyprlandEventName.MoveWindow, HyprlandEventName.WindowTitle]);
 

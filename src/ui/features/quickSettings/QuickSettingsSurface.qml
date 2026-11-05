@@ -9,6 +9,7 @@ import qs.src.ui.theme
 import qs.src.ui.components
 import "../../../domain/system/indicators.mjs" as Indicators
 import "../../../domain/catalog/icons.mjs" as Icons
+import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/catalog/enums.mjs" as Enums
 import "../../../domain/catalog/settingsSchema.mjs" as Schema
@@ -83,11 +84,42 @@ FocusScope {
             toggle: () => DoNotDisturb.setActive(!DoNotDisturb.active),
             page: "",
         },
+        vpn: {
+            available: Vpn.available,
+            icon: Icons.Icon.vpn,
+            label: Vpn.label !== "" ? Vpn.label : text.vpn,
+            checked: Vpn.connected,
+            toggle: () => Vpn.toggle(),
+            page: "",
+        },
+        stayAwake: {
+            available: Features.enabled.stayAwake,
+            icon: Icons.Icon.stayAwake,
+            label: text.stayAwake,
+            checked: StayAwake.active,
+            toggle: () => StayAwake.setActive(!StayAwake.requested),
+            page: "",
+        },
+        gameMode: {
+            available: Features.enabled.gameMode,
+            icon: Icons.Icon.games,
+            label: text.gameMode,
+            checked: GameMode.active,
+            toggle: () => GameMode.setActive(!GameMode.active),
+            page: "",
+        },
     })
     readonly property list<string> shownTiles: (editing ? Object.keys(tiles) : visibleTiles).filter(name => tiles[name] && tiles[name].available)
 
     onPageChanged: NetworkControl.setScanning(page === UiEnums.QuickSettingsPage.Wifi)
-    Component.onDestruction: NetworkControl.setScanning(false)
+    Component.onCompleted: {
+        Vpn.watching = true;
+        Vpn.refresh();
+    }
+    Component.onDestruction: {
+        NetworkControl.setScanning(false);
+        Vpn.watching = false;
+    }
 
     FlyoutPanel {
         clipContent: true
@@ -164,6 +196,36 @@ FocusScope {
                         value: Brightness.fraction
                         step: Settings.values.tuning.brightnessStepPercent / Units.PERCENT
                         onMoved: (value) => Brightness.setFraction(value)
+                    }
+                }
+
+                Repeater {
+                    model: ExternalDisplays.available ? ExternalDisplays.displays : []
+
+                    RowLayout {
+                        id: displayRow
+
+                        required property var modelData
+
+                        Layout.fillWidth: true
+                        spacing: Theme.spacing.small
+
+                        FluentIcon { glyph: Icons.Icon.desktop }
+
+                        Slider {
+                            Layout.fillWidth: true
+                            value: ExternalDisplays.percentOf(displayRow.modelData.bus) / Units.PERCENT
+                            step: Settings.values.tuning.brightnessStepPercent / Units.PERCENT
+                            onMoved: (value) => ExternalDisplays.setFraction(displayRow.modelData.bus, value)
+                        }
+
+                        ToolTip {
+                            target: displayRow
+                            hovered: displayHover.hovered
+                            text: root.text.displayBrightness.replace(Strings.NAME_PLACEHOLDER, displayRow.modelData.model)
+                        }
+
+                        HoverHandler { id: displayHover }
                     }
                 }
 

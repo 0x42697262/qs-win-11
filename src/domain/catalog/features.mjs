@@ -20,6 +20,12 @@ export const FeatureName = Object.freeze({
     BatteryAlerts: "batteryAlerts",
     SessionMenu: "sessionMenu",
     Run: "run",
+    StayAwake: "stayAwake",
+    GameMode: "gameMode",
+    Vpn: "vpn",
+    ExternalBrightness: "externalBrightness",
+    InputIndicator: "inputIndicator",
+    LockKeys: "lockKeys",
 });
 
 export const ExperimentalFeatureName = Object.freeze({
@@ -38,6 +44,9 @@ export const Capability = Object.freeze({
     ColorSchemeSync: "colorSchemeSync",
     Screencopy: "screencopy",
     PowerProfiles: "powerProfiles",
+    NetworkManagerCli: "networkManagerCli",
+    DisplayControl: "displayControl",
+    KeyboardLayouts: "keyboardLayouts",
 });
 
 export const BusName = Object.freeze({
@@ -73,6 +82,12 @@ export const FEATURE_DEFAULTS = Object.freeze({
     batteryAlerts: true,
     sessionMenu: true,
     run: true,
+    stayAwake: true,
+    gameMode: true,
+    vpn: true,
+    externalBrightness: true,
+    inputIndicator: true,
+    lockKeys: true,
 });
 
 /** @type {Readonly<Record<Feature, FeatureRequirement>>} */
@@ -98,4 +113,10 @@ export const FEATURE_REQUIREMENTS = Object.freeze({
     batteryAlerts: { capabilities: [Capability.Battery, Capability.NotifySend], dependsOn: [] },
     sessionMenu: { capabilities: [], dependsOn: [] },
     run: { capabilities: [], dependsOn: [] },
+    stayAwake: { capabilities: [], dependsOn: [] },
+    gameMode: { capabilities: [], dependsOn: [] },
+    vpn: { capabilities: [Capability.NetworkManagerCli], dependsOn: [FeatureName.QuickSettings] },
+    externalBrightness: { capabilities: [Capability.DisplayControl], dependsOn: [FeatureName.QuickSettings] },
+    inputIndicator: { capabilities: [Capability.KeyboardLayouts], dependsOn: [FeatureName.Taskbar] },
+    lockKeys: { capabilities: [], dependsOn: [FeatureName.Osd] },
 });

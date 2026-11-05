@@ -7,7 +7,31 @@ export const SystemBinary = Object.freeze({
     Shell: "sh",
     XdgOpen: "xdg-open",
     Find: "find",
+    Nmcli: "nmcli",
+    Ddcutil: "ddcutil",
+    Hyprctl: "hyprctl",
 });
+
+export const NmcliCommand = Object.freeze({
+    list: Object.freeze(["nmcli", "-t", "-f", "NAME,UUID,TYPE,ACTIVE", "connection", "show"]),
+    up: Object.freeze(["nmcli", "connection", "up", "uuid"]),
+    down: Object.freeze(["nmcli", "connection", "down", "uuid"]),
+});
+
+export const DdcCommand = Object.freeze({
+    detect: Object.freeze(["ddcutil", "detect", "--brief"]),
+    busFlag: "--bus",
+    getBrightness: Object.freeze(["getvcp", "10", "--brief"]),
+    setBrightness: Object.freeze(["setvcp", "10"]),
+});
+
+export const HyprctlCommand = Object.freeze({
+    devices: Object.freeze(["hyprctl", "devices", "-j"]),
+    layoutOption: Object.freeze(["hyprctl", "getoption", "input:kb_layout", "-j"]),
+    nextLayout: Object.freeze(["hyprctl", "switchxkblayout", "all", "next"]),
+});
+
+export const LOCK_KEY_LED_COMMAND = Object.freeze(["sh", "-c", "for led in /sys/class/leds/*::capslock /sys/class/leds/*::numlock; do [ -r \"$led/brightness\" ] && printf '%s\\t%s\\n' \"${led##*::}\" \"$(cat \"$led/brightness\")\"; done; true"]);
 
 export const TexturePath = Object.freeze({ noise: "assets/textures/noise.png" });
 export const FILE_URL_PREFIX = "file://";
