@@ -65,5 +65,8 @@
 34h-light|settings set theme.mode light
 34i-light-on|!sleep 1; test "$(qs -p "$SHELL_DIR" ipc call settings get taskbar.alignment)" = "\"left\""
 34j-dark|settings set theme.mode dark
+35a-app-theme|settings set appIcons.theme hicolor
+35b-override|!qs -p "$SHELL_DIR" ipc call settings set appIcons.overrides "foot=$SHELL_DIR/tools/ci/assets/test-icon.svg"; sleep 1
+35c-reset-override|settings reset appIcons.overrides
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock

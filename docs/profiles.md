@@ -24,7 +24,9 @@ mechanism.
 }
 ```
 
-- `values` holds any subset of settings, nested like `settings.json`.
+- `values` holds any subset of settings, nested like `settings.json`. An icon
+  pack is a profile with `icons.*` (shell icons), `appIcons.theme` (an app icon
+  theme) and `appIcons.overrides` (`appId=./icon.svg` per app).
 - Paths starting with `./` (and `image:./`) resolve against the profile folder,
   so a profile folder can be zipped and shared.
 - `activateWhen` is optional. Every condition present must hold: `onBattery`

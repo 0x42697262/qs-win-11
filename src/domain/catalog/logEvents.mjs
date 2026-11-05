@@ -27,6 +27,7 @@ export const LogEvent = Object.freeze({
     LockStateChanged: "lock.state",
     ProfileExported: "profile.exported",
     ProfileLoaded: "profile.loaded",
+    IconThemeIndexed: "icons.themeIndexed",
     ProfileCreated: "profile.created",
     ProfileAbsorbed: "profile.absorbed",
     ProfileImported: "profile.imported",
