@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import qs.src.config
 import "../domain/apps/appIds.mjs" as AppIds
+import "../domain/apps/appIcons.mjs" as AppIconRules
 import "../domain/apps/taskbarItems.mjs" as TaskbarRules
 import "../domain/catalog/shellDataSchema.mjs" as ShellDataSchema
 import "../domain/catalog/logEvents.mjs" as LogEvents
@@ -41,7 +42,13 @@ Singleton {
 
     function iconSource(appId: string): string {
         const entry = entryFor(appId);
-        return Quickshell.iconPath(entry ? entry.icon : appId, true);
+        const override = AppIconTheme.overrides[AppIds.normalizeAppId(entry ? entry.id : appId)] ?? AppIconTheme.overrides[AppIds.normalizeAppId(appId)];
+        const spec = AppIconRules.classifyIconSpec(override ?? (entry ? entry.icon : appId));
+        if (spec.isFile) {
+            return spec.value;
+        }
+        const themed = AppIconTheme.lookup(spec.value);
+        return themed !== "" ? themed : Quickshell.iconPath(spec.value, true);
     }
 
     function launch(appId: string): void {

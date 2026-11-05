@@ -169,4 +169,6 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Profiles | `ipc call profiles create neon icons`, reset your icon changes, `ipc call profiles activate neon` | Icons come back from the profile; the Icons rows say "From profile neon" |
 | Profiles | Profile with `"activateWhen": {"theme": "light"}` in the stack | Applies only while your theme resolves to light |
 | Profiles | Profile that sets `commands.lock` | Key skipped and a warning with a Trust button; after trusting, the command applies |
+| App icons | `settings set appIcons.theme Papirus` | Taskbar, Start, search and notifications use Papirus app icons; icons Papirus lacks fall back to the system theme; log shows `icons.themeIndexed` |
+| App icons | `settings set appIcons.overrides firefox=/path/fox.svg` | Only Firefox's icon changes, everywhere |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

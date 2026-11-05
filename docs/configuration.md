@@ -113,6 +113,13 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `corners.exponent` | number | `5` | 2 to 20 | 2 is a circle, 4-5 is Apple-like, higher gets squarer. |
 | `corners.segments` | integer | `12` | 2 to 64 | Line segments per corner for the superellipse model. |
 
+## appIcons
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `appIcons.theme` | text | `""` |  | Icon theme folder name for app icons (e.g. Papirus, Adwaita). Empty follows your Qt icon theme. Missing icons fall back to it. |
+| `appIcons.overrides` | textList | (empty) |  | appId=icon entries; icon is a theme icon name, an absolute path, image:<path> or a URL. Example: firefox=/home/me/icons/fox.svg |
+
 ## profiles
 
 | Key | Type | Default | Allowed | Description |

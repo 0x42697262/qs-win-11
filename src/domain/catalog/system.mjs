@@ -60,6 +60,8 @@ export const SystemBusName = Object.freeze({
 
 export const ProfileSettingKey = Object.freeze({ active: "profiles.active", trustedCommands: "profiles.trustedCommands" });
 
+export const ICON_FIND_ARGUMENTS = Object.freeze(["-path", "*/apps/*", "(", "-name", "*.svg", "-o", "-name", "*.png", ")"]);
+
 export const NotifyUrgency = Object.freeze({ Normal: "normal", Critical: "critical" });
 
 export const HttpStatus = Object.freeze({ okMinimum: 200, okMaximum: 299 });

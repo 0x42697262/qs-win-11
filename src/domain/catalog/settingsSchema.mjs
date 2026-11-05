@@ -19,6 +19,7 @@ export const SettingsSection = Object.freeze({
     Backdrop: "backdrop",
     Wallpaper: "wallpaper",
     Profiles: "profiles",
+    AppIcons: "appIcons",
     Taskbar: "taskbar",
     StartMenu: "startMenu",
     QuickSettings: "quickSettings",
@@ -70,6 +71,9 @@ export const SETTING_DEFINITIONS = Object.freeze([
     numberSetting(text(SettingsSection.Corners, "controlSmoothing", "Control corner smoothing", "Smoothing for buttons, tiles and list items. -1 uses the global value."), -1, -1, 1),
     numberSetting(text(SettingsSection.Corners, "exponent", "Superellipse exponent", "2 is a circle, 4-5 is Apple-like, higher gets squarer."), 5, 2, 20),
     integerSetting(text(SettingsSection.Corners, "segments", "Superellipse segments", "Line segments per corner for the superellipse model."), 12, 2, 64),
+
+    textSetting(text(SettingsSection.AppIcons, "theme", "App icon theme", "Icon theme folder name for app icons (e.g. Papirus, Adwaita). Empty follows your Qt icon theme. Missing icons fall back to it."), ""),
+    textListSetting(text(SettingsSection.AppIcons, "overrides", "Per-app icons", "appId=icon entries; icon is a theme icon name, an absolute path, image:<path> or a URL. Example: firefox=/home/me/icons/fox.svg"), []),
 
     textListSetting(text(SettingsSection.Profiles, "active", "Active profiles", "Profile folder names applied in order; later ones win, your own settings win last. A profile with activateWhen applies only while its conditions hold."), []),
     textListSetting(text(SettingsSection.Profiles, "trustedCommands", "Profiles allowed to change commands", "Profiles listed here may set commands.*; others have those keys skipped, because commands run programs."), []),
