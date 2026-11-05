@@ -69,3 +69,10 @@ test("every schema default passes its own validation", () => {
         assert.ok(result.accepted, definition.key);
     }
 });
+
+test("array-like sequences from QML are accepted as text lists", () => {
+    const sequence = { length: 1, 0: "foot" };
+    const result = applyOverride({}, "startMenu.initialPinned", sequence, schema);
+    assert.ok(result.accepted);
+    assert.deepEqual(result.overrides["startMenu.initialPinned"], ["foot"]);
+});

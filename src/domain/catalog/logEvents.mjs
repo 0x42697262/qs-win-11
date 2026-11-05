@@ -17,6 +17,8 @@ export const LogEvent = Object.freeze({
     AppLaunched: "app.launched",
     AppNotFound: "app.notFound",
     SurfaceOpened: "surface.opened",
+    SessionAction: "session.action",
+    CommandRun: "command.run",
 });
 
 export const LogLevel = Object.freeze({ Info: "info", Warning: "warning", Error: "error" });

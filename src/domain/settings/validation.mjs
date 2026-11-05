@@ -29,6 +29,18 @@ function validateRange(definition, value) {
 }
 
 /**
+ * @param {unknown} value
+ * @returns {unknown[] | null}
+ */
+export function asPlainArray(value) {
+    if (Array.isArray(value)) {
+        return value.slice();
+    }
+    const isSequence = typeof value === "object" && value !== null && typeof (/** @type {{ length?: unknown }} */ (value)).length === "number";
+    return isSequence ? Array.prototype.slice.call(value) : null;
+}
+
+/**
  * @param {SettingDefinition} definition
  * @param {unknown} value
  * @returns {ValidationResult}
@@ -58,14 +70,15 @@ export function validateSettingValue(definition, value) {
         }
         return HEX_COLOR_PATTERN.test(value) ? { valid: true, value: value.toLowerCase() } : { valid: false, problem: ValidationProblem.PatternMismatch };
     case SettingType.TextList: {
-        if (!Array.isArray(value) || !value.every((item) => typeof item === "string")) {
+        const list = asPlainArray(value);
+        if (!list || !list.every((item) => typeof item === "string")) {
             return wrongType;
         }
         const options = definition.options;
-        if (options && !value.every((item) => options.includes(item))) {
+        if (options && !list.every((item) => options.includes(/** @type {string} */ (item)))) {
             return { valid: false, problem: ValidationProblem.NotAnOption };
         }
-        return { valid: true, value: Object.freeze([...value]) };
+        return { valid: true, value: Object.freeze(/** @type {string[]} */ (list)) };
     }
     default:
         return wrongType;
@@ -78,8 +91,10 @@ export function validateSettingValue(definition, value) {
  * @returns {boolean}
  */
 export function settingValuesEqual(left, right) {
-    if (Array.isArray(left) && Array.isArray(right)) {
-        return left.length === right.length && left.every((item, index) => item === right[index]);
+    const leftList = asPlainArray(left);
+    const rightList = asPlainArray(right);
+    if (leftList && rightList) {
+        return leftList.length === rightList.length && leftList.every((item, index) => item === rightList[index]);
     }
     return left === right;
 }

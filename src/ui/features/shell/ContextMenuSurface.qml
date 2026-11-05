@@ -14,7 +14,7 @@ FocusScope {
     FlyoutPanel {
         width: Theme.size.contextMenuWidth
         height: column.implicitHeight + Theme.spacing.xSmall * 2
-        x: Math.max(Theme.spacing.small, Math.min(root.payload.anchorX - width / 2, root.width - width - Theme.spacing.small))
+        x: root.payload.anchorX < 0 ? (root.width - width) / 2 : Math.max(Theme.spacing.small, Math.min(root.payload.anchorX - width / 2, root.width - width - Theme.spacing.small))
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Theme.spacing.medium
 
