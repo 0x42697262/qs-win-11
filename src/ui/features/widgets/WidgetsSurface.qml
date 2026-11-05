@@ -9,7 +9,6 @@ import qs.src.ui.features.quickSettings
 import qs.src.ui.features.notifications
 import "../../../domain/weather/weather.mjs" as WeatherRules
 import "../../../domain/time/format.mjs" as TimeFormat
-import "../../../domain/system/indicators.mjs" as Indicators
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 
 FocusScope {
@@ -17,8 +16,14 @@ FocusScope {
 
     readonly property var text: Settings.values.text.widgets
 
-    Component.onCompleted: SystemStats.watching = true
-    Component.onDestruction: SystemStats.watching = false
+    Component.onCompleted: {
+        SystemStats.watching = true;
+        Visualizer.watching = true;
+    }
+    Component.onDestruction: {
+        SystemStats.watching = false;
+        Visualizer.watching = false;
+    }
 
     FlyoutPanel {
         anchors.left: parent.left
@@ -113,23 +118,8 @@ FocusScope {
                         }
                     }
 
-                    WidgetCard {
+                    PerformanceCard {
                         width: Theme.size.widgetCard
-                        title: root.text.system
-
-                        RowLayout {
-                            Layout.fillWidth: true
-                            Label { text: root.text.cpu; Layout.preferredWidth: Theme.size.forecastDay }
-                            ProgressBar { Layout.fillWidth: true; value: SystemStats.cpu }
-                            Label { text: `${Indicators.toPercent(SystemStats.cpu)}%`; Layout.preferredWidth: Theme.size.forecastDay; horizontalAlignment: Text.AlignRight }
-                        }
-
-                        RowLayout {
-                            Layout.fillWidth: true
-                            Label { text: root.text.memory; Layout.preferredWidth: Theme.size.forecastDay }
-                            ProgressBar { Layout.fillWidth: true; value: SystemStats.memory }
-                            Label { text: `${Indicators.toPercent(SystemStats.memory)}%`; Layout.preferredWidth: Theme.size.forecastDay; horizontalAlignment: Text.AlignRight }
-                        }
                     }
 
                     WidgetCard {
@@ -145,6 +135,11 @@ FocusScope {
                                 color: Theme.colors.transparent
                                 borderWidth: 0
                             }
+                        }
+
+                        VisualizerBars {
+                            visible: Visualizer.running
+                            Layout.fillWidth: true
                         }
                     }
 

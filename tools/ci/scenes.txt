@@ -96,5 +96,9 @@
 38a-user-template|!mkdir -p "$XDG_CONFIG_HOME/qs-win-11/themes/templates" && printf 'bg={{ background }}\nmode={{ mode }}\n' > "$XDG_CONFIG_HOME/qs-win-11/themes/templates/mako.tmpl"
 38b-render|theming render
 38c-rendered|!for _attempt in $(seq 50); do grep -q '^background #' "$XDG_CONFIG_HOME/qs-win-11/themes/kitty/colors.conf" 2>/dev/null && grep -q '^bg=#' "$XDG_CONFIG_HOME/qs-win-11/themes/custom/mako" 2>/dev/null && exit 0; sleep 0.1; done; ls -R "$XDG_CONFIG_HOME/qs-win-11/themes"; exit 1
+39a-desktop-clock|settings set features.desktopClock.enabled true
+39b-performance|widgets toggle
+39c-close|widgets toggle
+39d-desktop-clock-off|settings set features.desktopClock.enabled false
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock

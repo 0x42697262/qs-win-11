@@ -53,6 +53,11 @@ QtObject {
     readonly property real workspaceCard: values.workspaceCard * scale
     readonly property real altTabCard: values.altTabCard * scale
     readonly property real widgetCard: values.widgetCard * scale
+    readonly property real sparklineWidth: values.sparklineWidth * scale
+    readonly property real sparklineHeight: values.sparklineHeight * scale
+    readonly property real visualizerHeight: values.visualizerHeight * scale
+    readonly property real visualizerBarGap: values.visualizerBarGap * scale
+    readonly property real desktopClockMargin: values.desktopClockMargin * scale
     readonly property real forecastDay: values.forecastDay * scale
     readonly property real settingsWindowWidth: values.settingsWindowWidth * scale
     readonly property real settingsWindowHeight: values.settingsWindowHeight * scale

@@ -241,6 +241,20 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `idle.screenOffSeconds` | integer | `330` | 0 to 86400 | Seconds of inactivity. 0 turns it off. |
 | `idle.suspendSeconds` | integer | `900` | 0 to 86400 | Seconds of inactivity. 0 turns it off. |
 
+## widgets
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `widgets.performanceMetrics` | textList | `cpu`, `gpu`, `memory`, `storage`, `network`, `battery` | `cpu`, `gpu`, `memory`, `storage`, `network`, `battery` | Rows in the Performance card, in order. Metrics this PC cannot report hide themselves. |
+| `widgets.storagePath` | text | `"/"` |  | Any path on the disk shown in the Performance card. |
+
+## desktopClock
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `desktopClock.position` | enum | `"topRight"` | `topLeft`, `topRight`, `bottomLeft`, `bottomRight`, `center` | Where the desktop clock sits on each screen. |
+| `desktopClock.showDate` | boolean | `true` |  | Long date under the desktop clock. |
+
 ## weather
 
 | Key | Type | Default | Allowed | Description |
@@ -303,6 +317,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `features.inputIndicator.enabled` | boolean | `true` |  | Turns the inputIndicator feature on or off. It still stays off when its requirements are missing. |
 | `features.lockKeys.enabled` | boolean | `true` |  | Turns the lockKeys feature on or off. It still stays off when its requirements are missing. |
 | `features.appTheming.enabled` | boolean | `false` |  | Turns the appTheming feature on or off. It still stays off when its requirements are missing. |
+| `features.visualizer.enabled` | boolean | `false` |  | Turns the visualizer feature on or off. It still stays off when its requirements are missing. |
+| `features.desktopClock.enabled` | boolean | `false` |  | Turns the desktopClock feature on or off. It still stays off when its requirements are missing. |
 
 ## experimental
 
@@ -388,6 +404,11 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `sizes.control.workspaceCard` | integer | `160` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.altTabCard` | integer | `160` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.widgetCard` | integer | `340` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.sparklineWidth` | integer | `96` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.sparklineHeight` | integer | `28` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.visualizerHeight` | integer | `36` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.visualizerBarGap` | integer | `2` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.desktopClockMargin` | integer | `48` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.forecastDay` | integer | `56` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.settingsWindowWidth` | integer | `1000` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.settingsWindowHeight` | integer | `700` | 0 to 4096 | Control or surface size in pixels, before scale. |
@@ -482,6 +503,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `effects.elevation.launchBounce` | integer | `7` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.elevation.swipeDismissFraction` | number | `0.35` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.elevation.calendarSlide` | integer | `28` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.sparklineFillOpacity` | number | `0.18` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.accentShades.darkModeMixWithWhite` | number | `0.45` | 0 to 1 | How accent variants are derived from the accent color. |
 | `effects.accentShades.lightModeMixWithBlack` | number | `0.15` | 0 to 1 | How accent variants are derived from the accent color. |
 | `effects.accentShades.hoverAlpha` | number | `0.9` | 0 to 1 | How accent variants are derived from the accent color. |
@@ -620,6 +642,10 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.accentLightnessMax` | number | `0.6` | 0 to 1 | The picked accent is at most this light. (fraction) |
 | `tuning.appThemeDelayMs` | integer | `800` | 0 to 60000 | Wait after the last color change before themed files are written again. (ms) |
 | `tuning.appThemeSelectionMix` | number | `0.35` | 0 to 1 | How much accent the selection color in app themes gets. (fraction) |
+| `tuning.statsHistoryLength` | integer | `40` | 2 to 1000 | Samples kept for the Performance card graphs. (count) |
+| `tuning.visualizerBars` | integer | `24` | 2 to 256 | Bars in the media visualizer. (count) |
+| `tuning.visualizerFramerate` | integer | `30` | 1 to 144 | Visualizer frames per second. (count) |
+| `tuning.visualizerRange` | integer | `100` | 1 to 1000 | Highest bar value cava reports. (count) |
 | `tuning.runHistoryShown` | integer | `5` | 0 to 50 | Recent commands listed in the Run dialog. (count) |
 | `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
 | `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid when expanded. (count) |
@@ -839,6 +865,14 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.widgets.system` | text | `"System"` |  | Text shown in the shell. |
 | `text.widgets.cpu` | text | `"CPU"` |  | Text shown in the shell. |
 | `text.widgets.memory` | text | `"Memory"` |  | Text shown in the shell. |
+| `text.widgets.performance` | text | `"Performance"` |  | Text shown in the shell. |
+| `text.widgets.gpu` | text | `"GPU"` |  | Text shown in the shell. |
+| `text.widgets.storage` | text | `"Storage"` |  | Text shown in the shell. |
+| `text.widgets.network` | text | `"Network"` |  | Text shown in the shell. |
+| `text.widgets.battery` | text | `"Battery"` |  | Text shown in the shell. |
+| `text.widgets.usedOf` | text | `"{used} of {total}"` |  | Text shown in the shell. |
+| `text.widgets.networkRate` | text | `"↓ {down}/s   ↑ {up}/s"` |  | Text shown in the shell. |
+| `text.widgets.byteSuffixes` | text | `"B KB MB GB TB"` |  | Text shown in the shell. |
 | `text.widgets.media` | text | `"Media"` |  | Text shown in the shell. |
 | `text.widgets.calendar` | text | `"Calendar"` |  | Text shown in the shell. |
 | `text.widgets.high` | text | `"H"` |  | Text shown in the shell. |

@@ -159,6 +159,9 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Alt+Tab | Bind `altTab next` to Alt+Tab and `altTab commit` to Alt release, press Alt+Tab twice | Switcher in recent-use order, selection advances, releasing Alt focuses it |
 | Show desktop | `ipc call desktop toggle` on a compositor that honors minimize (labwc, KDE) | All windows minimize; again restores exactly those. Hidden on Hyprland, which has no minimize |
 | Widgets | `ipc call widgets toggle` or the weather button on the taskbar | Board slides in from the left with weather, 5-day forecast, CPU and memory, media when playing, and the calendar |
+| Widgets | Open widgets | Performance card lists CPU, GPU (AMD sysfs or nvidia-smi), memory with live graphs, storage used of total, network down/up rates, battery; `widgets.performanceMetrics` reorders or hides rows |
+| Visualizer | Install cava, `settings set features.visualizer.enabled true`, play music, open widgets | Accent bars under the media card move with the audio; cava stops when the board closes or playback pauses |
+| Desktop clock | `settings set features.desktopClock.enabled true` | Large time and date on the desktop under windows, at `desktopClock.position`; clicks pass through |
 | Weather | Leave `weather.locationMode` on `auto` without GeoClue | `location.resolved` with `ipLookup` once; `state.json` caches the location for 6 hours; "Approximate location" shown |
 | Weather | `settings set weather.allowIpLookup false` with no GeoClue and no cache | Weather card asks for a location; nothing is sent to ipwho.is |
 | Weather | Disconnect the network | Card shows "Couldn't load weather"; the rest of the board still works |

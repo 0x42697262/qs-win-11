@@ -142,6 +142,11 @@ ShellRoot {
     }
 
     Variants {
+        model: Features.enabled.desktopClock ? Quickshell.screens : []
+        DesktopClockLayer {}
+    }
+
+    Variants {
         model: Features.enabled.taskbar ? Quickshell.screens : []
         Taskbar {}
     }
