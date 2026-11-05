@@ -12,6 +12,7 @@ import qs.src.ui.features.start
 import qs.src.ui.features.quickSettings
 import qs.src.ui.features.notifications
 import qs.src.ui.features.osd
+import qs.src.ui.features.power
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -34,6 +35,9 @@ ShellRoot {
             components[Surfaces.Surface.QuickSettings] = quickSettingsSurface;
         }
         components[Surfaces.Surface.NotificationCenter] = notificationCenterSurface;
+        if (Features.enabled.sessionMenu) {
+            components[Surfaces.Surface.SessionMenu] = sessionMenuSurface;
+        }
         if (Features.enabled.systemTray) {
             components[Surfaces.Surface.TrayOverflow] = trayOverflowSurface;
         }
@@ -52,6 +56,21 @@ ShellRoot {
     NotificationsIpc {}
     AudioIpc {}
     BrightnessIpc {}
+
+    LazyLoader {
+        active: Features.enabled.batteryAlerts
+        BatteryAlerts {}
+    }
+
+    LazyLoader {
+        active: Features.enabled.idle
+        IdleHandler {}
+    }
+
+    LazyLoader {
+        active: Features.enabled.lockScreen
+        LockScreen {}
+    }
 
     LazyLoader {
         active: Features.enabled.osd
@@ -124,6 +143,11 @@ ShellRoot {
     Component {
         id: notificationCenterSurface
         NotificationCenterSurface {}
+    }
+
+    Component {
+        id: sessionMenuSurface
+        SessionMenuSurface {}
     }
 
     Component {

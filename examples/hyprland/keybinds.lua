@@ -51,4 +51,8 @@ return {
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session lock"),
 		bind = "SUPER + L",
 	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session menu"),
+		bind = "CTRL + ALT + Delete",
+	},
 }

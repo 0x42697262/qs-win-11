@@ -52,3 +52,5 @@ export const SystemBusName = Object.freeze({
     PowerProfiles: "org.freedesktop.UPower.PowerProfiles",
     LegacyPowerProfiles: "net.hadess.PowerProfiles",
 });
+
+export const NotifyUrgency = Object.freeze({ Normal: "normal", Critical: "critical" });

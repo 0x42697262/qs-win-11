@@ -102,6 +102,7 @@ export const IPC_TARGETS = Object.freeze([
         description: "Lock, sleep, sign out, restart, shut down.",
         functions: [
             { name: "lock", description: "Lock the session.", suggestedKey: { modifiers: [SUPER], key: "L" } },
+            { name: "menu", description: "Open the full-screen session menu.", suggestedKey: { modifiers: [CONTROL, ALT], key: "Delete" } },
             { name: "suspend", description: "Sleep." },
             { name: "hibernate", description: "Hibernate." },
             { name: "signOut", description: "Sign out of the session." },

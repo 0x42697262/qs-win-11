@@ -100,6 +100,8 @@ export const SETTING_DEFINITIONS = Object.freeze([
     textSetting(text(SettingsSection.Commands, "signOut", "Sign out command", "Empty uses the compositor's own exit."), ""),
     textSetting(text(SettingsSection.Commands, "nightLight", "Night light command", "Runs while night light is on and is stopped when it turns off."), "hyprsunset -t 4000"),
     textSetting(text(SettingsSection.Commands, "brightness", "Brightness command", "{percent} is replaced with 0-100."), "brightnessctl set {percent}%"),
+    textSetting(text(SettingsSection.Commands, "screenOff", "Screen off command", "Used by idle handling. Empty skips the screen-off step."), "hyprctl dispatch dpms off"),
+    textSetting(text(SettingsSection.Commands, "screenOn", "Screen on command", "Runs when activity resumes after screen off."), "hyprctl dispatch dpms on"),
     textSetting(text(SettingsSection.Commands, "soundSettings", "Sound settings", "Opened from the volume slider. Empty hides the link."), "pavucontrol"),
     textSetting(text(SettingsSection.Commands, "networkSettings", "Network settings", "Opened from the Wi-Fi page. Empty hides the link."), "nm-connection-editor"),
     textSetting(text(SettingsSection.Commands, "bluetoothSettings", "Bluetooth settings", "Opened from the Bluetooth page. Empty hides the link."), "blueman-manager"),

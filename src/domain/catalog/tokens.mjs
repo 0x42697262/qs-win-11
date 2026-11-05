@@ -136,6 +136,7 @@ export const CONTROL_SIZE = Object.freeze({
     notificationListHeight: 420,
     notificationImage: 48,
     toastStackSpacing: 8,
+    lockFieldWidth: 296,
     showDesktopWidth: 8,
     clockWidth: 88,
     trayIcon: 16,
@@ -154,3 +155,4 @@ export const ELEVATION = Object.freeze({ flyoutShadowRadius: 32, flyoutShadowOff
 
 export const SLIDE_DISTANCE = Object.freeze({ flyout: 40 });
 export const PRESS_SCALE = 0.88;
+export const DIM_OPACITY = 0.6;

@@ -31,6 +31,7 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `brightness up` | Raise brightness by one step. | `XF86MonBrightnessUp` |
 | `brightness down` | Lower brightness by one step. | `XF86MonBrightnessDown` |
 | `session lock` | Lock the session. | `SUPER+L` |
+| `session menu` | Open the full-screen session menu. | `CTRL+ALT+Delete` |
 | `session suspend` | Sleep. |  |
 | `session hibernate` | Hibernate. |  |
 | `session signOut` | Sign out of the session. |  |
