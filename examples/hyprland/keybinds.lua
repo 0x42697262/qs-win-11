@@ -69,6 +69,10 @@ return {
 		bind = "SUPER + D",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call widgets toggle"),
+		bind = "SUPER + W",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session lock"),
 		bind = "SUPER + L",
 	},

@@ -55,3 +55,9 @@ test("clock and date formatting", () => {
     assert.equal(formatLongDate({ year: 2026, month: 10, day: 5, weekday: 4 }), "Thursday, November 5");
     assert.equal(formatDuration(135), "2 h 15 min");
 });
+
+import { shortWeekdayFromIso } from "../../src/domain/time/format.mjs";
+
+test("short weekday from an ISO date", () => {
+    assert.equal(shortWeekdayFromIso("2026-11-05"), "Thu");
+});

@@ -23,5 +23,12 @@
 23-alt-tab-commit|altTab commit
 24-show-desktop|desktop toggle
 25-restore|desktop toggle
-26-enable-lock|settings set features.lockScreen.enabled true
-27-lock-screen|session lock
+26-manual-location|settings set weather.locationMode manual
+27-place|settings set weather.manualPlaceName Davao
+28-latitude|settings set weather.manualLatitude 7.07
+29-longitude|settings set weather.manualLongitude 125.61
+30-widgets|widgets toggle
+31-widgets-light|settings set theme.mode light
+32-closed|widgets toggle
+33-enable-lock|settings set features.lockScreen.enabled true
+34-lock-screen|session lock

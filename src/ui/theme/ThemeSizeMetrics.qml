@@ -51,6 +51,8 @@ QtObject {
     readonly property real taskViewCardHeight: Tokens.CONTROL_SIZE.taskViewCardHeight * scale
     readonly property real workspaceCard: Tokens.CONTROL_SIZE.workspaceCard * scale
     readonly property real altTabCard: Tokens.CONTROL_SIZE.altTabCard * scale
+    readonly property real widgetCard: Tokens.CONTROL_SIZE.widgetCard * scale
+    readonly property real forecastDay: Tokens.CONTROL_SIZE.forecastDay * scale
     readonly property real showDesktopWidth: Tokens.CONTROL_SIZE.showDesktopWidth * scale
     readonly property real clockWidth: Tokens.CONTROL_SIZE.clockWidth * scale
     readonly property real trayIcon: Tokens.CONTROL_SIZE.trayIcon * scale

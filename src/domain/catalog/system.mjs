@@ -54,3 +54,8 @@ export const SystemBusName = Object.freeze({
 });
 
 export const NotifyUrgency = Object.freeze({ Normal: "normal", Critical: "critical" });
+
+export const HttpStatus = Object.freeze({ okMinimum: 200, okMaximum: 299 });
+export const HttpError = Object.freeze({ status: "status", timeout: "timeout" });
+export const HttpMethod = Object.freeze({ get: "GET" });
+export const URL_QUERY_SEPARATOR = "?";

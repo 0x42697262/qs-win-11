@@ -3,6 +3,7 @@ import { Strings } from "../catalog/strings.mjs";
 
 const HOURS_PER_HALF_DAY = 12;
 const TWO_DIGITS = 2;
+const SHORT_WEEKDAY_LENGTH = 3;
 const TIME_TEXT = Strings.time;
 const MONTH_NAMES = TIME_TEXT.monthNames;
 const WEEKDAY_NAMES = TIME_TEXT.weekdayNames;
@@ -70,3 +71,13 @@ export function formatDuration(totalMinutes) {
 }
 
 export { WEEKDAY_NAMES, MONTH_NAMES };
+
+/**
+ * @param {string} dateIso
+ * @returns {string}
+ */
+export function shortWeekdayFromIso(dateIso) {
+    const parts = dateIso.split("-").map(Number);
+    const date = new Date(parts[0] ?? 0, (parts[1] ?? 1) - 1, parts[2] ?? 1);
+    return (WEEKDAY_NAMES[date.getDay()] ?? "").slice(0, SHORT_WEEKDAY_LENGTH);
+}

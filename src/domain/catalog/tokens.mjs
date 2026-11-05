@@ -140,6 +140,8 @@ export const CONTROL_SIZE = Object.freeze({
     taskViewCardHeight: 140,
     workspaceCard: 160,
     altTabCard: 160,
+    widgetCard: 340,
+    forecastDay: 56,
     showDesktopWidth: 8,
     clockWidth: 88,
     trayIcon: 16,

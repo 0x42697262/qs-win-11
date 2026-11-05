@@ -77,6 +77,7 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Arrays passed through `var` parameters of QML functions arrive as sequence objects, not JS arrays; domain validation copies array-likes | Quickshell 0.3.2 runtime |
 | `WlSessionLock` needs ext-session-lock; sway and Hyprland support it. The lock screen authenticates with `PamContext` using the default `login` PAM config | Quickshell 0.3.2, CI run under sway |
 | sway ignores foreign-toplevel minimize requests, so show desktop cannot be verified in CI | CI run under sway |
+| GeoClue is used through its `where-am-i` demo binary (`/usr/lib/geoclue-2.0/demos/where-am-i`) when present; Open-Meteo needs no API key; ipwho.is returns `success`, `latitude`, `longitude`, `city` | GeoClue 2 packaging, live requests from the CI container |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -130,4 +131,8 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Task View | `ipc call taskView toggle` (or the taskbar button) | Cards for windows on the focused workspace; Hyprland adds a desktops strip that switches workspace on click; hover shows a close button |
 | Alt+Tab | Bind `altTab next` to Alt+Tab and `altTab commit` to Alt release, press Alt+Tab twice | Switcher in recent-use order, selection advances, releasing Alt focuses it |
 | Show desktop | `ipc call desktop toggle` on a compositor that honors minimize (labwc, KDE) | All windows minimize; again restores exactly those. Hidden on Hyprland, which has no minimize |
+| Widgets | `ipc call widgets toggle` or the weather button on the taskbar | Board slides in from the left with weather, 5-day forecast, CPU and memory, media when playing, and the calendar |
+| Weather | Leave `weather.locationMode` on `auto` without GeoClue | `location.resolved` with `ipLookup` once; `state.json` caches the location for 6 hours; "Approximate location" shown |
+| Weather | `settings set weather.allowIpLookup false` with no GeoClue and no cache | Weather card asks for a location; nothing is sent to ipwho.is |
+| Weather | Disconnect the network | Card shows "Couldn't load weather"; the rest of the board still works |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

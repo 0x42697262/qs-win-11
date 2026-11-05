@@ -35,3 +35,4 @@ Each row has exactly one owner. Everything else reads it or derives from it.
 | Theme QML token groups (`src/ui/theme/Theme*Metrics.qml`, `ThemeColors.qml`) | `npm run gen` from `tokens.mjs` |
 | Window mirror | `CompositorAdapter.resync()` |
 | Cached location | Delete `location` from `state.json`, it is fetched again |
+| Weather forecast | `Weather.refresh()`, also every 30 minutes |

@@ -70,14 +70,12 @@ PanelWindow {
             }
         }
 
-        TaskbarButton {
+        WidgetsButton {
             id: widgetsButton
             visible: root.centered && root.taskbarSettings.showWidgets && Features.enabled.widgets
             anchors.left: parent.left
             anchors.leftMargin: Theme.spacing.small
             anchors.verticalCenter: parent.verticalCenter
-            icon: Icons.Icon.weatherPartlyCloudyDay
-            toolTip: Strings.Strings.taskbar.widgets
             checked: root.surfaceButtonChecked(Surfaces.Surface.Widgets)
             onActivated: ShellState.toggle(Surfaces.Surface.Widgets, root.screenName)
         }
