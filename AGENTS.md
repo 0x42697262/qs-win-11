@@ -75,6 +75,7 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Hyprland's Lua config mode changes dispatcher syntax; Quickshell exposes `Hyprland.usingLua` and `HyprlandWorkspace.activate()` handles both forms. Our Hyprland adapter focuses, closes and minimizes through each window's Wayland handle, so it needs no dispatcher strings | quickshell `src/wayland/hyprland/ipc/workspace.cpp`, `qml.hpp` |
 | `qs ipc call` drops square brackets from arguments, so `["foot"]` arrives as `"foot"`; list settings accept comma-separated text over IPC instead | Quickshell 0.3.2 IPC, CI scene run |
 | Arrays passed through `var` parameters of QML functions arrive as sequence objects, not JS arrays; domain validation copies array-likes | Quickshell 0.3.2 runtime |
+| `WlSessionLock` needs ext-session-lock; sway and Hyprland support it. The lock screen authenticates with `PamContext` using the default `login` PAM config | Quickshell 0.3.2, CI run under sway |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -121,4 +122,8 @@ Every PR adds one line per behavior change: what to do, what to see.
 | OSD | Change volume with `wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-` or `ipc call audio volumeDown` | Pill above the taskbar with icon, bar and percent for 1.5 s; no pill during the first 2 s after start |
 | OSD | `ipc call audio toggleMicrophoneMute` | Pill reads "Microphone muted" / "Microphone on" |
 | OSD | `ipc call brightness up` on a laptop | Brightness rises 5% and the pill shows it |
+| Session menu | `ipc call session menu` | Full-screen dim with Lock, Sign out, Sleep, Restart, Shut down and Cancel; Escape closes |
+| Lock screen | Enable `features.lockScreen.enabled`, `ipc call session lock` | Session locks with clock and date; any key shows the avatar and password field; a wrong password shows an error and a 2 s cooldown; the right one unlocks |
+| Idle | Enable `features.idle.enabled`, set `idle.dimSeconds` to 10 | Screens dim after 10 s idle, undim on input; later stages lock, run `commands.screenOff`, then sleep |
+| Battery alerts | On battery, drop below `power.lowBatteryPercent` | One "Battery low" notification per crossing; critical level runs `power.criticalAction` |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

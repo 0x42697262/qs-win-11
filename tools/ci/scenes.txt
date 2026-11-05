@@ -14,3 +14,7 @@
 14-closed|notifications toggle
 15-osd-volume|audio volumeDown
 16-osd-mute|audio toggleMute
+17-session-menu|session menu
+18-closed|session menu
+19-enable-lock|settings set features.lockScreen.enabled true
+20-lock-screen|session lock

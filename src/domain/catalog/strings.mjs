@@ -131,6 +131,23 @@ export const Strings = Object.freeze({
         microphoneMuted: "Microphone muted",
         microphoneOn: "Microphone on",
     }),
+    power: Object.freeze({
+        batteryLowTitle: "Battery low",
+        batteryLowBody: "{count}% remaining. Plug in your PC.",
+        batteryCriticalTitle: "Battery critically low",
+        batteryCriticalBody: "{count}% remaining. Your PC will act on the critical battery setting now.",
+        appName: "Power",
+    }),
+    lock: Object.freeze({
+        password: "Password",
+        incorrect: "The password is incorrect. Try again.",
+        unlock: "Unlock",
+        pressAnyKey: "Press any key or click to unlock",
+        failed: "Sign-in failed. Try again.",
+    }),
+    sessionMenu: Object.freeze({
+        cancel: "Cancel",
+    }),
     settingsProblems: Object.freeze({
         title: "Some settings were ignored",
         body: "Invalid values fell back to their defaults:",

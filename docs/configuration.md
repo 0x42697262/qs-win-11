@@ -118,6 +118,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `commands.signOut` | text | `""` |  | Empty uses the compositor's own exit. |
 | `commands.nightLight` | text | `"hyprsunset -t 4000"` |  | Runs while night light is on and is stopped when it turns off. |
 | `commands.brightness` | text | `"brightnessctl set {percent}%"` |  | {percent} is replaced with 0-100. |
+| `commands.screenOff` | text | `"hyprctl dispatch dpms off"` |  | Used by idle handling. Empty skips the screen-off step. |
+| `commands.screenOn` | text | `"hyprctl dispatch dpms on"` |  | Runs when activity resumes after screen off. |
 | `commands.soundSettings` | text | `"pavucontrol"` |  | Opened from the volume slider. Empty hides the link. |
 | `commands.networkSettings` | text | `"nm-connection-editor"` |  | Opened from the Wi-Fi page. Empty hides the link. |
 | `commands.bluetoothSettings` | text | `"blueman-manager"` |  | Opened from the Bluetooth page. Empty hides the link. |
