@@ -129,6 +129,7 @@ export const CONTROL_SIZE = Object.freeze({
     osdWidth: 220,
     osdHeight: 46,
     widgetsWidth: 760,
+    runDialogWidth: 420,
     sessionButton: 120,
     taskViewCard: 220,
     contextMenuWidth: 220,

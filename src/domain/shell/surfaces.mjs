@@ -12,6 +12,7 @@ export const Surface = Object.freeze({
     AltTab: "altTab",
     SessionMenu: "sessionMenu",
     SnapLayouts: "snapLayouts",
+    Run: "run",
 });
 
 /** @typedef {{ surface: string, screenName: string, payload: unknown }} OpenSurfaceState */

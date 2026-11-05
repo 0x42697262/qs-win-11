@@ -32,6 +32,7 @@ QtObject {
     readonly property real osdWidth: values.osdWidth * scale
     readonly property real osdHeight: values.osdHeight * scale
     readonly property real widgetsWidth: values.widgetsWidth * scale
+    readonly property real runDialogWidth: values.runDialogWidth * scale
     readonly property real sessionButton: values.sessionButton * scale
     readonly property real taskViewCard: values.taskViewCard * scale
     readonly property real contextMenuWidth: values.contextMenuWidth * scale

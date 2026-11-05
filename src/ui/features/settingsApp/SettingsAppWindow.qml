@@ -55,6 +55,14 @@ FloatingWindow {
                 id: search
                 Layout.fillWidth: true
                 placeholder: root.text.search
+                Component.onCompleted: text = SettingsWindow.query
+
+                Connections {
+                    target: SettingsWindow
+                    function onQueryChanged(): void {
+                        search.text = SettingsWindow.query;
+                    }
+                }
             }
 
             Button {

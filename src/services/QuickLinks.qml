@@ -23,6 +23,9 @@ Singleton {
         addCommand(Settings.values.text.quickLink.taskManager, Icons.Icon.apps, commands.taskManager);
         addCommand(Settings.values.text.quickLink.fileExplorer, Icons.Icon.folder, commands.fileManager);
         entries.push({ text: Settings.values.text.quickLink.search, icon: Icons.Icon.search, action: () => ShellState.open(Surfaces.Surface.Search, "", null) });
+        if (Features.enabled.run) {
+            entries.push({ text: Settings.values.text.quickLink.run, icon: Icons.Icon.run, action: () => ShellState.open(Surfaces.Surface.Run, "", null) });
+        }
         entries.push({ text: Settings.values.text.session.lock, icon: Icons.Icon.lockClosed, action: () => Session.lock() });
         entries.push({ text: Settings.values.text.session.signOut, icon: Icons.Icon.signOut, action: () => Session.signOut() });
         entries.push({ text: Settings.values.text.session.sleep, icon: Icons.Icon.weatherMoon, action: () => Session.suspend() });

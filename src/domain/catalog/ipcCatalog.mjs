@@ -10,6 +10,7 @@ export const IpcTargetName = Object.freeze({
     Settings: "settings",
     Start: "start",
     Search: "search",
+    Run: "run",
     QuickLink: "quickLink",
     Session: "session",
     QuickSettings: "quickSettings",
@@ -64,6 +65,13 @@ export const IPC_TARGETS = Object.freeze([
         description: "Search flyout.",
         functions: [
             { name: "toggle", description: "Open or close Search.", suggestedKey: { modifiers: [SUPER], key: "S" } },
+        ],
+    },
+    {
+        target: IpcTargetName.Run,
+        description: "Run dialog.",
+        functions: [
+            { name: "toggle", description: "Open or close the Run dialog.", suggestedKey: { modifiers: [SUPER], key: "R" } },
         ],
     },
     {

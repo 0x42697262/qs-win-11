@@ -54,6 +54,9 @@ ShellRoot {
         if (Features.enabled.sessionMenu) {
             components[Surfaces.Surface.SessionMenu] = sessionMenuSurface;
         }
+        if (Features.enabled.run) {
+            components[Surfaces.Surface.Run] = runSurface;
+        }
         if (Features.enabled.systemTray) {
             components[Surfaces.Surface.TrayOverflow] = trayOverflowSurface;
         }
@@ -67,6 +70,7 @@ ShellRoot {
     StartIpc {}
     SearchIpc {}
     QuickLinkIpc {}
+    RunIpc {}
     SessionIpc {}
     QuickSettingsIpc {}
     NotificationsIpc {}
@@ -160,6 +164,11 @@ ShellRoot {
     Component {
         id: searchSurface
         SearchSurface {}
+    }
+
+    Component {
+        id: runSurface
+        RunSurface {}
     }
 
     Component {
