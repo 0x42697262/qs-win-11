@@ -6,10 +6,13 @@ const SCANNED_DIRECTORIES = ["src", "tools", "tests"];
 const SCANNED_ROOT_FILES = ["shell.qml"];
 const SCANNED_EXTENSIONS = [".qml", ".mjs"];
 const ALLOWED_NUMBERS = new Set(["0", "1", "2", "-1", "0.0", "1.0", "0.5"]);
-const NUMBER_HOME_FILES = ["src/config/Tuning.qml", "src/domain/theme/tokens.mjs"];
-const COLOR_HOME_FILES = ["src/domain/theme/tokens.mjs"];
+const CONSTANT_HOME_DIRECTORY = "src/domain/catalog/";
 const NUMBER_RULE_DIRECTORIES = ["src/"];
 const UPPER_CONSTANT_DECLARATION = /^\s*(export\s+)?const\s+[A-Z][A-Z0-9_]*\s*=/;
+const INLINE_JSDOC = new RegExp(String.raw`/\*\*\s*@\w+[^*]*(?:\*(?!/)[^*]*)*\*/`, "g");
+const OBJECT_SPREAD = /\{\s*\.\.\.|,\s*\.\.\.[\w$.()]+\s*\}/;
+const OPTIONAL_CATCH_BINDING = /\bcatch\s*\{/;
+const TOOL_DIRECTIVE = /^\s*\/\/@\s*pragma\b/;
 const JSDOC_TAG_LINE = /^\s*\*\s*@\w+/;
 const JSDOC_CONTINUATION_LINE = /^\s*\*\s+[|{}\w"'[\]<>,.:?()=\s-]*$/;
 
@@ -18,6 +21,8 @@ const RULES = Object.freeze({
     shortName: "single-character identifier",
     rawColor: "raw color literal outside the theme tokens",
     magicNumber: "number literal outside a named constant home",
+    optionalCatch: "optional catch binding is not supported by the QML JavaScript engine",
+    objectSpread: "object spread is not supported by the QML JavaScript engine; use Object.assign",
 });
 
 /** @param {string} directory @returns {string[]} */
@@ -91,18 +96,24 @@ function checkFile(path) {
     const lines = readFileSync(path, "utf8").split("\n");
     const jsdocLines = findAllowedJsdocLines(lines);
     const isTest = relativePath.startsWith("tests/");
-    const numberRuleApplies = !isTest && NUMBER_RULE_DIRECTORIES.some((prefix) => relativePath.startsWith(prefix)) && !NUMBER_HOME_FILES.includes(relativePath);
-    const colorRuleApplies = !COLOR_HOME_FILES.includes(relativePath);
+    const numberRuleApplies = !isTest && NUMBER_RULE_DIRECTORIES.some((prefix) => relativePath.startsWith(prefix)) && !relativePath.startsWith(CONSTANT_HOME_DIRECTORY);
+    const colorRuleApplies = !isTest && !relativePath.startsWith(CONSTANT_HOME_DIRECTORY);
     /** @type {string[]} */
     const problems = [];
     lines.forEach((line, index) => {
         const where = `${relativePath}:${index + 1}`;
-        const code = withoutStrings(line);
+        const code = withoutStrings(line).replace(INLINE_JSDOC, "");
         if (jsdocLines.has(index)) {
             return;
         }
-        if (/(^|[^:])\/\/|\/\*/.test(code) && !/^\s*pragma\b/.test(line)) {
+        if (/(^|[^:])\/\/|\/\*/.test(code) && !TOOL_DIRECTIVE.test(line)) {
             problems.push(`${where} ${RULES.comment}`);
+        }
+        if (relativePath.startsWith("src/") && OPTIONAL_CATCH_BINDING.test(code)) {
+            problems.push(`${where} ${RULES.optionalCatch}`);
+        }
+        if (relativePath.startsWith("src/") && OBJECT_SPREAD.test(code)) {
+            problems.push(`${where} ${RULES.objectSpread}`);
         }
         if (hasShortIdentifier(code)) {
             problems.push(`${where} ${RULES.shortName}`);
