@@ -26,4 +26,5 @@ export const ScreenCorner = Object.freeze({ TopLeft: "topLeft", TopRight: "topRi
 export const SnipMode = Object.freeze({ Region: "region", Window: "window", Screen: "screen" });
 export const SnipKind = Object.freeze({ Screenshot: "screenshot", Recording: "recording", Color: "color" });
 export const RecorderChoice = Object.freeze({ Auto: "auto", GpuScreenRecorder: "gpuScreenRecorder", WfRecorder: "wfRecorder" });
+export const PanelTab = Object.freeze({ Emoji: "emoji", Kaomoji: "kaomoji", Symbols: "symbols", Clipboard: "clipboard" });
 export const InputIndicatorMode = Object.freeze({ Auto: "auto", Always: "always", Never: "never" });

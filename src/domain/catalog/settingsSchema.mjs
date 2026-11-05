@@ -33,6 +33,7 @@ export const SettingsSection = Object.freeze({
     Weather: "weather",
     Widgets: "widgets",
     Capture: "capture",
+    Clipboard: "clipboard",
     DesktopClock: "desktopClock",
     Commands: "commands",
     Features: "features",
@@ -148,6 +149,8 @@ export const SETTING_DEFINITIONS = Object.freeze([
     integerSetting(text(SettingsSection.Idle, "screenOffSeconds", "Turn screen off after", "Seconds of inactivity. 0 turns it off."), 330, 0, 86400),
     integerSetting(text(SettingsSection.Idle, "suspendSeconds", "Sleep after", "Seconds of inactivity. 0 turns it off."), 900, 0, 86400),
 
+    booleanSetting(text(SettingsSection.Clipboard, "typeAfterPick", "Type the pick", "After choosing an emoji, symbol or clip, type it into the focused app (needs wtype); it is always copied."), true),
+    booleanSetting(text(SettingsSection.Clipboard, "runWatcher", "Record clipboard history", "Start wl-paste --watch cliphist store with the shell. Leave off if you start it yourself."), false),
     textSetting(text(SettingsSection.Capture, "screenshotDirectory", "Screenshots folder", "Where screenshots are saved. ~ is your home."), "~/Pictures/Screenshots"),
     textSetting(text(SettingsSection.Capture, "recordingDirectory", "Recordings folder", "Where screen recordings are saved. ~ is your home."), "~/Videos/Recordings"),
     textSetting(text(SettingsSection.Capture, "screenshotName", "Screenshot file name", "{timestamp} becomes the date and time."), "Screenshot_{timestamp}.png"),

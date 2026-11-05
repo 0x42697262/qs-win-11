@@ -17,6 +17,9 @@ export const SystemBinary = Object.freeze({
     GpuScreenRecorder: "gpu-screen-recorder",
     WfRecorder: "wf-recorder",
     Pkill: "pkill",
+    Cliphist: "cliphist",
+    Wtype: "wtype",
+    WlPaste: "wl-paste",
     Df: "df",
     Convert: "convert",
 });
@@ -32,6 +35,15 @@ export const CAVA_CONFIG_FILE = "qs-win-11-cava.conf";
 export const NotifyAction = Object.freeze({ open: "open", edit: "edit", folder: "folder" });
 export const IMAGE_MIME = "image/png";
 export const SIGINT = "-INT";
+
+export const EMOJI_DATA_FILE = "assets/emoji/emoji.json";
+export const CliphistCommand = Object.freeze({
+    list: Object.freeze(["cliphist", "list"]),
+    wipe: Object.freeze(["cliphist", "wipe"]),
+    watch: Object.freeze(["wl-paste", "--watch", "cliphist", "store"]),
+    decodeToClipboard: "printf '%s' \"$1\" | cliphist decode | wl-copy",
+    delete: "printf '%s' \"$1\" | cliphist delete",
+});
 
 export const NmcliCommand = Object.freeze({
     list: Object.freeze(["nmcli", "-t", "-f", "NAME,UUID,TYPE,ACTIVE", "connection", "show"]),

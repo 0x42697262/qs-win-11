@@ -168,6 +168,8 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Snipping | `ipc call snip screen` or `snip area "0,0 800x600"` | Saved without the overlay |
 | Recording | Choose Record, drag an area | Red record button on the taskbar; clicking it or `snip stop` ends the recording (gpu-screen-recorder, else wf-recorder) and notifies with the file |
 | Color picker | `ipc call colorPicker open`, hover, click | Loupe magnifies the frozen screen; the clicked color's hex lands on the clipboard with a notification |
+| Emoji panel | `ipc call panel emoji` (suggested Super+.), type `heart` | Panel above the taskbar with Emoji, Kaomoji, Symbols, Clipboard tabs; results filter live; clicking one copies it and types it with wtype (`clipboard.typeAfterPick`); recent picks lead the Emoji tab |
+| Clipboard history | Run `wl-paste --watch cliphist store` (or `clipboard.runWatcher`), copy two things, `ipc call panel clipboard` | Newest first, images marked; click restores it to the clipboard; trash deletes one; Clear all wipes |
 | Weather | Leave `weather.locationMode` on `auto` without GeoClue | `location.resolved` with `ipLookup` once; `state.json` caches the location for 6 hours; "Approximate location" shown |
 | Weather | `settings set weather.allowIpLookup false` with no GeoClue and no cache | Weather card asks for a location; nothing is sent to ipwho.is |
 | Weather | Disconnect the network | Card shows "Couldn't load weather"; the rest of the board still works |

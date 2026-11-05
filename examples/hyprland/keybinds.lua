@@ -106,6 +106,14 @@ return {
 		bind = "SUPER + SHIFT + C",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call panel clipboard"),
+		bind = "SUPER + V",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call panel emoji"),
+		bind = "SUPER + period",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snap open"),
 		bind = "SUPER + Z",
 	},

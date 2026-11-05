@@ -241,6 +241,13 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `idle.screenOffSeconds` | integer | `330` | 0 to 86400 | Seconds of inactivity. 0 turns it off. |
 | `idle.suspendSeconds` | integer | `900` | 0 to 86400 | Seconds of inactivity. 0 turns it off. |
 
+## clipboard
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `clipboard.typeAfterPick` | boolean | `true` |  | After choosing an emoji, symbol or clip, type it into the focused app (needs wtype); it is always copied. |
+| `clipboard.runWatcher` | boolean | `false` |  | Start wl-paste --watch cliphist store with the shell. Leave off if you start it yourself. |
+
 ## capture
 
 | Key | Type | Default | Allowed | Description |
@@ -336,6 +343,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `features.snipping.enabled` | boolean | `true` |  | Turns the snipping feature on or off. It still stays off when its requirements are missing. |
 | `features.screenRecording.enabled` | boolean | `true` |  | Turns the screenRecording feature on or off. It still stays off when its requirements are missing. |
 | `features.colorPicker.enabled` | boolean | `true` |  | Turns the colorPicker feature on or off. It still stays off when its requirements are missing. |
+| `features.clipboardHistory.enabled` | boolean | `true` |  | Turns the clipboardHistory feature on or off. It still stays off when its requirements are missing. |
+| `features.emojiPanel.enabled` | boolean | `true` |  | Turns the emojiPanel feature on or off. It still stays off when its requirements are missing. |
 
 ## experimental
 
@@ -423,6 +432,9 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `sizes.control.widgetCard` | integer | `340` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.sparklineWidth` | integer | `96` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.loupeSize` | integer | `120` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.emojiPanelWidth` | integer | `400` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.emojiPanelHeight` | integer | `460` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.emojiCell` | integer | `40` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.snipToolbarHeight` | integer | `48` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.sparklineHeight` | integer | `28` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.visualizerHeight` | integer | `36` | 0 to 4096 | Control or surface size in pixels, before scale. |
@@ -668,6 +680,12 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.snipHideDelayMs` | integer | `150` | 0 to 5000 | Wait after the snipping overlay hides before the screen is captured. (ms) |
 | `tuning.snipMinimumSize` | integer | `4` | 1 to 1000 | Smaller drags count as a click. (count) |
 | `tuning.pickerZoom` | integer | `8` | 1 to 64 | Magnification of the color picker loupe. (factor) |
+| `tuning.clipboardPreviewLines` | integer | `3` | 1 to 20 | Lines of text shown per clipboard entry. (count) |
+| `tuning.clipboardHistoryLimit` | integer | `50` | 1 to 1000 | Clipboard entries listed. (count) |
+| `tuning.emojiResultLimit` | integer | `120` | 1 to 2000 | Emoji shown for a search. (count) |
+| `tuning.emojiRecentLimit` | integer | `24` | 0 to 200 | Recently used emoji remembered. (count) |
+| `tuning.emojiColumns` | integer | `9` | 2 to 30 | Columns in the emoji grid. (count) |
+| `tuning.typeDelayMs` | integer | `120` | 0 to 5000 | Wait after the panel closes before typing the pick. (ms) |
 | `tuning.runHistoryShown` | integer | `5` | 0 to 50 | Recent commands listed in the Run dialog. (count) |
 | `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
 | `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid when expanded. (count) |
@@ -862,6 +880,32 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.lock.unlock` | text | `"Unlock"` |  | Text shown in the shell. |
 | `text.lock.pressAnyKey` | text | `"Press any key or click to unlock"` |  | Text shown in the shell. |
 | `text.lock.failed` | text | `"Sign-in failed. Try again."` |  | Text shown in the shell. |
+| `text.panel.emoji` | text | `"Emoji"` |  | Text shown in the shell. |
+| `text.panel.kaomoji` | text | `"Kaomoji"` |  | Text shown in the shell. |
+| `text.panel.symbols` | text | `"Symbols"` |  | Text shown in the shell. |
+| `text.panel.clipboard` | text | `"Clipboard history"` |  | Text shown in the shell. |
+| `text.panel.search` | text | `"Search"` |  | Text shown in the shell. |
+| `text.panel.recent` | text | `"Most recently used"` |  | Text shown in the shell. |
+| `text.panel.clearAll` | text | `"Clear all"` |  | Text shown in the shell. |
+| `text.panel.emptyClipboard` | text | `"Copy something and it shows up here. History needs cliphist and its wl-paste watcher."` |  | Text shown in the shell. |
+| `text.panel.noEmoji` | text | `"No emoji found"` |  | Text shown in the shell. |
+| `text.panel.image` | text | `"Image"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.smileys` | text | `"Smileys and emotion"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.people` | text | `"People"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.nature` | text | `"Animals and nature"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.food` | text | `"Food and drink"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.travel` | text | `"Travel and places"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.activities` | text | `"Activities"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.objects` | text | `"Objects"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.symbols` | text | `"Symbols"` |  | Text shown in the shell. |
+| `text.panel.emojiGroups.flags` | text | `"Flags"` |  | Text shown in the shell. |
+| `text.panel.symbolGroups.punctuation` | text | `"Punctuation"` |  | Text shown in the shell. |
+| `text.panel.symbolGroups.currency` | text | `"Currency"` |  | Text shown in the shell. |
+| `text.panel.symbolGroups.math` | text | `"Math"` |  | Text shown in the shell. |
+| `text.panel.symbolGroups.arrows` | text | `"Arrows"` |  | Text shown in the shell. |
+| `text.panel.symbolGroups.latin` | text | `"Latin"` |  | Text shown in the shell. |
+| `text.panel.symbolGroups.greek` | text | `"Greek"` |  | Text shown in the shell. |
+| `text.panel.symbolGroups.technical` | text | `"Technical"` |  | Text shown in the shell. |
 | `text.capture.region` | text | `"Rectangle"` |  | Text shown in the shell. |
 | `text.capture.window` | text | `"Window"` |  | Text shown in the shell. |
 | `text.capture.screen` | text | `"Full screen"` |  | Text shown in the shell. |

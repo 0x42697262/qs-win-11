@@ -108,5 +108,11 @@
 40f-color-close|!wtype -k Escape -k Escape
 40g-color-at|colorPicker at 10 10
 40h-color-copied|!for _attempt in $(seq 50); do wl-paste --no-newline 2>/dev/null | grep -q '^#[0-9a-f]\{6\}$' && exit 0; sleep 0.1; done; exit 1
+41a-emoji-panel|panel emoji
+41b-emoji-search|!sleep 0.4; wtype ' heart'
+41c-close|panel toggle
+41c2-clipboard-seed|!printf 'first clip' | wl-copy; sleep 0.3; printf 'second clip from qs-win-11' | wl-copy; sleep 0.3; wl-paste --no-newline | cliphist store; printf 'first clip' | cliphist store; printf 'second clip from qs-win-11' | cliphist store
+41d-clipboard-panel|panel clipboard
+41e-close|panel toggle
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock
