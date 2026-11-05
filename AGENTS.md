@@ -114,6 +114,8 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Taskbar | `settings set taskbar.autoHide true` | Taskbar hides after the pointer leaves and returns at the bottom edge; windows use the full height |
 | Tray | Start an app with a tray icon, click the chevron | Overflow flyout lists it; left click activates, right click opens its menu |
 | Start | `qs -c qs-win-11 ipc call start toggle` | Start opens above the taskbar with Pinned, Recommended and your avatar; typing searches; Enter launches the best match |
+| Start | Open Start, scroll | One page: Pinned (two rows, "Show all" expands), Recommended, then All with Category / Grid / List; the choice persists in `startMenu.allAppsView` |
+| Start | `ipc call start allApps` | Start opens scrolled to the All section |
 | Start | Right-click a pinned tile | Pin/Unpin to Start and taskbar; change persists in `state.json` |
 | Start | Power button in Start | Lock, Sign out, Sleep, Shut down, Restart |
 | Search | `qs -c qs-win-11 ipc call search toggle`, type part of an app name | Best match first, details pane with Open and pin actions; arrow keys move the selection |

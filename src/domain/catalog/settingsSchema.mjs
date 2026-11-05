@@ -2,7 +2,7 @@ import {
     booleanSetting, colorSetting, enumSetting, integerSetting, numberSetting, textListSetting, textSetting,
 } from "../settings/definitions.mjs";
 import {
-    CompositorKind, CriticalBatteryAction, FirstDayOfWeek, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
+    AllAppsView, CompositorKind, CriticalBatteryAction, FirstDayOfWeek, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
 } from "./enums.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
 import { CornerModel } from "../shape/corners.mjs";
@@ -103,6 +103,7 @@ export const SETTING_DEFINITIONS = Object.freeze([
     booleanSetting(text(SettingsSection.Taskbar, "windowsOnAllMonitors", "Show apps on all taskbars", "Off shows each window only on its own monitor's taskbar."), false),
 
     booleanSetting(text(SettingsSection.StartMenu, "showRecommended", "Show recommended files", "Recently used files in Start."), true),
+    enumSetting(text(SettingsSection.StartMenu, "allAppsView", "All apps view", "How the All section in Start lists apps."), AllAppsView, AllAppsView.Category),
     textListSetting(text(SettingsSection.StartMenu, "initialPinned", "Initially pinned apps", "Desktop entry ids pinned before you pin anything yourself."), ["firefox", "org.gnome.Nautilus", "kitty", "org.gnome.TextEditor", "org.gnome.Calculator"]),
 
     textListSetting(text(SettingsSection.QuickSettings, "tiles", "Quick Settings tiles", "Tiles shown, in order. Unsupported tiles hide themselves."), Object.values(QuickTile), Object.values(QuickTile)),
@@ -153,4 +154,5 @@ export const SettingKey = Object.freeze({
     ThemeMode: "theme.mode",
     QuickSettingsTiles: "quickSettings.tiles",
     TaskbarAlignment: "taskbar.alignment",
+    StartAllAppsView: "startMenu.allAppsView",
 });

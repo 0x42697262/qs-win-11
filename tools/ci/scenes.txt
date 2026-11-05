@@ -5,6 +5,9 @@
 03-start-light|start toggle
 04-start-dark|settings set theme.mode dark
 05-all-apps|start allApps
+05b-grid|settings set startMenu.allAppsView grid
+05c-list|settings set startMenu.allAppsView list
+05d-category|settings set startMenu.allAppsView category
 06-search|search toggle
 07-quick-link|quickLink toggle
 08-quick-settings|quickSettings toggle
