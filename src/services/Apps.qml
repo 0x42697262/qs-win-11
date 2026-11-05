@@ -4,6 +4,8 @@ import Quickshell
 import qs.src.config
 import "../domain/apps/appIds.mjs" as AppIds
 import "../domain/apps/appIcons.mjs" as AppIconRules
+import "../domain/apps/categories.mjs" as CategoryRules
+import "../adapters/quickshell/objects.mjs" as QuickshellObjects
 import "../domain/apps/taskbarItems.mjs" as TaskbarRules
 import "../domain/catalog/shellDataSchema.mjs" as ShellDataSchema
 import "../domain/catalog/logEvents.mjs" as LogEvents
@@ -16,6 +18,7 @@ Singleton {
     readonly property list<QtObject> visibleEntries: entries.filter(entry => !entry.noDisplay).sort((left, right) => left.name.localeCompare(right.name))
     readonly property list<string> taskbarPinned: installedOnly(ShellData.values.taskbarPinnedCustomized ? ShellData.values.taskbarPinnedApps : Settings.values.taskbar.initialPinned)
     readonly property list<var> searchable: visibleEntries.map(entry => ({ id: entry.id, name: entry.name, genericName: entry.genericName, keywords: entry.keywords }))
+    readonly property list<var> categorized: CategoryRules.groupByCategory(visibleEntries.map(entry => ({ id: entry.id, name: entry.name, categories: QuickshellObjects.toArray(entry.categories) })))
     readonly property list<var> alphabetGroups: SearchRules.alphabetGroups(visibleEntries)
     readonly property list<string> startPinned: installedOnly(ShellData.values.startPinnedCustomized ? ShellData.values.startPinnedApps : Settings.values.startMenu.initialPinned)
 

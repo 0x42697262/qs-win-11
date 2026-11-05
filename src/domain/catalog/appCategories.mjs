@@ -1,0 +1,47 @@
+export const AppCategory = Object.freeze({
+    Productivity: "productivity",
+    Creativity: "creativity",
+    Social: "social",
+    Entertainment: "entertainment",
+    Development: "development",
+    Utilities: "utilities",
+    System: "system",
+    Other: "other",
+});
+
+export const CATEGORY_ORDER = Object.freeze([
+    AppCategory.Productivity, AppCategory.Creativity, AppCategory.Social, AppCategory.Entertainment,
+    AppCategory.Development, AppCategory.Utilities, AppCategory.System, AppCategory.Other,
+]);
+
+export const FREEDESKTOP_CATEGORY_MAP = Object.freeze({
+    Office: AppCategory.Productivity,
+    TextEditor: AppCategory.Productivity,
+    WordProcessor: AppCategory.Productivity,
+    Spreadsheet: AppCategory.Productivity,
+    Calendar: AppCategory.Productivity,
+    Email: AppCategory.Social,
+    Chat: AppCategory.Social,
+    InstantMessaging: AppCategory.Social,
+    Network: AppCategory.Social,
+    WebBrowser: AppCategory.Social,
+    Graphics: AppCategory.Creativity,
+    Photography: AppCategory.Creativity,
+    "2DGraphics": AppCategory.Creativity,
+    "3DGraphics": AppCategory.Creativity,
+    AudioVideoEditing: AppCategory.Creativity,
+    AudioVideo: AppCategory.Entertainment,
+    Audio: AppCategory.Entertainment,
+    Video: AppCategory.Entertainment,
+    Player: AppCategory.Entertainment,
+    Game: AppCategory.Entertainment,
+    Development: AppCategory.Development,
+    IDE: AppCategory.Development,
+    Utility: AppCategory.Utilities,
+    TerminalEmulator: AppCategory.Utilities,
+    FileManager: AppCategory.Utilities,
+    Accessibility: AppCategory.Utilities,
+    System: AppCategory.System,
+    Settings: AppCategory.System,
+    Monitor: AppCategory.System,
+});

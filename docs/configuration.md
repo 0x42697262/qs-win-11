@@ -172,6 +172,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | Key | Type | Default | Allowed | Description |
 |---|---|---|---|---|
 | `startMenu.showRecommended` | boolean | `true` |  | Recently used files in Start. |
+| `startMenu.allAppsView` | enum | `"category"` | `category`, `grid`, `list` | How the All section in Start lists apps. |
 | `startMenu.initialPinned` | textList | `firefox`, `org.gnome.Nautilus`, `kitty`, `org.gnome.TextEditor`, `org.gnome.Calculator` |  | Desktop entry ids pinned before you pin anything yourself. |
 
 ## quickSettings
@@ -508,7 +509,9 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.brightnessStepPercent` | integer | `5` | 1 to 100 | Brightness change per step. (%) |
 | `tuning.searchResultLimit` | integer | `8` | 1 to 100 | Search results shown. (count) |
 | `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
-| `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid. (count) |
+| `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid when expanded. (count) |
+| `tuning.startPinnedRowsCollapsed` | integer | `2` | 1 to 20 | Rows in the Start pinned grid before Show all. (count) |
+| `tuning.startCategoryPreview` | integer | `4` | 1 to 20 | Apps shown per category before the category is expanded. (count) |
 | `tuning.startRecommendedLimit` | integer | `6` | 0 to 50 | Recommended files shown in Start. (count) |
 | `tuning.startRecommendedColumns` | integer | `2` | 1 to 6 | Columns in Start's Recommended list. (count) |
 | `tuning.trayOverflowColumns` | integer | `4` | 1 to 20 | Columns in the tray overflow flyout. (count) |
@@ -603,6 +606,21 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.start.pinToStart` | text | `"Pin to Start"` |  | Text shown in the shell. |
 | `text.start.unpinFromStart` | text | `"Unpin from Start"` |  | Text shown in the shell. |
 | `text.start.power` | text | `"Power"` |  | Text shown in the shell. |
+| `text.start.showAll` | text | `"Show all"` |  | Text shown in the shell. |
+| `text.start.showLess` | text | `"Show less"` |  | Text shown in the shell. |
+| `text.start.all` | text | `"All"` |  | Text shown in the shell. |
+| `text.start.viewCategory` | text | `"Category"` |  | Text shown in the shell. |
+| `text.start.viewGrid` | text | `"Grid"` |  | Text shown in the shell. |
+| `text.start.viewList` | text | `"List"` |  | Text shown in the shell. |
+| `text.start.more` | text | `"more"` |  | Text shown in the shell. |
+| `text.appCategories.productivity` | text | `"Productivity"` |  | Text shown in the shell. |
+| `text.appCategories.creativity` | text | `"Creativity"` |  | Text shown in the shell. |
+| `text.appCategories.social` | text | `"Social and web"` |  | Text shown in the shell. |
+| `text.appCategories.entertainment` | text | `"Entertainment"` |  | Text shown in the shell. |
+| `text.appCategories.development` | text | `"Developer tools"` |  | Text shown in the shell. |
+| `text.appCategories.utilities` | text | `"Utilities and tools"` |  | Text shown in the shell. |
+| `text.appCategories.system` | text | `"System"` |  | Text shown in the shell. |
+| `text.appCategories.other` | text | `"Other"` |  | Text shown in the shell. |
 | `text.search.bestMatch` | text | `"Best match"` |  | Text shown in the shell. |
 | `text.search.apps` | text | `"Apps"` |  | Text shown in the shell. |
 | `text.search.open` | text | `"Open"` |  | Text shown in the shell. |
