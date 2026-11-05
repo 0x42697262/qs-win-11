@@ -1,10 +1,11 @@
 import { SHELL_CONFIG_NAME } from "../src/domain/catalog/ipcCatalog.mjs";
+import { BLURRED_LAYER_NAMESPACES, BLUR_IGNORE_ALPHA } from "../src/domain/catalog/compositor.mjs";
 
 /** @typedef {import("../src/domain/catalog/ipcCatalog.mjs").IpcTarget} IpcTarget */
 /** @typedef {import("../src/domain/catalog/ipcCatalog.mjs").KeyCombo} KeyCombo */
 /** @typedef {{ target: string, functionName: string, description: string, key: KeyCombo }} BoundCall */
 
-const HEADER_NOTE = "Generated from src/domain/catalog/ipcCatalog.mjs. Copy what you need; the shell never binds keys itself.";
+const HEADER_NOTE = "Generated from src/domain/catalog. Copy what you need; the shell never binds keys or edits your config.";
 
 /** @param {string} target @param {string} functionName @returns {string} */
 export function ipcCommand(target, functionName) {
@@ -53,4 +54,25 @@ export function renderHyprchords(targets) {
     const lines = boundCalls(targets).filter((call) => !call.key.onRelease).map((call) =>
         `chord = ${comboText(call.key, "+")} , exec , ${ipcCommand(call.target, call.functionName)}`);
     return `# ${HEADER_NOTE}\n# Place inside plugin { hyprchords { ... } }.\n\n${lines.join("\n")}\n`;
+}
+
+/** @param {readonly IpcTarget[]} targets @returns {string} */
+export function renderHyprlandLuaBinds(targets) {
+    const lines = boundCalls(targets).map((call) => {
+        const options = call.key.onRelease ? ", { release = true }" : "";
+        return `hl.bind("${comboText(call.key, " + ")}", hl.dsp.exec_cmd("${ipcCommand(call.target, call.functionName)}")${options})`;
+    });
+    return `-- ${HEADER_NOTE}\n-- Plain hl.bind() form for Hyprland 0.55+ Lua configs.\n\n${lines.join("\n")}\n`;
+}
+
+/** @returns {string} */
+export function renderLayerRulesLua() {
+    const lines = BLURRED_LAYER_NAMESPACES.map((namespace) => `hl.layer_rule({ match = { namespace = "${namespace}" }, blur = true, ignore_alpha = ${BLUR_IGNORE_ALPHA} })`);
+    return `-- ${HEADER_NOTE}\n-- Blur behind the shell's translucent surfaces (Hyprland 0.55+ Lua).\n\n${lines.join("\n")}\n`;
+}
+
+/** @returns {string} */
+export function renderLayerRulesConf() {
+    const lines = BLURRED_LAYER_NAMESPACES.flatMap((namespace) => [`layerrule = blur, ${namespace}`, `layerrule = ignorealpha ${BLUR_IGNORE_ALPHA}, ${namespace}`]);
+    return `# ${HEADER_NOTE}\n# Legacy hyprlang syntax for Hyprland before 0.55.\n\n${lines.join("\n")}\n`;
 }

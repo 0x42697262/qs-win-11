@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { SETTING_DEFINITIONS } from "../src/domain/catalog/settingsSchema.mjs";
 import { IPC_TARGETS, SHELL_CONFIG_NAME } from "../src/domain/catalog/ipcCatalog.mjs";
 import { DARK_BASE, RADIUS, SPACING, FONT_SIZE, ICON_SIZE, CONTROL_SIZE } from "../src/domain/catalog/tokens.mjs";
-import { renderHyprlandConf, renderHyprlandLua, renderHyprchords, renderKeybindsMarkdown } from "./keybindExamples.mjs";
+import { renderHyprlandConf, renderHyprlandLua, renderHyprlandLuaBinds, renderHyprchords, renderKeybindsMarkdown, renderLayerRulesConf, renderLayerRulesLua } from "./keybindExamples.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 const CHECK_FLAG = "--check";
@@ -61,6 +61,9 @@ const generatedFiles = [
     { path: "examples/hyprland/keybinds.conf", render: () => renderHyprlandConf(IPC_TARGETS) },
     { path: "examples/hyprland/keybinds.lua", render: () => renderHyprlandLua(IPC_TARGETS) },
     { path: "examples/hyprland/hyprchords.conf", render: () => renderHyprchords(IPC_TARGETS) },
+    { path: "examples/hyprland/binds.lua", render: () => renderHyprlandLuaBinds(IPC_TARGETS) },
+    { path: "examples/hyprland/layerrules.lua", render: renderLayerRulesLua },
+    { path: "examples/hyprland/layerrules.conf", render: renderLayerRulesConf },
     { path: "src/ui/theme/ThemeColors.qml", render: renderColors },
     { path: "src/ui/theme/ThemeSpacingMetrics.qml", render: () => renderMetrics("SPACING", SPACING) },
     { path: "src/ui/theme/ThemeRadiusMetrics.qml", render: () => renderMetrics("RADIUS", RADIUS) },
