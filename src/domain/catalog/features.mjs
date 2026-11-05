@@ -32,6 +32,8 @@ export const FeatureName = Object.freeze({
     Snipping: "snipping",
     ScreenRecording: "screenRecording",
     ColorPicker: "colorPicker",
+    ClipboardHistory: "clipboardHistory",
+    EmojiPanel: "emojiPanel",
 });
 
 export const ExperimentalFeatureName = Object.freeze({
@@ -57,6 +59,7 @@ export const Capability = Object.freeze({
     AudioVisualizer: "audioVisualizer",
     ScreenCapture: "screenCapture",
     Recorder: "recorder",
+    ClipboardStore: "clipboardStore",
 });
 
 export const BusName = Object.freeze({
@@ -104,6 +107,8 @@ export const FEATURE_DEFAULTS = Object.freeze({
     snipping: true,
     screenRecording: true,
     colorPicker: true,
+    clipboardHistory: true,
+    emojiPanel: true,
 });
 
 /** @type {Readonly<Record<Feature, FeatureRequirement>>} */
@@ -141,4 +146,6 @@ export const FEATURE_REQUIREMENTS = Object.freeze({
     snipping: { capabilities: [Capability.ScreenCapture], dependsOn: [] },
     screenRecording: { capabilities: [Capability.Recorder], dependsOn: [FeatureName.Snipping] },
     colorPicker: { capabilities: [Capability.ScreenCapture, Capability.ImageSampling], dependsOn: [] },
+    clipboardHistory: { capabilities: [Capability.ClipboardStore], dependsOn: [] },
+    emojiPanel: { capabilities: [], dependsOn: [] },
 });

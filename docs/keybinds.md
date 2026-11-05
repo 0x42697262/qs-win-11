@@ -57,6 +57,9 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `snip stop` | Stop the running recording. |  |
 | `colorPicker open` | Open the color picker. | `SUPER+SHIFT+C` |
 | `colorPicker at` | Copy the color at global x and y without the overlay. |  |
+| `panel clipboard` | Open the panel on clipboard history. | `SUPER+V` |
+| `panel emoji` | Open the panel on emoji. | `SUPER+period` |
+| `panel toggle` | Open or close the panel on its last tab. |  |
 | `snap open` | Open the snap layout picker. | `SUPER+Z` |
 | `profiles list` | Installed profiles as JSON: name, active, conditions, problems. |  |
 | `profiles activate` | Add a profile to the top of the active stack. |  |

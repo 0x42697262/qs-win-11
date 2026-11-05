@@ -16,6 +16,7 @@ export const IpcTargetName = Object.freeze({
     Theming: "theming",
     Snip: "snip",
     ColorPicker: "colorPicker",
+    Panel: "panel",
     Keyboard: "keyboard",
     QuickLink: "quickLink",
     Session: "session",
@@ -202,6 +203,15 @@ export const IPC_TARGETS = Object.freeze([
         functions: [
             { name: "open", description: "Open the color picker.", suggestedKey: { modifiers: [SUPER, SHIFT], key: "C" } },
             { name: "at", description: "Copy the color at global x and y without the overlay." },
+        ],
+    },
+    {
+        target: IpcTargetName.Panel,
+        description: "Emoji, symbols and clipboard history panel.",
+        functions: [
+            { name: "clipboard", description: "Open the panel on clipboard history.", suggestedKey: { modifiers: [SUPER], key: "V" } },
+            { name: "emoji", description: "Open the panel on emoji.", suggestedKey: { modifiers: [SUPER], key: "period" } },
+            { name: "toggle", description: "Open or close the panel on its last tab." },
         ],
     },
     {

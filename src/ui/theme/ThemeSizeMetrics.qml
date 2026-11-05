@@ -55,6 +55,9 @@ QtObject {
     readonly property real widgetCard: values.widgetCard * scale
     readonly property real sparklineWidth: values.sparklineWidth * scale
     readonly property real loupeSize: values.loupeSize * scale
+    readonly property real emojiPanelWidth: values.emojiPanelWidth * scale
+    readonly property real emojiPanelHeight: values.emojiPanelHeight * scale
+    readonly property real emojiCell: values.emojiCell * scale
     readonly property real snipToolbarHeight: values.snipToolbarHeight * scale
     readonly property real sparklineHeight: values.sparklineHeight * scale
     readonly property real visualizerHeight: values.visualizerHeight * scale

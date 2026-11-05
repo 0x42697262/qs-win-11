@@ -18,6 +18,7 @@ import qs.src.ui.features.widgets
 import qs.src.ui.features.settingsApp
 import qs.src.ui.features.snap
 import qs.src.ui.features.capture
+import qs.src.ui.features.panel
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -55,6 +56,9 @@ ShellRoot {
         if (Features.enabled.sessionMenu) {
             components[Surfaces.Surface.SessionMenu] = sessionMenuSurface;
         }
+        if (Features.enabled.emojiPanel || Features.enabled.clipboardHistory) {
+            components[Surfaces.Surface.Panel] = panelSurface;
+        }
         if (Features.enabled.run) {
             components[Surfaces.Surface.Run] = runSurface;
         }
@@ -78,6 +82,7 @@ ShellRoot {
     WallpaperIpc {}
     ThemingIpc {}
     SnipIpc {}
+    PanelIpc {}
     ColorPickerIpc {}
     KeyboardIpc {}
     SessionIpc {}
@@ -188,6 +193,11 @@ ShellRoot {
     Component {
         id: searchSurface
         SearchSurface {}
+    }
+
+    Component {
+        id: panelSurface
+        EmojiPanelSurface {}
     }
 
     Component {

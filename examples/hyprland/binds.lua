@@ -26,6 +26,8 @@ hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snip open
 hl.bind("Print", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snip screen"))
 hl.bind("SUPER + ALT + R", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snip record"))
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call colorPicker open"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call panel clipboard"))
+hl.bind("SUPER + period", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call panel emoji"))
 hl.bind("SUPER + Z", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snap open"))
 hl.bind("SUPER + L", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session lock"))
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session menu"))

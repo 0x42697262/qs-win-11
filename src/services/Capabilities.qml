@@ -53,6 +53,9 @@ Singleton {
         if (binaries.has(SystemCatalog.SystemBinary.GpuScreenRecorder) || binaries.has(SystemCatalog.SystemBinary.WfRecorder)) {
             found.add(FeatureCatalog.Capability.Recorder);
         }
+        if (binaries.has(SystemCatalog.SystemBinary.Cliphist) && binaries.has(SystemCatalog.SystemBinary.WlPaste)) {
+            found.add(FeatureCatalog.Capability.ClipboardStore);
+        }
         if (UPower.displayDevice.isLaptopBattery) {
             found.add(FeatureCatalog.Capability.Battery);
         }
@@ -71,7 +74,7 @@ Singleton {
 
     SystemProbe {
         id: probe
-        binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, SystemCatalog.SystemBinary.Nmcli, SystemCatalog.SystemBinary.Ddcutil, SystemCatalog.SystemBinary.Magick, SystemCatalog.SystemBinary.Convert, SystemCatalog.SystemBinary.Cava, SystemCatalog.SystemBinary.Grim, SystemCatalog.SystemBinary.WlCopy, SystemCatalog.SystemBinary.GpuScreenRecorder, SystemCatalog.SystemBinary.WfRecorder, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
+        binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, SystemCatalog.SystemBinary.Nmcli, SystemCatalog.SystemBinary.Ddcutil, SystemCatalog.SystemBinary.Magick, SystemCatalog.SystemBinary.Convert, SystemCatalog.SystemBinary.Cava, SystemCatalog.SystemBinary.Grim, SystemCatalog.SystemBinary.Cliphist, SystemCatalog.SystemBinary.WlPaste, SystemCatalog.SystemBinary.Wtype, SystemCatalog.SystemBinary.WlCopy, SystemCatalog.SystemBinary.GpuScreenRecorder, SystemCatalog.SystemBinary.WfRecorder, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
         busNames: Object.values(FeatureCatalog.BusName)
         systemBusNames: Object.values(SystemCatalog.SystemBusName)
     }
