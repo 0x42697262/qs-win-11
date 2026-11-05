@@ -44,6 +44,9 @@ QtObject {
     readonly property real mediaArt: Tokens.CONTROL_SIZE.mediaArt * scale
     readonly property real clusterIconSpacing: Tokens.CONTROL_SIZE.clusterIconSpacing * scale
     readonly property real listMaxHeight: Tokens.CONTROL_SIZE.listMaxHeight * scale
+    readonly property real notificationListHeight: Tokens.CONTROL_SIZE.notificationListHeight * scale
+    readonly property real notificationImage: Tokens.CONTROL_SIZE.notificationImage * scale
+    readonly property real toastStackSpacing: Tokens.CONTROL_SIZE.toastStackSpacing * scale
     readonly property real showDesktopWidth: Tokens.CONTROL_SIZE.showDesktopWidth * scale
     readonly property real clockWidth: Tokens.CONTROL_SIZE.clockWidth * scale
     readonly property real trayIcon: Tokens.CONTROL_SIZE.trayIcon * scale

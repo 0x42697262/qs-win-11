@@ -113,4 +113,9 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Quick Settings | Wi-Fi chevron, pick an unknown secured network | Password field and Connect button; known networks connect directly |
 | Quick Settings | Pencil, toggle tiles, Done | `quickSettings.tiles` in `settings.json` updates; hidden tiles stay hidden after restart |
 | Quick Settings | Dark mode tile | `theme.mode` flips; whole shell re-themes live |
+| Notifications | `notify-send -a Mail "Hello" "Body"` | Toast bottom-right for `notifications.toastSeconds`; hovering keeps it; it also appears in the center |
+| Notifications | `notify-send -u critical "Battery low"` | Toast with red border stays until dismissed, even with do not disturb on |
+| Notifications | Turn on do not disturb, send a normal notification | No toast; it still appears in the center; taskbar cluster shows the snooze bell |
+| Notifications | Run mako or dunst first, then start the shell | `feature.disabled` with `busNameTaken`; no toasts from the shell; calendar still opens from the clock |
+| Notification center | Click the clock or `ipc call notifications toggle` | Notifications grouped by app with relative times, Clear all, calendar with today highlighted and month navigation |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

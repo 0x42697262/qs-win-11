@@ -32,3 +32,6 @@ export const AUTO_HIDE_DELAY_MS = 400;
 export const TOOLTIP_DELAY_MS = 600;
 export const START_RECOMMENDED_COLUMNS = 2;
 export const BRIGHTNESS_POLL_MS = 1000;
+export const TOAST_STACK_LIMIT = 3;
+export const NOTIFICATION_BODY_LINES = 3;
+export const DEFAULT_NOTIFICATION_ACTION = "default";

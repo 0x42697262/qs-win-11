@@ -1,4 +1,27 @@
+export const COUNT_PLACEHOLDER = "{count}";
+
 export const Strings = Object.freeze({
+    time: Object.freeze({
+        monthNames: Object.freeze(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]),
+        weekdayNames: Object.freeze(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]),
+        weekdayInitials: Object.freeze(["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]),
+        morning: "AM",
+        evening: "PM",
+        hoursShort: "h",
+        minutesShort: "min",
+        now: "Now",
+        minutesAgo: "{count}m ago",
+        hoursAgo: "{count}h ago",
+        daysAgo: "{count}d ago",
+    }),
+    notifications: Object.freeze({
+        title: "Notifications",
+        clearAll: "Clear all",
+        empty: "No new notifications",
+        doNotDisturb: "Do not disturb",
+        today: "Today",
+        dismiss: "Dismiss",
+    }),
     shell: Object.freeze({
         name: "qs-win-11",
     }),

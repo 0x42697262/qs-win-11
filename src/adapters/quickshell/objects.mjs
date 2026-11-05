@@ -13,3 +13,11 @@ export function valuesOf(model) {
 export function defaultAdapterOf(bluetooth) {
     return bluetooth && bluetooth.defaultAdapter ? bluetooth.defaultAdapter : null;
 }
+
+/**
+ * @param {ArrayLike<unknown> | null | undefined} sequence
+ * @returns {unknown[]}
+ */
+export function toArray(sequence) {
+    return sequence ? Array.prototype.slice.call(sequence) : [];
+}

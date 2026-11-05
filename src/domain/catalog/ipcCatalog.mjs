@@ -12,6 +12,7 @@ export const IpcTargetName = Object.freeze({
     QuickLink: "quickLink",
     Session: "session",
     QuickSettings: "quickSettings",
+    Notifications: "notifications",
 });
 
 const SUPER = "SUPER";
@@ -65,6 +66,15 @@ export const IPC_TARGETS = Object.freeze([
         description: "Quick Settings flyout.",
         functions: [
             { name: "toggle", description: "Open or close Quick Settings.", suggestedKey: { modifiers: [SUPER], key: "A" } },
+        ],
+    },
+    {
+        target: IpcTargetName.Notifications,
+        description: "Notification center and calendar.",
+        functions: [
+            { name: "toggle", description: "Open or close the notification center.", suggestedKey: { modifiers: [SUPER], key: "N" } },
+            { name: "clearAll", description: "Dismiss every notification." },
+            { name: "toggleDoNotDisturb", description: "Turn do not disturb on or off." },
         ],
     },
     {
