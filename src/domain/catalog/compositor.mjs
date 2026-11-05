@@ -19,6 +19,8 @@ export const CompositorAction = Object.freeze({
 });
 
 export const HYPRLAND_LAYOUT_EVENT = "activelayout";
+export const HYPRLAND_POSITION_FIELD = "at";
+export const HYPRLAND_SIZE_FIELD = "size";
 
 export const REFRESH_TOPLEVEL_EVENTS = Object.freeze([HyprlandEventName.OpenWindow, HyprlandEventName.MoveWindow, HyprlandEventName.WindowTitle]);
 

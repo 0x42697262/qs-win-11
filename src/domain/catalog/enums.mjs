@@ -23,4 +23,7 @@ export const QuickTile = Object.freeze({
 });
 export const PerformanceMetric = Object.freeze({ Cpu: "cpu", Gpu: "gpu", Memory: "memory", Storage: "storage", Network: "network", Battery: "battery" });
 export const ScreenCorner = Object.freeze({ TopLeft: "topLeft", TopRight: "topRight", BottomLeft: "bottomLeft", BottomRight: "bottomRight", Center: "center" });
+export const SnipMode = Object.freeze({ Region: "region", Window: "window", Screen: "screen" });
+export const SnipKind = Object.freeze({ Screenshot: "screenshot", Recording: "recording", Color: "color" });
+export const RecorderChoice = Object.freeze({ Auto: "auto", GpuScreenRecorder: "gpuScreenRecorder", WfRecorder: "wfRecorder" });
 export const InputIndicatorMode = Object.freeze({ Auto: "auto", Always: "always", Never: "never" });

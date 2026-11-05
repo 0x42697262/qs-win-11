@@ -54,6 +54,8 @@ QtObject {
     readonly property real altTabCard: values.altTabCard * scale
     readonly property real widgetCard: values.widgetCard * scale
     readonly property real sparklineWidth: values.sparklineWidth * scale
+    readonly property real loupeSize: values.loupeSize * scale
+    readonly property real snipToolbarHeight: values.snipToolbarHeight * scale
     readonly property real sparklineHeight: values.sparklineHeight * scale
     readonly property real visualizerHeight: values.visualizerHeight * scale
     readonly property real visualizerBarGap: values.visualizerBarGap * scale

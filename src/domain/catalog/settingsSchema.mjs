@@ -2,7 +2,7 @@ import {
     booleanSetting, colorSetting, enumSetting, integerSetting, numberSetting, textListSetting, textSetting,
 } from "../settings/definitions.mjs";
 import {
-    AllAppsView, CompositorKind, PerformanceMetric, ScreenCorner, CriticalBatteryAction, FirstDayOfWeek, InputIndicatorMode, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
+    AllAppsView, CompositorKind, PerformanceMetric, RecorderChoice, ScreenCorner, CriticalBatteryAction, FirstDayOfWeek, InputIndicatorMode, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
 } from "./enums.mjs";
 import { APP_THEME_TARGETS } from "./appThemes.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
@@ -32,6 +32,7 @@ export const SettingsSection = Object.freeze({
     Idle: "idle",
     Weather: "weather",
     Widgets: "widgets",
+    Capture: "capture",
     DesktopClock: "desktopClock",
     Commands: "commands",
     Features: "features",
@@ -147,6 +148,14 @@ export const SETTING_DEFINITIONS = Object.freeze([
     integerSetting(text(SettingsSection.Idle, "screenOffSeconds", "Turn screen off after", "Seconds of inactivity. 0 turns it off."), 330, 0, 86400),
     integerSetting(text(SettingsSection.Idle, "suspendSeconds", "Sleep after", "Seconds of inactivity. 0 turns it off."), 900, 0, 86400),
 
+    textSetting(text(SettingsSection.Capture, "screenshotDirectory", "Screenshots folder", "Where screenshots are saved. ~ is your home."), "~/Pictures/Screenshots"),
+    textSetting(text(SettingsSection.Capture, "recordingDirectory", "Recordings folder", "Where screen recordings are saved. ~ is your home."), "~/Videos/Recordings"),
+    textSetting(text(SettingsSection.Capture, "screenshotName", "Screenshot file name", "{timestamp} becomes the date and time."), "Screenshot_{timestamp}.png"),
+    textSetting(text(SettingsSection.Capture, "recordingName", "Recording file name", "{timestamp} becomes the date and time."), "Recording_{timestamp}.mp4"),
+    booleanSetting(text(SettingsSection.Capture, "copyToClipboard", "Copy screenshots", "Also put each screenshot on the clipboard (needs wl-copy)."), true),
+    booleanSetting(text(SettingsSection.Capture, "freeze", "Freeze the screen", "Show a still frame while you pick an area."), true),
+    enumSetting(text(SettingsSection.Capture, "recorder", "Recorder", "Auto prefers gpu-screen-recorder and falls back to wf-recorder."), RecorderChoice, RecorderChoice.Auto),
+    booleanSetting(text(SettingsSection.Capture, "recordAudio", "Record audio", "Include the default output's sound in recordings."), false),
     textListSetting(text(SettingsSection.Widgets, "performanceMetrics", "Performance metrics", "Rows in the Performance card, in order. Metrics this PC cannot report hide themselves."), Object.values(PerformanceMetric), Object.values(PerformanceMetric)),
     textSetting(text(SettingsSection.Widgets, "storagePath", "Storage to watch", "Any path on the disk shown in the Performance card."), "/"),
     enumSetting(text(SettingsSection.DesktopClock, "position", "Desktop clock position", "Where the desktop clock sits on each screen."), ScreenCorner, ScreenCorner.TopRight),
@@ -159,6 +168,7 @@ export const SETTING_DEFINITIONS = Object.freeze([
     textSetting(text(SettingsSection.Weather, "manualPlaceName", "Manual place name", "Shown on the weather widget when location is manual."), ""),
 
     textSetting(text(SettingsSection.Commands, "afterAppTheme", "After app theming", "Runs after themed files are written, e.g. pkill -USR1 kitty. Empty runs nothing."), ""),
+    textSetting(text(SettingsSection.Commands, "imageEditor", "Image editor", "Edit button on screenshot notifications. {file} is the screenshot."), "swappy -f {file}"),
     textSetting(text(SettingsSection.Commands, "terminal", "Terminal", "Command that opens a terminal."), "kitty"),
     textSetting(text(SettingsSection.Commands, "fileManager", "File manager", "Command that opens the file manager."), "nautilus"),
     textSetting(text(SettingsSection.Commands, "taskManager", "Task manager", "Command that opens a task manager."), "gnome-system-monitor"),

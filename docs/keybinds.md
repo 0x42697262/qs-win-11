@@ -50,6 +50,13 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `wallpaper next` | Next image in wallpaper.directory. |  |
 | `wallpaper previous` | Previous image in wallpaper.directory. |  |
 | `theming render` | Write every themed file now, even while features.appTheming.enabled is off. |  |
+| `snip open` | Open the snipping overlay. | `SUPER+SHIFT+S` |
+| `snip screen` | Capture the focused screen now. | `Print` |
+| `snip area` | Capture a grim geometry such as "0,0 800x600" without the overlay. |  |
+| `snip record` | Open the overlay in recording mode, or stop a running recording. | `SUPER+ALT+R` |
+| `snip stop` | Stop the running recording. |  |
+| `colorPicker open` | Open the color picker. | `SUPER+SHIFT+C` |
+| `colorPicker at` | Copy the color at global x and y without the overlay. |  |
 | `snap open` | Open the snap layout picker. | `SUPER+Z` |
 | `profiles list` | Installed profiles as JSON: name, active, conditions, problems. |  |
 | `profiles activate` | Add a profile to the top of the active stack. |  |

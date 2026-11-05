@@ -100,5 +100,13 @@
 39b-performance|widgets toggle
 39c-close|widgets toggle
 39d-desktop-clock-off|settings set features.desktopClock.enabled false
+40a-snip-overlay|snip open
+40b-snip-close|!qs -p "$SHELL_DIR" ipc call snip open; sleep 0.3; wtype -k Escape -k Escape
+40c-snip-area|!qs -p "$SHELL_DIR" ipc call snip area "0,0 400x300"
+40d-snip-saved|!for _attempt in $(seq 50); do ls "$HOME"/Pictures/Screenshots/Screenshot_*.png >/dev/null 2>&1 && exit 0; sleep 0.1; done; exit 1
+40e-color-picker|colorPicker open
+40f-color-close|!wtype -k Escape -k Escape
+40g-color-at|colorPicker at 10 10
+40h-color-copied|!for _attempt in $(seq 50); do wl-paste --no-newline 2>/dev/null | grep -q '^#[0-9a-f]\{6\}$' && exit 0; sleep 0.1; done; exit 1
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock

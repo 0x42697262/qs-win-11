@@ -183,6 +183,8 @@ export const CONTROL_SIZE = Object.freeze({
     altTabCard: 160,
     widgetCard: 340,
     sparklineWidth: 96,
+    loupeSize: 120,
+    snipToolbarHeight: 48,
     sparklineHeight: 28,
     visualizerHeight: 36,
     visualizerBarGap: 2,
