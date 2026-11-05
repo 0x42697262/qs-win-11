@@ -23,14 +23,67 @@ Card {
     readonly property list<NotificationAction> buttonActions: actions.filter(action => action.identifier !== Units.DEFAULT_NOTIFICATION_ACTION)
     readonly property string appIcon: notification.appIcon !== "" ? Quickshell.iconPath(notification.appIcon, true) : Apps.iconSource(notification.desktopEntry !== "" ? notification.desktopEntry : notification.appName)
 
+    property real offset: 0
+    property bool dismissing: false
+
     signal closeRequested
+
+    function dismiss(): void {
+        if (dismissing) {
+            return;
+        }
+        dismissing = true;
+        exit.start();
+    }
 
     implicitHeight: column.implicitHeight + Theme.spacing.medium * 2
     color: Theme.surfaceFill
     borderColor: notification.urgency === NotificationUrgency.Critical ? Theme.colors.critical : Theme.colors.cardStroke
 
+    transform: Translate { x: root.offset }
+
     HoverHandler {
         id: hover
+    }
+
+    DragHandler {
+        id: swipe
+        target: null
+        xAxis.enabled: true
+        yAxis.enabled: false
+        enabled: !root.dismissing
+        onTranslationChanged: {
+            if (active) {
+                root.offset = Math.max(0, translation.x);
+            }
+        }
+        onActiveChanged: {
+            if (active) {
+                return;
+            }
+            if (root.offset > root.width * Theme.elevation.swipeDismissFraction) {
+                root.dismiss();
+            } else {
+                settle.start();
+            }
+        }
+    }
+
+    NumberAnimation {
+        id: settle
+        target: root
+        property: "offset"
+        to: 0
+        duration: Theme.motion.normal
+        easing.type: Easing.BezierSpline
+        easing.bezierCurve: Theme.motion.emphasized
+    }
+
+    ParallelAnimation {
+        id: exit
+        NumberAnimation { target: root; property: "offset"; to: root.width; duration: Theme.motion.dismiss; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.accelerate }
+        NumberAnimation { target: root; property: "opacity"; to: 0; duration: Theme.motion.dismiss; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.accelerate }
+        onFinished: root.closeRequested()
     }
 
     TapHandler {
@@ -79,7 +132,7 @@ Card {
                 icon: Icons.Icon.dismiss
                 iconSize: Theme.iconSize.small
                 buttonSize: Theme.iconSize.xLarge
-                onActivated: root.closeRequested()
+                onActivated: root.dismiss()
             }
         }
 

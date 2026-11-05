@@ -26,6 +26,7 @@ Singleton {
     readonly property int weightSemibold: sizes.fontWeight.semibold
     readonly property int weightBold: sizes.fontWeight.bold
     readonly property real pressScale: effects.pressScale
+    readonly property var tracking: sizes.tracking
     readonly property real slideDistance: Appearance.slides ? Settings.values.motion.slideDistance.flyout * scale : 0
     readonly property var elevation: effects.elevation
     readonly property real overlaySmoothing: Settings.values.corners.overlaySmoothing
@@ -50,11 +51,11 @@ Singleton {
 
     readonly property ThemeColors colors: ThemeColors {
         duration: root.motion.theme
-        palette: PaletteRules.buildPalette(root.resolvedMode, root.themeSettings.accentColor, root.themeSettings.transparency, Settings.values.colors, root.effects.accentShades)
+        palette: PaletteRules.buildPalette(root.resolvedMode, root.themeSettings.accentColor, root.themeSettings.transparency, Settings.values.colors, root.effects.accentShades, root.themeSettings.textContrast)
     }
     readonly property ThemeSpacingMetrics spacing: ThemeSpacingMetrics { scale: root.scale; values: root.sizes.spacing }
     readonly property ThemeRadiusMetrics radius: ThemeRadiusMetrics { scale: root.scale; values: root.sizes.radius }
-    readonly property ThemeFontSizeMetrics fontSize: ThemeFontSizeMetrics { scale: root.scale; values: root.sizes.font }
+    readonly property ThemeFontSizeMetrics fontSize: ThemeFontSizeMetrics { scale: root.scale * root.themeSettings.fontScale; values: root.sizes.font }
     readonly property ThemeIconSizeMetrics iconSize: ThemeIconSizeMetrics { scale: root.scale; values: root.sizes.icon }
     readonly property ThemeSizeMetrics size: ThemeSizeMetrics { scale: root.scale; values: root.sizes.control }
     readonly property ThemeMotion motion: ThemeMotion { reduced: root.themeSettings.reduceMotion || !Appearance.animated; values: Settings.values.motion }

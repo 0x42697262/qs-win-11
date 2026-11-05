@@ -21,6 +21,10 @@ ColumnLayout {
 
     spacing: Theme.spacing.medium
 
+    PageEnter {
+        target: root
+    }
+
     RowLayout {
         Layout.fillWidth: true
         spacing: Theme.spacing.small

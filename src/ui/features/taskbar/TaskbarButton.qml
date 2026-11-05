@@ -1,4 +1,5 @@
 import QtQuick
+import qs.src.services
 import qs.src.ui.theme
 import qs.src.ui.components
 
@@ -9,6 +10,7 @@ Interactive {
     property bool iconFilled: false
     property color iconColor: Theme.colors.textPrimary
     property string iconSource: ""
+    property string appId: ""
     property string toolTip: ""
     property bool running: false
     property bool active: false
@@ -50,16 +52,42 @@ Interactive {
         sourceSize.height: Theme.size.taskbarIcon
         width: Theme.size.taskbarIcon
         height: Theme.size.taskbarIcon
+        scale: root.pressed ? Theme.pressScale : 1
+        transform: Translate { id: lift }
+
+        Behavior on scale {
+            NumberAnimation { duration: Theme.motion.press; easing.type: Easing.OutBack; easing.overshoot: Theme.elevation.pressOvershoot }
+        }
+    }
+
+    SequentialAnimation {
+        id: launchBounce
+        NumberAnimation { target: lift; property: "y"; to: -Theme.elevation.launchBounce * Theme.scale; duration: Theme.motion.bounce / 2; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        NumberAnimation { target: lift; property: "y"; to: 0; duration: Theme.motion.bounce / 2; easing.type: Easing.OutBounce }
+    }
+
+    Connections {
+        target: Apps
+        enabled: root.appId !== "" && Theme.motion.bounce > 0
+        function onLaunched(launchedId: string): void {
+            if (launchedId === Apps.canonicalId(root.appId)) {
+                launchBounce.restart();
+            }
+        }
     }
 
     Rectangle {
-        visible: root.running || root.urgent
+        opacity: root.running || root.urgent ? 1 : 0
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         width: root.active ? Theme.size.activeIndicatorWidth : Theme.size.openIndicatorWidth
         height: Theme.size.indicatorHeight
         radius: height / 2
         color: root.urgent ? Theme.colors.attention : root.active ? Theme.colors.accent : Theme.colors.textTertiary
+
+        Behavior on opacity {
+            NumberAnimation { duration: Theme.motion.normal; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        }
 
         Behavior on width {
             NumberAnimation { duration: Theme.motion.normal; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }

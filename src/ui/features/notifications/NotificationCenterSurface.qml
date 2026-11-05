@@ -82,9 +82,15 @@ FocusScope {
                                 id: group
 
                                 required property var modelData
+                                required property int index
 
                                 Layout.fillWidth: true
                                 spacing: Theme.spacing.xSmall
+
+                                Appear {
+                                    target: group
+                                    index: group.index
+                                }
 
                                 Repeater {
                                     model: group.modelData.notifications

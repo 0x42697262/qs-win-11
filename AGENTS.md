@@ -178,4 +178,11 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Motion | Toggle dark mode | Every color crossfades (`motion.durations.theme`) instead of snapping |
 | Motion | Click a taskbar icon | Icon dips and springs back (`motion.durations.press`, `effects.elevation.pressOvershoot`) |
 | Motion | `settings set theme.reduceMotion true` or effects level 0 | All of the above become instant |
+| Motion | Open Quick Settings, open the Wi-Fi page, go back | Detail page slides in from the right, main page slides back from the left (`motion.durations.page`) |
+| Motion | Change month in the calendar | Day grid slides vertically in the direction of travel |
+| Motion | Open Start or the notification center | Tiles and groups fade and rise in sequence (`motion.durations.stagger`, `effects.elevation.staggerLimit`) |
+| Notifications | Drag a toast or card to the right past `effects.elevation.swipeDismissFraction` | It slides out and is dismissed; a short drag springs back |
+| Taskbar | Launch a pinned app from the taskbar or Start | Its taskbar icon bounces once (`motion.durations.bounce`, `effects.elevation.launchBounce`) |
+| Tooltips | Hover across taskbar buttons | Tooltip fades in, glides between buttons and fades out |
+| Comfort | `settings set theme.fontScale 1.25`, `settings set theme.textContrast 0.3` | Text grows everywhere; secondary text gets darker in light mode, brighter in dark mode |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

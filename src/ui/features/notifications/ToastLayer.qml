@@ -48,21 +48,21 @@ PanelWindow {
                 notification: modelData
                 showTime: false
                 opacity: 0
-                transform: Translate { id: toastSlide; x: Theme.elevation.toastSlide * Theme.scale }
+                offset: Theme.elevation.toastSlide * Theme.scale
 
                 Component.onCompleted: toastEntrance.start()
 
                 ParallelAnimation {
                     id: toastEntrance
                     NumberAnimation { target: toast; property: "opacity"; to: 1; duration: Theme.motion.normal; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
-                    NumberAnimation { target: toastSlide; property: "x"; to: 0; duration: Theme.motion.toastEnter; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.emphasized }
+                    NumberAnimation { target: toast; property: "offset"; to: 0; duration: Theme.motion.toastEnter; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.emphasized }
                 }
                 onCloseRequested: Notifications.hideToast(modelData.id)
 
                 Timer {
                     interval: toast.durationMs
                     running: toast.durationMs > 0 && !toast.hovered
-                    onTriggered: Notifications.hideToast(toast.modelData.id)
+                    onTriggered: toast.dismiss()
                 }
             }
         }

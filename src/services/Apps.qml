@@ -54,11 +54,14 @@ Singleton {
         return themed !== "" ? themed : Quickshell.iconPath(spec.value, true);
     }
 
+    signal launched(string appId)
+
     function launch(appId: string): void {
         const entry = entryFor(appId);
         if (entry) {
             entry.execute();
             Log.info(LogEvents.LogEvent.AppLaunched, { appId: entry.id });
+            launched(canonicalId(entry.id));
         } else {
             Log.warning(LogEvents.LogEvent.AppNotFound, { appId });
         }

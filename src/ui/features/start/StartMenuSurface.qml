@@ -137,7 +137,9 @@ FocusScope {
 
                             AppTile {
                                 required property string modelData
+                                required property int index
                                 appId: modelData
+                                appearIndex: index
                                 onMenuRequested: (appId) => root.menuAppId = appId
                             }
                         }
@@ -273,7 +275,9 @@ FocusScope {
 
                             AppTile {
                                 required property var modelData
+                                required property int index
                                 appId: modelData.id
+                                appearIndex: index
                                 onMenuRequested: (appId) => root.menuAppId = appId
                             }
                         }

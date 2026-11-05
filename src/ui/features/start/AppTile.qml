@@ -9,6 +9,7 @@ Interactive {
     id: root
 
     required property string appId
+    property int appearIndex: -1
 
     signal menuRequested(string appId, real pointerX, real pointerY)
 
@@ -20,6 +21,11 @@ Interactive {
         Apps.launch(appId);
     }
     onRightClicked: (pointerX, pointerY) => menuRequested(appId, pointerX, pointerY)
+
+    Appear {
+        target: root
+        index: root.appearIndex
+    }
 
     Rectangle {
         anchors.fill: parent
