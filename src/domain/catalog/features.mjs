@@ -29,6 +29,7 @@ export const Capability = Object.freeze({
     WindowList: "windowList",
     Workspaces: "workspaces",
     WindowPlacement: "windowPlacement",
+    Minimize: "minimize",
     Battery: "battery",
     Backlight: "backlight",
     NotifySend: "notifySend",

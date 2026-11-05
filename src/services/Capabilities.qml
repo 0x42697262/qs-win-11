@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Services.UPower
 import qs.src.config
 import qs.src.adapters.system
+import qs.src.adapters.compositor
 import "../domain/catalog/features.mjs" as FeatureCatalog
 import "../domain/system/probe.mjs" as Probe
 import "../domain/catalog/system.mjs" as SystemCatalog
@@ -12,7 +13,7 @@ Singleton {
     id: root
 
     readonly property string nightLightBinary: Probe.commandBinary(Settings.values.commands.nightLight)
-    readonly property list<string> compositorCapabilities: []
+    readonly property list<string> compositorCapabilities: Compositor.adapter ? Compositor.adapter.capabilities : []
     readonly property list<string> backlights: probe.result.backlights
     readonly property bool probed: probe.finished
     readonly property var available: {

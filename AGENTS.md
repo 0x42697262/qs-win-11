@@ -71,6 +71,7 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | The QML engine lacks object spread, optional catch binding, `flatMap`, `flat`, `replaceAll`, `matchAll`, `at`, `trimEnd`, `Object.fromEntries`, `structuredClone`, `Intl`. `src/` is type-checked against the ES2017 library and `check-banned` rejects the syntax | Probe script under Quickshell 0.3.2 / Qt 6.12 |
 | Quickshell's tooling VFS symlinks files, so qmllint resolves them to the source folder and misses the generated `qmldir`. CI lints a copy with the `qmldir` files placed next to the sources | qmllint 6.12 |
 | qmllint still reports "not declared as singleton in qmldir" for singleton files in that copy although the `qmldir` declares them; CI filters only that message | qmllint 6.12 |
+| Hyprland's Lua config mode changes dispatcher syntax; Quickshell exposes `Hyprland.usingLua` and `HyprlandWorkspace.activate()` handles both forms. Our Hyprland adapter focuses, closes and minimizes through each window's Wayland handle, so it needs no dispatcher strings | quickshell `src/wayland/hyprland/ipc/workspace.cpp`, `qml.hpp` |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus"; CI ignores only that line | CI container |
 
 Add a row whenever you rely on a third-party behavior.
@@ -88,4 +89,6 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Features | Uninstall or rename `hyprsunset` | `feature.disabled` with `missingCapability` for `nightLight` |
 | Settings IPC | `qs -c qs-win-11 ipc call settings set theme.mode light` | Prints `true`; theme switches live; `settings get theme.mode` prints `"light"` |
 | Components | `QS_WIN11_GALLERY=1 qs -c qs-win-11` | Gallery panel shows every control; matches CI screenshots in both themes |
+| Compositor | Start under Hyprland, then under sway | Log shows `compositor.selected` with `hyprland`, then `generic` |
+| Compositor | `qs -c qs-win-11 ipc call settings set compositor.kind '"generic"'` on Hyprland | Switches to the generic adapter live; windows still listed |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |
