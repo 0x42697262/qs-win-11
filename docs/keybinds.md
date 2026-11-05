@@ -17,6 +17,8 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `settings set` | Set a setting key to a JSON value (bare words are treated as text). |  |
 | `settings reset` | Return a setting key to its default. |  |
 | `settings open` | Open the Settings app. | `SUPER+I` |
+| `settings exportProfile` | Write every changed setting to a profile file (absolute path). |  |
+| `settings importProfile` | Replace all changed settings with a profile file; invalid keys are skipped and reported. |  |
 | `start toggle` | Open or close Start. | `SUPER+SUPER_L` (on release) |
 | `start allApps` | Open Start on the All apps list. |  |
 | `search toggle` | Open or close Search. | `SUPER+S` |

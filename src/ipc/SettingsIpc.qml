@@ -21,6 +21,14 @@ IpcHandler {
         SettingsWindow.show("");
     }
 
+    function exportProfile(path: string): bool {
+        return Profiles.exportTo(path);
+    }
+
+    function importProfile(path: string): bool {
+        return Profiles.importFrom(path);
+    }
+
     function reset(key: string): bool {
         return Settings.reset(key);
     }

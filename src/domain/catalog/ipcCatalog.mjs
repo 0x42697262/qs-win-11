@@ -46,6 +46,8 @@ export const IPC_TARGETS = Object.freeze([
             { name: "set", description: "Set a setting key to a JSON value (bare words are treated as text)." },
             { name: "reset", description: "Return a setting key to its default." },
             { name: "open", description: "Open the Settings app.", suggestedKey: { modifiers: [SUPER], key: "I" } },
+            { name: "exportProfile", description: "Write every changed setting to a profile file (absolute path)." },
+            { name: "importProfile", description: "Replace all changed settings with a profile file; invalid keys are skipped and reported." },
         ],
     },
     {

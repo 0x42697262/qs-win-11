@@ -161,4 +161,5 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Mica | Clear `wallpaper.path` | Falls back to acrylic tint (compositor blur if you added the layer rules) |
 | Wallpaper | `settings set wallpaper.mode shell` | The shell draws the wallpaper on the background layer; `external` leaves it to your tool |
 | Backdrop | Change `backdrop.micaBlur`, `micaSaturation`, `grainOpacity` | Live change on the next open flyout |
+| Profiles | `ipc call settings exportProfile /tmp/look.json`, change things, `ipc call settings importProfile /tmp/look.json` | Every changed setting returns to the exported state; unknown or invalid keys are listed in `profile.imported` as skipped |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

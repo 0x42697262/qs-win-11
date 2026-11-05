@@ -51,5 +51,9 @@
 32t-start-saver|start toggle
 32u-close|start toggle
 32v-level-rich|settings set appearance.level 3
+32w-export|!qs -p "$SHELL_DIR" ipc call settings exportProfile "$XDG_RUNTIME_DIR/profile.json"
+32x-change|settings set appearance.style flat
+32y-import|!qs -p "$SHELL_DIR" ipc call settings importProfile "$XDG_RUNTIME_DIR/profile.json"
+32z-check|!test "$(qs -p "$SHELL_DIR" ipc call settings get appearance.style)" = "\"fluent\""
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock
