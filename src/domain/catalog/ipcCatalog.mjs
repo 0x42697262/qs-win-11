@@ -14,6 +14,8 @@ export const IpcTargetName = Object.freeze({
     Modes: "modes",
     Wallpaper: "wallpaper",
     Theming: "theming",
+    Snip: "snip",
+    ColorPicker: "colorPicker",
     Keyboard: "keyboard",
     QuickLink: "quickLink",
     Session: "session",
@@ -181,6 +183,25 @@ export const IPC_TARGETS = Object.freeze([
         description: "App theming: render templates with the shell's colors.",
         functions: [
             { name: "render", description: "Write every themed file now, even while features.appTheming.enabled is off." },
+        ],
+    },
+    {
+        target: IpcTargetName.Snip,
+        description: "Snipping: screenshots and screen recordings.",
+        functions: [
+            { name: "open", description: "Open the snipping overlay.", suggestedKey: { modifiers: [SUPER, SHIFT], key: "S" } },
+            { name: "screen", description: "Capture the focused screen now.", suggestedKey: { modifiers: [], key: "Print" } },
+            { name: "area", description: "Capture a grim geometry such as \"0,0 800x600\" without the overlay." },
+            { name: "record", description: "Open the overlay in recording mode, or stop a running recording.", suggestedKey: { modifiers: [SUPER, ALT], key: "R" } },
+            { name: "stop", description: "Stop the running recording." },
+        ],
+    },
+    {
+        target: IpcTargetName.ColorPicker,
+        description: "Pick a color from the screen.",
+        functions: [
+            { name: "open", description: "Open the color picker.", suggestedKey: { modifiers: [SUPER, SHIFT], key: "C" } },
+            { name: "at", description: "Copy the color at global x and y without the overlay." },
         ],
     },
     {

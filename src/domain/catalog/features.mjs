@@ -29,6 +29,9 @@ export const FeatureName = Object.freeze({
     AppTheming: "appTheming",
     Visualizer: "visualizer",
     DesktopClock: "desktopClock",
+    Snipping: "snipping",
+    ScreenRecording: "screenRecording",
+    ColorPicker: "colorPicker",
 });
 
 export const ExperimentalFeatureName = Object.freeze({
@@ -52,6 +55,8 @@ export const Capability = Object.freeze({
     KeyboardLayouts: "keyboardLayouts",
     ImageSampling: "imageSampling",
     AudioVisualizer: "audioVisualizer",
+    ScreenCapture: "screenCapture",
+    Recorder: "recorder",
 });
 
 export const BusName = Object.freeze({
@@ -96,6 +101,9 @@ export const FEATURE_DEFAULTS = Object.freeze({
     appTheming: false,
     visualizer: false,
     desktopClock: false,
+    snipping: true,
+    screenRecording: true,
+    colorPicker: true,
 });
 
 /** @type {Readonly<Record<Feature, FeatureRequirement>>} */
@@ -130,4 +138,7 @@ export const FEATURE_REQUIREMENTS = Object.freeze({
     appTheming: { capabilities: [], dependsOn: [] },
     visualizer: { capabilities: [Capability.AudioVisualizer], dependsOn: [FeatureName.Widgets] },
     desktopClock: { capabilities: [], dependsOn: [] },
+    snipping: { capabilities: [Capability.ScreenCapture], dependsOn: [] },
+    screenRecording: { capabilities: [Capability.Recorder], dependsOn: [FeatureName.Snipping] },
+    colorPicker: { capabilities: [Capability.ScreenCapture, Capability.ImageSampling], dependsOn: [] },
 });

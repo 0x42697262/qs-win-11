@@ -48,6 +48,10 @@ Scope {
         return null;
     }
 
+    function windowGeometries(): list<var> {
+        return [];
+    }
+
     function nextKeyboardLayout(): void {
         unsupported(CompositorCatalog.CompositorAction.NextKeyboardLayout);
     }

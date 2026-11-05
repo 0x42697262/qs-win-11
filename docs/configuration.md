@@ -241,6 +241,19 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `idle.screenOffSeconds` | integer | `330` | 0 to 86400 | Seconds of inactivity. 0 turns it off. |
 | `idle.suspendSeconds` | integer | `900` | 0 to 86400 | Seconds of inactivity. 0 turns it off. |
 
+## capture
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `capture.screenshotDirectory` | text | `"~/Pictures/Screenshots"` |  | Where screenshots are saved. ~ is your home. |
+| `capture.recordingDirectory` | text | `"~/Videos/Recordings"` |  | Where screen recordings are saved. ~ is your home. |
+| `capture.screenshotName` | text | `"Screenshot_{timestamp}.png"` |  | {timestamp} becomes the date and time. |
+| `capture.recordingName` | text | `"Recording_{timestamp}.mp4"` |  | {timestamp} becomes the date and time. |
+| `capture.copyToClipboard` | boolean | `true` |  | Also put each screenshot on the clipboard (needs wl-copy). |
+| `capture.freeze` | boolean | `true` |  | Show a still frame while you pick an area. |
+| `capture.recorder` | enum | `"auto"` | `auto`, `gpuScreenRecorder`, `wfRecorder` | Auto prefers gpu-screen-recorder and falls back to wf-recorder. |
+| `capture.recordAudio` | boolean | `false` |  | Include the default output's sound in recordings. |
+
 ## widgets
 
 | Key | Type | Default | Allowed | Description |
@@ -271,6 +284,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | Key | Type | Default | Allowed | Description |
 |---|---|---|---|---|
 | `commands.afterAppTheme` | text | `""` |  | Runs after themed files are written, e.g. pkill -USR1 kitty. Empty runs nothing. |
+| `commands.imageEditor` | text | `"swappy -f {file}"` |  | Edit button on screenshot notifications. {file} is the screenshot. |
 | `commands.terminal` | text | `"kitty"` |  | Command that opens a terminal. |
 | `commands.fileManager` | text | `"nautilus"` |  | Command that opens the file manager. |
 | `commands.taskManager` | text | `"gnome-system-monitor"` |  | Command that opens a task manager. |
@@ -319,6 +333,9 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `features.appTheming.enabled` | boolean | `false` |  | Turns the appTheming feature on or off. It still stays off when its requirements are missing. |
 | `features.visualizer.enabled` | boolean | `false` |  | Turns the visualizer feature on or off. It still stays off when its requirements are missing. |
 | `features.desktopClock.enabled` | boolean | `false` |  | Turns the desktopClock feature on or off. It still stays off when its requirements are missing. |
+| `features.snipping.enabled` | boolean | `true` |  | Turns the snipping feature on or off. It still stays off when its requirements are missing. |
+| `features.screenRecording.enabled` | boolean | `true` |  | Turns the screenRecording feature on or off. It still stays off when its requirements are missing. |
+| `features.colorPicker.enabled` | boolean | `true` |  | Turns the colorPicker feature on or off. It still stays off when its requirements are missing. |
 
 ## experimental
 
@@ -405,6 +422,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `sizes.control.altTabCard` | integer | `160` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.widgetCard` | integer | `340` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.sparklineWidth` | integer | `96` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.loupeSize` | integer | `120` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.snipToolbarHeight` | integer | `48` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.sparklineHeight` | integer | `28` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.visualizerHeight` | integer | `36` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.visualizerBarGap` | integer | `2` | 0 to 4096 | Control or surface size in pixels, before scale. |
@@ -646,6 +665,9 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.visualizerBars` | integer | `24` | 2 to 256 | Bars in the media visualizer. (count) |
 | `tuning.visualizerFramerate` | integer | `30` | 1 to 144 | Visualizer frames per second. (count) |
 | `tuning.visualizerRange` | integer | `100` | 1 to 1000 | Highest bar value cava reports. (count) |
+| `tuning.snipHideDelayMs` | integer | `150` | 0 to 5000 | Wait after the snipping overlay hides before the screen is captured. (ms) |
+| `tuning.snipMinimumSize` | integer | `4` | 1 to 1000 | Smaller drags count as a click. (count) |
+| `tuning.pickerZoom` | integer | `8` | 1 to 64 | Magnification of the color picker loupe. (factor) |
 | `tuning.runHistoryShown` | integer | `5` | 0 to 50 | Recent commands listed in the Run dialog. (count) |
 | `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
 | `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid when expanded. (count) |
@@ -840,6 +862,22 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.lock.unlock` | text | `"Unlock"` |  | Text shown in the shell. |
 | `text.lock.pressAnyKey` | text | `"Press any key or click to unlock"` |  | Text shown in the shell. |
 | `text.lock.failed` | text | `"Sign-in failed. Try again."` |  | Text shown in the shell. |
+| `text.capture.region` | text | `"Rectangle"` |  | Text shown in the shell. |
+| `text.capture.window` | text | `"Window"` |  | Text shown in the shell. |
+| `text.capture.screen` | text | `"Full screen"` |  | Text shown in the shell. |
+| `text.capture.screenshot` | text | `"Screenshot"` |  | Text shown in the shell. |
+| `text.capture.record` | text | `"Record"` |  | Text shown in the shell. |
+| `text.capture.close` | text | `"Close"` |  | Text shown in the shell. |
+| `text.capture.hint` | text | `"Drag to select an area. Esc cancels."` |  | Text shown in the shell. |
+| `text.capture.pickHint` | text | `"Click to copy a color. Esc cancels."` |  | Text shown in the shell. |
+| `text.capture.saved` | text | `"Screenshot saved"` |  | Text shown in the shell. |
+| `text.capture.recordingSaved` | text | `"Recording saved"` |  | Text shown in the shell. |
+| `text.capture.recording` | text | `"Recording… click to stop"` |  | Text shown in the shell. |
+| `text.capture.open` | text | `"Open"` |  | Text shown in the shell. |
+| `text.capture.edit` | text | `"Edit"` |  | Text shown in the shell. |
+| `text.capture.folder` | text | `"Show folder"` |  | Text shown in the shell. |
+| `text.capture.colorCopied` | text | `"Color copied"` |  | Text shown in the shell. |
+| `text.capture.failed` | text | `"Capture failed"` |  | Text shown in the shell. |
 | `text.wallpaper.title` | text | `"Choose your wallpaper"` |  | Text shown in the shell. |
 | `text.wallpaper.folder` | text | `"From {name}"` |  | Text shown in the shell. |
 | `text.wallpaper.empty` | text | `"No images found. Put pictures in the wallpaper folder or change wallpaper.directory."` |  | Text shown in the shell. |

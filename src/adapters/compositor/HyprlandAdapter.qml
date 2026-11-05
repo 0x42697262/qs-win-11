@@ -86,6 +86,19 @@ CompositorAdapter {
         Log.info(LogEvents.LogEvent.WindowPlaced, { windowId, usingLua: root.usingLua, width: rect.width, height: rect.height });
     }
 
+    function windowGeometries(): list<var> {
+        Hyprland.refreshToplevels();
+        return toplevels
+            .filter(toplevel => toplevel.workspace && toplevel.workspace.active)
+            .map(toplevel => {
+                const info = toplevel.lastIpcObject;
+                const position = info[CompositorCatalog.HYPRLAND_POSITION_FIELD] ?? [0, 0];
+                const size = info[CompositorCatalog.HYPRLAND_SIZE_FIELD] ?? [0, 0];
+                return { id: toplevel.address, x: position[0], y: position[1], width: size[0], height: size[1] };
+            })
+            .filter(geometry => geometry.width > 0 && geometry.height > 0);
+    }
+
     function nextKeyboardLayout(): void {
         Quickshell.execDetached(Array.prototype.slice.call(SystemCatalog.HyprctlCommand.nextLayout));
     }

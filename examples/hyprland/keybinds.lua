@@ -90,6 +90,22 @@ return {
 		bind = "SUPER + W",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snip open"),
+		bind = "SUPER + SHIFT + S",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snip screen"),
+		bind = "Print",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snip record"),
+		bind = "SUPER + ALT + R",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call colorPicker open"),
+		bind = "SUPER + SHIFT + C",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snap open"),
 		bind = "SUPER + Z",
 	},

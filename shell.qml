@@ -17,6 +17,7 @@ import qs.src.ui.features.taskView
 import qs.src.ui.features.widgets
 import qs.src.ui.features.settingsApp
 import qs.src.ui.features.snap
+import qs.src.ui.features.capture
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -76,6 +77,8 @@ ShellRoot {
     ModesIpc {}
     WallpaperIpc {}
     ThemingIpc {}
+    SnipIpc {}
+    ColorPickerIpc {}
     KeyboardIpc {}
     SessionIpc {}
     QuickSettingsIpc {}
@@ -161,6 +164,11 @@ ShellRoot {
     Variants {
         model: Quickshell.screens
         ToolTipLayer {}
+    }
+
+    Variants {
+        model: Capture.overlayOpen ? Quickshell.screens : []
+        SnipOverlay {}
     }
 
     Component {

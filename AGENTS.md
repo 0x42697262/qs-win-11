@@ -94,6 +94,8 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Hyprland: `hyprctl devices -j` lists keyboards with `active_keymap`, `main`, `capsLock`, `numLock`; `getoption input:kb_layout -j` returns `str`; the `activelayout` event carries `keyboard,layout` | Hyprland wiki (IPC, hyprctl) |
 | A `required property` list bound from a singleton may still be empty in `Component.onCompleted`; the capability probe re-runs on `onBinariesChanged` via `Qt.callLater` (before this fix no binary capability was ever detected) | CI log `capability.probed` |
 | ImageMagick 7 `magick <img> -resize WxH! -depth 8 txt:-` prints `x,y: (r,g,b,a)` per pixel; IM6 ships the same as `convert` | ImageMagick txt coder, CI container |
+| Without a GPU render node `ScreencopyView` logs "Failed to find render device" and falls back to SHM buffers; it still works, and CI ignores only those two lines | CI container |
+| `grim -g "x,y wxh"` takes global logical coordinates; `grim -o <output>` captures one output; `notify-send -A name=Label` waits and prints the chosen action | grim(1), libnotify 0.8 |
 | `Quickshell.clipboardText` is read/write; setting it copies text to the Wayland clipboard | Quickshell 0.3.2 qmltypes |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -162,6 +164,10 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Widgets | Open widgets | Performance card lists CPU, GPU (AMD sysfs or nvidia-smi), memory with live graphs, storage used of total, network down/up rates, battery; `widgets.performanceMetrics` reorders or hides rows |
 | Visualizer | Install cava, `settings set features.visualizer.enabled true`, play music, open widgets | Accent bars under the media card move with the audio; cava stops when the board closes or playback pauses |
 | Desktop clock | `settings set features.desktopClock.enabled true` | Large time and date on the desktop under windows, at `desktopClock.position`; clicks pass through |
+| Snipping | `ipc call snip open` (suggested Super+Shift+S) | Screen freezes and dims; toolbar with Rectangle / Window (Hyprland) / Full screen and Screenshot / Record; dragging saves to `capture.screenshotDirectory`, copies it, and a notification offers Open, Edit, Show folder |
+| Snipping | `ipc call snip screen` or `snip area "0,0 800x600"` | Saved without the overlay |
+| Recording | Choose Record, drag an area | Red record button on the taskbar; clicking it or `snip stop` ends the recording (gpu-screen-recorder, else wf-recorder) and notifies with the file |
+| Color picker | `ipc call colorPicker open`, hover, click | Loupe magnifies the frozen screen; the clicked color's hex lands on the clipboard with a notification |
 | Weather | Leave `weather.locationMode` on `auto` without GeoClue | `location.resolved` with `ipLookup` once; `state.json` caches the location for 6 hours; "Approximate location" shown |
 | Weather | `settings set weather.allowIpLookup false` with no GeoClue and no cache | Weather card asks for a location; nothing is sent to ipwho.is |
 | Weather | Disconnect the network | Card shows "Couldn't load weather"; the rest of the board still works |

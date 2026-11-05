@@ -151,6 +151,15 @@ PanelWindow {
                 onActivated: ShellState.toggleWith(Surfaces.Surface.TrayOverflow, root.screenName, { anchorX: root.anchorXOf(trayButton) })
             }
 
+            TaskbarButton {
+                visible: Capture.recording
+                icon: Icons.Icon.record
+                iconFilled: true
+                iconColor: Theme.colors.critical
+                toolTip: Settings.values.text.capture.recording
+                onActivated: Capture.stopRecording()
+            }
+
             InputIndicatorButton {
                 visible: Keyboard.indicatorShown
             }

@@ -12,6 +12,11 @@ export const SystemBinary = Object.freeze({
     Hyprctl: "hyprctl",
     Magick: "magick",
     Cava: "cava",
+    Grim: "grim",
+    WlCopy: "wl-copy",
+    GpuScreenRecorder: "gpu-screen-recorder",
+    WfRecorder: "wf-recorder",
+    Pkill: "pkill",
     Df: "df",
     Convert: "convert",
 });
@@ -23,6 +28,10 @@ export const TEMPLATE_FIND_ARGUMENTS = Object.freeze(["-maxdepth", "1", "-name",
 export const GPU_USAGE_COMMAND = Object.freeze(["sh", "-c", "for file in /sys/class/drm/card*/device/gpu_busy_percent; do [ -r \"$file\" ] && { printf 'amd %s\\n' \"$(cat \"$file\")\"; exit 0; }; done; command -v nvidia-smi >/dev/null 2>&1 && printf 'nvidia %s\\n' \"$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | head -n 1)\"; true"]);
 export const DF_ARGUMENTS = Object.freeze(["-P", "-B1"]);
 export const CAVA_CONFIG_FILE = "qs-win-11-cava.conf";
+
+export const NotifyAction = Object.freeze({ open: "open", edit: "edit", folder: "folder" });
+export const IMAGE_MIME = "image/png";
+export const SIGINT = "-INT";
 
 export const NmcliCommand = Object.freeze({
     list: Object.freeze(["nmcli", "-t", "-f", "NAME,UUID,TYPE,ACTIVE", "connection", "show"]),

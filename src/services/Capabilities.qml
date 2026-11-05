@@ -47,6 +47,12 @@ Singleton {
         if (binaries.has(SystemCatalog.SystemBinary.Cava)) {
             found.add(FeatureCatalog.Capability.AudioVisualizer);
         }
+        if (binaries.has(SystemCatalog.SystemBinary.Grim)) {
+            found.add(FeatureCatalog.Capability.ScreenCapture);
+        }
+        if (binaries.has(SystemCatalog.SystemBinary.GpuScreenRecorder) || binaries.has(SystemCatalog.SystemBinary.WfRecorder)) {
+            found.add(FeatureCatalog.Capability.Recorder);
+        }
         if (UPower.displayDevice.isLaptopBattery) {
             found.add(FeatureCatalog.Capability.Battery);
         }
@@ -55,13 +61,17 @@ Singleton {
     readonly property string imageSamplingBinary: probe.result.binaries.has(SystemCatalog.SystemBinary.Magick) ? SystemCatalog.SystemBinary.Magick : SystemCatalog.SystemBinary.Convert
     readonly property var takenBusNames: new Set(probe.busNamesTakenByOthers)
 
+    function hasBinary(name: string): bool {
+        return probe.result.binaries.has(name);
+    }
+
     function has(capability: string): bool {
         return available.has(capability);
     }
 
     SystemProbe {
         id: probe
-        binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, SystemCatalog.SystemBinary.Nmcli, SystemCatalog.SystemBinary.Ddcutil, SystemCatalog.SystemBinary.Magick, SystemCatalog.SystemBinary.Convert, SystemCatalog.SystemBinary.Cava, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
+        binaries: [SystemCatalog.SystemBinary.NotifySend, SystemCatalog.SystemBinary.Gsettings, SystemCatalog.SystemBinary.Nmcli, SystemCatalog.SystemBinary.Ddcutil, SystemCatalog.SystemBinary.Magick, SystemCatalog.SystemBinary.Convert, SystemCatalog.SystemBinary.Cava, SystemCatalog.SystemBinary.Grim, SystemCatalog.SystemBinary.WlCopy, SystemCatalog.SystemBinary.GpuScreenRecorder, SystemCatalog.SystemBinary.WfRecorder, root.nightLightBinary, Probe.commandBinary(Settings.values.commands.brightness)]
         busNames: Object.values(FeatureCatalog.BusName)
         systemBusNames: Object.values(SystemCatalog.SystemBusName)
     }

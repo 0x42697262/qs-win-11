@@ -10,7 +10,7 @@ readonly LOAD_WAIT_SECONDS="${LOAD_WAIT_SECONDS:-6}"
 readonly SCENE_WAIT_SECONDS="${SCENE_WAIT_SECONDS:-1}"
 readonly QMLLINT="${QMLLINT:-/usr/lib/qt6/bin/qmllint}"
 readonly LINT_FALSE_POSITIVE_PATTERN='not declared as singleton in qmldir but using pragma Singleton'
-readonly IGNORED_LOG_PATTERN='Ignoring unexpected wl_keyboard.leave event|MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus|Network will not work. Could not find an available backend|QWaylandTextInputv3::'
+readonly IGNORED_LOG_PATTERN='Ignoring unexpected wl_keyboard.leave event|MESA|ZINK|egl:|dri2|Xwayland|swaybg|UPower service will not work|Could not connect to DBus|Network will not work. Could not find an available backend|QWaylandTextInputv3::|Failed to find render device|All buffers will fall back to SHM'
 
 export XDG_RUNTIME_DIR="$(mktemp -d)"
 export XDG_CONFIG_HOME="$(mktemp -d)"
