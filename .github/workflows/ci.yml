@@ -26,10 +26,12 @@ jobs:
       options: --privileged
     steps:
       - name: Install Quickshell and a headless compositor
-        run: pacman -Syu --noconfirm --needed quickshell qt6-declarative qt6-svg qt6-5compat sway grim inter-font git dbus gsettings-desktop-schemas
+        run: pacman -Syu --noconfirm --needed quickshell qt6-declarative qt6-svg qt6-5compat sway grim inter-font git dbus gsettings-desktop-schemas foot hicolor-icon-theme
       - uses: actions/checkout@v4
       - name: Load, screenshot and lint the shell
         run: tools/ci/qml-check.sh
+        env:
+          CI_CLIENTS: foot foot
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -1,0 +1,87 @@
+pragma Singleton
+import QtQuick
+import Quickshell
+import qs.src.config
+import "../domain/apps/appIds.mjs" as AppIds
+import "../domain/apps/taskbarItems.mjs" as TaskbarRules
+import "../domain/catalog/shellDataSchema.mjs" as ShellDataSchema
+import "../domain/catalog/logEvents.mjs" as LogEvents
+
+Singleton {
+    id: root
+
+    readonly property list<QtObject> entries: DesktopEntries.applications.values
+    readonly property list<QtObject> visibleEntries: entries.filter(entry => !entry.noDisplay).sort((left, right) => left.name.localeCompare(right.name))
+    readonly property list<string> taskbarPinned: installedOnly(ShellData.values.taskbarPinnedCustomized ? ShellData.values.taskbarPinnedApps : Settings.values.taskbar.initialPinned)
+    readonly property list<string> startPinned: installedOnly(ShellData.values.startPinnedCustomized ? ShellData.values.startPinnedApps : Settings.values.startMenu.initialPinned)
+
+    function entryFor(appId: string): DesktopEntry {
+        if (appId === "") {
+            return null;
+        }
+        return DesktopEntries.byId(appId) ?? DesktopEntries.heuristicLookup(appId);
+    }
+
+    function installedOnly(appIds: list<string>): list<string> {
+        return appIds.filter(appId => entryFor(appId) !== null);
+    }
+
+    function canonicalId(appId: string): string {
+        const entry = entryFor(appId);
+        return entry ? entry.id : appId;
+    }
+
+    function displayName(appId: string): string {
+        const entry = entryFor(appId);
+        return entry ? entry.name : appId;
+    }
+
+    function iconSource(appId: string): string {
+        const entry = entryFor(appId);
+        return Quickshell.iconPath(entry ? entry.icon : appId, true);
+    }
+
+    function launch(appId: string): void {
+        const entry = entryFor(appId);
+        if (entry) {
+            entry.execute();
+            Log.info(LogEvents.LogEvent.AppLaunched, { appId: entry.id });
+        } else {
+            Log.warning(LogEvents.LogEvent.AppNotFound, { appId });
+        }
+    }
+
+    function taskbarItems(windows: list<var>): list<var> {
+        return TaskbarRules.buildTaskbarItems(taskbarPinned, windows, appId => canonicalId(appId));
+    }
+
+    function isPinnedToTaskbar(appId: string): bool {
+        return AppIds.isPinned(taskbarPinned, canonicalId(appId));
+    }
+
+    function setTaskbarPinned(appIds: list<string>): void {
+        ShellData.update(ShellDataSchema.ShellDataKey.TaskbarPinnedApps, appIds);
+        ShellData.update(ShellDataSchema.ShellDataKey.TaskbarPinnedCustomized, true);
+    }
+
+    function toggleTaskbarPin(appId: string): void {
+        const canonical = canonicalId(appId);
+        setTaskbarPinned(isPinnedToTaskbar(canonical) ? AppIds.unpinApp(taskbarPinned, canonical) : AppIds.pinApp(taskbarPinned, canonical));
+    }
+
+    function isPinnedToStart(appId: string): bool {
+        return AppIds.isPinned(startPinned, canonicalId(appId));
+    }
+
+    function toggleStartPin(appId: string): void {
+        const canonical = canonicalId(appId);
+        const next = isPinnedToStart(canonical) ? AppIds.unpinApp(startPinned, canonical) : AppIds.pinApp(startPinned, canonical);
+        ShellData.update(ShellDataSchema.ShellDataKey.StartPinnedApps, next);
+        ShellData.update(ShellDataSchema.ShellDataKey.StartPinnedCustomized, true);
+    }
+
+    function moveStartPin(appId: string, targetIndex: int): void {
+        ShellData.update(ShellDataSchema.ShellDataKey.StartPinnedApps, AppIds.movePinnedApp(startPinned, canonicalId(appId), targetIndex));
+        ShellData.update(ShellDataSchema.ShellDataKey.StartPinnedCustomized, true);
+    }
+}

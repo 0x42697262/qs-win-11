@@ -48,6 +48,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `taskbar.showSearch` | boolean | `true` |  | Search button on the taskbar. |
 | `taskbar.showTaskView` | boolean | `true` |  | Task view button on the taskbar. |
 | `taskbar.showWidgets` | boolean | `true` |  | Weather and widgets button on the taskbar. |
+| `taskbar.initialPinned` | textList | `org.gnome.Nautilus`, `firefox`, `kitty` |  | Desktop entry ids on the taskbar before you pin anything yourself. |
 | `taskbar.windowsOnAllMonitors` | boolean | `false` |  | Off shows each window only on its own monitor's taskbar. |
 
 ## startMenu

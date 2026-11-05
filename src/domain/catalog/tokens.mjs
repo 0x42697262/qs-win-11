@@ -123,6 +123,11 @@ export const CONTROL_SIZE = Object.freeze({
     widgetsWidth: 760,
     sessionButton: 120,
     taskViewCard: 220,
+    contextMenuWidth: 220,
+    showDesktopWidth: 8,
+    clockWidth: 88,
+    trayIcon: 16,
+    trayCell: 32,
 });
 
 export const MOTION_MS = Object.freeze({ fast: 83, normal: 167, slow: 250, slower: 333, reduced: 1 });
@@ -136,3 +141,4 @@ export const EASING_CURVES = Object.freeze({
 export const ELEVATION = Object.freeze({ flyoutShadowRadius: 32, flyoutShadowOffset: 8, flyoutShadowAlpha: 0.28 });
 
 export const SLIDE_DISTANCE = Object.freeze({ flyout: 40 });
+export const PRESS_SCALE = 0.88;

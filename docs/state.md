@@ -17,7 +17,9 @@ Each row has exactly one owner. Everything else reads it or derives from it.
 | Brightness | `/sys/class/backlight` | Written through `brightnessctl` |
 | Installed apps | `.desktop` files via `DesktopEntries` | Pinned lists store app ids only |
 | Notifications | `NotificationServer` | Toasts and the center are two views of one list |
-| Open surface | `ShellState.openSurface` / `openScreen` | Surfaces bind to it |
+| Open surface and its payload | `ShellState.state` | Surfaces, taskbar button states and the flyout host bind to it |
+| Tooltip text and position | `ToolTips` | One click-through `ToolTipLayer` per screen draws it |
+| Taskbar and Start pins | `state.json` (`taskbarPinnedApps`, `startPinnedApps`); before the first change, `taskbar.initialPinned` / `startMenu.initialPinned` settings | `Apps` filters to installed entries |
 
 ## Rebuilding derived state
 
