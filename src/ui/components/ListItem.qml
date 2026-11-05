@@ -16,9 +16,10 @@ Interactive {
     implicitHeight: Math.max(Theme.size.buttonHeight, row.implicitHeight + Theme.spacing.small * 2)
     implicitWidth: row.implicitWidth + Theme.spacing.medium * 2
 
-    Rectangle {
+    SmoothRectangle {
         anchors.fill: parent
         radius: Theme.radius.control
+        smoothingOverride: Theme.controlSmoothing
         color: root.pressed ? Theme.colors.subtleFillPressed : (root.hovered || root.selected) ? Theme.colors.subtleFillHover : Theme.colors.transparent
     }
 

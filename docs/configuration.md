@@ -102,6 +102,17 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `appearance.levels.maximum.clockSeconds` | enum | `"on"` | `off`, `on` | What the Maximum level allows for Clock seconds. |
 | `appearance.levels.maximum.backgroundWork` | enum | `"normal"` | `saver`, `normal` | What the Maximum level allows for Background work. |
 
+## corners
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `corners.model` | enum | `"smoothing"` | `smoothing`, `superellipse` | smoothing uses the iOS-style continuous-corner formula; superellipse uses |x|^n + |y|^n = 1 per corner. Circular corners are chosen through the appearance corners effect. |
+| `corners.smoothing` | number | `0.6` | 0 to 1 | 0 is a circle; 0.6 matches iOS; 1 is the smoothest. |
+| `corners.overlaySmoothing` | number | `-1` | -1 to 1 | Smoothing for flyouts, cards and toasts. -1 uses the global value. |
+| `corners.controlSmoothing` | number | `-1` | -1 to 1 | Smoothing for buttons, tiles and list items. -1 uses the global value. |
+| `corners.exponent` | number | `5` | 2 to 20 | 2 is a circle, 4-5 is Apple-like, higher gets squarer. |
+| `corners.segments` | integer | `12` | 2 to 64 | Line segments per corner for the superellipse model. |
+
 ## compositor
 
 | Key | Type | Default | Allowed | Description |
@@ -238,8 +249,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `sizes.spacing.xLarge` | integer | `24` | 0 to 4096 | Spacing step in pixels, before scale. |
 | `sizes.spacing.xxLarge` | integer | `32` | 0 to 4096 | Spacing step in pixels, before scale. |
 | `sizes.spacing.xxxLarge` | integer | `48` | 0 to 4096 | Spacing step in pixels, before scale. |
-| `sizes.radius.control` | integer | `4` | 0 to 4096 | Corner radius in pixels, before scale. |
-| `sizes.radius.overlay` | integer | `8` | 0 to 4096 | Corner radius in pixels, before scale. |
+| `sizes.radius.control` | integer | `6` | 0 to 4096 | Corner radius in pixels, before scale. |
+| `sizes.radius.overlay` | integer | `12` | 0 to 4096 | Corner radius in pixels, before scale. |
 | `sizes.radius.round` | integer | `999` | 0 to 4096 | Corner radius in pixels, before scale. |
 | `sizes.font.caption` | integer | `12` | 0 to 4096 | Font size in pixels, before scale. |
 | `sizes.font.body` | integer | `14` | 0 to 4096 | Font size in pixels, before scale. |

@@ -2,7 +2,7 @@ import QtQuick
 import qs.src.ui.theme
 import "../../domain/catalog/uiEnums.mjs" as UiEnums
 
-Rectangle {
+SmoothRectangle {
     required property string variant
     required property bool hovered
     required property bool pressed
@@ -12,8 +12,9 @@ Rectangle {
     readonly property bool accentLook: variant === UiEnums.ButtonVariant.Accent || checked
 
     radius: Theme.radius.control
-    border.width: variant === UiEnums.ButtonVariant.Subtle && !checked ? 0 : Theme.size.stroke
-    border.color: accentLook ? Theme.colors.transparent : Theme.colors.controlStroke
+    smoothingOverride: Theme.controlSmoothing
+    borderWidth: variant === UiEnums.ButtonVariant.Subtle && !checked ? 0 : Theme.size.stroke
+    borderColor: accentLook ? Theme.colors.transparent : Theme.colors.controlStroke
     color: {
         if (accentLook) {
             if (!enabledState) {

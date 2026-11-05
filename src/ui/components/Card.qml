@@ -1,9 +1,10 @@
 import QtQuick
 import qs.src.ui.theme
 
-Rectangle {
+SmoothRectangle {
     radius: Theme.radius.overlay
+    smoothingOverride: Theme.overlaySmoothing
     color: Theme.colors.cardBackground
-    border.width: Theme.size.stroke
-    border.color: Theme.colors.cardStroke
+    borderWidth: Theme.size.stroke
+    borderColor: Theme.colors.cardStroke
 }

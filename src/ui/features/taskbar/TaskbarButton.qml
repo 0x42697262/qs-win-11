@@ -19,12 +19,13 @@ Interactive {
     implicitWidth: Theme.size.taskbarButton
     implicitHeight: Theme.size.taskbarButton
 
-    Rectangle {
+    SmoothRectangle {
         anchors.fill: parent
         radius: Theme.radius.control
+        smoothingOverride: Theme.controlSmoothing
         color: root.pressed ? Theme.colors.subtleFillPressed : (root.hovered || root.active || root.checked) ? Theme.colors.subtleFillHover : Theme.colors.transparent
-        border.width: (root.active || root.checked) ? Theme.size.stroke : 0
-        border.color: Theme.colors.controlStroke
+        borderWidth: (root.active || root.checked) ? Theme.size.stroke : 0
+        borderColor: Theme.colors.controlStroke
     }
 
     FluentIcon {

@@ -90,6 +90,7 @@ FocusScope {
     Component.onDestruction: NetworkControl.setScanning(false)
 
     FlyoutPanel {
+        clipContent: true
         width: Theme.size.flyoutWidth
         height: content.implicitHeight + Theme.spacing.large * 2 + footer.height
         anchors.right: parent.right
