@@ -41,7 +41,7 @@ Singleton {
         running: root.watching
         repeat: true
         triggeredOnStart: true
-        interval: Settings.values.tuning.systemStatsRefreshMs
+        interval: Appearance.interval(Settings.values.tuning.systemStatsRefreshMs)
         onTriggered: root.sample()
     }
 }

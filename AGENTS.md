@@ -149,4 +149,8 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Values | `settings set tuning.brightnessPollMs 1` | Rejected (`false`); with `experimental.unboundedValues` on it is accepted and Settings shows the red warning |
 | Icons | `settings set icons.search 'image:/path/to/icon.svg'` or `'font:Material Symbols Rounded:e8b6'` | That icon renders from the file or font |
 | Settings app | "Changed only" | Lists only overridden keys, each with its default and a reset button |
+| Effects | Settings → Appearance, drag the level slider | Table shows what the level allows, your choice and the result per effect; surfaces change live (0 opaque and still, 4 translucent with layered shadows, edge highlight and scale-in) |
+| Effects | `settings set appearance.override.backdrop mica` at level 0 | Result reads "solid (limited by level)"; raising the level applies mica |
+| Effects | `settings set appearance.levelOnBattery 1`, unplug | Level drops to Light on battery, back on AC |
+| Effects | `settings set appearance.style flat` | Today's flat look at any level |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

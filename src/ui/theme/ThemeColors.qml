@@ -30,11 +30,16 @@ QtObject {
     readonly property color caution: palette.caution
     readonly property color critical: palette.critical
     readonly property color attention: palette.attention
+    readonly property color edgeHighlight: palette.edgeHighlight
+    readonly property color shadow: palette.shadow
+    readonly property color contactShadow: palette.contactShadow
     readonly property color accent: palette.accent
     readonly property color accentHover: palette.accentHover
     readonly property color accentPressed: palette.accentPressed
     readonly property color accentDisabled: palette.accentDisabled
     readonly property color accentText: palette.accentText
     readonly property color textOnAccent: palette.textOnAccent
+    readonly property color taskbarBackgroundOpaque: palette.taskbarBackgroundOpaque
+    readonly property color flyoutBackgroundOpaque: palette.flyoutBackgroundOpaque
     readonly property color transparent: "transparent"
 }

@@ -2,6 +2,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import qs.src.config
+import qs.src.services
 import "../../domain/catalog/icons.mjs" as Icons
 import "../../domain/catalog/units.mjs" as Units
 import "../../domain/catalog/enums.mjs" as Enums
@@ -25,7 +26,11 @@ Singleton {
     readonly property int weightSemibold: sizes.fontWeight.semibold
     readonly property int weightBold: sizes.fontWeight.bold
     readonly property real pressScale: effects.pressScale
-    readonly property real slideDistance: Settings.values.motion.slideDistance.flyout * scale
+    readonly property real slideDistance: Appearance.slides ? Settings.values.motion.slideDistance.flyout * scale : 0
+    readonly property var elevation: effects.elevation
+    readonly property color surfaceFill: Appearance.solid ? colors.flyoutBackgroundOpaque : colors.flyoutBackground
+    readonly property color overlayFill: Appearance.translucentOverlays && !Appearance.solid ? colors.flyoutBackground : colors.flyoutBackgroundOpaque
+    readonly property color taskbarFill: Appearance.solid ? colors.taskbarBackgroundOpaque : colors.taskbarBackground
 
     readonly property ThemeColors colors: ThemeColors {
         palette: PaletteRules.buildPalette(root.resolvedMode, root.themeSettings.accentColor, root.themeSettings.transparency, Settings.values.colors, root.effects.accentShades)
@@ -35,7 +40,7 @@ Singleton {
     readonly property ThemeFontSizeMetrics fontSize: ThemeFontSizeMetrics { scale: root.scale; values: root.sizes.font }
     readonly property ThemeIconSizeMetrics iconSize: ThemeIconSizeMetrics { scale: root.scale; values: root.sizes.icon }
     readonly property ThemeSizeMetrics size: ThemeSizeMetrics { scale: root.scale; values: root.sizes.control }
-    readonly property ThemeMotion motion: ThemeMotion { reduced: root.themeSettings.reduceMotion; values: Settings.values.motion }
+    readonly property ThemeMotion motion: ThemeMotion { reduced: root.themeSettings.reduceMotion || !Appearance.animated; values: Settings.values.motion }
 
     SystemClock {
         id: clock

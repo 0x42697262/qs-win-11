@@ -59,7 +59,7 @@ Singleton {
     Timer {
         running: root.adapter !== null
         repeat: true
-        interval: Settings.values.tuning.compositorResyncIntervalMs
+        interval: Appearance.interval(Settings.values.tuning.compositorResyncIntervalMs)
         onTriggered: root.adapter.resync()
     }
 }

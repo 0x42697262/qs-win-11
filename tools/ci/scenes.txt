@@ -37,5 +37,17 @@
 32g-override-color|settings set colors.dark.taskbarBackground #ff3a1f5d
 32h-start-custom|start toggle
 32i-close|start toggle
+32j-reset-color|settings reset colors.dark.taskbarBackground
+32l-flat|settings set appearance.style flat
+32m-start-flat|start toggle
+32n-close|start toggle
+32o-fluent|settings set appearance.style fluent
+32p-level-max|settings set appearance.level 4
+32q-start-max|start toggle
+32r-close|start toggle
+32s-level-saver|settings set appearance.level 0
+32t-start-saver|start toggle
+32u-close|start toggle
+32v-level-rich|settings set appearance.level 3
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock

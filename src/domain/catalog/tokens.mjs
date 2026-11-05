@@ -40,6 +40,9 @@ export const DARK_BASE = Object.freeze({
     caution: tone("#fce100"),
     critical: tone("#ff99a4"),
     attention: tone("#ff9e5c"),
+    edgeHighlight: tone(WHITE, 0.14),
+    shadow: tone(BLACK, 0.42),
+    contactShadow: tone(BLACK, 0.3),
 });
 
 export const LIGHT_BASE = Object.freeze({
@@ -70,6 +73,9 @@ export const LIGHT_BASE = Object.freeze({
     caution: tone("#9d5d00"),
     critical: tone("#c42b1c"),
     attention: tone("#c35a00"),
+    edgeHighlight: tone(WHITE, 0.9),
+    shadow: tone(BLACK, 0.18),
+    contactShadow: tone(BLACK, 0.12),
 });
 
 export const TRANSLUCENT_SURFACE_KEYS = Object.freeze(["taskbarBackground", "flyoutBackground"]);
@@ -166,7 +172,7 @@ export const EASING_CURVES = Object.freeze({
     accelerate: Object.freeze([1, 0, 1, 1, 1, 1]),
 });
 
-export const ELEVATION = Object.freeze({ flyoutShadowRadius: 32, flyoutShadowOffset: 8, flyoutShadowAlpha: 0.28 });
+export const ELEVATION = Object.freeze({ shadowBlur: 32, shadowOffset: 8, contactBlur: 4, contactOffset: 1, edgeHighlightWidth: 1, richScaleFrom: 0.96 });
 
 export const SLIDE_DISTANCE = Object.freeze({ flyout: 40 });
 export const PRESS_SCALE = 0.88;

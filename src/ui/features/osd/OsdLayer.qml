@@ -35,6 +35,7 @@ PanelWindow {
         width: Theme.size.osdWidth
         height: Theme.size.osdHeight
         cornerRadius: height / 2
+        fill: Theme.overlayFill
 
         RowLayout {
             anchors.fill: parent

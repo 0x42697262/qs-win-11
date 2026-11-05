@@ -26,7 +26,7 @@ Card {
     signal closeRequested
 
     implicitHeight: column.implicitHeight + Theme.spacing.medium * 2
-    color: Theme.colors.flyoutBackground
+    color: Theme.surfaceFill
     border.color: notification.urgency === NotificationUrgency.Critical ? Theme.colors.critical : Theme.colors.cardStroke
 
     HoverHandler {

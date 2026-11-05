@@ -33,6 +33,75 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `theme.transparency` | boolean | `true` |  | Translucent taskbar and flyouts. Blur comes from your compositor. |
 | `theme.reduceMotion` | boolean | `false` |  | Makes animations nearly instant. |
 
+## appearance
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `appearance.style` | enum | `"fluent"` | `fluent`, `flat` | Fluent depth and materials, or the flat look. |
+| `appearance.level` | integer | `3` | 0 to 4 | 0 battery saver, 1 light, 2 balanced, 3 rich, 4 maximum. Caps what every effect may cost. |
+| `appearance.levelOnBattery` | integer | `-1` | -1 to 4 | Level used while on battery. -1 keeps the normal level. |
+| `appearance.saverPollingFactor` | number | `4` | 1 to 100 | Polling intervals are multiplied by this when background work is in saver mode. |
+| `appearance.override.backdrop` | enum | `"inherit"` | `inherit`, `solid`, `tint`, `acrylic`, `mica` | Surface backdrop: opaque, tinted, compositor-blur acrylic, or wallpaper mica. "inherit" follows the level and style. Cost: memory. |
+| `appearance.override.grain` | enum | `"inherit"` | `inherit`, `off`, `on` | Faint noise texture on acrylic and mica. "inherit" follows the level and style. Cost: none. |
+| `appearance.override.edgeHighlight` | enum | `"inherit"` | `inherit`, `off`, `on` | Gradient edge stroke, lighter on top. "inherit" follows the level and style. Cost: none. |
+| `appearance.override.shadows` | enum | `"inherit"` | `inherit`, `none`, `soft`, `layered` | Shadows under flyouts and toasts. "inherit" follows the level and style. Cost: none. |
+| `appearance.override.corners` | enum | `"inherit"` | `inherit`, `circular`, `continuous` | Circular corners or Apple-style continuous corners. "inherit" follows the level and style. Cost: none. |
+| `appearance.override.animations` | enum | `"inherit"` | `inherit`, `none`, `fades`, `full`, `rich` | No animation, fades only, slides, or slides with scale. "inherit" follows the level and style. Cost: cpuWhileMoving. |
+| `appearance.override.translucentOverlays` | enum | `"inherit"` | `inherit`, `off`, `on` | Translucent tooltips and on-screen displays. "inherit" follows the level and style. Cost: none. |
+| `appearance.override.liveThumbnails` | enum | `"inherit"` | `inherit`, `off`, `on` | Live window previews on taskbar hover (also needs experimental.hoverThumbnails). "inherit" follows the level and style. Cost: continuous. |
+| `appearance.override.clockSeconds` | enum | `"inherit"` | `inherit`, `off`, `on` | Allow a seconds clock (clock.showSeconds). "inherit" follows the level and style. Cost: continuous. |
+| `appearance.override.backgroundWork` | enum | `"inherit"` | `inherit`, `saver`, `normal` | Saver multiplies polling intervals by appearance.saverPollingFactor. "inherit" follows the level and style. Cost: continuous. |
+| `appearance.levels.batterySaver.backdrop` | enum | `"solid"` | `solid`, `tint`, `acrylic`, `mica` | What the Battery saver level allows for Backdrop. |
+| `appearance.levels.batterySaver.grain` | enum | `"off"` | `off`, `on` | What the Battery saver level allows for Grain. |
+| `appearance.levels.batterySaver.edgeHighlight` | enum | `"off"` | `off`, `on` | What the Battery saver level allows for Edge highlight. |
+| `appearance.levels.batterySaver.shadows` | enum | `"none"` | `none`, `soft`, `layered` | What the Battery saver level allows for Shadows. |
+| `appearance.levels.batterySaver.corners` | enum | `"circular"` | `circular`, `continuous` | What the Battery saver level allows for Corners. |
+| `appearance.levels.batterySaver.animations` | enum | `"none"` | `none`, `fades`, `full`, `rich` | What the Battery saver level allows for Animations. |
+| `appearance.levels.batterySaver.translucentOverlays` | enum | `"off"` | `off`, `on` | What the Battery saver level allows for Translucent overlays. |
+| `appearance.levels.batterySaver.liveThumbnails` | enum | `"off"` | `off`, `on` | What the Battery saver level allows for Live thumbnails. |
+| `appearance.levels.batterySaver.clockSeconds` | enum | `"off"` | `off`, `on` | What the Battery saver level allows for Clock seconds. |
+| `appearance.levels.batterySaver.backgroundWork` | enum | `"saver"` | `saver`, `normal` | What the Battery saver level allows for Background work. |
+| `appearance.levels.light.backdrop` | enum | `"tint"` | `solid`, `tint`, `acrylic`, `mica` | What the Light level allows for Backdrop. |
+| `appearance.levels.light.grain` | enum | `"off"` | `off`, `on` | What the Light level allows for Grain. |
+| `appearance.levels.light.edgeHighlight` | enum | `"off"` | `off`, `on` | What the Light level allows for Edge highlight. |
+| `appearance.levels.light.shadows` | enum | `"soft"` | `none`, `soft`, `layered` | What the Light level allows for Shadows. |
+| `appearance.levels.light.corners` | enum | `"circular"` | `circular`, `continuous` | What the Light level allows for Corners. |
+| `appearance.levels.light.animations` | enum | `"fades"` | `none`, `fades`, `full`, `rich` | What the Light level allows for Animations. |
+| `appearance.levels.light.translucentOverlays` | enum | `"off"` | `off`, `on` | What the Light level allows for Translucent overlays. |
+| `appearance.levels.light.liveThumbnails` | enum | `"off"` | `off`, `on` | What the Light level allows for Live thumbnails. |
+| `appearance.levels.light.clockSeconds` | enum | `"on"` | `off`, `on` | What the Light level allows for Clock seconds. |
+| `appearance.levels.light.backgroundWork` | enum | `"normal"` | `saver`, `normal` | What the Light level allows for Background work. |
+| `appearance.levels.balanced.backdrop` | enum | `"acrylic"` | `solid`, `tint`, `acrylic`, `mica` | What the Balanced level allows for Backdrop. |
+| `appearance.levels.balanced.grain` | enum | `"off"` | `off`, `on` | What the Balanced level allows for Grain. |
+| `appearance.levels.balanced.edgeHighlight` | enum | `"on"` | `off`, `on` | What the Balanced level allows for Edge highlight. |
+| `appearance.levels.balanced.shadows` | enum | `"soft"` | `none`, `soft`, `layered` | What the Balanced level allows for Shadows. |
+| `appearance.levels.balanced.corners` | enum | `"continuous"` | `circular`, `continuous` | What the Balanced level allows for Corners. |
+| `appearance.levels.balanced.animations` | enum | `"full"` | `none`, `fades`, `full`, `rich` | What the Balanced level allows for Animations. |
+| `appearance.levels.balanced.translucentOverlays` | enum | `"on"` | `off`, `on` | What the Balanced level allows for Translucent overlays. |
+| `appearance.levels.balanced.liveThumbnails` | enum | `"off"` | `off`, `on` | What the Balanced level allows for Live thumbnails. |
+| `appearance.levels.balanced.clockSeconds` | enum | `"on"` | `off`, `on` | What the Balanced level allows for Clock seconds. |
+| `appearance.levels.balanced.backgroundWork` | enum | `"normal"` | `saver`, `normal` | What the Balanced level allows for Background work. |
+| `appearance.levels.rich.backdrop` | enum | `"mica"` | `solid`, `tint`, `acrylic`, `mica` | What the Rich level allows for Backdrop. |
+| `appearance.levels.rich.grain` | enum | `"on"` | `off`, `on` | What the Rich level allows for Grain. |
+| `appearance.levels.rich.edgeHighlight` | enum | `"on"` | `off`, `on` | What the Rich level allows for Edge highlight. |
+| `appearance.levels.rich.shadows` | enum | `"layered"` | `none`, `soft`, `layered` | What the Rich level allows for Shadows. |
+| `appearance.levels.rich.corners` | enum | `"continuous"` | `circular`, `continuous` | What the Rich level allows for Corners. |
+| `appearance.levels.rich.animations` | enum | `"full"` | `none`, `fades`, `full`, `rich` | What the Rich level allows for Animations. |
+| `appearance.levels.rich.translucentOverlays` | enum | `"on"` | `off`, `on` | What the Rich level allows for Translucent overlays. |
+| `appearance.levels.rich.liveThumbnails` | enum | `"off"` | `off`, `on` | What the Rich level allows for Live thumbnails. |
+| `appearance.levels.rich.clockSeconds` | enum | `"on"` | `off`, `on` | What the Rich level allows for Clock seconds. |
+| `appearance.levels.rich.backgroundWork` | enum | `"normal"` | `saver`, `normal` | What the Rich level allows for Background work. |
+| `appearance.levels.maximum.backdrop` | enum | `"mica"` | `solid`, `tint`, `acrylic`, `mica` | What the Maximum level allows for Backdrop. |
+| `appearance.levels.maximum.grain` | enum | `"on"` | `off`, `on` | What the Maximum level allows for Grain. |
+| `appearance.levels.maximum.edgeHighlight` | enum | `"on"` | `off`, `on` | What the Maximum level allows for Edge highlight. |
+| `appearance.levels.maximum.shadows` | enum | `"layered"` | `none`, `soft`, `layered` | What the Maximum level allows for Shadows. |
+| `appearance.levels.maximum.corners` | enum | `"continuous"` | `circular`, `continuous` | What the Maximum level allows for Corners. |
+| `appearance.levels.maximum.animations` | enum | `"rich"` | `none`, `fades`, `full`, `rich` | What the Maximum level allows for Animations. |
+| `appearance.levels.maximum.translucentOverlays` | enum | `"on"` | `off`, `on` | What the Maximum level allows for Translucent overlays. |
+| `appearance.levels.maximum.liveThumbnails` | enum | `"on"` | `off`, `on` | What the Maximum level allows for Live thumbnails. |
+| `appearance.levels.maximum.clockSeconds` | enum | `"on"` | `off`, `on` | What the Maximum level allows for Clock seconds. |
+| `appearance.levels.maximum.backgroundWork` | enum | `"normal"` | `saver`, `normal` | What the Maximum level allows for Background work. |
+
 ## compositor
 
 | Key | Type | Default | Allowed | Description |
@@ -281,9 +350,12 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 |---|---|---|---|---|
 | `effects.pressScale` | number | `0.88` | 0 to 4 | Icon scale while pressed. |
 | `effects.dimOpacity` | number | `0.6` | 0 to 1 | Opacity of the idle dim layer. |
-| `effects.elevation.flyoutShadowRadius` | integer | `32` | 0 to 4096 | Flyout shadow parameter. |
-| `effects.elevation.flyoutShadowOffset` | integer | `8` | 0 to 4096 | Flyout shadow parameter. |
-| `effects.elevation.flyoutShadowAlpha` | number | `0.28` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.shadowBlur` | integer | `32` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.shadowOffset` | integer | `8` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.contactBlur` | integer | `4` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.contactOffset` | integer | `1` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.edgeHighlightWidth` | integer | `1` | 0 to 4096 | Flyout shadow parameter. |
+| `effects.elevation.richScaleFrom` | number | `0.96` | 0 to 4096 | Flyout shadow parameter. |
 | `effects.accentShades.darkModeMixWithWhite` | number | `0.45` | 0 to 1 | How accent variants are derived from the accent color. |
 | `effects.accentShades.lightModeMixWithBlack` | number | `0.15` | 0 to 1 | How accent variants are derived from the accent color. |
 | `effects.accentShades.hoverAlpha` | number | `0.9` | 0 to 1 | How accent variants are derived from the accent color. |
@@ -321,6 +393,9 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `colors.dark.caution` | color | `"#fffce100"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
 | `colors.dark.critical` | color | `"#ffff99a4"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
 | `colors.dark.attention` | color | `"#ffff9e5c"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.edgeHighlight` | color | `"#24ffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.shadow` | color | `"#6b000000"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.contactShadow` | color | `"#4d000000"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.micaBase` | color | `"#fff3f3f3"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.taskbarBackground` | color | `"#dbeeeeee"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.flyoutBackground` | color | `"#edfcfcfc"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
@@ -348,6 +423,9 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `colors.light.caution` | color | `"#ff9d5d00"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.critical` | color | `"#ffc42b1c"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.attention` | color | `"#ffc35a00"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.edgeHighlight` | color | `"#e6ffffff"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.shadow` | color | `"#2e000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.contactShadow` | color | `"#1f000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.accentMixLight` | color | `"#ffffff"` |  | Color the accent is mixed with in dark mode. |
 | `colors.accentMixDark` | color | `"#000000"` |  | Color the accent is mixed with in light mode. |
 | `colors.dim` | color | `"#000000"` |  | Color of the idle dim layer. |
@@ -559,6 +637,15 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.settingsApp.featureOff` | text | `"Off"` |  | Text shown in the shell. |
 | `text.settingsApp.noResults` | text | `"No settings match your search."` |  | Text shown in the shell. |
 | `text.settingsApp.changedOnly` | text | `"Changed only"` |  | Text shown in the shell. |
+| `text.settingsApp.effectsLevel` | text | `"Effects level"` |  | Text shown in the shell. |
+| `text.settingsApp.effectsOnBattery` | text | `"On battery the level is"` |  | Text shown in the shell. |
+| `text.settingsApp.effect` | text | `"Effect"` |  | Text shown in the shell. |
+| `text.settingsApp.fromLevel` | text | `"Level allows"` |  | Text shown in the shell. |
+| `text.settingsApp.yourChoice` | text | `"Your choice"` |  | Text shown in the shell. |
+| `text.settingsApp.result` | text | `"Result"` |  | Text shown in the shell. |
+| `text.settingsApp.cost` | text | `"Cost"` |  | Text shown in the shell. |
+| `text.settingsApp.limitedByLevel` | text | `"limited by level"` |  | Text shown in the shell. |
+| `text.settingsApp.levelNames` | textList | `Battery saver`, `Light`, `Balanced`, `Rich`, `Maximum` |  | List of texts shown in the shell. |
 | `text.settingsApp.defaultValue` | text | `"Default"` |  | Text shown in the shell. |
 | `text.settingsApp.unboundedTitle` | text | `"Unbounded values are on"` |  | Text shown in the shell. |
 | `text.settingsApp.unboundedBody` | text | `"Minimum and maximum limits are ignored. Extreme values can freeze or break the shell; turn experimental.unboundedValues off to restore the limits."` |  | Text shown in the shell. |
