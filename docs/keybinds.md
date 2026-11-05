@@ -24,6 +24,12 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `notifications toggle` | Open or close the notification center. | `SUPER+N` |
 | `notifications clearAll` | Dismiss every notification. |  |
 | `notifications toggleDoNotDisturb` | Turn do not disturb on or off. |  |
+| `audio volumeUp` | Raise volume by one step. | `XF86AudioRaiseVolume` |
+| `audio volumeDown` | Lower volume by one step. | `XF86AudioLowerVolume` |
+| `audio toggleMute` | Mute or unmute output. | `XF86AudioMute` |
+| `audio toggleMicrophoneMute` | Mute or unmute the microphone. | `XF86AudioMicMute` |
+| `brightness up` | Raise brightness by one step. | `XF86MonBrightnessUp` |
+| `brightness down` | Lower brightness by one step. | `XF86MonBrightnessDown` |
 | `session lock` | Lock the session. | `SUPER+L` |
 | `session suspend` | Sleep. |  |
 | `session hibernate` | Hibernate. |  |

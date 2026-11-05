@@ -24,6 +24,30 @@ return {
 		bind = "SUPER + N",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call audio volumeUp"),
+		bind = "XF86AudioRaiseVolume",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call audio volumeDown"),
+		bind = "XF86AudioLowerVolume",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call audio toggleMute"),
+		bind = "XF86AudioMute",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call audio toggleMicrophoneMute"),
+		bind = "XF86AudioMicMute",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call brightness up"),
+		bind = "XF86MonBrightnessUp",
+	},
+	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call brightness down"),
+		bind = "XF86MonBrightnessDown",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session lock"),
 		bind = "SUPER + L",
 	},

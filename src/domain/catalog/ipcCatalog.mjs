@@ -13,6 +13,8 @@ export const IpcTargetName = Object.freeze({
     Session: "session",
     QuickSettings: "quickSettings",
     Notifications: "notifications",
+    Audio: "audio",
+    Brightness: "brightness",
 });
 
 const SUPER = "SUPER";
@@ -75,6 +77,24 @@ export const IPC_TARGETS = Object.freeze([
             { name: "toggle", description: "Open or close the notification center.", suggestedKey: { modifiers: [SUPER], key: "N" } },
             { name: "clearAll", description: "Dismiss every notification." },
             { name: "toggleDoNotDisturb", description: "Turn do not disturb on or off." },
+        ],
+    },
+    {
+        target: IpcTargetName.Audio,
+        description: "Volume and microphone, with the on-screen display.",
+        functions: [
+            { name: "volumeUp", description: "Raise volume by one step.", suggestedKey: { modifiers: [], key: "XF86AudioRaiseVolume" } },
+            { name: "volumeDown", description: "Lower volume by one step.", suggestedKey: { modifiers: [], key: "XF86AudioLowerVolume" } },
+            { name: "toggleMute", description: "Mute or unmute output.", suggestedKey: { modifiers: [], key: "XF86AudioMute" } },
+            { name: "toggleMicrophoneMute", description: "Mute or unmute the microphone.", suggestedKey: { modifiers: [], key: "XF86AudioMicMute" } },
+        ],
+    },
+    {
+        target: IpcTargetName.Brightness,
+        description: "Screen brightness, with the on-screen display.",
+        functions: [
+            { name: "up", description: "Raise brightness by one step.", suggestedKey: { modifiers: [], key: "XF86MonBrightnessUp" } },
+            { name: "down", description: "Lower brightness by one step.", suggestedKey: { modifiers: [], key: "XF86MonBrightnessDown" } },
         ],
     },
     {

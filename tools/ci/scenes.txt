@@ -12,3 +12,5 @@
 12-notification-center|notifications toggle
 13-notification-center-dark|settings set theme.mode dark
 14-closed|notifications toggle
+15-osd-volume|audio volumeDown
+16-osd-mute|audio toggleMute
