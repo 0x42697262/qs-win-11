@@ -21,6 +21,7 @@ export const IpcTargetName = Object.freeze({
     Desktop: "desktop",
     Widgets: "widgets",
     Snap: "snap",
+    Profiles: "profiles",
 });
 
 const SUPER = "SUPER";
@@ -142,6 +143,20 @@ export const IPC_TARGETS = Object.freeze([
         description: "Snap layouts for the focused window.",
         functions: [
             { name: "open", description: "Open the snap layout picker.", suggestedKey: { modifiers: [SUPER], key: "Z" } },
+        ],
+    },
+    {
+        target: IpcTargetName.Profiles,
+        description: "Stackable profiles: icon packs, color schemes, effect modes, whole looks.",
+        functions: [
+            { name: "list", description: "Installed profiles as JSON: name, active, conditions, problems." },
+            { name: "activate", description: "Add a profile to the top of the active stack." },
+            { name: "deactivate", description: "Remove a profile from the active stack." },
+            { name: "order", description: "Set the whole active stack, comma-separated, first is lowest." },
+            { name: "create", description: "Save your changed settings for some sections (comma-separated, e.g. icons,colors) as a new profile." },
+            { name: "absorb", description: "Copy a profile's values into your own settings." },
+            { name: "trust", description: "Allow a profile to change commands.*." },
+            { name: "untrust", description: "Stop a profile from changing commands.*." },
         ],
     },
     {

@@ -1,0 +1,12 @@
+export const PROFILES_DIRECTORY = "profiles";
+export const PROFILE_FILE = "profile.json";
+export const PROFILE_KEY_PREFIX = "profiles.";
+export const COMMAND_KEY_PREFIX = "commands.";
+export const RELATIVE_PATH_PREFIX = "./";
+export const IMAGE_SPEC_PREFIX = "image:";
+export const TIME_RANGE_SEPARATOR = "-";
+export const SECTION_SEPARATOR = ",";
+export const ProfileSourceKind = Object.freeze({ Default: "default", Profile: "profile", User: "user" });
+export const ProfileProblem = Object.freeze({ NotAllowed: "notAllowedInProfile", CommandsNotTrusted: "commandsNotTrusted" });
+export const ProfileMetaField = Object.freeze({ Description: "description", ActivateWhen: "activateWhen" });
+export const PATH_SEPARATOR = "/";

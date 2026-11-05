@@ -36,6 +36,7 @@ export const TUNING = Object.freeze({
     toastStackLimit: spec(3, 1, 20, COUNT, "Notification banners shown at once."),
     notificationBodyLines: spec(3, 1, 50, COUNT, "Lines of body text before a notification is cut off."),
     settingsNumberStep: spec(0.05, 0.001, 1, Unit.Fraction, "Step for decimal sliders in the Settings app."),
+    profilesRescanMs: spec(10000, 1000, 3600000, MS, "How often the profiles folder is checked for added or removed profiles."),
     snapGapPixels: spec(8, 0, 200, Unit.Pixels, "Gap around snapped windows."),
     scoreExactName: spec(100, 0, 1000, Unit.Score, "Search score when the query equals an app name."),
     scoreNamePrefix: spec(80, 0, 1000, Unit.Score, "Search score when an app name starts with the query."),

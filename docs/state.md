@@ -4,7 +4,8 @@ Each row has exactly one owner. Everything else reads it or derives from it.
 
 | State | Owner | Others |
 |---|---|---|
-| User preferences, including Quick Settings tiles | `settings.json` via `Settings` | Read only; writes go through `Settings.update()` |
+| User preferences, including Quick Settings tiles and the active profile stack | `settings.json` via `Settings` (`Settings.userOverrides`) |
+| Profile values | Each `profiles/<name>/profile.json` | `ProfileLayers` reads them; `Settings.values` is derived from defaults, active profiles and your overrides, with `Settings.sources` saying which won | Read only; writes go through `Settings.update()` |
 | Shell data: pinned apps, do not disturb, cached location | `state.json` via `ShellData` | Read only; writes through the owning service |
 | Theme colors, sizes, motion, icons, text | `settings.json` overrides on top of catalog defaults; `Theme` and `IconSet` derive what the UI draws | UI never imports the catalogs |
 | Effective appearance (each effect's value and why) | Derived by `resolveAppearance()` in `Appearance` from `appearance.*` settings and battery state | Theme and surfaces read `Appearance` |

@@ -22,7 +22,7 @@ IpcHandler {
     }
 
     function exportProfile(path: string): bool {
-        return Profiles.exportTo(path);
+        return Profiles.exportTo(path, "");
     }
 
     function importProfile(path: string): bool {

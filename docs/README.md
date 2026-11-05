@@ -8,4 +8,5 @@
 | Every setting (generated) | [configuration.md](configuration.md) |
 | IPC calls and example keybinds (generated) | [keybinds.md](keybinds.md) |
 | Hyprland setup: blur, keybind formats, clashes, idle | [hyprland.md](hyprland.md) |
+| Profiles: stacking, conditions, trust, sharing | [profiles.md](profiles.md) |
 | Decisions | [adr/](adr/) |

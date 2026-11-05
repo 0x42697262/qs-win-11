@@ -113,6 +113,13 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `corners.exponent` | number | `5` | 2 to 20 | 2 is a circle, 4-5 is Apple-like, higher gets squarer. |
 | `corners.segments` | integer | `12` | 2 to 64 | Line segments per corner for the superellipse model. |
 
+## profiles
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `profiles.active` | textList | (empty) |  | Profile folder names applied in order; later ones win, your own settings win last. A profile with activateWhen applies only while its conditions hold. |
+| `profiles.trustedCommands` | textList | (empty) |  | Profiles listed here may set commands.*; others have those keys skipped, because commands run programs. |
+
 ## wallpaper
 
 | Key | Type | Default | Allowed | Description |
@@ -500,6 +507,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.toastStackLimit` | integer | `3` | 1 to 20 | Notification banners shown at once. (count) |
 | `tuning.notificationBodyLines` | integer | `3` | 1 to 50 | Lines of body text before a notification is cut off. (count) |
 | `tuning.settingsNumberStep` | number | `0.05` | 0.001 to 1 | Step for decimal sliders in the Settings app. (fraction) |
+| `tuning.profilesRescanMs` | integer | `10000` | 1000 to 3600000 | How often the profiles folder is checked for added or removed profiles. (ms) |
 | `tuning.snapGapPixels` | integer | `8` | 0 to 200 | Gap around snapped windows. (px) |
 | `tuning.scoreExactName` | integer | `100` | 0 to 1000 | Search score when the query equals an app name. (score) |
 | `tuning.scoreNamePrefix` | integer | `80` | 0 to 1000 | Search score when an app name starts with the query. (score) |
@@ -656,6 +664,19 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.widgets.low` | text | `"L"` |  | Text shown in the shell. |
 | `text.snap.title` | text | `"Snap layouts"` |  | Text shown in the shell. |
 | `text.snap.hint` | text | `"Pick a zone for the focused window."` |  | Text shown in the shell. |
+| `text.profiles.empty` | text | `"No profiles yet. A profile is a folder in ~/.config/qs-win-11/profiles/ with a profile.json, or save one below."` |  | Text shown in the shell. |
+| `text.profiles.active` | text | `"Active"` |  | Text shown in the shell. |
+| `text.profiles.appliesWhen` | text | `"Applies when"` |  | Text shown in the shell. |
+| `text.profiles.always` | text | `"Always"` |  | Text shown in the shell. |
+| `text.profiles.trustWarning` | text | `"This profile changes commands that run programs. Trust it only if you know where it came from."` |  | Text shown in the shell. |
+| `text.profiles.trust` | text | `"Trust commands"` |  | Text shown in the shell. |
+| `text.profiles.untrust` | text | `"Stop trusting"` |  | Text shown in the shell. |
+| `text.profiles.absorb` | text | `"Copy into my settings"` |  | Text shown in the shell. |
+| `text.profiles.createTitle` | text | `"Save my changes as a profile"` |  | Text shown in the shell. |
+| `text.profiles.namePlaceholder` | text | `"profile-name"` |  | Text shown in the shell. |
+| `text.profiles.create` | text | `"Save"` |  | Text shown in the shell. |
+| `text.profiles.fromProfile` | text | `"From profile"` |  | Text shown in the shell. |
+| `text.profiles.skipped` | text | `"Skipped keys"` |  | Text shown in the shell. |
 | `text.settingsProblems.title` | text | `"Some settings were ignored"` |  | Text shown in the shell. |
 | `text.settingsProblems.body` | text | `"Invalid values fell back to their defaults:"` |  | Text shown in the shell. |
 | `text.settingsApp.title` | text | `"Settings"` |  | Text shown in the shell. |

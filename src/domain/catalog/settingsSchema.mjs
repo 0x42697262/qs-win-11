@@ -18,6 +18,7 @@ export const SettingsSection = Object.freeze({
     Corners: "corners",
     Backdrop: "backdrop",
     Wallpaper: "wallpaper",
+    Profiles: "profiles",
     Taskbar: "taskbar",
     StartMenu: "startMenu",
     QuickSettings: "quickSettings",
@@ -69,6 +70,9 @@ export const SETTING_DEFINITIONS = Object.freeze([
     numberSetting(text(SettingsSection.Corners, "controlSmoothing", "Control corner smoothing", "Smoothing for buttons, tiles and list items. -1 uses the global value."), -1, -1, 1),
     numberSetting(text(SettingsSection.Corners, "exponent", "Superellipse exponent", "2 is a circle, 4-5 is Apple-like, higher gets squarer."), 5, 2, 20),
     integerSetting(text(SettingsSection.Corners, "segments", "Superellipse segments", "Line segments per corner for the superellipse model."), 12, 2, 64),
+
+    textListSetting(text(SettingsSection.Profiles, "active", "Active profiles", "Profile folder names applied in order; later ones win, your own settings win last. A profile with activateWhen applies only while its conditions hold."), []),
+    textListSetting(text(SettingsSection.Profiles, "trustedCommands", "Profiles allowed to change commands", "Profiles listed here may set commands.*; others have those keys skipped, because commands run programs."), []),
 
     enumSetting(text(SettingsSection.Wallpaper, "mode", "Wallpaper drawn by", "external: your wallpaper tool draws it and the shell only reads wallpaper.path for mica. shell: the shell draws it too."), WallpaperMode, WallpaperMode.External),
     textSetting(text(SettingsSection.Wallpaper, "path", "Wallpaper file", "Image path. Needed for the mica backdrop; mica falls back to acrylic without it."), ""),
