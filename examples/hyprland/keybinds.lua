@@ -16,6 +16,10 @@ return {
 		bind = "SUPER + S",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call run toggle"),
+		bind = "SUPER + R",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call quickLink toggle"),
 		bind = "SUPER + X",
 	},

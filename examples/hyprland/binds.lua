@@ -4,6 +4,7 @@
 hl.bind("SUPER + I", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call settings open"))
 hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call start toggle"), { release = true })
 hl.bind("SUPER + S", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call search toggle"))
+hl.bind("SUPER + R", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call run toggle"))
 hl.bind("SUPER + X", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call quickLink toggle"))
 hl.bind("SUPER + A", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call quickSettings toggle"))
 hl.bind("SUPER + N", hl.dsp.exec_cmd("qs -c qs-win-11 ipc call notifications toggle"))

@@ -88,6 +88,7 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | Nested Qt Quick layouts default to filling width; side-by-side columns need `Layout.fillWidth: false` and explicit widths | Start search details pane bug |
 | In `on<Property>Changed` handlers, other bindings derived from the same property may not have updated yet; read the source property directly (the flyout host bug) | Qt 6.12 binding evaluation |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
+| `Quickshell.clipboardText` is read/write; setting it copies text to the Wayland clipboard | Quickshell 0.3.2 qmltypes |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
 Add a row whenever you rely on a third-party behavior.
@@ -119,6 +120,9 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Start | Right-click a pinned tile | Pin/Unpin to Start and taskbar; change persists in `state.json` |
 | Start | Power button in Start | Lock, Sign out, Sleep, Shut down, Restart |
 | Search | `qs -c qs-win-11 ipc call search toggle`, type part of an app name | Best match first, details pane with Open and pin actions; arrow keys move the selection |
+| Search | Type `sqrt(144)+2^3` in Start or Search | Calculator result `20` first; Enter copies it to the clipboard; `startMenu.searchCalculator false` hides it |
+| Search | Type `accent` | A Settings group lists matching settings; Enter opens the Settings app filtered to that key |
+| Run | `ipc call run toggle` (or Quick Link → Run), type a command, Enter | Command runs; reopening lists it under recent commands; Up/Down recall history (`tuning.runHistoryLimit`) |
 | Quick Link | Right-click Start or `ipc call quickLink toggle` | Menu with terminal, task manager, file manager, network, search, lock and power entries |
 | Session | `qs -c qs-win-11 ipc call session lock` with `features.lockScreen.enabled` off | Runs `commands.lock` (default `loginctl lock-session`) |
 | Quick Settings | `ipc call quickSettings toggle` or click the network/volume/battery cluster | Flyout bottom-right with available tiles only, brightness and volume sliders, battery in the footer |

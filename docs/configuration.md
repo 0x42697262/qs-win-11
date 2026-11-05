@@ -174,6 +174,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | Key | Type | Default | Allowed | Description |
 |---|---|---|---|---|
 | `startMenu.showRecommended` | boolean | `true` |  | Recently used files in Start. |
+| `startMenu.searchCalculator` | boolean | `true` |  | Typing math in Start or Search shows the result first. |
+| `startMenu.searchSettings` | boolean | `true` |  | Matching settings appear below apps in search results. |
 | `startMenu.allAppsView` | enum | `"category"` | `category`, `grid`, `list` | How the All section in Start lists apps. |
 | `startMenu.initialPinned` | textList | `firefox`, `org.gnome.Nautilus`, `kitty`, `org.gnome.TextEditor`, `org.gnome.Calculator` |  | Desktop entry ids pinned before you pin anything yourself. |
 
@@ -268,6 +270,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `features.appThemeSync.enabled` | boolean | `true` |  | Turns the appThemeSync feature on or off. It still stays off when its requirements are missing. |
 | `features.batteryAlerts.enabled` | boolean | `true` |  | Turns the batteryAlerts feature on or off. It still stays off when its requirements are missing. |
 | `features.sessionMenu.enabled` | boolean | `true` |  | Turns the sessionMenu feature on or off. It still stays off when its requirements are missing. |
+| `features.run.enabled` | boolean | `true` |  | Turns the run feature on or off. It still stays off when its requirements are missing. |
 
 ## experimental
 
@@ -332,6 +335,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `sizes.control.osdWidth` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.osdHeight` | integer | `46` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.widgetsWidth` | integer | `760` | 0 to 4096 | Control or surface size in pixels, before scale. |
+| `sizes.control.runDialogWidth` | integer | `420` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.sessionButton` | integer | `120` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.taskViewCard` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |
 | `sizes.control.contextMenuWidth` | integer | `220` | 0 to 4096 | Control or surface size in pixels, before scale. |
@@ -529,6 +533,11 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.volumeStep` | number | `0.05` | 0.01 to 1 | Volume change per step (scroll, IPC, media keys). (fraction) |
 | `tuning.brightnessStepPercent` | integer | `5` | 1 to 100 | Brightness change per step. (%) |
 | `tuning.searchResultLimit` | integer | `8` | 1 to 100 | Search results shown. (count) |
+| `tuning.searchSettingsLimit` | integer | `4` | 0 to 50 | Settings shown in search results. (count) |
+| `tuning.searchSettingsMinLength` | integer | `2` | 1 to 20 | Characters typed before settings appear in search. (count) |
+| `tuning.calculatorDigits` | integer | `12` | 1 to 17 | Significant digits in calculator results. (count) |
+| `tuning.runHistoryLimit` | integer | `20` | 0 to 200 | Commands remembered by the Run dialog. (count) |
+| `tuning.runHistoryShown` | integer | `5` | 0 to 50 | Recent commands listed in the Run dialog. (count) |
 | `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
 | `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid when expanded. (count) |
 | `tuning.startPinnedRowsCollapsed` | integer | `2` | 1 to 20 | Rows in the Start pinned grid before Show all. (count) |
@@ -646,8 +655,19 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.search.apps` | text | `"Apps"` |  | Text shown in the shell. |
 | `text.search.open` | text | `"Open"` |  | Text shown in the shell. |
 | `text.search.noResults` | text | `"No results"` |  | Text shown in the shell. |
-| `text.search.typeToSearch` | text | `"Type to search apps"` |  | Text shown in the shell. |
+| `text.search.typeToSearch` | text | `"Type to search apps, settings, or math"` |  | Text shown in the shell. |
 | `text.search.application` | text | `"App"` |  | Text shown in the shell. |
+| `text.search.settings` | text | `"Settings"` |  | Text shown in the shell. |
+| `text.search.setting` | text | `"Setting"` |  | Text shown in the shell. |
+| `text.search.calculator` | text | `"Calculator"` |  | Text shown in the shell. |
+| `text.search.copyResult` | text | `"Copy result"` |  | Text shown in the shell. |
+| `text.search.openSetting` | text | `"Open in Settings"` |  | Text shown in the shell. |
+| `text.run.title` | text | `"Run"` |  | Text shown in the shell. |
+| `text.run.prompt` | text | `"Type the name of a program, folder, or command, and the shell will run it for you."` |  | Text shown in the shell. |
+| `text.run.open` | text | `"Open:"` |  | Text shown in the shell. |
+| `text.run.ok` | text | `"OK"` |  | Text shown in the shell. |
+| `text.run.cancel` | text | `"Cancel"` |  | Text shown in the shell. |
+| `text.run.history` | text | `"Recent"` |  | Text shown in the shell. |
 | `text.session.lock` | text | `"Lock"` |  | Text shown in the shell. |
 | `text.session.sleep` | text | `"Sleep"` |  | Text shown in the shell. |
 | `text.session.hibernate` | text | `"Hibernate"` |  | Text shown in the shell. |
@@ -662,6 +682,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `text.quickLink.settings` | text | `"Settings"` |  | Text shown in the shell. |
 | `text.quickLink.fileExplorer` | text | `"File Explorer"` |  | Text shown in the shell. |
 | `text.quickLink.search` | text | `"Search"` |  | Text shown in the shell. |
+| `text.quickLink.run` | text | `"Run"` |  | Text shown in the shell. |
 | `text.quickLink.desktop` | text | `"Desktop"` |  | Text shown in the shell. |
 | `text.quickSettings.wifi` | text | `"Wi-Fi"` |  | Text shown in the shell. |
 | `text.quickSettings.bluetooth` | text | `"Bluetooth"` |  | Text shown in the shell. |
@@ -865,3 +886,24 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `icons.temperature` | text | `"fluent:temperature_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
 | `icons.drop` | text | `"fluent:drop_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
 | `icons.board` | text | `"fluent:board_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.calculator` | text | `"fluent:calculator_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.copy` | text | `"fluent:copy_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.history` | text | `"fluent:history_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.run` | text | `"fluent:window_play_20"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.emoji` | text | `"fluent:emoji_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.clipboard` | text | `"fluent:clipboard_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.screenshot` | text | `"fluent:screenshot_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.eyedropper` | text | `"fluent:eyedropper_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.record` | text | `"fluent:record_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.image` | text | `"fluent:image_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.games` | text | `"fluent:games_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.stayAwake` | text | `"fluent:drink_coffee_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.vpn` | text | `"fluent:globe_shield_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.processor` | text | `"fluent:developer_board_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.storage` | text | `"fluent:hard_drive_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.wallpaper` | text | `"fluent:wallpaper_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.paintBrush` | text | `"fluent:paint_brush_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.numberSymbol` | text | `"fluent:number_symbol_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.timer` | text | `"fluent:timer_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.crop` | text | `"fluent:crop_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |
+| `icons.video` | text | `"fluent:video_24"` |  | Icon as fluent:<name>, font:<family>:<hex codepoint> or image:<path or URL>. |

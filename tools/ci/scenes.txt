@@ -9,6 +9,15 @@
 05c-list|settings set startMenu.allAppsView list
 05d-category|settings set startMenu.allAppsView category
 06-search|search toggle
+06a-calculator|!sleep 0.5; wtype ' sqrt(144)+2^3'
+06b-close|search toggle
+06c-settings-results|!qs -p "$SHELL_DIR" ipc call search toggle; sleep 0.8; wtype ' accent'
+06d-close|search toggle
+06e-run|run toggle
+06f-run-typed|!sleep 0.5; wtype ' true run-check'
+06g-run-history|!wtype ' ' -k Return; for _attempt in $(seq 30); do grep -q "run-check" "$XDG_STATE_HOME/qs-win-11/state.json" 2>/dev/null && exit 0; sleep 0.1; done; exit 1
+06h-run-reopen|run toggle
+06i-close|run toggle
 07-quick-link|quickLink toggle
 08-quick-settings|quickSettings toggle
 09-quick-settings-light|settings set theme.mode light

@@ -105,6 +105,8 @@ export const SETTING_DEFINITIONS = Object.freeze([
     booleanSetting(text(SettingsSection.Taskbar, "windowsOnAllMonitors", "Show apps on all taskbars", "Off shows each window only on its own monitor's taskbar."), false),
 
     booleanSetting(text(SettingsSection.StartMenu, "showRecommended", "Show recommended files", "Recently used files in Start."), true),
+    booleanSetting(text(SettingsSection.StartMenu, "searchCalculator", "Calculator in search", "Typing math in Start or Search shows the result first."), true),
+    booleanSetting(text(SettingsSection.StartMenu, "searchSettings", "Settings in search", "Matching settings appear below apps in search results."), true),
     enumSetting(text(SettingsSection.StartMenu, "allAppsView", "All apps view", "How the All section in Start lists apps."), AllAppsView, AllAppsView.Category),
     textListSetting(text(SettingsSection.StartMenu, "initialPinned", "Initially pinned apps", "Desktop entry ids pinned before you pin anything yourself."), ["firefox", "org.gnome.Nautilus", "kitty", "org.gnome.TextEditor", "org.gnome.Calculator"]),
 

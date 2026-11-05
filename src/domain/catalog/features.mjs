@@ -19,6 +19,7 @@ export const FeatureName = Object.freeze({
     AppThemeSync: "appThemeSync",
     BatteryAlerts: "batteryAlerts",
     SessionMenu: "sessionMenu",
+    Run: "run",
 });
 
 export const ExperimentalFeatureName = Object.freeze({
@@ -71,6 +72,7 @@ export const FEATURE_DEFAULTS = Object.freeze({
     appThemeSync: true,
     batteryAlerts: true,
     sessionMenu: true,
+    run: true,
 });
 
 /** @type {Readonly<Record<Feature, FeatureRequirement>>} */
@@ -95,4 +97,5 @@ export const FEATURE_REQUIREMENTS = Object.freeze({
     appThemeSync: { capabilities: [Capability.ColorSchemeSync], dependsOn: [] },
     batteryAlerts: { capabilities: [Capability.Battery, Capability.NotifySend], dependsOn: [] },
     sessionMenu: { capabilities: [], dependsOn: [] },
+    run: { capabilities: [], dependsOn: [] },
 });
