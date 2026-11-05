@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Io
 import qs.src.config
 import "../domain/wallpaper/gallery.mjs" as GalleryRules
+import "../domain/system/paths.mjs" as PathRules
 import "../domain/catalog/settingsSchema.mjs" as Schema
 
 Singleton {
@@ -11,7 +12,7 @@ Singleton {
 
     property list<var> files: []
     property bool loaded: false
-    readonly property string directory: GalleryRules.expandHome(Settings.values.wallpaper.directory, Environment.home)
+    readonly property string directory: PathRules.expandHome(Settings.values.wallpaper.directory, Environment.home)
     readonly property int currentIndex: files.findIndex(file => file.path === Settings.values.wallpaper.path)
 
     function refresh(): void {

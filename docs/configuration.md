@@ -139,6 +139,14 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `wallpaper.path` | text | `""` |  | Image path. Needed for the mica backdrop; mica falls back to acrylic without it. |
 | `wallpaper.fillMode` | enum | `"crop"` | `crop`, `fit`, `stretch`, `center`, `tile` | How the image fills the screen. |
 
+## appTheming
+
+| Key | Type | Default | Allowed | Description |
+|---|---|---|---|---|
+| `appTheming.targets` | textList | `gtk`, `qt`, `foot`, `kitty`, `alacritty`, `btop`, `fish`, `starship`, `nvim`, `zed`, `vscode`, `fuzzel` | `gtk`, `qt`, `foot`, `kitty`, `alacritty`, `btop`, `fish`, `starship`, `nvim`, `zed`, `vscode`, `fuzzel` | Bundled templates rendered when app theming runs. Your own templates in the template folder always render. |
+| `appTheming.outputDirectory` | text | `""` |  | Rendered files land here; include them from each app's config. Empty uses <config>/qs-win-11/themes. ~ is your home. |
+| `appTheming.templateDirectory` | text | `""` |  | Files named <name>.tmpl here replace a bundled template of the same name or add a new one. Empty uses <output>/templates. |
+
 ## lockScreen
 
 | Key | Type | Default | Allowed | Description |
@@ -248,6 +256,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 
 | Key | Type | Default | Allowed | Description |
 |---|---|---|---|---|
+| `commands.afterAppTheme` | text | `""` |  | Runs after themed files are written, e.g. pkill -USR1 kitty. Empty runs nothing. |
 | `commands.terminal` | text | `"kitty"` |  | Command that opens a terminal. |
 | `commands.fileManager` | text | `"nautilus"` |  | Command that opens the file manager. |
 | `commands.taskManager` | text | `"gnome-system-monitor"` |  | Command that opens a task manager. |
@@ -293,6 +302,7 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `features.externalBrightness.enabled` | boolean | `true` |  | Turns the externalBrightness feature on or off. It still stays off when its requirements are missing. |
 | `features.inputIndicator.enabled` | boolean | `true` |  | Turns the inputIndicator feature on or off. It still stays off when its requirements are missing. |
 | `features.lockKeys.enabled` | boolean | `true` |  | Turns the lockKeys feature on or off. It still stays off when its requirements are missing. |
+| `features.appTheming.enabled` | boolean | `false` |  | Turns the appTheming feature on or off. It still stays off when its requirements are missing. |
 
 ## experimental
 
@@ -512,6 +522,22 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `colors.dark.edgeHighlight` | color | `"#24ffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
 | `colors.dark.shadow` | color | `"#6b000000"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
 | `colors.dark.contactShadow` | color | `"#4d000000"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBlack` | color | `"#ff1f1f1f"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalRed` | color | `"#fff1707b"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalGreen` | color | `"#ff6ccb5f"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalYellow` | color | `"#fff9d65c"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBlue` | color | `"#ff60a5fa"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalMagenta` | color | `"#ffd58cf0"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalCyan` | color | `"#ff5fd4d4"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalWhite` | color | `"#ffcccccc"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBrightBlack` | color | `"#ff6e6e6e"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBrightRed` | color | `"#ffff99a4"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBrightGreen` | color | `"#ff9be08f"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBrightYellow` | color | `"#fffce58a"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBrightBlue` | color | `"#ff99c7ff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBrightMagenta` | color | `"#ffe7b3ff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBrightCyan` | color | `"#ff9ef0f0"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
+| `colors.dark.terminalBrightWhite` | color | `"#ffffffff"` |  | Dark theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.micaBase` | color | `"#fff3f3f3"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.taskbarBackground` | color | `"#dbeeeeee"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.flyoutBackground` | color | `"#edfcfcfc"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
@@ -542,6 +568,22 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `colors.light.edgeHighlight` | color | `"#e6ffffff"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.shadow` | color | `"#2e000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.light.contactShadow` | color | `"#1f000000"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBlack` | color | `"#ff1a1a1a"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalRed` | color | `"#ffc42b1c"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalGreen` | color | `"#ff0f7b0f"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalYellow` | color | `"#ff9d5d00"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBlue` | color | `"#ff005fb8"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalMagenta` | color | `"#ff9a3ab8"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalCyan` | color | `"#ff007a87"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalWhite` | color | `"#ff8a8a8a"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBrightBlack` | color | `"#ff5d5d5d"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBrightRed` | color | `"#ffe04a3c"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBrightGreen` | color | `"#ff2c9b2c"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBrightYellow` | color | `"#ffb97a00"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBrightBlue` | color | `"#ff2b7fd6"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBrightMagenta` | color | `"#ffb55fd1"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBrightCyan` | color | `"#ff1599a6"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
+| `colors.light.terminalBrightWhite` | color | `"#ffbdbdbd"` |  | Light theme color as #RRGGBB or #AARRGGBB. |
 | `colors.accentMixLight` | color | `"#ffffff"` |  | Color the accent is mixed with in dark mode. |
 | `colors.accentMixDark` | color | `"#000000"` |  | Color the accent is mixed with in light mode. |
 | `colors.dim` | color | `"#000000"` |  | Color of the idle dim layer. |
@@ -576,6 +618,8 @@ Invalid values are ignored, logged as `settings.invalid` and shown in Settings. 
 | `tuning.accentSaturationMin` | number | `0.45` | 0 to 1 | The picked accent is at least this saturated. (fraction) |
 | `tuning.accentLightnessMin` | number | `0.35` | 0 to 1 | The picked accent is at least this light. (fraction) |
 | `tuning.accentLightnessMax` | number | `0.6` | 0 to 1 | The picked accent is at most this light. (fraction) |
+| `tuning.appThemeDelayMs` | integer | `800` | 0 to 60000 | Wait after the last color change before themed files are written again. (ms) |
+| `tuning.appThemeSelectionMix` | number | `0.35` | 0 to 1 | How much accent the selection color in app themes gets. (fraction) |
 | `tuning.runHistoryShown` | integer | `5` | 0 to 50 | Recent commands listed in the Run dialog. (count) |
 | `tuning.startPinnedColumns` | integer | `6` | 1 to 20 | Columns in the Start pinned grid. (count) |
 | `tuning.startPinnedRows` | integer | `3` | 1 to 20 | Rows in the Start pinned grid when expanded. (count) |

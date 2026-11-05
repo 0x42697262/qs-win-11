@@ -4,6 +4,7 @@ import {
 import {
     AllAppsView, CompositorKind, CriticalBatteryAction, FirstDayOfWeek, InputIndicatorMode, LocationMode, QuickTile, TaskbarAlignment, TemperatureUnit, ThemeMode, WallpaperFill, WallpaperMode,
 } from "./enums.mjs";
+import { APP_THEME_TARGETS } from "./appThemes.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
 import { CornerModel } from "../shape/corners.mjs";
 import { VALUE_DEFINITIONS } from "../settings/valueDefinitions.mjs";
@@ -19,6 +20,7 @@ export const SettingsSection = Object.freeze({
     Backdrop: "backdrop",
     Wallpaper: "wallpaper",
     LockScreen: "lockScreen",
+    AppTheming: "appTheming",
     Profiles: "profiles",
     AppIcons: "appIcons",
     Taskbar: "taskbar",
@@ -83,6 +85,9 @@ export const SETTING_DEFINITIONS = Object.freeze([
     textListSetting(text(SettingsSection.Profiles, "trustedCommands", "Profiles allowed to change commands", "Profiles listed here may set commands.*; others have those keys skipped, because commands run programs."), []),
 
     enumSetting(text(SettingsSection.Wallpaper, "mode", "Wallpaper drawn by", "external: your wallpaper tool draws it and the shell only reads wallpaper.path for mica. shell: the shell draws it too."), WallpaperMode, WallpaperMode.External),
+    textListSetting(text(SettingsSection.AppTheming, "targets", "Apps to theme", "Bundled templates rendered when app theming runs. Your own templates in the template folder always render."), APP_THEME_TARGETS.map(target => target.id), APP_THEME_TARGETS.map(target => target.id)),
+    textSetting(text(SettingsSection.AppTheming, "outputDirectory", "Theme output folder", "Rendered files land here; include them from each app's config. Empty uses <config>/qs-win-11/themes. ~ is your home."), ""),
+    textSetting(text(SettingsSection.AppTheming, "templateDirectory", "Your templates folder", "Files named <name>.tmpl here replace a bundled template of the same name or add a new one. Empty uses <output>/templates."), ""),
     booleanSetting(text(SettingsSection.LockScreen, "useWallpaper", "Wallpaper on the lock screen", "Shows wallpaper.path behind the clock; off uses the accent gradient."), true),
     booleanSetting(text(SettingsSection.LockScreen, "blurOnPrompt", "Blur when signing in", "Blurs the background while the password field shows. Follows the effects level."), true),
     booleanSetting(text(SettingsSection.LockScreen, "showWeather", "Weather on the lock screen", "Current temperature and conditions."), true),
@@ -147,6 +152,7 @@ export const SETTING_DEFINITIONS = Object.freeze([
     numberSetting(text(SettingsSection.Weather, "manualLongitude", "Manual longitude", "Used when location is manual."), 0, -180, 180),
     textSetting(text(SettingsSection.Weather, "manualPlaceName", "Manual place name", "Shown on the weather widget when location is manual."), ""),
 
+    textSetting(text(SettingsSection.Commands, "afterAppTheme", "After app theming", "Runs after themed files are written, e.g. pkill -USR1 kitty. Empty runs nothing."), ""),
     textSetting(text(SettingsSection.Commands, "terminal", "Terminal", "Command that opens a terminal."), "kitty"),
     textSetting(text(SettingsSection.Commands, "fileManager", "File manager", "Command that opens the file manager."), "nautilus"),
     textSetting(text(SettingsSection.Commands, "taskManager", "Task manager", "Command that opens a task manager."), "gnome-system-monitor"),

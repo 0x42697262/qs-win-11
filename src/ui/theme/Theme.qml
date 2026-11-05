@@ -4,18 +4,13 @@ import Quickshell
 import qs.src.config
 import qs.src.services
 import "../../domain/catalog/icons.mjs" as Icons
-import "../../domain/catalog/units.mjs" as Units
-import "../../domain/catalog/enums.mjs" as Enums
-import "../../domain/theme/palette.mjs" as PaletteRules
-import "../../domain/theme/themeMode.mjs" as ThemeModeRules
 
 Singleton {
     id: root
 
     readonly property var themeSettings: Settings.values.theme
-    readonly property int minutesNow: clock.hours * Units.MINUTES_PER_HOUR + clock.minutes
-    readonly property string resolvedMode: ThemeModeRules.resolveThemeMode(themeSettings.mode, minutesNow, themeSettings.lightStartsAt, themeSettings.darkStartsAt)
-    readonly property bool dark: resolvedMode === Enums.ResolvedThemeMode.Dark
+    readonly property string resolvedMode: ColorScheme.resolvedMode
+    readonly property bool dark: ColorScheme.dark
     readonly property real scale: themeSettings.scale
     readonly property string fontFamily: themeSettings.fontFamily
     readonly property string iconFontRegular: regularIcons.name
@@ -51,7 +46,7 @@ Singleton {
 
     readonly property ThemeColors colors: ThemeColors {
         duration: root.motion.theme
-        palette: PaletteRules.buildPalette(root.resolvedMode, WallpaperAccent.active ? WallpaperAccent.accent : root.themeSettings.accentColor, root.themeSettings.transparency, Settings.values.colors, root.effects.accentShades, root.themeSettings.textContrast)
+        palette: ColorScheme.palette
     }
     readonly property ThemeSpacingMetrics spacing: ThemeSpacingMetrics { scale: root.scale; values: root.sizes.spacing }
     readonly property ThemeRadiusMetrics radius: ThemeRadiusMetrics { scale: root.scale; values: root.sizes.radius }
@@ -59,11 +54,6 @@ Singleton {
     readonly property ThemeIconSizeMetrics iconSize: ThemeIconSizeMetrics { scale: root.scale; values: root.sizes.icon }
     readonly property ThemeSizeMetrics size: ThemeSizeMetrics { scale: root.scale; values: root.sizes.control }
     readonly property ThemeMotion motion: ThemeMotion { reduced: root.themeSettings.reduceMotion || !Appearance.animated; values: Settings.values.motion }
-
-    SystemClock {
-        id: clock
-        precision: SystemClock.Minutes
-    }
 
     FontLoader {
         id: regularIcons

@@ -13,6 +13,7 @@ export const IpcTargetName = Object.freeze({
     Run: "run",
     Modes: "modes",
     Wallpaper: "wallpaper",
+    Theming: "theming",
     Keyboard: "keyboard",
     QuickLink: "quickLink",
     Session: "session",
@@ -173,6 +174,13 @@ export const IPC_TARGETS = Object.freeze([
             { name: "set", description: "Use this image file as the wallpaper." },
             { name: "next", description: "Next image in wallpaper.directory." },
             { name: "previous", description: "Previous image in wallpaper.directory." },
+        ],
+    },
+    {
+        target: IpcTargetName.Theming,
+        description: "App theming: render templates with the shell's colors.",
+        functions: [
+            { name: "render", description: "Write every themed file now, even while features.appTheming.enabled is off." },
         ],
     },
     {

@@ -63,6 +63,8 @@ ShellRoot {
         return components;
     }
 
+    readonly property string appThemeDirectory: AppTheming.outputDirectory
+
     Component.onCompleted: Log.info(LogEvents.LogEvent.ShellStarted, { settingsFile: Paths.settingsFile })
 
     ShellIpc {}
@@ -73,6 +75,7 @@ ShellRoot {
     RunIpc {}
     ModesIpc {}
     WallpaperIpc {}
+    ThemingIpc {}
     KeyboardIpc {}
     SessionIpc {}
     QuickSettingsIpc {}

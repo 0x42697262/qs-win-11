@@ -93,5 +93,8 @@
 37c-accent-from-wallpaper|settings set theme.accentFromWallpaper true
 37d-accent-picked|!for _attempt in $(seq 80); do grep -q '"source": ".*wallpaper.jpg"' "$XDG_STATE_HOME/qs-win-11/state.json" 2>/dev/null && exit 0; sleep 0.1; done; cat "$XDG_STATE_HOME/qs-win-11/state.json"; exit 1
 37e-accent-off|settings set theme.accentFromWallpaper false
+38a-user-template|!mkdir -p "$XDG_CONFIG_HOME/qs-win-11/themes/templates" && printf 'bg={{ background }}\nmode={{ mode }}\n' > "$XDG_CONFIG_HOME/qs-win-11/themes/templates/mako.tmpl"
+38b-render|theming render
+38c-rendered|!for _attempt in $(seq 50); do grep -q '^background #' "$XDG_CONFIG_HOME/qs-win-11/themes/kitty/colors.conf" 2>/dev/null && grep -q '^bg=#' "$XDG_CONFIG_HOME/qs-win-11/themes/custom/mako" 2>/dev/null && exit 0; sleep 0.1; done; ls -R "$XDG_CONFIG_HOME/qs-win-11/themes"; exit 1
 33-enable-lock|settings set features.lockScreen.enabled true
 34-lock-screen|session lock

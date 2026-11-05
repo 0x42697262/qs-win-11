@@ -4,16 +4,6 @@ const IMAGE_EXTENSIONS = Object.freeze(["jpg", "jpeg", "png", "webp", "bmp", "gi
 const FIND_BINARY = "find";
 const PATH_SEPARATOR = "/";
 const EXTENSION_SEPARATOR = ".";
-const HOME_PREFIX = "~/";
-
-/**
- * @param {string} directory
- * @param {string} home
- * @returns {string}
- */
-export function expandHome(directory, home) {
-    return directory.indexOf(HOME_PREFIX) === 0 ? `${home}${directory.slice(1)}` : directory;
-}
 
 /**
  * @param {string} directory

@@ -1,6 +1,8 @@
 export const LogEvent = Object.freeze({
     ShellStarted: "shell.started",
     ModeChanged: "mode.changed",
+    AppThemeRendered: "appTheme.rendered",
+    AppThemeTemplateProblem: "appTheme.templateProblem",
     WallpaperAccentPicked: "wallpaper.accentPicked",
     VpnToggled: "vpn.toggled",
     DisplaysDetected: "display.detected",
