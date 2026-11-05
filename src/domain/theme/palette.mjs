@@ -3,6 +3,7 @@ import { TRANSLUCENT_SURFACE_KEYS } from "../catalog/tokens.mjs";
 import { mixHex } from "./color.mjs";
 
 const OPAQUE_ALPHA = "ff";
+export const OPAQUE_SUFFIX = "Opaque";
 const HEX_PAIR = 2;
 const ARGB_LENGTH = 9;
 const CHANNEL_MAX = 255;
@@ -45,7 +46,11 @@ export function buildPalette(resolvedMode, accentHex, transparency, colors, shad
     const palette = {};
     Object.keys(base).forEach((key) => {
         const color = base[key] ?? "";
-        palette[key] = !transparency && TRANSLUCENT_SURFACE_KEYS.includes(key) ? `#${OPAQUE_ALPHA}${rgbPart(color).slice(1)}` : color;
+        const opaque = `#${OPAQUE_ALPHA}${rgbPart(color).slice(1)}`;
+        palette[key] = !transparency && TRANSLUCENT_SURFACE_KEYS.includes(key) ? opaque : color;
+        if (TRANSLUCENT_SURFACE_KEYS.includes(key)) {
+            palette[`${key}${OPAQUE_SUFFIX}`] = opaque;
+        }
     });
     const accent = rgbPart(accentHex);
     const accentForMode = isDark

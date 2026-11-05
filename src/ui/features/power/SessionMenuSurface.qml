@@ -55,7 +55,7 @@ FocusScope {
 
                     AcrylicSurface {
                         anchors.fill: parent
-                        fill: action.hovered ? Theme.colors.controlFillHover : Theme.colors.flyoutBackground
+                        fill: action.hovered ? Theme.colors.controlFillHover : Theme.surfaceFill
                     }
 
                     ColumnLayout {

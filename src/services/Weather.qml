@@ -43,7 +43,7 @@ Singleton {
     Timer {
         running: Features.enabled.weather
         repeat: true
-        interval: Settings.values.tuning.weatherRefreshMs
+        interval: Appearance.interval(Settings.values.tuning.weatherRefreshMs)
         onTriggered: root.refresh()
     }
 }

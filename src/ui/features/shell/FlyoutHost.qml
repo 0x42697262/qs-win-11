@@ -42,7 +42,10 @@ PanelWindow {
         opacity: 0
         Keys.onEscapePressed: ShellState.close()
 
-        transform: Translate { id: slide; y: 0 }
+        transform: [
+            Translate { id: slide; y: 0 },
+            Scale { id: grow; origin.x: stage.width / 2; origin.y: stage.height; xScale: 1; yScale: 1 }
+        ]
 
         Loader {
             id: loader
@@ -58,5 +61,7 @@ PanelWindow {
         id: entrance
         NumberAnimation { target: stage; property: "opacity"; from: 0; to: 1; duration: Theme.motion.normal }
         NumberAnimation { target: slide; property: "y"; from: Theme.slideDistance; to: 0; duration: Theme.motion.slow; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        NumberAnimation { target: grow; property: "xScale"; from: Appearance.richMotion ? Theme.elevation.richScaleFrom : 1; to: 1; duration: Theme.motion.slow; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
+        NumberAnimation { target: grow; property: "yScale"; from: Appearance.richMotion ? Theme.elevation.richScaleFrom : 1; to: 1; duration: Theme.motion.slow; easing.type: Easing.BezierSpline; easing.bezierCurve: Theme.motion.decelerate }
     }
 }

@@ -13,6 +13,7 @@ import "../../../domain/catalog/ipcCatalog.mjs" as IpcCatalog
 import "../../../domain/catalog/strings.mjs" as Strings
 import "../../../domain/catalog/uiEnums.mjs" as UiEnums
 import "../../../domain/catalog/icons.mjs" as Icons
+import "../../../domain/catalog/appearance.mjs" as AppearanceCatalog
 
 FloatingWindow {
     id: root
@@ -115,6 +116,12 @@ FloatingWindow {
                     severity: UiEnums.InfoSeverity.Warning
                     title: Settings.values.text.settingsProblems.title
                     message: `${Settings.values.text.settingsProblems.body} ${Settings.problems.map(problem => problem.key).join(", ")}`
+                }
+
+                EffectsPanel {
+                    visible: SettingsWindow.section === AppearanceCatalog.APPEARANCE_SECTION_NAME && search.text === "" && !root.changedOnly
+                    Layout.fillWidth: true
+                    Layout.bottomMargin: Theme.spacing.large
                 }
 
                 Label {

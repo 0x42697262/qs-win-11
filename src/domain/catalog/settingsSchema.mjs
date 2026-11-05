@@ -6,6 +6,7 @@ import {
 } from "./enums.mjs";
 import { FeatureName, ExperimentalFeatureName, FEATURE_DEFAULTS } from "./features.mjs";
 import { VALUE_DEFINITIONS } from "../settings/valueDefinitions.mjs";
+import { APPEARANCE_DEFINITIONS } from "../settings/appearanceDefinitions.mjs";
 
 export const SETTINGS_SCHEMA_VERSION = 1;
 const CLOCK_TIME_PATTERN = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -55,6 +56,8 @@ export const SETTING_DEFINITIONS = Object.freeze([
     numberSetting(text(SettingsSection.Theme, "scale", "Scale", "Multiplies every size in the shell."), 1, 0.75, 2),
     booleanSetting(text(SettingsSection.Theme, "transparency", "Transparency effects", "Translucent taskbar and flyouts. Blur comes from your compositor."), true),
     booleanSetting(text(SettingsSection.Theme, "reduceMotion", "Reduce motion", "Makes animations nearly instant."), false),
+
+    ...APPEARANCE_DEFINITIONS,
 
     enumSetting(text(SettingsSection.Compositor, "kind", "Compositor integration", "Auto detects Hyprland; generic works on any wlr-foreign-toplevel compositor."), CompositorKind, CompositorKind.Auto),
 

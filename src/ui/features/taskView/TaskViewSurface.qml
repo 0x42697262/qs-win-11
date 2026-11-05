@@ -78,7 +78,7 @@ FocusScope {
                     AcrylicSurface {
                         anchors.fill: parent
                         elevated: false
-                        fill: workspace.modelData.focused ? Theme.colors.controlFillHover : Theme.colors.flyoutBackground
+                        fill: workspace.modelData.focused ? Theme.colors.controlFillHover : Theme.surfaceFill
                     }
 
                     Label {

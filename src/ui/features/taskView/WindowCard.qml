@@ -19,7 +19,7 @@ Interactive {
 
     AcrylicSurface {
         anchors.fill: parent
-        fill: root.hovered || root.selected ? Theme.colors.controlFillHover : Theme.colors.flyoutBackground
+        fill: root.hovered || root.selected ? Theme.colors.controlFillHover : Theme.surfaceFill
         elevated: false
     }
 

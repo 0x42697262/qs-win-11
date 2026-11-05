@@ -35,7 +35,7 @@ PanelWindow {
         x: Math.max(Theme.spacing.small, Math.min(ToolTips.anchorX - width / 2, root.width - width - Theme.spacing.small))
         anchors.bottom: parent.bottom
         radius: Theme.radius.control
-        color: Theme.colors.flyoutBackground
+        color: Theme.overlayFill
         border.width: Theme.size.stroke
         border.color: Theme.colors.surfaceStroke
 

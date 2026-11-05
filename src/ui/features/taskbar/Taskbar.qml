@@ -58,7 +58,7 @@ PanelWindow {
 
         Rectangle {
             anchors.fill: parent
-            color: Theme.colors.taskbarBackground
+            color: Theme.taskbarFill
 
             Divider {
                 anchors.top: parent.top

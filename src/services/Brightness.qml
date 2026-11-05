@@ -47,7 +47,7 @@ Singleton {
     Timer {
         running: root.watching
         repeat: true
-        interval: Settings.values.tuning.brightnessPollMs
+        interval: Appearance.interval(Settings.values.tuning.brightnessPollMs)
         onTriggered: currentFile.reload()
     }
 }

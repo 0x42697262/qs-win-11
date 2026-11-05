@@ -12,7 +12,7 @@ Card {
 
     Layout.preferredWidth: Theme.size.widgetCard
     implicitHeight: column.implicitHeight + Theme.spacing.large * 2
-    color: Theme.colors.flyoutBackground
+    color: Theme.surfaceFill
 
     ColumnLayout {
         id: column
