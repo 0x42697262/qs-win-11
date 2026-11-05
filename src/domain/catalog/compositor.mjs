@@ -25,5 +25,8 @@ export const LayerNamespace = Object.freeze({
     Toast: "qs-win-11-toast",
     Osd: "qs-win-11-osd",
     Overlay: "qs-win-11-overlay",
-    Gallery: "qs-win-11-gallery",
+
 });
+
+export const BLURRED_LAYER_NAMESPACES = Object.freeze([LayerNamespace.Taskbar, LayerNamespace.Flyout, LayerNamespace.Toast, LayerNamespace.Osd]);
+export const BLUR_IGNORE_ALPHA = 0.3;

@@ -9,6 +9,31 @@ It draws the shell: taskbar, Start, search, Quick Settings, notifications,
 calendar, on-screen displays, task view, widgets, lock screen and a Settings
 app. Windows and apps stay owned by your compositor and your normal Linux apps.
 
+| | |
+|---|---|
+| ![Start, light](docs/screenshots/start-light.png) | ![Quick Settings](docs/screenshots/quick-settings.png) |
+| ![Notifications and calendar](docs/screenshots/notification-center.png) | ![Widgets](docs/screenshots/widgets.png) |
+| ![Settings](docs/screenshots/settings.png) | ![Lock screen](docs/screenshots/lock-screen.png) |
+
+Screenshots come from CI under headless sway, so there is no blur; on Hyprland
+add the layer rules from [docs/hyprland.md](docs/hyprland.md).
+
+## Features
+
+| Area | What you get |
+|---|---|
+| Taskbar | Centered or left, auto-hide, pinned and running apps with indicators, tray, clock, system cluster, widgets weather |
+| Start and search | Pinned grid, Recommended, All apps, ranked search with best match, Quick Link menu, power menu |
+| Quick Settings | Wi-Fi, Bluetooth, airplane, energy saver, night light, dark mode, do not disturb, brightness, volume and output picker, media |
+| Notifications | Toasts, grouped history, do not disturb, calendar |
+| Windows | Task View, Alt+Tab, show desktop, snap layouts (Hyprland), experimental hover previews |
+| System | Volume/brightness/mic OSD, session menu, optional lock screen, idle stages, battery alerts |
+| Widgets | Weather and forecast, CPU and memory, media, calendar |
+| Settings app | Every setting, generated from the schema, with search and an About page showing why a feature is off |
+
+Light, dark, or auto by time; accent color, scale, transparency and reduced
+motion are all settings.
+
 ## Requirements
 
 - Quickshell 0.3 or newer (Qt 6)
@@ -29,7 +54,8 @@ qs -c qs-win-11
 
 The shell never binds keys. Copy what you want from
 [`docs/keybinds.md`](docs/keybinds.md) and `examples/` into your compositor
-config.
+config. Hyprland users: follow [docs/hyprland.md](docs/hyprland.md) for blur,
+keybind formats (Lua, hyprchords, legacy) and known clashes.
 
 ## Configure
 

@@ -1,4 +1,4 @@
-<!-- Generated from src/domain/catalog/ipcCatalog.mjs. Copy what you need; the shell never binds keys itself. -->
+<!-- Generated from src/domain/catalog. Copy what you need; the shell never binds keys or edits your config. -->
 
 # IPC and keybinds
 
