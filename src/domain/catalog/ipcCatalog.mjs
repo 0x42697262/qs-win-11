@@ -18,6 +18,7 @@ export const IpcTargetName = Object.freeze({
     TaskView: "taskView",
     AltTab: "altTab",
     Desktop: "desktop",
+    Widgets: "widgets",
 });
 
 const SUPER = "SUPER";
@@ -122,6 +123,13 @@ export const IPC_TARGETS = Object.freeze([
         description: "Show the desktop.",
         functions: [
             { name: "toggle", description: "Minimize all windows, or restore them.", suggestedKey: { modifiers: [SUPER], key: "D" } },
+        ],
+    },
+    {
+        target: IpcTargetName.Widgets,
+        description: "Widgets board.",
+        functions: [
+            { name: "toggle", description: "Open or close the widgets board.", suggestedKey: { modifiers: [SUPER], key: "W" } },
         ],
     },
     {
