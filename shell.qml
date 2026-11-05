@@ -16,6 +16,7 @@ import qs.src.ui.features.power
 import qs.src.ui.features.taskView
 import qs.src.ui.features.widgets
 import qs.src.ui.features.settingsApp
+import qs.src.ui.features.snap
 import "src/domain/catalog/logEvents.mjs" as LogEvents
 import "src/domain/shell/surfaces.mjs" as Surfaces
 
@@ -47,6 +48,9 @@ ShellRoot {
         if (Features.enabled.widgets) {
             components[Surfaces.Surface.Widgets] = widgetsSurface;
         }
+        if (Features.enabled.snapLayouts) {
+            components[Surfaces.Surface.SnapLayouts] = snapLayoutsSurface;
+        }
         if (Features.enabled.sessionMenu) {
             components[Surfaces.Surface.SessionMenu] = sessionMenuSurface;
         }
@@ -71,6 +75,7 @@ ShellRoot {
     AltTabIpc {}
     DesktopIpc {}
     WidgetsIpc {}
+    SnapIpc {}
     BrightnessIpc {}
 
     SettingsProblemNotice {}
@@ -186,6 +191,11 @@ ShellRoot {
     Component {
         id: widgetsSurface
         WidgetsSurface {}
+    }
+
+    Component {
+        id: snapLayoutsSurface
+        SnapLayoutsSurface {}
     }
 
     Component {

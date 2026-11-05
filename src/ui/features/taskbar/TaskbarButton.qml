@@ -15,6 +15,7 @@ Interactive {
     property bool active: false
     property bool urgent: false
     property bool checked: false
+    property list<string> previewWindowIds: []
 
     implicitWidth: Theme.size.taskbarButton
     implicitHeight: Theme.size.taskbarButton
@@ -65,5 +66,6 @@ Interactive {
         target: root
         hovered: root.hovered
         text: root.toolTip
+        previewWindowIds: root.previewWindowIds
     }
 }

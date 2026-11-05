@@ -20,6 +20,7 @@ export const IpcTargetName = Object.freeze({
     AltTab: "altTab",
     Desktop: "desktop",
     Widgets: "widgets",
+    Snap: "snap",
 });
 
 const SUPER = "SUPER";
@@ -132,6 +133,13 @@ export const IPC_TARGETS = Object.freeze([
         description: "Widgets board.",
         functions: [
             { name: "toggle", description: "Open or close the widgets board.", suggestedKey: { modifiers: [SUPER], key: "W" } },
+        ],
+    },
+    {
+        target: IpcTargetName.Snap,
+        description: "Snap layouts for the focused window.",
+        functions: [
+            { name: "open", description: "Open the snap layout picker.", suggestedKey: { modifiers: [SUPER], key: "Z" } },
         ],
     },
     {

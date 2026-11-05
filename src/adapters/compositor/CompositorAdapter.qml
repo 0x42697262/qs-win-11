@@ -34,6 +34,14 @@ Scope {
         unsupported(CompositorCatalog.CompositorAction.ActivateWorkspace);
     }
 
+    function focusedMonitorGeometry(): var {
+        return null;
+    }
+
+    function placeWindow(windowId: string, rect: var): void {
+        unsupported(CompositorCatalog.CompositorAction.PlaceWindow);
+    }
+
     function windowHandle(windowId: string): var {
         return null;
     }

@@ -79,6 +79,8 @@ Generated files are never edited by hand: `docs/configuration.md`, `docs/keybind
 | sway ignores foreign-toplevel minimize requests, so show desktop cannot be verified in CI | CI run under sway |
 | GeoClue is used through its `where-am-i` demo binary (`/usr/lib/geoclue-2.0/demos/where-am-i`) when present; Open-Meteo needs no API key; ipwho.is returns `success`, `latitude`, `longitude`, `city` | GeoClue 2 packaging, live requests from the CI container |
 | Qt's Wayland text-input logs "QWaylandTextInputv3::disableSurface … 0x0 is focused" when a focused field's window hides under sway; it is harmless and CI ignores only that line | Qt 6.12 under sway |
+| Hyprland Lua mode: `hl.dsp.window.move/resize({ x, y, relative?, window? })` and `hl.dsp.window.float({ action?, window? })`, window selector `address:0x…`; Quickshell's `Hyprland.dispatch()` sends Lua expressions as-is. **Unverified:** the float `action` value `"set"` (taken from the fullscreen dispatcher's toggle/set/unset) and that the socket accepts these strings outside `hl.dispatch()` | Hyprland wiki 0.56 dispatchers page (summary), quickshell `workspace.cpp` |
+| Snap placement runs only on Hyprland; sway in CI cannot exercise it | CI run under sway |
 | CI has a session bus but no system bus, so UPower logs "Could not connect to DBus" and Networking finds no backend; CI ignores only those lines. PipeWire runs with a null sink so audio paths are exercised | CI container |
 | Some Quickshell models are typed `UntypedObjectModel` in qmltypes that qmllint cannot follow across modules; casting with `as ObjectModel` resolves `values` | qmllint 6.12 |
 
@@ -139,4 +141,6 @@ Every PR adds one line per behavior change: what to do, what to see.
 | Settings app | `ipc call settings open`, Quick Settings gear, or Quick Link → Settings | Window with a section per schema section plus About; every setting has a control; changes apply live and land in `settings.json` |
 | Settings app | Put an invalid value in `settings.json` by hand | Warning banner listing the key, the row outlined, and one notification |
 | Settings app | About page | Version, compositor, settings file path, and each feature with its effective state and off reason |
+| Snap layouts | On Hyprland, focus a window, `ipc call snap open`, pick a zone | Window floats and fills that zone of the focused monitor's usable area (taskbar excluded) with small gaps; log shows `window.placed` with `usingLua` |
+| Hover thumbnails | `settings set experimental.hoverThumbnails true`, hover a running app | Live previews of its windows above the taskbar |
 | Theme sync | Switch theme mode | `gsettings get org.gnome.desktop.interface color-scheme` follows |

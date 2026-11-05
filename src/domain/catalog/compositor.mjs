@@ -5,6 +5,8 @@ export const HyprlandEventName = Object.freeze({
 });
 
 export const HYPRLAND_CLASS_FIELD = "class";
+export const HYPRLAND_FLOATING_FIELD = "floating";
+export const HYPRLAND_RESERVED_FIELD = "reserved";
 
 export const CompositorAction = Object.freeze({
     FocusWindow: "focusWindow",

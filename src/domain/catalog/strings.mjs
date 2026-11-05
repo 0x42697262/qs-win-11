@@ -169,6 +169,10 @@ export const Strings = Object.freeze({
         high: "H",
         low: "L",
     }),
+    snap: Object.freeze({
+        title: "Snap layouts",
+        hint: "Pick a zone for the focused window.",
+    }),
     settingsProblems: Object.freeze({
         title: "Some settings were ignored",
         body: "Invalid values fell back to their defaults:",

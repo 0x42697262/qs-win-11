@@ -4,6 +4,8 @@ import Quickshell
 import qs.src.adapters.compositor
 import "../domain/compositor/windows.mjs" as WindowRules
 import "../domain/catalog/tuning.mjs" as Tuning
+import "../domain/snap/placement.mjs" as Placement
+import "../domain/catalog/snapLayouts.mjs" as SnapCatalog
 
 Singleton {
     id: root
@@ -42,6 +44,13 @@ Singleton {
 
     function activateWorkspace(workspaceId: int): void {
         adapter?.activateWorkspace(workspaceId);
+    }
+
+    function placeActive(zone: var): void {
+        const monitor = adapter ? adapter.focusedMonitorGeometry() : null;
+        if (monitor && activeWindowId !== "") {
+            adapter.placeWindow(activeWindowId, Placement.placementRect(monitor, zone, SnapCatalog.SNAP_GAP_PIXELS));
+        }
     }
 
     function handle(windowId: string): var {
