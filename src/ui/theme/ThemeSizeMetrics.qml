@@ -59,6 +59,10 @@ QtObject {
     readonly property real settingsControl: Tokens.CONTROL_SIZE.settingsControl * scale
     readonly property real settingsTextField: Tokens.CONTROL_SIZE.settingsTextField * scale
     readonly property real swatch: Tokens.CONTROL_SIZE.swatch * scale
+    readonly property real snapPreviewWidth: Tokens.CONTROL_SIZE.snapPreviewWidth * scale
+    readonly property real snapPreviewHeight: Tokens.CONTROL_SIZE.snapPreviewHeight * scale
+    readonly property real thumbnailWidth: Tokens.CONTROL_SIZE.thumbnailWidth * scale
+    readonly property real thumbnailHeight: Tokens.CONTROL_SIZE.thumbnailHeight * scale
     readonly property real showDesktopWidth: Tokens.CONTROL_SIZE.showDesktopWidth * scale
     readonly property real clockWidth: Tokens.CONTROL_SIZE.clockWidth * scale
     readonly property real trayIcon: Tokens.CONTROL_SIZE.trayIcon * scale

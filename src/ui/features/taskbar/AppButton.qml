@@ -17,6 +17,7 @@ TaskbarButton {
     running: modelData.windowIds.length > 0
     active: modelData.active
     urgent: modelData.urgent
+    previewWindowIds: Features.experimental.hoverThumbnails && Windows.capabilities.includes(FeatureCatalog.Capability.Screencopy) ? modelData.windowIds : []
     acceptRightClick: true
     acceptMiddleClick: true
 

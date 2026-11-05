@@ -10,6 +10,7 @@ export const LogEvent = Object.freeze({
     CompositorSelected: "compositor.selected",
     CompositorResync: "compositor.resync",
     CompositorUnsupported: "compositor.unsupported",
+    WindowPlaced: "window.placed",
     ProcessFailed: "process.failed",
     ProcessTimedOut: "process.timedOut",
     HttpFailed: "http.failed",

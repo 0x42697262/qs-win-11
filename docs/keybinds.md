@@ -38,6 +38,7 @@ Suggested keys follow Windows 11. Ready-to-copy versions for plain Hyprland bind
 | `altTab cancel` | Close the switcher without switching. |  |
 | `desktop toggle` | Minimize all windows, or restore them. | `SUPER+D` |
 | `widgets toggle` | Open or close the widgets board. | `SUPER+W` |
+| `snap open` | Open the snap layout picker. | `SUPER+Z` |
 | `session lock` | Lock the session. | `SUPER+L` |
 | `session menu` | Open the full-screen session menu. | `CTRL+ALT+Delete` |
 | `session suspend` | Sleep. |  |

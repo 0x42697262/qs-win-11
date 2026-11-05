@@ -9,6 +9,7 @@ Item {
     required property Item target
     required property bool hovered
     property string text: ""
+    property list<string> previewWindowIds: []
     readonly property string screenName: ((target.QsWindow.window as QsWindow)?.screen as ShellScreen)?.name ?? ""
 
     onHoveredChanged: if (!hovered) ToolTips.hide(target)
@@ -16,6 +17,6 @@ Item {
     Timer {
         interval: Tuning.TOOLTIP_DELAY_MS
         running: root.hovered && root.text !== ""
-        onTriggered: ToolTips.show(root.target, root.screenName, root.text)
+        onTriggered: ToolTips.showWithPreview(root.target, root.screenName, root.text, root.previewWindowIds)
     }
 }

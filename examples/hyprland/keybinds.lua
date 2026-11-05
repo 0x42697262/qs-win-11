@@ -77,6 +77,10 @@ return {
 		bind = "SUPER + W",
 	},
 	{
+		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call snap open"),
+		bind = "SUPER + Z",
+	},
+	{
 		action = hl.dsp.exec_cmd("qs -c qs-win-11 ipc call session lock"),
 		bind = "SUPER + L",
 	},
