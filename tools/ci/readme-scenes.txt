@@ -20,10 +20,18 @@
 22-toast-two|!notify-send -a Calendar "Design review" "Starts in 10 minutes in Room 4"
 23-notification-center|notifications toggle
 24-close|notifications toggle
-25-widgets|widgets toggle
+25-widgets|!qs -p "$SHELL_DIR" ipc call widgets toggle; sleep 5
 26-close|widgets toggle
 27-task-view|taskView toggle
 28-close|taskView toggle
+28b-search-calculator|!qs -p "$SHELL_DIR" ipc call search toggle; sleep 0.6; wtype ' sqrt(144)+2^3'
+28c-close|search toggle
+28d-emoji|!qs -p "$SHELL_DIR" ipc call panel emoji; sleep 0.6; wtype ' heart'
+28e-close|panel toggle
+28f-snip|snip open
+28g-close|!wtype -k Escape -k Escape
+28h-run|run toggle
+28i-close|run toggle
 29-osd|audio volumeDown
 30-settings|settings open
 31-lock-enable|settings set features.lockScreen.enabled true
