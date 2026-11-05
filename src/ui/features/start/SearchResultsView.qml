@@ -32,7 +32,9 @@ RowLayout {
 
     ColumnLayout {
         Layout.fillHeight: true
+        Layout.fillWidth: false
         Layout.preferredWidth: Theme.size.searchResultsWidth
+        Layout.maximumWidth: Theme.size.searchResultsWidth
         spacing: Theme.spacing.xxSmall
 
         Label {
@@ -66,6 +68,8 @@ RowLayout {
         visible: root.selected !== null
         Layout.fillWidth: true
         Layout.fillHeight: true
+        Layout.minimumWidth: Theme.size.searchResultsWidth
+        Layout.preferredWidth: Theme.size.searchResultsWidth
 
         ColumnLayout {
             anchors.fill: parent

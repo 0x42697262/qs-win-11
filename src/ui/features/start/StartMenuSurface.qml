@@ -168,6 +168,8 @@ FocusScope {
 
                 SearchResultsView {
                     id: results
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
                     query: root.query
                 }
             }

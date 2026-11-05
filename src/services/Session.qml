@@ -30,6 +30,7 @@ Singleton {
     function lock(): void {
         Log.info(LogEvents.LogEvent.SessionAction, { action: SystemCatalog.SessionAction.Lock });
         if (Features.enabled.lockScreen) {
+            LockState.lock();
             lockRequested();
         } else {
             runCommandLine(Settings.values.commands.lock);

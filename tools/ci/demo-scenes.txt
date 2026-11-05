@@ -1,0 +1,31 @@
+01-wallpaper-mode|settings set wallpaper.mode shell
+02-wallpaper-path|!qs -p "$SHELL_DIR" ipc call settings set wallpaper.path "$SHELL_DIR/tools/ci/assets/wallpaper.jpg"
+03-maximum|settings set appearance.level 4
+04-pin|settings set startMenu.initialPinned foot
+05-place|settings set weather.locationMode manual
+06-place-name|settings set weather.manualPlaceName Davao
+07-latitude|settings set weather.manualLatitude 7.07
+08-longitude|!qs -p "$SHELL_DIR" ipc call settings set weather.manualLongitude 125.61; sleep 2
+@record|
+10-start|start toggle
+11-type|!sleep 0.8; wtype -d 140 ' foot'; sleep 1.2
+12-close|start toggle
+13-quick-settings|quickSettings toggle
+14-light|!sleep 0.8; qs -p "$SHELL_DIR" ipc call settings set theme.mode light; sleep 1.2
+15-dark|settings set theme.mode dark
+16-close|quickSettings toggle
+17-toast|!notify-send -a Mail "Ada Lovelace" "The build is green. Lunch at noon?"; sleep 0.8; notify-send -a Calendar "Design review" "Starts in 10 minutes in Room 4"; sleep 1.5
+18-center|notifications toggle
+19-close|!sleep 1; qs -p "$SHELL_DIR" ipc call notifications toggle
+20-widgets|widgets toggle
+21-close|!sleep 1; qs -p "$SHELL_DIR" ipc call widgets toggle
+22-task-view|taskView toggle
+23-close|taskView toggle
+24-volume|!for step in 1 2 3 4 5; do qs -p "$SHELL_DIR" ipc call audio volumeDown > /dev/null; sleep 0.25; done
+25-start-again|start toggle
+26-saver|!sleep 0.8; qs -p "$SHELL_DIR" ipc call settings set appearance.level 0; sleep 1.5
+27-flat|!qs -p "$SHELL_DIR" ipc call settings set appearance.level 4; qs -p "$SHELL_DIR" ipc call settings set appearance.style flat; sleep 1.5
+28-fluent|!qs -p "$SHELL_DIR" ipc call settings set appearance.style fluent; sleep 1.5
+29-close|start toggle
+30-session|!qs -p "$SHELL_DIR" ipc call session menu; sleep 1.5
+31-close|session menu
